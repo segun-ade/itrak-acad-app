@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/sessions/{sessionId}": {
+      "name": "/sessions/{sessionId}",
+      "lambdaFunction": "SessionHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
