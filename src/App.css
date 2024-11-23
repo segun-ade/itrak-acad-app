@@ -36,3 +36,720 @@
     transform: rotate(360deg);
   }
 }
+
+#nvb13 {
+    justify-content: center;
+    position: sticky;
+    top: 15px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    max-height: 60px;
+    min-width: 800px;
+    z-index:3;
+}
+
+#nvbc13 {
+    width: 100%;
+    max-height: inherit;
+    /*max-width:1200px;*/
+}
+
+#nvbw13 {
+    display: flex;
+    /*flex-direction:row;*/
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: rgba(255,255,255,0.8);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    backdrop-filter: blur(13px);
+    box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.14);
+    max-height: inherit;
+}
+.content-area {
+    display:flex;
+}
+.cal-chat-panel {
+    width: 270px;
+    min-height: 600px;
+    margin: 30px 0px 30px 30px;
+    box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.14);
+    border-top: 5px solid rgba(30,220,240,.98); /*rgba(9,9,231,0.64);*/
+    border-radius: 2%;
+    /*overflow-y: scroll;
+    background-image: linear-gradient(180deg,rgba(59,130,245,0.01),white 1%);*/
+    position: sticky;
+    top: 100px;
+    display: inline-grid;
+    padding: 10px;
+}
+.month-title {
+    margin-left: 20px;
+}
+.calendar-container {
+    position: relative;
+    display: inline-grid;
+    /*float:left;*/
+    width: 920px;
+    height: auto;
+    border: 2px solid rgba(0,0,0,0.05);
+    border-radius: 2% 2% 0% 0%;
+    background-color: rgba(20,200,20,0.01);
+    overflow-x: scroll;
+    grid-template-columns: auto auto;
+    justify-content: left;
+    align-content: center;
+    gap: 0px 30px;
+    margin: 30px 30px 30px 30px;
+    padding: 10px 30px 10px 30px;
+}
+.cal-wrapper {
+    position: relative;
+    display: flex;
+    width: 440px;
+    height: 350px;
+    border: 2px solid rgba(0,0,0,0.05);
+    margin: 5px;
+    border-radius: 5%;
+}
+
+.cal-note {
+    width: 50px;
+    height: 67px;
+    border: 2px solid rgba(0,0,0,0.05);
+    margin: 5px;
+    border-radius: 10%;
+    display: block;
+    text-align: center;
+}
+
+.no-attend-date-btn {
+    width: 35px;
+    height: 25px;
+    margin: 3px 0px 1px 0px;
+    background-color:darkgray;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.date-btn {
+    width: 35px;
+    height: 25px;
+    margin: 3px 0px 1px 0px;
+    background-color: Highlight;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+    .date-btn:hover {
+        background-color: lightblue;
+    }
+
+.event-btn {
+    width: 45px;
+    height: inherit;
+    background-color:floralwhite;
+    color:rgb(111, 38, 129);
+    cursor: pointer;
+    border: none;
+}
+    
+    .event-btn:hover {
+        background-color: lightblue;
+    }
+    
+    .indicators-e {
+        width: 45px;
+        height: 15px;
+        border: 2px solid rgba(0,0,0,0.05);
+        margin: 1px 0px 3px 0px;
+        border-radius: 0% 10% 10% 0%;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .indicators-e div {
+        width: 9px; /**/
+        position: relative;
+        height: inherit;
+        border-right: 1px solid rgba(0,0,0,0.1);
+        margin: 0px;
+        border-radius: 0% 0% 0% 0%;
+        font-size: 0.5em;
+        background-color: lightgray;
+        /*display: flex;
+        text-align: center;
+        justify-content: center;*/
+    }
+
+.indicators-c {
+    width: 45px;
+    height: 15px;
+    border: 2px solid rgba(0,0,0,0.05);
+    margin: 1px 0px 3px 0px;
+    border-radius: 0% 10% 10% 0%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.indicators-c div {
+    width: 9px; /**/
+    position: relative;
+    height: inherit;
+    border-right: 1px solid rgba(0,0,0,0.1);
+    margin: 0px;
+    border-radius: 0% 0% 0% 0%;
+    font-size: 0.5em;
+    background-color: lightgray;
+    /*display: flex;
+    text-align: center;
+    justify-content: center;*/
+}
+
+.perf-note {
+    width: inherit;
+    height: inherit;
+    border: 2px solid rgba(0,0,0,0.05);
+    margin: 2px;
+    border-radius: 2%;
+    display: block;
+    text-align: center;
+}
+
+.perf-date-btn {
+    width: auto;
+    height: 25px;
+    margin: 3px 0px 1px 0px;
+    background-color: Highlight;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+    .perf-date-btn:hover {
+        background-color: lightblue;
+    }
+
+
+.indicators-p {
+    width: auto;
+    height: auto;
+    border: 2px solid rgba(0,0,0,0.05);
+    margin: 10px 10px 10px 10px;
+    border-radius: 0% 0% 0% 0%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.indicators-p .notes {
+    width: 210px;
+    min-height: 300px;
+    border: 2px solid rgba(0,0,0,0.05);
+    margin: 5px 5px 5px 5px;
+    border-radius: 0px 30px 0px 30px;
+    box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.14);
+    border-top: 5px solid rgba(30,220,240,.98); /*rgba(9,9,231,0.64);*/
+    background-color: white;
+    display: inline-block;
+    text-align: left;
+    justify-content: left;
+}
+
+.indicators-p .event-notes {
+    width: 410px;
+    min-height: 300px;
+    border: 2px solid rgba(0,0,0,0.05);
+    margin: 5px 5px 5px 5px;
+    border-radius: 0px 30px 0px 30px;
+    box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.14);
+    border-top: 5px solid rgba(30,220,240,.98); /*rgba(9,9,231,0.64);*/
+    background-color: white;
+    display: inline-block;
+    text-align: left;
+    justify-content: left;
+}
+
+.indicators-p .note-header {
+    width: auto;
+    height: 28px;
+    margin: 5px 5px 5px 5px;
+    padding-top: 10px;
+    vertical-align: bottom;
+    border-bottom: 1px solid rgba(4,156,170,.90);
+    border-radius: 0px 30px 0px 0px;
+    background-color:rgba(30,220,240,.18); /* rgb(231, 250, 219);*/
+    display: flex;
+    text-align: center;
+    justify-content: left;
+    cursor: pointer;
+}
+
+.perf-header {
+    width: auto;
+    height: 35px;
+    margin: 5px 5px 5px 5px;
+    padding-top: 10px 10px 10px 10px;
+    vertical-align: bottom;
+    border-bottom: 1px solid rgba(4,156,170,.90);
+    border-radius: 10px 10px 0px 0px;
+    background-color:rgba(9, 182, 201, 0.98); /* rgb(231, 250, 219);*/
+    color: white;
+    display: grid;
+    grid-template-columns: 10% 30% 15% 15% 20%;
+    text-align: center;
+    justify-content:space-between;
+}
+
+.perf-view-btn {
+    width: auto;
+    height: auto;
+    /*margin: 5px 5px 5px 5px;*/
+    border-radius: 10px 10px 0px 0px;
+    background-color:cadetblue;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.perf-period {
+    margin-top: 10px;
+}
+.indicators-p .note-footer {
+    width: auto;
+    height: 28px;
+    margin: 5px 5px 5px 5px;
+    padding: 10px;
+    vertical-align: bottom;
+    border-top: 1px solid rgba(4,156,170,.90);
+    border-radius: 0px 0px 0px 30px;
+    background-color:rgba(30,220,240,.18); /* rgb(231, 250, 219);*/
+    display: flex;
+    /*float: right;*/
+    text-align: center;
+    justify-content: right;
+    /*cursor: pointer;*/
+}
+
+.note-footer button {
+    margin: 0px 0px 0px 20px;
+    width: auto;
+    height: auto;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.note-footer .mark-btn {
+    background-color: rgb(20, 116, 57);
+    
+}
+
+.cal-chat-panel .mark-btn {
+    background-color: rgb(204, 243, 219);
+    border: none;
+    color: rgb(10, 123, 228);
+    cursor: pointer;
+}
+
+.note-footer .delete-btn {
+    background-color: rgb(109, 19, 46);
+}
+
+.indicators-p .note-header:hover {
+    background-color: rgba(249, 242, 255, 0.98);
+}
+.indicators-p .note-header img {
+    width: 19px; /**/
+    position: relative;
+    height: 20px;
+    border-right: 1px solid rgba(0,0,0,0.1);
+    margin: 0px 10px 10px 10px;
+    border-radius: 0% 0% 0% 0%;
+    font-size: 0.5em;
+    background-color: lightgray;
+    /*display: flex;
+    text-align: center;
+    justify-content: center;*/
+}
+
+.indicators-p .note-data {
+    min-height: 270px;
+}
+/*
+.link-option:active + div {
+    display: grid;
+}*/
+ .link-data-row {
+    /*width: 19px; */
+    position: relative;
+    min-height: 18px;
+    border: 0.5px solid rgba(0,0,0,0.1);
+    margin: 0px 5px 5px 5px;
+    padding: 2px 5px 2px 2px;
+    border-radius: 2% 0% 2% 0%;
+    font-size: 0.8em;
+    display: none;
+    grid-template-columns: 10% 60% 20%;
+    justify-content: space-between;
+    background-color: rgba(240,248,255,0.3);
+    /*vertical-align: bottom;
+    text-align: left;
+    justify-content: left;*/
+}
+
+.indicators-p .note-data-row, .indicators-p .form-data-row {
+    /*width: 19px; */
+    position: relative;
+    min-height: 18px;
+    border: 0.5px solid rgba(0,0,0,0.1);
+    margin: 5px 5px 5px 5px;
+    padding: 8px 2px 2px 2px;
+    border-radius: 0% 0% 0% 0%;
+    font-size: 0.8em;
+    display: grid;
+    grid-template-columns: 10% 65% 10% 15%;
+    justify-content: space-between;
+    /*vertical-align: bottom;
+    text-align: left;
+    justify-content: left;*/
+}
+
+.indicators-p .note-data-row-header {
+    /*width: 19px; */
+    position: relative;
+    min-height: 18px;
+    border: 0.5px solid rgba(0,0,0,0.1);
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 2px;
+    border-radius: 0% 0% 0% 0%;
+    font-size: 0.8em;
+    display: grid;
+    grid-template-columns: 5% 55% 15% 15% 10%;
+    justify-content: space-between;
+    background-color: rgb(135, 195, 222);
+    color: white;
+}
+
+.indicators-p .event-notes .note-data-row {
+    grid-template-columns: 5% 55% 15% 15% 10%;
+}
+
+.indicators-p .event-notes .note-data-row-header div{
+    text-align: left;
+    padding: 0px 0px 0px 0px;
+    /*border: 0.5px solid rgba(255, 255, 255, 0.9);*/
+}
+
+.indicators-p .event-notes .form-data-row {
+    grid-template-columns: 30% 70%;
+    padding: 5px 10px 5px 5px;
+    vertical-align: bottom;
+}
+
+.indicators-p .event-notes .note-data-row div{
+    padding: 0px 10px 0px 0px;
+}
+
+.indicators-p .note-data-row img{
+    width: 12px; /**/
+    position: relative;
+    height: 12px;
+    /*margin: 0px 10px 10px 10px;*/
+}
+.indicators-p .note-data-row input{
+    width: 10px; /**/
+    position: relative;
+    height: 10px;
+    /*margin: 0px 10px 10px 10px;*/
+}
+.indicators-p .note-data-row-header input{
+    width: 10px; /**/
+    position: relative;
+    height: 10px;
+    /*margin: 0px 10px 10px 10px;*/
+}
+.indicators-p .note-data-row div{
+    text-align: left;
+    /*justify-content: left;
+    float: left;*/
+}
+.exam-indicator {
+    background-image: url(exam2-icon.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.test-indicator {
+    background-image: url(test2-icon.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.assignment-indicator {
+    background-image: url(assigment2-icon.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.extra-cur-indicator {
+    background-image: url(extra-cur2-icon.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.info-indicator {
+    background-image: url(news2-icon.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.cal-wrapper {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto;
+    justify-content: space-around;
+    align-content: start;
+    height: auto;
+    gap: 0px 0px;
+    margin: 2px   0px;
+}
+
+
+.wk-days{
+    padding-left:15px;
+}
+
+.chart-grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    justify-content: space-around;
+    align-content: center;
+    height: auto;
+    gap: 100px 50px;
+    margin: 0px 100px 100px 100px;
+    border-top: 2px solid rgba(9,9,231,0.64);
+    padding: 50px;
+}
+
+.cal-header {
+    width: 920px;
+    height: 300px;
+    background-color: rgba(4,156,170,.90); /*rgba(130,20,220,.68);*/
+    color: rgba(255,255,231,0.94);
+    margin: 40px 30px 0px 30px;
+    padding: 10px 30px 10px 30px;
+    box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.14);
+    border-radius: 2% 2% 0% 0%;
+    border-top: 5px solid rgba(30,220,240,.98); /*rgba(9,9,231,0.64);*/
+    font-size: 1.5rem;
+}
+
+.section-header {
+    background-color: rgba(4,156,170,.90) ;/*rgba(130,20,220,.68);*/
+    color: rgba(255,255,231,0.94);
+    max-height: 35px;
+    text-align: center;
+    border-bottom: 1px solid rgba(130,20,220,.98);
+    padding: 10px;
+}
+
+.link-option {
+    background-color: rgba(30,220,240,.18); /*rgba(230,220,240,.18);*/
+    border-bottom: 1px solid rgba(4,156,170,.90); /*1px solid rgba(130,20,220,.98);*/
+    padding-left: 10px;
+    font-size: 1.0em;
+    max-height: 45px;
+    cursor: pointer;
+}
+    .link-option:hover {
+        background-color: rgba(249, 242, 255, 0.98);
+    }
+.chat-bot-container{  
+    position: fixed;
+    bottom: 30px;
+    right: 0px;
+    display:inline-flex;
+    flex-direction: column;
+    width: 350px;
+    min-height: 400px;
+    margin: 30px 20px 30px 30px;
+    box-shadow: 0px 5px 5px 5px rgba(0,0,0,0.14);
+    border-top: 5px solid rgba(30,220,240,.98); /*rgba(9,9,231,0.64);*/
+    border-radius: 2%;
+    /*overflow-y: scroll;
+    background-image: linear-gradient(180deg,rgba(59,130,245,0.01),white 1%);  */   
+    background-color: rgba(255, 255, 255, 1.0); 
+    padding: 10px;     
+    /*z-index: 30;*/
+}
+.chat-header {
+    display: flex;
+    float: left;
+    align-items: center;
+    
+    background-color: rgba(4,156,170,.90) ;/*rgba(130,20,220,.68);*/
+    color: rgba(255,255,231,0.94);
+    max-height: 30px;
+    font-size: 1.3rem;
+    font-weight:lighter;
+    /*text-align: center;*/
+    border-bottom: 1px solid rgba(130,20,220,.98);
+    padding: 10px;
+}
+.chat-header .user-img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+.chat-header .marker-img{
+    width: 10px;
+    height: 10px;
+    position: relative;
+    top: 0px;
+    right: 13px;
+    /*z-index: 2;*/
+    border-radius: 50%;
+    border: 2px solid white;
+}
+.chat-body{
+    height: 300px;
+    display:flex;
+    flex-direction: column
+    ;
+    border-bottom: 1px solid rgba(4,156,170,.90);
+    overflow-y:auto;
+}
+.userchat-content{
+    max-height: 90px;
+    min-height: 50px;
+    display:flex;
+    align-items: center;
+    /*border-style: 1px solid;
+    background-color: aquamarine;*/
+}
+.userchat-content button{
+    width: 10%;
+    height: 30px;
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    float: right;
+}
+.userchat-content .submit-icon{
+    width: 8%;
+    height: 20px;
+    /*background-color: cornflowerblue;
+    color: white;*/
+    border: none;
+    float: right;
+    cursor: pointer;
+}
+.userchat-content textarea{
+    width: 92%;
+    /*height: fit-content;*/
+    max-height: 90px;
+    vertical-align:middle;
+    resize:none;
+    /*background-color: rgb(255, 255, 255);*/
+    color: rgb(0, 0, 0);
+    border: none;
+    float: left;
+    margin: 10px 10px 0px 0px;
+}
+.marker-icon{
+    width: 10px;
+    height: 10px;
+    position: relative;
+    top: 10px;
+    right: 0px;
+    /*z-index: 2;*/
+    border-radius: 50%;
+    border: 2px solid rgb(139, 200, 233);
+ 
+}
+.out-msg-container .marker-icon{
+       margin-left: 3px;
+}
+.in-msg-container .marker-icon{
+    margin-right: 3px;
+}
+.msg-wrapper{        
+    /*width: 100%;
+    border: 1px dotted;*/
+    height: fit-content;
+    margin: 0px;
+}
+.out-msg-container{  
+    padding: 5px;
+    /*border-radius: 5% 0% 5% 5%; border: 1px dotted;*/
+    display: inline-flex;
+    max-width: 250px;
+    float: right;
+}
+.out-msg{
+    background-color: rgba(82, 161, 235, 0.9);
+    color: white;
+    border-radius: 10% 0% 10% 10%;
+    padding: 10px;
+    /*width:fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;*/
+    
+}
+.in-msg-container{  
+    padding: 5px;
+    /*border-radius: 5% 0% 5% 5%; border: 1px dotted;*/
+    display: inline-flex;
+    float: left;
+    max-width: 250px;
+}
+.in-msg{
+    background-color: rgba(204, 231, 233,0.9);
+    border-radius: 0% 10% 10% 10%;
+    padding: 10px;
+    /*width:fit-content;
+    height: fit-content;*/
+}
+.session-header{
+    margin: 10px 0px 10px 0px;
+    border-bottom: 1px solid rgba(4,156,170,.90);
+    font-size:small;
+    color:darkgray;
+}
+
+.chat-icon{
+    position: fixed;
+    bottom: 10px;
+    right: 0px;
+    margin: 30px 20px 0px 30px;
+    width: 40px;
+    height: 40px;
+    /*background-color: cornflowerblue;
+    color: white;*/
+    border: 2px solid blue;
+    border-radius: 50%;
+    float: right;
+    cursor: pointer;
+}
+
+.chat-link{
+    background-color: cornflowerblue;
+    color: white;
+    border: 2px solid blue;
+    border-radius: 10%;
+    cursor: pointer;
+}
