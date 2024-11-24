@@ -491,7 +491,7 @@ class LiveChatApp extends React.Component {
         let msgdelivered = false;
         //axios.post('http://localhost:8000/chatmsg?session_id=' + this.state.session.id + '&session_no=' + this.state.session.session_no + '&msg=' + msgnote + '&bxno=' + this.state.session.msgbxno)
         //API.post(this.itrakacadAPI, '/chatmsg?session_id=' + this.state.session.id + '&session_no=' + this.state.session.session_no + '&msg=' + msgnote + '&bxno=' + this.state.session.msgbxno)
-        post({
+/*        post({
             apiName: this.itrakacadAPI,
             path: '/chatmsg?session_id=' + this.state.session.id + '&session_no=' + this.state.session.session_no + '&msg=' + msgnote + '&bxno=' + this.state.session.msgbxno
           })
@@ -504,7 +504,7 @@ class LiveChatApp extends React.Component {
             console.log("Unable to connect to the server.");
             this.setState({new_inmsg: "error!"});//, ()=>console.log(this.state.new_inmsg));
         })
-        
+*/        
     }
 
     startSession = () => {
@@ -513,7 +513,7 @@ class LiveChatApp extends React.Component {
             console.log('Connecting to server...');
             //axios.post('http://localhost:8000/startsession?username=' + this.state.username + '&userID=' + this.userID + '&chatgroupfilter=' + this.chatfilter + '&msg=' + this.state.new_outmsg)
             //API.post(this.itrakacadAPI, '/startsession?username=' + this.state.username + '&userID=' + this.userID + '&chatgroupfilter=' + this.chatfilter + '&msg=' + this.state.new_outmsg)
-            post({
+/*            post({
                 apiName: this.itrakacadAPI,
                 path: '/startsession?username=' + this.state.username + '&userID=' + this.userID + '&chatgroupfilter=' + this.chatfilter + '&msg=' + this.state.new_outmsg
               })
@@ -532,7 +532,7 @@ class LiveChatApp extends React.Component {
                     //this.setState({agentname:response.data.users[0]});
                     /*this.session_open = true;
                     this.session_ended = false;*/
-                }
+/*                }
                 else{
                     console.log(response.data + ": " + "Unable to connect to chat agent.");
                     this.setState({new_inmsg: "Error starting session."});//, ()=>console.log(this.state.new_inmsg));
@@ -544,14 +544,14 @@ class LiveChatApp extends React.Component {
                 this.setState({new_inmsg: "error!"});//, ()=>console.log(this.state.new_inmsg));
                 this.session_initiated = false;
             })
-        }
+*/        }
     }
 
     endSession = () => {
         console.log('Ending current session. Pls wait...');
         //axios.post('http://localhost:8000/endsession?session_no=' + this.state.session.session_no)
         //API.post(this.itrakacadAPI, '/endsession?session_no=' + this.state.session.session_no)
-        post({
+/*        post({
             apiName: this.itrakacadAPI,
             path: '/endsession?session_no=' + this.state.session.session_no
           })
@@ -575,7 +575,7 @@ class LiveChatApp extends React.Component {
             console.log("Unable to connect to the server.");
             this.setState({new_inmsg: "error!"});//, ()=>console.log(this.state.new_inmsg));
         })
-    }
+*/    }
 
     joinSession = (name,user_id,sess_no,sess_id,st_time,users,msg,comp_restart) => {
         var sessioncopy = {
@@ -591,7 +591,7 @@ class LiveChatApp extends React.Component {
         console.log('Connecting to server...');
         //axios.post('http://localhost:8000/joinsession?username=' + name + '&userID=' + user_id + '&session_no=' + sess_no + '&session_id=' + sess_id + '&msg=' + msg + '&comp_restart=' + comp_restart)
         //API.post(this.itrakacadAPI, '/joinsession?username=' + name + '&userID=' + user_id + '&session_no=' + sess_no + '&session_id=' + sess_id + '&msg=' + msg + '&comp_restart=' + comp_restart)
-        post({
+/*        post({
             apiName: this.itrakacadAPI,
             path: '/joinsession?username=' + name + '&userID=' + user_id + '&session_no=' + sess_no + '&session_id=' + sess_id + '&msg=' + msg + '&comp_restart=' + comp_restart
           })
@@ -614,7 +614,7 @@ class LiveChatApp extends React.Component {
             console.log("Unable to connect to the server.");
             this.setState({new_inmsg: "error!"});//, ()=>console.log(this.state.new_inmsg));
         })
-    }
+*/    }
     
     componentDidMount = () => {
         console.log("Live chat mounted.");
@@ -622,7 +622,7 @@ class LiveChatApp extends React.Component {
             this.session_check_initiated = true;//checking for session... Don't check again until session ends if any.
             //axios.get('http://localhost:8000/checksession?userID=' + this.userID)
             //API.get(this.itrakacadAPI, '/checksession?userID=' + this.userID)
-            get({
+/*            get({
                 apiName: this.itrakacadAPI,
                 path: '/checksession?userID=' + this.userID
               })
@@ -643,7 +643,7 @@ class LiveChatApp extends React.Component {
                 this.setState({new_inmsg: "error!"});//, ()=>console.log(this.state.new_inmsg));
                 this.session_check_initiated = false;
             })
-        }
+*/        }
     }
 
     shouldComponentUpdate = () => {
@@ -663,7 +663,7 @@ class LiveChatApp extends React.Component {
             if(this.session_initiated){               
                 //axios.get('http://localhost:8000/session_request_status?session_no=' + this.state.session.session_no + '&session_id=' + this.state.session.id)
                 //API.get(this.itrakacadAPI, '/session_request_status?session_no=' + this.state.session.session_no + '&session_id=' + this.state.session.id)
-                get({
+/*                get({
                     apiName: this.itrakacadAPI,
                     path: '/session_request_status?session_no=' + this.state.session.session_no + '&session_id=' + this.state.session.id
                   })
@@ -686,12 +686,12 @@ class LiveChatApp extends React.Component {
                 .catch((err) => {
                     console.log("Unable to connect to the server.");
                 })
-            }else {
+*/            }else {
                 if(!this.session_check_initiated){
                     this.session_check_initiated = true;//checking for session... Don't check again until session ends if any.
                     //axios.get('http://localhost:8000/checksession?userID=' + this.userID)
                     //API.get(this.itrakacadAPI, '/checksession?userID=' + this.userID)
-                    get({
+/*                    get({
                         apiName: this.itrakacadAPI,
                         path: '/checksession?userID=' + this.userID
                       })
@@ -712,14 +712,14 @@ class LiveChatApp extends React.Component {
                         this.setState({new_inmsg: "error!"});//, ()=>console.log(this.state.new_inmsg));
                         this.session_check_initiated = false;
                     })
-                }
+*/                }
             }
 
         }
         else {
             //axios.get('http://localhost:8000/newmsg?session_no=' + this.state.session.session_no + '&session_id=' + this.state.session.id + '&bxno=' + this.state.session.msgbxno)
             //API.get(this.itrakacadAPI, '/newmsg?session_no=' + this.state.session.session_no + '&session_id=' + this.state.session.id + '&bxno=' + this.state.session.msgbxno)
-            get({
+/*            get({
                 apiName: this.itrakacadAPI,
                 path: '/newmsg?session_no=' + this.state.session.session_no + '&session_id=' + this.state.session.id + '&bxno=' + this.state.session.msgbxno
               })
@@ -746,7 +746,7 @@ class LiveChatApp extends React.Component {
                 console.log("Unable to connect to the server.");
                 this.setState({new_inmsg: "error!"});//, ()=>console.log(this.state.new_inmsg));
             })
-        }
+*/        }
     }
 
     componentWillUnmount = () => {

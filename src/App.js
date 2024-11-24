@@ -210,7 +210,7 @@ function HomePage() {
         
       }*/
       //API.get(itrakacadAPI, '/check_reg_user_session')
-      get({
+/*      get({
           apiName: itrakacadAPI,
           path: '/check_reg_user_session'
       })
@@ -231,7 +231,7 @@ function HomePage() {
       .catch((error) => {
         console.log('GET call failed: ', JSON.parse(error.response.body));
       })
-
+*/
       }, []
   )
   //axios.defaults.withCredentials = true;
@@ -243,7 +243,7 @@ function HomePage() {
       alert(pwd);
       //axios.get('http://localhost:8000/check_reg_user?user_id=' + userid + '&pwd=' + pwd + '&rem_login=' + rem_login)
       //API.get(itrakacadAPI, '/check_reg_user?user_id=' + userid + '&pwd=' + pwd + '&rem_login=' + rem_login)
-      get({
+/*      get({
         apiName: itrakacadAPI,
         path: '/check_reg_user?user_id=' + userid + '&pwd=' + pwd + '&rem_login=' + rem_login,
       })
@@ -263,7 +263,7 @@ function HomePage() {
           console.log("Unable to connect to the server.");
           alert(err+": Server Error! Unable to process your request at this time, pls try again later.");
       })
-      //alert(userid + ", " + pwd + ", " + username);
+*/      //alert(userid + ", " + pwd + ", " + username);
       /*if ((userid == "adeyolu03") && (pwd == "myid123#")) {
           setUserValid(true,()=>alert("User is logged on"));
           setUserName("Adeyemi, Oluwasegun S.");
@@ -299,7 +299,7 @@ function HomePage() {
       }else{
           //axios.post('http://localhost:8000/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
-          post({
+/*          post({
             apiName: itrakacadAPI,
             path: '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type
           })
@@ -317,7 +317,7 @@ function HomePage() {
               console.log("Unable to connect to the server.");
               alert("Server Error! Unable to process your request at this time, pls try again later.");
           })
-      }
+*/      }
   }
 
   if (user_valid){

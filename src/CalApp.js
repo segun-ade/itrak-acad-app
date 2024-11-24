@@ -215,7 +215,7 @@ function TermCalApp(props) {
             //let student_id = 'oluwsupo0001';
             //axios.get('http://localhost:8000/check_stdt_attendance?attend_date=' + attend_date + '&stdt_id=' + student_id + '&term=' + term)
             //API.get(itrakacadAPI, '/check_stdt_attendance?attend_date=' + attend_date + '&stdt_id=' + student_id + '&term=' + term)
-            get({
+/*            get({
                 apiName: itrakacadAPI,
                 path: '/check_stdt_attendance?attend_date=' + attend_date + '&stdt_id=' + student_id + '&term=' + term
               })
@@ -239,7 +239,7 @@ function TermCalApp(props) {
                     setCalLoaded(true);
                 }  
             })
-        }
+ */       }
     }
     
     let chatSection = () => {
@@ -477,7 +477,7 @@ function removeSignUp() {
 let displayLogout = () => {
     //axios.get('http://localhost:8000/remove_reg_user_session')
     //API.get(itrakacadAPI, '/remove_reg_user_session')
-    get({
+/*    get({
         apiName: itrakacadAPI,
         path: '/remove_reg_user_session'
       })
@@ -495,7 +495,7 @@ let displayLogout = () => {
              //setUserValid(false);
         }  
      })   
-    //document.getElementById("login").style.display = "flex";
+*/    //document.getElementById("login").style.display = "flex";
     
 }
 

@@ -938,7 +938,7 @@ class PerformanceApp extends React.Component {
             if(!this.perf_requested){
                 //axios.get('http://localhost:8000/check_stdt_performance?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 //API.get(this.itrakacadAPI, '/check_stdt_performance?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
-                get({
+/*                get({
                     apiName: this.itrakacadAPI,
                     path: '/check_stdt_performance?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term
                   })
@@ -967,9 +967,9 @@ class PerformanceApp extends React.Component {
                         this.perf_data_counter = 0;
                     }
                 })
-                //axios.get('http://localhost:8000/check_stdt_assignment?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
+*/                //axios.get('http://localhost:8000/check_stdt_assignment?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 //API.get(this.itrakacadAPI, '/check_stdt_assignment?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
-                get({
+/*                get({
                     apiName: this.itrakacadAPI,
                     path: '/check_stdt_assignment?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term
                   })
@@ -998,9 +998,9 @@ class PerformanceApp extends React.Component {
                         this.perf_data_counter = 0;
                     }
                 })
-                //axios.get('http://localhost:8000/check_stdt_activity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
+*/                //axios.get('http://localhost:8000/check_stdt_activity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 //API.get(this.itrakacadAPI, '/check_stdt_activity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
-                get({
+/*                get({
                     apiName: this.itrakacadAPI,
                     path: '/check_stdt_activity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term
                   })
@@ -1029,9 +1029,9 @@ class PerformanceApp extends React.Component {
                         this.perf_data_counter = 0;
                     }
                 })
-                //axios.get('http://localhost:8000/check_stdt_news?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
+*/                //axios.get('http://localhost:8000/check_stdt_news?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 //API.get(this.itrakacadAPI, '/check_stdt_news?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
-                get({
+/*                get({
                     apiName: this.itrakacadAPI,
                     path: '/check_stdt_news?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term
                   })
@@ -1060,7 +1060,7 @@ class PerformanceApp extends React.Component {
                         this.perf_data_counter = 0;
                     }
                 })
-                this.perf_requested = true;
+*/                this.perf_requested = true;
                 this.perf_disp_msg = "Loading performance data. Pls wait...";
             }
             return(
