@@ -44,7 +44,7 @@ app.get('/newuser/:emailaddr/:pwd/:usertype', function(req, res) {
 * Example post method *
 ****************************/
 
-app.post('/newuser/:emailaddr/:pwd/:usertype', function(req, res) {
+/*app.post('/newuser/:emailaddr/:pwd/:usertype', function(req, res) {
   // Add your code here
   res.json({success: 'post call succeed!', url: req.url, body: req.body})
 });
@@ -58,7 +58,7 @@ app.post('/newuser/:emailaddr/:pwd/:usertype', function(req, res) {
 * Example put method *
 ****************************/
 
-app.put('/newuser/:emailaddr/:pwd/:usertype', function(req, res) {
+/*app.put('/newuser/:emailaddr/:pwd/:usertype', function(req, res) {
   // Add your code here
   res.json({success: 'put call succeed!', url: req.url, body: req.body})
 });
@@ -72,7 +72,7 @@ app.put('/newuser/:emailaddr/:pwd/:usertype', function(req, res) {
 * Example delete method *
 ****************************/
 
-app.delete('/newuser/:emailaddr/:pwd/:usertype', function(req, res) {
+/*app.delete('/newuser/:emailaddr/:pwd/:usertype', function(req, res) {
   // Add your code here
   res.json({success: 'delete call succeed!', url: req.url});
 });
