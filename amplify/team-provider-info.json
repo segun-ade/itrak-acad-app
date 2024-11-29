@@ -17,7 +17,8 @@
           "deploymentBucketName": "amplify-itrakacadapp-dev-10744-deployment",
           "s3Key": "amplify-builds/SessionHandler-6668422f615769536339-build.zip"
         },
-        "newuserHandler": {}
+        "newuserHandler": {},
+        "useraccessHandler": {}
       },
       "api": {
         "api9f6ae8ba": {}

@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "newuserHandler",
+            "useraccessHandler",
             {
               "Fn::Join": [
                 "",
                 [
-                  "newuserHandler",
+                  "useraccessHandler",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "itrakacadappLambdaRole34acb090",
+            "itrakacadappLambdaRolecf43002b",
             {
               "Fn::Join": [
                 "",
                 [
-                  "itrakacadappLambdaRole34acb090",
+                  "itrakacadappLambdaRolecf43002b",
                   "-",
                   {
                     "Ref": "env"

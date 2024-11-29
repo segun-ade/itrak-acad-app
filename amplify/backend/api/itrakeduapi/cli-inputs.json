@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "paths": {
+    "/newuser": {
+      "name": "/newuser",
+      "lambdaFunction": "useraccessHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/checkregusersession": {
+      "name": "/checkregusersession",
+      "lambdaFunction": "useraccessHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/checkreguser": {
+      "name": "/checkreguser",
+      "lambdaFunction": "useraccessHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
