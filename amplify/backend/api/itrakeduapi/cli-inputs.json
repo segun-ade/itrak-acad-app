@@ -21,6 +21,97 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/checkstdtattendance": {
+      "name": "/checkstdtattendance",
+      "lambdaFunction": "stdtaccessHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/removeregusersession": {
+      "name": "/removeregusersession",
+      "lambdaFunction": "stdtaccessHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/chatmsg": {
+      "name": "/chatmsg",
+      "lambdaFunction": "chatsessionHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/startsession": {
+      "name": "/startsession",
+      "lambdaFunction": "chatsessionHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/endsession": {
+      "name": "/endsession",
+      "lambdaFunction": "chatsessionHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/joinsession": {
+      "name": "/joinsession",
+      "lambdaFunction": "chatsessionHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/checksession": {
+      "name": "/checksession",
+      "lambdaFunction": "chatsessionHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/sessionrequeststatus": {
+      "name": "/sessionrequeststatus",
+      "lambdaFunction": "chatsessionHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/newmsg": {
+      "name": "/newmsg",
+      "lambdaFunction": "chatsessionHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/checkstdtperformance": {
+      "name": "/checkstdtperformance",
+      "lambdaFunction": "stdtrecordHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/checkstdtassignment": {
+      "name": "/checkstdtassignment",
+      "lambdaFunction": "stdtrecordHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/checkstdtactivity": {
+      "name": "/checkstdtactivity",
+      "lambdaFunction": "stdtrecordHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/checkstdtnews": {
+      "name": "/checkstdtnews",
+      "lambdaFunction": "stdtrecordHandler",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

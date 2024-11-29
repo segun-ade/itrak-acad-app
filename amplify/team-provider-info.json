@@ -18,7 +18,10 @@
           "s3Key": "amplify-builds/SessionHandler-6668422f615769536339-build.zip"
         },
         "newuserHandler": {},
-        "useraccessHandler": {}
+        "useraccessHandler": {},
+        "stdtaccessHandler": {},
+        "chatsessionHandler": {},
+        "stdtrecordHandler": {}
       },
       "api": {
         "api9f6ae8ba": {}

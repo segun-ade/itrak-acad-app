@@ -23,6 +23,30 @@
           ],
           "category": "function",
           "resourceName": "useraccessHandler"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "stdtaccessHandler"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "chatsessionHandler"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "stdtrecordHandler"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -35,7 +59,22 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "chatsessionHandler": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "newuserHandler": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "stdtaccessHandler": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "stdtrecordHandler": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
