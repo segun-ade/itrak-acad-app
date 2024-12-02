@@ -31,7 +31,7 @@
     },
     "/removeregusersession": {
       "name": "/removeregusersession",
-      "lambdaFunction": "stdtaccessHandler",
+      "lambdaFunction": "useraccessHandler",
       "permissions": {
         "setting": "open"
       }
