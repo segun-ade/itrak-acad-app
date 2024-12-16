@@ -63,12 +63,12 @@ app.post('/newuser', function(req, res) {
       //res.json({message: "Ready to connect"});
       let conresult = 'Ready to connect';
       const conn_string = {
-          host: "localhost",
+          host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
           user: "root",//root
           password: "ROOTuser12!",//;e_xbAi*f0ae
           database: "logindb"
       };
-/*      var con = mysql.createConnection({
+      var con = mysql.createConnection({
           host: conn_string.host,
           user: conn_string.user,//root
           password: conn_string.password,//;e_xbAi*f0ae
@@ -97,7 +97,7 @@ app.post('/newuser', function(req, res) {
                        console.log("Query Result" + i + ": " + result[i].user_type + " " + result[i].email_addr + " " + result[i].pwd);
                       i++;
                   });*/
-/*                  conresult = 'OK';
+                  conresult = 'OK';
                   console.log(conresult);
                   res.send(conresult);
   
@@ -108,7 +108,7 @@ app.post('/newuser', function(req, res) {
           })
   
       });
-*/      //res.send(conresult);
+      //res.send(conresult);
   res.json({success: 'post call succeed!', url: req.url, body: conn_string})
 });
 
@@ -147,12 +147,12 @@ app.get('/checkreguser', (req, res) => {
       //res.json({message: "Ready to connect"});
       let conresult = 'Ready to connect';
       const conn_string = {
-          host: "localhost",
+          host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
           user: "root",//root
           password: "ROOTuser12!",//;e_xbAi*f0ae
           database: "logindb"
       };
-/*      var con = mysql.createConnection({
+      var con = mysql.createConnection({
           host: conn_string.host,
           user: conn_string.user,//root
           password: conn_string.password,//;e_xbAi*f0ae
@@ -182,7 +182,7 @@ app.get('/checkreguser', (req, res) => {
                        console.log("Query Result" + i + ": " + result[i].user_type + " " + result[i].email_addr + " " + result[i].pwd);
                       i++;
                   });*/
-/*                  bcrypt.compare(req.query.pwd,userpwd,(err,comp_resp)=>{
+                  bcrypt.compare(req.query.pwd,userpwd,(err,comp_resp)=>{
                       if(err) throw err;
                       conresult = comp_resp;
                       console.log("Password Match: " + conresult);
@@ -205,7 +205,7 @@ app.get('/checkreguser', (req, res) => {
                   /*conresult = (req.query.pwd==userpwd)? true:false;
                   console.log(conresult);
                   res.send(conresult);*/
-/*              } else {
+              } else {
                   conresult = "User doesn't exist!";
                   console.log(conresult);
                   res.send(conresult);
@@ -215,7 +215,7 @@ app.get('/checkreguser', (req, res) => {
               });
           });
       });
-*/res.json({success: 'check reg user call succeed!', url: req.url, body: conn_string})
+res.json({success: 'check reg user call succeed!', url: req.url, body: conn_string})
 });
 /****************************
 * Example put method *

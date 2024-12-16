@@ -40,12 +40,12 @@ app.get('/checkstdtattendance', (req, res) => {
       //res.json({message: "Ready to connect"});
       let conresult = 'Ready to connect';
       const conn_string = {
-          host: "localhost",
+          host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
           user: "root",//root
           password: "ROOTuser12!",//;e_xbAi*f0ae
           database: "itrakedu"
       };
-/*      var con = mysql.createConnection({
+      var con = mysql.createConnection({
           host: conn_string.host,
           user: conn_string.user,//root
           password: conn_string.password,//;e_xbAi*f0ae
@@ -82,7 +82,7 @@ app.get('/checkstdtattendance', (req, res) => {
           else if(5<=mth<=8) term = '3rd';
           console.log(attend_date);
           //res.send(reply);*/
-/*          let sql = "select session_id from itrakedu.acad_sessions where session_start <= '" + attend_date + "' and session_end >= '" + attend_date + "'";
+          let sql = "select session_id from itrakedu.acad_sessions where session_start <= '" + attend_date + "' and session_end >= '" + attend_date + "'";
           //let sql = "select session_id from itrakedu.acad_sessions where session_start <= '2024-09-21' and session_end >= '2024-09-21'";
           //let sql = "SELECT pwd from itrak_user WHERE email_addr="+"'"+req.query.user_id+"'";
           //let sql = "INSERT INTO itrak_user (email_addr, pwd, user_type) VALUES (" + req.query.email_addr + "," + req.query.pwd + "," +req.query.user_type + ")";
@@ -108,7 +108,7 @@ app.get('/checkstdtattendance', (req, res) => {
                        console.log("Query Result" + i + ": " + result[i].user_type + " " + result[i].email_addr + " " + result[i].pwd);
                       i++;
                   });*/
-/*              } else {
+              } else {
                   conresult = "No academic session record found!";
                   console.log(conresult);
                   res.send({'status':'ERR', 'details':conresult});
@@ -118,7 +118,7 @@ app.get('/checkstdtattendance', (req, res) => {
               });
           });
       });
-*/      res.json({success: 'check stdt attendance call succeed!', url: req.url, body: conn_string});
+      res.json({success: 'check stdt attendance call succeed!', url: req.url, body: conn_string});
 });
 
 app.get('/checkstdtattendance/*', function(req, res) {

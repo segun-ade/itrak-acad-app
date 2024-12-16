@@ -40,12 +40,12 @@ app.get('/checkstdtperformance', (req, res) => {
       //res.json({message: "Ready to connect"});
       let conresult = 'Ready to connect';
       const conn_string = {
-          host: "localhost",
+          host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
           user: "root",//root
           password: "ROOTuser12!",//;e_xbAi*f0ae
           database: "itrakedu"
       };
-/*      var con = mysql.createConnection({
+      var con = mysql.createConnection({
           host: conn_string.host,
           user: conn_string.user,//root
           password: conn_string.password,//;e_xbAi*f0ae
@@ -85,7 +85,7 @@ app.get('/checkstdtperformance', (req, res) => {
           else if(5<=mth<=8) term = '3rd';
           console.log(attend_date);
           //res.send(reply);*/
-/*          let sql = "SELECT performance.assessment_type, subjects.title, performance.score, performance.assessment_date FROM itrakedu.performance inner join itrakedu.subject_offering on performance.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and subject_offering.term='" + term + "' and subject_offering.session_id='" + sess_id + "'";
+          let sql = "SELECT performance.assessment_type, subjects.title, performance.score, performance.assessment_date FROM itrakedu.performance inner join itrakedu.subject_offering on performance.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and subject_offering.term='" + term + "' and subject_offering.session_id='" + sess_id + "'";
           //let sql = "select session_id from itrakedu.acad_sessions where session_start <= '" + attend_date + "' and session_end >= '" + attend_date + "'";
           //let sql = "select session_id from itrakedu.acad_sessions where session_start <= '2024-09-21' and session_end >= '2024-09-21'";
           //let sql = "SELECT pwd from itrak_user WHERE email_addr="+"'"+req.query.user_id+"'";
@@ -162,18 +162,18 @@ app.get('/checkstdtperformance', (req, res) => {
               }
           });
       });
-      */res.json({success: 'check stdt performance call succeed!', url: req.url, body: conn_string})
+      res.json({success: 'check stdt performance call succeed!', url: req.url, body: conn_string})
 });
 
 app.get('/checkstdtassignment', (req, res) => {
       let conresult = 'Ready to connect';
       const conn_string = {
-          host: "localhost",
+          host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
           user: "root",//root
           password: "ROOTuser12!",//;e_xbAi*f0ae
           database: "itrakedu"
       };
-/*      var con = mysql.createConnection({
+      var con = mysql.createConnection({
           host: conn_string.host,
           user: conn_string.user,//root
           password: conn_string.password,//;e_xbAi*f0ae
@@ -266,18 +266,18 @@ app.get('/checkstdtassignment', (req, res) => {
               }
           });
       });
-      */res.json({success: 'check stdt assignment call succeed!', url: req.url, body: conn_string})
+      res.json({success: 'check stdt assignment call succeed!', url: req.url, body: conn_string})
 });
 
 app.get('/checkstdtactivity', (req, res) => {
   let conresult = 'Ready to connect';
   const conn_string = {
-      host: "localhost",
+      host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
       user: "root",//root
       password: "ROOTuser12!",//;e_xbAi*f0ae
       database: "itrakedu"
   };
-/*  var con = mysql.createConnection({
+  var con = mysql.createConnection({
       host: conn_string.host,
       user: conn_string.user,//root
       password: conn_string.password,//;e_xbAi*f0ae
@@ -370,18 +370,18 @@ app.get('/checkstdtactivity', (req, res) => {
           }
       });
   });
-  */res.json({success: 'check stdt activity call succeed!', url: req.url, body: conn_string})
+  res.json({success: 'check stdt activity call succeed!', url: req.url, body: conn_string})
 });
 
 app.get('/checkstdtnews', (req, res) => {
   let conresult = 'Ready to connect';
   const conn_string = {
-      host: "localhost",
+      host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
       user: "root",//root
       password: "ROOTuser12!",//;e_xbAi*f0ae
       database: "itrakedu"
   };
-/*  var con = mysql.createConnection({
+  var con = mysql.createConnection({
       host: conn_string.host,
       user: conn_string.user,//root
       password: conn_string.password,//;e_xbAi*f0ae
@@ -474,7 +474,7 @@ app.get('/checkstdtnews', (req, res) => {
           }
       });
   });
-  */res.json({success: 'check stdt news call succeed!', url: req.url, body: conn_string});
+  res.json({success: 'check stdt news call succeed!', url: req.url, body: conn_string});
 });
 
 /*
