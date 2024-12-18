@@ -220,7 +220,7 @@ function HomePage() {
             path: '/checkregusersession'
         }).response;
         console.log(response.data);
-        //alert(response.data);
+        alert(response.data);
         if(response.data.user_valid == true) {
             alert("Welcome, " + response.data.userID + ": You are still logged in.");
             setUserValid(true);
@@ -236,6 +236,7 @@ function HomePage() {
             console.log('GET call failed: ', error);
         }
      }
+     alert("Application loading. Pls wait...");
      checkuser()
      .catch((error) => {
         console.log(error);
