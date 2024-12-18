@@ -215,7 +215,7 @@ function HomePage() {
       }*/
     const checkuser = async () => {
         try {
-            alert("Welcome, " + response.data.userID + ": Checking session data...");
+            alert("Welcome, Checking session data...");
         const response = await get({
             apiName: 'itrakeduapi', 
             path: '/checkregusersession'
