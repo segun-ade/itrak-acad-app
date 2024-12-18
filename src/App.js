@@ -4,13 +4,17 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 import TermCalApp from './CalApp';
 /*** *///import axios from "axios"; 
-//import Amplify, {API} from 'aws-amplify'
-import { post } from 'aws-amplify/api';
-import { get } from 'aws-amplify/api';
+//import { withAuthenticator } from '@aws-amplify/ui-react';
+//import {API} from 'aws-amplify'
+import { post } from 'aws-amplify/api'
+import { get } from 'aws-amplify/api'
+//import awsconfig from './aws-exports'
 //import LiveChatApp from './LiveChat';
 
 const itrakacadAPI = "api9f6ae8ba";
-const path = '\sessions';
+const path = '/sessions/32';
+//Amplify.configure(awsconfig);
+//API.configure(aws_exports);
 
 function LaunchCalApp() {
   removeLogin();
@@ -209,12 +213,61 @@ function HomePage() {
       } catch (error) {
         
       }*/
-      //API.get(itrakacadAPI, '/check_reg_user_session')
-/*      get({
-          apiName: itrakacadAPI,
-          path: '/check_reg_user_session'
-      })
-      .then(response => {
+    const checkuser = async () => {
+        try {
+        const response = await get({
+            apiName: 'itrakeduapi', 
+            path: '/checkregusersession'
+        }).response;
+        console.log(response.data);
+        //alert(response.data);
+        if(response.data.user_valid == true) {
+            alert("Welcome, " + response.data.userID + ": You are still logged in.");
+            setUserValid(true);
+            setUserName(response.data.userID);
+            setInputs({"userid":response.data.userID});
+            //setUserName(userid);
+        }else{
+            alert(response.data+": Pls log in!");
+            setUserValid(false);
+        }
+    
+        } catch (error) {
+            console.log('GET call failed: ', error);
+        }
+     }
+     checkuser()
+     .catch((error) => {
+        console.log(error);
+      });
+
+      }, []
+  )
+  //axios.defaults.withCredentials = true;
+
+        /*: {
+                    apiName: string,
+                    path: String,
+                    headers: {[key: string]: any},
+                    queryParams: {[key: string]: any}
+                }
+                const handleGet = async ({
+                    apiName,
+                    path,
+                    headers,
+                    queryParams
+                }) => {
+                    const response = await get({
+                        apiName,
+                        path,
+                        options: {
+                            headers,
+                            queryParams,
+                        }
+                    }).response;
+                }*/
+
+                    /*       .then(response => {
           console.log(response.data);
           //alert(response.data);
           if(response.data.user_valid == true) {
@@ -232,9 +285,6 @@ function HomePage() {
         console.log('GET call failed: ', JSON.parse(error.response.body));
       })
 */
-      }, []
-  )
-  //axios.defaults.withCredentials = true;
 
   const handleSubmit = (event,username) => {
       event.preventDefault();
