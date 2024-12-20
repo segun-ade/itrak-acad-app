@@ -11,7 +11,8 @@ See the License for the specific language governing permissions and limitations 
 
 const express = require('express')
 const bodyParser = require('body-parser')
-const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
+//const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
+const awsServerlessExpressMiddleware = require('@vendia-serverless-express/middleware')
 const session = require('express-session');
 const cookieparser = require('cookie-parser');
 
