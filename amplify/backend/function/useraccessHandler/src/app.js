@@ -6,15 +6,13 @@ or in the "license" file accompanying this file. This file is distributed on an 
 See the License for the specific language governing permissions and limitations under the License.
 */
 
-
-
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const session = require('express-session');
 const cookieparser = require('cookie-parser');
-
+var mysql = require('mysql2');
+const bcrypt = require('bcrypt');
 // declare a new express app
 const app = express()
 app.use(bodyParser.json())
