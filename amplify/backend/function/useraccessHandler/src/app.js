@@ -12,7 +12,7 @@ const awsServerlessExpressMiddleware = require('aws-serverless-express/middlewar
 const session = require('express-session');
 const cookieparser = require('cookie-parser');
 var mysql = require('mysql2');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 // declare a new express app
 const app = express()
 app.use(bodyParser.json())
