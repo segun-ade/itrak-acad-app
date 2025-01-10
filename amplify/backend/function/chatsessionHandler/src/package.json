@@ -9,7 +9,8 @@
     "aws-serverless-express": "^3.3.5",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "express-session": "^1.18.1"
+    "express-session": "^1.18.1",
+    "mysql2": "^3.12.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.92"

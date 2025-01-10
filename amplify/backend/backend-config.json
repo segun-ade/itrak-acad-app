@@ -101,6 +101,86 @@
           "resourceName": "SessionHandler"
         }
       ]
+    },
+    "AMPLIFY_function_chatsessionHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "chatsessionHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_chatsessionHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "chatsessionHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_newuserHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "newuserHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_newuserHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "newuserHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_stdtaccessHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "stdtaccessHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_stdtaccessHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "stdtaccessHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_stdtrecordHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "stdtrecordHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_stdtrecordHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "stdtrecordHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_useraccessHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "useraccessHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_useraccessHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "useraccessHandler"
+        }
+      ]
     }
   }
 }

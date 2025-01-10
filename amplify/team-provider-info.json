@@ -17,14 +17,30 @@
           "deploymentBucketName": "amplify-itrakacadapp-dev-10744-deployment",
           "s3Key": "amplify-builds/SessionHandler-6668422f615769536339-build.zip"
         },
-        "newuserHandler": {},
-        "useraccessHandler": {},
-        "stdtaccessHandler": {},
-        "chatsessionHandler": {},
-        "stdtrecordHandler": {}
+        "newuserHandler": {
+          "deploymentBucketName": "amplify-itrakacadapp-dev-10744-deployment",
+          "s3Key": "amplify-builds/newuserHandler-63316f61357052334c77-build.zip"
+        },
+        "useraccessHandler": {
+          "deploymentBucketName": "amplify-itrakacadapp-dev-10744-deployment",
+          "s3Key": "amplify-builds/useraccessHandler-44454b376b76754e5751-build.zip"
+        },
+        "stdtaccessHandler": {
+          "deploymentBucketName": "amplify-itrakacadapp-dev-10744-deployment",
+          "s3Key": "amplify-builds/stdtaccessHandler-4c6c6857346447417742-build.zip"
+        },
+        "chatsessionHandler": {
+          "deploymentBucketName": "amplify-itrakacadapp-dev-10744-deployment",
+          "s3Key": "amplify-builds/chatsessionHandler-72426676305162655566-build.zip"
+        },
+        "stdtrecordHandler": {
+          "deploymentBucketName": "amplify-itrakacadapp-dev-10744-deployment",
+          "s3Key": "amplify-builds/stdtrecordHandler-766b6a58435243513344-build.zip"
+        }
       },
       "api": {
-        "api9f6ae8ba": {}
+        "api9f6ae8ba": {},
+        "itrakeduapi": {}
       }
     }
   }

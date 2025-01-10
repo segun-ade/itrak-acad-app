@@ -1,7 +1,8 @@
 ////const awsServerlessExpress = require('aws-serverless-express');
-const awsServerlessExpress = require('@vendia/serverless-express');
-const app = require('./app');
-
+//const awsServerlessExpress = require('@vendia/serverless-express');
+import awsServerlessExpress from '@vendia/serverless-express';
+//const app = require('./app');
+import app from './app';
 /**
  * @type {import('http').Server}
  */
