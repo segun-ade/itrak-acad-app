@@ -12,7 +12,9 @@ import { get } from 'aws-amplify/api'
 //import LiveChatApp from './LiveChat';
 
 const itrakacadAPI = "api9f6ae8ba";
-const path = '/sessions/32';
+//const path = '/sessions/32';
+const itrakapiName = 'itrakeduapi'; 
+const itrakpath = '/checkregusersession';
 //Amplify.configure(awsconfig);
 //API.configure(aws_exports);
 
@@ -217,8 +219,8 @@ function HomePage() {
         try {
             alert("Welcome, Checking session data...");
         const response = await get({
-            apiName: 'itrakeduapi', 
-            path: '/checkregusersession'
+            apiName: itrakapiName, 
+            path: itrakpath
         }).response;
         console.log(response.data);
         alert(response.data);
@@ -235,7 +237,7 @@ function HomePage() {
     
         } catch (error) {
             console.log('GET call failed: ', error);
-            alert ('GET call failed: ', error, ' apiName: ', apiName, ' path: ', path )
+            alert ('GET call failed: ', error, ' apiName: ', itrakapiName, ' path: ', itrakpath )
         }
      }
      alert("Application loading. Pls wait...");
