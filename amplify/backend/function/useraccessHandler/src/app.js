@@ -12,7 +12,7 @@ const awsServerlessExpressMiddleware = require('aws-serverless-express/middlewar
 const session = require('express-session');
 const cookieparser = require('cookie-parser');
 var mysql = require('mysql2');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');//bcrypt does not work on aws due to linux env
 // declare a new express app
 const app = express()
 app.use(bodyParser.json())
