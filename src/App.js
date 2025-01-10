@@ -235,6 +235,7 @@ function HomePage() {
     
         } catch (error) {
             console.log('GET call failed: ', error);
+            alert ('GET call failed: ', error, ' apiName: ', apiName, ' path: ', path )
         }
      }
      alert("Application loading. Pls wait...");
