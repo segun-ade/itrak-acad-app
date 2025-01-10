@@ -124,7 +124,7 @@ app.get('/checkregusersession', (req, res) => {
       res.send({"user_valid":true, "userID":req.session.userid});
   }else{
       console.log("Session expired or does not exist");
-      res.send(false);
+      res.send({"user_valid":false});
   }
 })
 

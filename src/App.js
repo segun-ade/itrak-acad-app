@@ -223,6 +223,7 @@ function HomePage() {
             path: itrakpath
         }).response;
         console.log(response.data);
+        alert(response);
         alert(response.data);
         if(response.data.user_valid == true) {
             alert("Welcome, " + response.data.userID + ": You are still logged in.");
