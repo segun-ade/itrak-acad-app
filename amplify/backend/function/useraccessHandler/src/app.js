@@ -213,7 +213,7 @@ app.get('/checkreguser', (req, res) => {
               });
           });
       });
-res.json({success: 'check reg user call succeed!', url: req.url, body: conn_string})
+//res.json({success: 'check reg user call succeed!', url: req.url, body: conn_string})
 });
 /****************************
 * Example put method *
