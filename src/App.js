@@ -218,13 +218,15 @@ function HomePage() {
     const checkuser = async () => {
         try {
             alert("Welcome, Checking session data...");
-        const response = await get({
+        const resp = get({
             apiName: itrakapiName, 
             path: itrakpath
-        }).response;
+        });
+        const response = await resp.response;
         console.log(response.data);
         alert(response);
-        alert(response.data);
+        alert(response.body);
+        alert(JSON.parse(response.body));
         if(response.data.user_valid == true) {
             alert("Welcome, " + response.data.userID + ": You are still logged in.");
             setUserValid(true);
