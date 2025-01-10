@@ -478,7 +478,7 @@ function HomePage() {
                           <p className="medium-text">
                               i-Trak Educational Software is an academic booster and performance tracker application for every level of education
                               and professional training. It is also a One-Stop storage solution for Academic records and official transcripts for
-                              learninig institutions.
+                              learning institutions.
                           </p>
                           <img src="grad-cap.jpg" className="logo-style" />
                       </div>
