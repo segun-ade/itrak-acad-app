@@ -5,7 +5,7 @@ import React from 'react';
 import TermCalApp from './CalApp';
 /*** *///import axios from "axios"; 
 //import { withAuthenticator } from '@aws-amplify/ui-react';
-//import {API} from 'aws-amplify'
+import {API} from 'aws-amplify'
 import { post } from 'aws-amplify/api'
 import { get } from 'aws-amplify/api'
 //import awsconfig from './aws-exports'
@@ -218,12 +218,13 @@ function HomePage() {
     const checkuser = async () => {
         try {
             alert("Welcome, Checking session data...");
-        const resp = get({
+        /*const resp = get({
             apiName: itrakapiName, 
             path: itrakpath
-        });
-        const response = await resp.response;
-        console.log(response.data);
+        });*/
+        //const response = await resp.response;
+        const response = await API.get(itrakapiName,itrakpath);
+        console.log(response.body);
         alert(response);
         alert(response.body);
         alert(JSON.parse(response.body));
