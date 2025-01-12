@@ -5,11 +5,18 @@ import React from 'react';
 import TermCalApp from './CalApp';
 /*** *///import axios from "axios"; 
 //import { withAuthenticator } from '@aws-amplify/ui-react';
-import {API} from 'aws-amplify'
+//import {API} from 'aws-amplify'
+
 import { post } from 'aws-amplify/api'
 import { get } from 'aws-amplify/api'
 //import awsconfig from './aws-exports'
 //import LiveChatApp from './LiveChat';
+import { Amplify } from 'aws-amplify';
+import { generateClient } from 'aws-amplify/api';
+import awsconfig from "@/src/amplifyconfiguration.json";
+
+Amplify.configure(awsconfig);
+const API = generateClient();
 
 const itrakacadAPI = "api9f6ae8ba";
 //const path = '/sessions/32';
@@ -224,6 +231,7 @@ function HomePage() {
         });*/
         //const response = await resp.response;
         const response = await API.get(itrakapiName,itrakpath);
+        //const response = await client.get()
         console.log(response.body);
         alert(response);
         alert(response.body);
