@@ -13,7 +13,7 @@ import { get } from 'aws-amplify/api'
 //import LiveChatApp from './LiveChat';
 import { Amplify } from 'aws-amplify';
 import { generateClient } from 'aws-amplify/api';
-import awsconfig from "@/src/amplifyconfiguration.json";
+import awsconfig from './amplifyconfiguration.json';
 
 Amplify.configure(awsconfig);
 const API = generateClient();
