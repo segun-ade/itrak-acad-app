@@ -12,11 +12,11 @@ import { get } from 'aws-amplify/api'
 //import awsconfig from './aws-exports'
 //import LiveChatApp from './LiveChat';
 import { Amplify } from 'aws-amplify';
-import { generateClient } from 'aws-amplify/api';
+//import { generateClient } from 'aws-amplify/api';
 import awsconfig from './amplifyconfiguration.json';
 
 Amplify.configure(awsconfig);
-const API = generateClient();
+//const API = generateClient();
 
 const itrakacadAPI = "api9f6ae8ba";
 //const path = '/sessions/32';
@@ -229,8 +229,8 @@ function HomePage() {
             apiName: itrakapiName, 
             path: itrakpath
         });
-        const {body} = await resp.response;
-        const response = await body.json();
+        const response = await resp.response;
+        //const response = await body.json();
         //const response = await API.get(itrakapiName,itrakpath);
         //const response = await client.get()
         console.log(response.body);
