@@ -225,12 +225,13 @@ function HomePage() {
     const checkuser = async () => {
         try {
             alert("Welcome, Checking session data...");
-        /*const resp = get({
+        const resp = get({
             apiName: itrakapiName, 
             path: itrakpath
-        });*/
-        //const response = await resp.response;
-        const response = await API.get(itrakapiName,itrakpath);
+        });
+        const {body} = await resp.response;
+        const response = await body.json();
+        //const response = await API.get(itrakapiName,itrakpath);
         //const response = await client.get()
         console.log(response.body);
         alert(response);
