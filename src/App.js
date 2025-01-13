@@ -215,7 +215,7 @@ function HomePage() {
       axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkregusersession')
           .then(response => {
              console.log(response.data);
-             alert(response.data);
+             alert(JSON.stringify(response.data)api8);
              if(response.data.user_valid == true) {
                  alert("Welcome, " + response.data.userID + ": You are still logged in.");
                  setUserValid(true);
@@ -252,7 +252,7 @@ function HomePage() {
         //const response = await API.get(itrakapiName,itrakpath);
         //const response = await client.get()
         console.log(response.body);
-        alert(JSON.parse(response));
+        alert(JSON.stringify(response));
         alert(response.data.user_valid);
         //alert(JSON.parse(response.body));
         if(response.data.user_valid == true) {
