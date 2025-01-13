@@ -248,11 +248,13 @@ function HomePage() {
             path: itrakpath
         }).response;
         //const response = await resp.response;
-        const response = await body.json();
+        const resp = await body.json();
+        const response = JSON.stringify(resp);
         //const response = await API.get(itrakapiName,itrakpath);
         //const response = await client.get()
-        console.log(response.body);
-        alert(JSON.stringify(response));
+        console.log(response);
+        alert(response);
+        alert(response.user_valid);
         alert(response.data.user_valid);
         //alert(JSON.parse(response.body));
         if(response.data.user_valid == true) {
