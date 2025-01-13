@@ -3,7 +3,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import TermCalApp from './CalApp';
-/*** *///import axios from "axios"; 
+import axios from "axios"; 
 //import { withAuthenticator } from '@aws-amplify/ui-react';
 //import {API} from 'aws-amplify'
 
@@ -212,7 +212,25 @@ function HomePage() {
   }
 
   useEffect(()=>{
-      //axios.get('http://localhost:8000/check_reg_user_session')
+      axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkregusersession')
+          .then(response => {
+             console.log(response.data);
+             alert(response.data);
+             if(response.data.user_valid == true) {
+                 alert("Welcome, " + response.data.userID + ": You are still logged in.");
+                 setUserValid(true);
+                 setUserName(response.data.userID);
+                 setInputs({"userid":response.data.userID});
+                 //setUserName(userid);
+             }else{
+                 alert(response.data+": Pls log in!");
+                 setUserValid(false);
+             } 
+          })
+          .catch((err) => {
+              console.log("Unable to connect to the server.");
+              alert("Server Error! Unable to process your request at this time, pls try again later.");
+          })
      /* try {
         const apimesg = get({
           apiName: itrakacadAPI,
