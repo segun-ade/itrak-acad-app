@@ -252,9 +252,9 @@ function HomePage() {
         //const response = await API.get(itrakapiName,itrakpath);
         //const response = await client.get()
         console.log(response.body);
-        alert(response);
-        alert(response..data.user_valid);
-        alert(JSON.parse(response.body));
+        alert(JSON.parse(response.data));
+        alert(response.data.user_valid);
+        //alert(JSON.parse(response.body));
         if(response.data.user_valid == true) {
             alert("Welcome, " + response.data.userID + ": You are still logged in.");
             setUserValid(true);
@@ -262,7 +262,7 @@ function HomePage() {
             setInputs({"userid":response.data.userID});
             //setUserName(userid);
         }else{
-            alert(response.data.user_valid +": Pls log in!");
+            alert("User_valid: " + response.data.user_valid +". Pls log in!");
             setUserValid(false);
         }
     
