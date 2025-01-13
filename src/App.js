@@ -253,7 +253,7 @@ function HomePage() {
         //const response = await client.get()
         console.log(response.body);
         alert(response);
-        alert(response.body);
+        alert(response..data.user_valid);
         alert(JSON.parse(response.body));
         if(response.data.user_valid == true) {
             alert("Welcome, " + response.data.userID + ": You are still logged in.");
@@ -262,7 +262,7 @@ function HomePage() {
             setInputs({"userid":response.data.userID});
             //setUserName(userid);
         }else{
-            alert(response.data+": Pls log in!");
+            alert(response.data.user_valid +": Pls log in!");
             setUserValid(false);
         }
     
