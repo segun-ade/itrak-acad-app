@@ -119,7 +119,7 @@ app.get('/checkstdtattendance', (req, res) => {
               });
           });
       });
-      res.json({success: 'check stdt attendance call succeed!', url: req.url, body: conn_string});
+//      res.json({success: 'check stdt attendance call succeed!', url: req.url, body: conn_string});
 });
 
 app.get('/checkstdtattendance/*', function(req, res) {

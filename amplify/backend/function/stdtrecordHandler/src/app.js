@@ -162,7 +162,7 @@ app.get('/checkstdtperformance', (req, res) => {
               }
           });
       });
-      res.json({success: 'check stdt performance call succeed!', url: req.url, body: conn_string})
+//      res.json({success: 'check stdt performance call succeed!', url: req.url, body: conn_string})
 });
 
 app.get('/checkstdtassignment', (req, res) => {
@@ -266,7 +266,7 @@ app.get('/checkstdtassignment', (req, res) => {
               }
           });
       });
-      res.json({success: 'check stdt assignment call succeed!', url: req.url, body: conn_string})
+//      res.json({success: 'check stdt assignment call succeed!', url: req.url, body: conn_string})
 });
 
 app.get('/checkstdtactivity', (req, res) => {
@@ -370,7 +370,7 @@ app.get('/checkstdtactivity', (req, res) => {
           }
       });
   });
-  res.json({success: 'check stdt activity call succeed!', url: req.url, body: conn_string})
+//  res.json({success: 'check stdt activity call succeed!', url: req.url, body: conn_string})
 });
 
 app.get('/checkstdtnews', (req, res) => {
@@ -474,7 +474,7 @@ app.get('/checkstdtnews', (req, res) => {
           }
       });
   });
-  res.json({success: 'check stdt news call succeed!', url: req.url, body: conn_string});
+//  res.json({success: 'check stdt news call succeed!', url: req.url, body: conn_string});
 });
 
 /*

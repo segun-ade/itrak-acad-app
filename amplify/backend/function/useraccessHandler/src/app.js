@@ -107,7 +107,7 @@ app.post('/newuser', function(req, res) {
   
       });
       //res.send(conresult);
-  res.json({success: 'post call succeed!', url: req.url, body: conn_string})
+//  res.json({success: 'post call succeed!', url: req.url, body: conn_string})
 });
 
 app.post('/newuser/*', function(req, res) {
@@ -126,7 +126,7 @@ app.get('/checkregusersession', (req, res) => {
       console.log("Session expired or does not exist");
       res.send({"user_valid":false});
   }
-})
+});
 
 app.get('/removeregusersession', (req, res) => {
   console.log(req.session);
@@ -138,7 +138,7 @@ app.get('/removeregusersession', (req, res) => {
       console.log("Session already expired/removed or does not exist");
       res.send(false);
   }
-})
+});
 
 app.get('/checkreguser', (req, res) => {
   //res.json({message: "Hello from itrak server! We are pretty okay now!"});

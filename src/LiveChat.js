@@ -689,12 +689,12 @@ class LiveChatApp extends React.Component {
             }else {
                 if(!this.session_check_initiated){
                     this.session_check_initiated = true;//checking for session... Don't check again until session ends if any.
-                    //axios.get('http://localhost:8000/checksession?userID=' + this.userID)
+                    axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checksession?userID=' + this.userID)
                     //API.get(this.itrakacadAPI, '/checksession?userID=' + this.userID)
-                    get({
+/*                    get({
                         apiName: this.itrakacadAPI,
                         path: '/checksession?userID=' + this.userID
-                      })
+                      })*/
                     .then(response => {
                        console.log(response.data);
                        if(response.data.session_requested){
