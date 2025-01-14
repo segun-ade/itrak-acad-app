@@ -248,23 +248,23 @@ function HomePage() {
             path: itrakpath
         }).response;
         //const response = await resp.response;
-        const resp = await body.json();
-        const response = JSON.stringify(resp);
+        const response = await body.json();
+        const resp = JSON.stringify(response);
         //const response = await API.get(itrakapiName,itrakpath);
         //const response = await client.get()
-        console.log(response);
-        alert(response);
-        alert(JSON.parse(response).user_valid);
-        alert(JSON.parse(response).data.user_valid);
+        console.log(resp);
+        alert(resp);
+        alert(response.user_valid);
+        //alert(JSON.parse(response).data.user_valid);
         //alert(JSON.parse(response.body));
-        if(JSON.parse(response).user_valid == true) {
-            alert("Welcome, " + response.data.userID + ": You are still logged in.");
+        if(JSON.parse(resp).user_valid == true) {
+            alert("Welcome, " + response.userID + ": You are still logged in.");
             setUserValid(true);
-            setUserName(response.data.userID);
-            setInputs({"userid":response.data.userID});
+            setUserName(response.userID);
+            setInputs({"userid":response.userID});
             //setUserName(userid);
         }else{
-            alert("User_valid: " + JSON.parse(response).user_valid +". Pls log in!");
+            alert("User_valid: " + response.user_valid +". Pls log in!");
             setUserValid(false);
         }
     
