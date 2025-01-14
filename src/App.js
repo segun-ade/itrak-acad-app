@@ -212,7 +212,7 @@ function HomePage() {
   }
 
   useEffect(()=>{
-      axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkregusersession')
+   /*   axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkregusersession')
           .then(response => {
              console.log(response.data);
              alert(JSON.stringify(response.data));
@@ -230,7 +230,7 @@ function HomePage() {
           .catch((err) => {
               console.log("Unable to connect to the server.");
               alert("Server Error! Unable to process your request at this time, pls try again later.");
-          })
+          })*/
      /* try {
         const apimesg = get({
           apiName: itrakacadAPI,
@@ -254,17 +254,17 @@ function HomePage() {
         //const response = await client.get()
         console.log(response);
         alert(response);
-        alert(response.user_valid);
-        alert(response.data.user_valid);
+        alert(JSON.parse(response).user_valid);
+        alert(JSON.parse(response).data.user_valid);
         //alert(JSON.parse(response.body));
-        if(response.data.user_valid == true) {
+        if(JSON.parse(response).user_valid == true) {
             alert("Welcome, " + response.data.userID + ": You are still logged in.");
             setUserValid(true);
             setUserName(response.data.userID);
             setInputs({"userid":response.data.userID});
             //setUserName(userid);
         }else{
-            alert("User_valid: " + response.data.user_valid +". Pls log in!");
+            alert("User_valid: " + JSON.parse(response).user_valid +". Pls log in!");
             setUserValid(false);
         }
     
