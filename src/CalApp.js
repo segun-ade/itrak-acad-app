@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 ///////import CanvasJSReact from '@canvasjs/react-charts';
 import LiveChatApp from './LiveChat';
 import sendicon from './sendicon.jpg';
-//import axios from "axios";
+import axios from "axios";
 //import Amplify, {API} from 'aws-amplify'
 import { post } from 'aws-amplify/api';
 import { get } from 'aws-amplify/api';
@@ -19,8 +19,8 @@ import ResultApp from './ResultApp';
 //var CanvasJSReact = require('@canvasjs/react-charts');
 let perf_day = 1;
 
-const itrakacadAPI = "api9f6ae8ba";
-const path = '\sessions';
+//const itrakacadAPI = "api9f6ae8ba";
+//const path = '\sessions';
 
 /*
 function LaunchCalApp() {
@@ -213,12 +213,12 @@ function TermCalApp(props) {
             return monthCal;
         }else if(!cal_loaded){
             //let student_id = 'oluwsupo0001';
-            //axios.get('http://localhost:8000/check_stdt_attendance?attend_date=' + attend_date + '&stdt_id=' + student_id + '&term=' + term)
+            axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkstdtattendance?attend_date=' + attend_date + '&stdt_id=' + student_id + '&term=' + term)
             //API.get(itrakacadAPI, '/check_stdt_attendance?attend_date=' + attend_date + '&stdt_id=' + student_id + '&term=' + term)
 /*            get({
                 apiName: itrakacadAPI,
                 path: '/check_stdt_attendance?attend_date=' + attend_date + '&stdt_id=' + student_id + '&term=' + term
-              })
+              })*/
             .then(response => {
                 console.log(response.data);
                 //alert(response.data);
@@ -239,7 +239,7 @@ function TermCalApp(props) {
                     setCalLoaded(true);
                 }  
             })
- */       }
+        }
     }
     
     let chatSection = () => {
@@ -475,12 +475,12 @@ function removeSignUp() {
 }*/
 
 let displayLogout = () => {
-    //axios.get('http://localhost:8000/remove_reg_user_session')
+    axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/removeregusersession')
     //API.get(itrakacadAPI, '/remove_reg_user_session')
 /*    get({
         apiName: itrakacadAPI,
         path: '/remove_reg_user_session'
-      })
+      })*/
     .then(response => {
         console.log(response.data);
         alert(response.data);
@@ -495,7 +495,7 @@ let displayLogout = () => {
              //setUserValid(false);
         }  
      })   
-*/    //document.getElementById("login").style.display = "flex";
+    //document.getElementById("login").style.display = "flex";
     
 }
 

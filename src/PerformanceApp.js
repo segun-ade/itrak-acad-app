@@ -9,7 +9,7 @@ import news2icon from './news2-icon.png';
 import greenupicon from './green-uparrow.jpg';
 import reddownicon from './red-downarrow.jpg';
 import orangerighticon from './orange-rightarrow.jpg';
-//import axios from "axios";
+import axios from "axios";
 //import Amplify, {API} from 'aws-amplify';
 import { post } from 'aws-amplify/api';
 import { get } from 'aws-amplify/api';
@@ -936,12 +936,12 @@ class PerformanceApp extends React.Component {
         let date_val = this.view_date.toString();
         if(!this.state.perfLoaded){
             if(!this.perf_requested){
-                //axios.get('http://localhost:8000/check_stdt_performance?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
+                axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkstdtperformance?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 //API.get(this.itrakacadAPI, '/check_stdt_performance?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
 /*                get({
                     apiName: this.itrakacadAPI,
                     path: '/check_stdt_performance?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term
-                  })
+                  })*/
                 .then(response => {
                     console.log(response.data);
                     this.perf_data_counter++;
@@ -967,12 +967,12 @@ class PerformanceApp extends React.Component {
                         this.perf_data_counter = 0;
                     }
                 })
-*/                //axios.get('http://localhost:8000/check_stdt_assignment?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
+                axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkstdtassignment?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 //API.get(this.itrakacadAPI, '/check_stdt_assignment?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
 /*                get({
                     apiName: this.itrakacadAPI,
                     path: '/check_stdt_assignment?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term
-                  })
+                  })*/
                 .then(response => {
                     console.log(response.data);
                     this.perf_data_counter++;
@@ -998,12 +998,12 @@ class PerformanceApp extends React.Component {
                         this.perf_data_counter = 0;
                     }
                 })
-*/                //axios.get('http://localhost:8000/check_stdt_activity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
+                axios.get('http://https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkstdtactivity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 //API.get(this.itrakacadAPI, '/check_stdt_activity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
 /*                get({
                     apiName: this.itrakacadAPI,
                     path: '/check_stdt_activity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term
-                  })
+                  })*/
                 .then(response => {
                     console.log(response.data);
                     this.perf_data_counter++;
@@ -1029,12 +1029,12 @@ class PerformanceApp extends React.Component {
                         this.perf_data_counter = 0;
                     }
                 })
-*/                //axios.get('http://localhost:8000/check_stdt_news?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
+                axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkstdtnews?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 //API.get(this.itrakacadAPI, '/check_stdt_news?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
 /*                get({
                     apiName: this.itrakacadAPI,
                     path: '/check_stdt_news?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term
-                  })
+                  })*/
                 .then(response => {
                     console.log(response.data);
                     this.perf_data_counter++;
@@ -1060,7 +1060,7 @@ class PerformanceApp extends React.Component {
                         this.perf_data_counter = 0;
                     }
                 })
-*/                this.perf_requested = true;
+                this.perf_requested = true;
                 this.perf_disp_msg = "Loading performance data. Pls wait...";
             }
             return(

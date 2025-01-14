@@ -337,13 +337,13 @@ function HomePage() {
       })*/
       .then(response => {
          console.log(response);
-         alert(JSON.stringify(response));
+         //alert(JSON.stringify(response));
          if(response.data == true) {
               alert("You have been successfully logged in.");
               setUserValid(true);
               setUserName(userid);
          }else{
-              alert(JSON.stringify(response));
+              alert("Invalid login details.")//alert(JSON.stringify(response));
               setUserValid(false);
          }  
       })
