@@ -257,7 +257,7 @@ function HomePage() {
         alert(response.user_valid);
         //alert(JSON.parse(response).data.user_valid);
         //alert(JSON.parse(response.body));
-        if(JSON.parse(resp).user_valid == true) {
+        if(response.user_valid == true) {
             alert("Welcome, " + response.userID + ": You are still logged in.");
             setUserValid(true);
             setUserName(response.userID);
@@ -329,21 +329,21 @@ function HomePage() {
       const userid = inputs.userid;
       const pwd = inputs.password;
       alert(pwd);
-      //axios.get('http://localhost:8000/check_reg_user?user_id=' + userid + '&pwd=' + pwd + '&rem_login=' + rem_login)
+      axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?user_id=' + userid + '&pwd=' + pwd + '&rem_login=' + rem_login)
       //API.get(itrakacadAPI, '/check_reg_user?user_id=' + userid + '&pwd=' + pwd + '&rem_login=' + rem_login)
 /*      get({
         apiName: itrakacadAPI,
         path: '/check_reg_user?user_id=' + userid + '&pwd=' + pwd + '&rem_login=' + rem_login,
-      })
+      })*/
       .then(response => {
-         console.log(response.data);
-         alert(response.data);
-         if(response.data == true) {
+         console.log(response);
+         alert(response);
+         if(response == true) {
               alert("You have been successfully logged in.");
               setUserValid(true);
               setUserName(userid);
          }else{
-              alert(response.data);
+              alert(response);
               setUserValid(false);
          }  
       })
@@ -351,7 +351,7 @@ function HomePage() {
           console.log("Unable to connect to the server.");
           alert(err+": Server Error! Unable to process your request at this time, pls try again later.");
       })
-*/      //alert(userid + ", " + pwd + ", " + username);
+      //alert(userid + ", " + pwd + ", " + username);
       /*if ((userid == "adeyolu03") && (pwd == "myid123#")) {
           setUserValid(true,()=>alert("User is logged on"));
           setUserName("Adeyemi, Oluwasegun S.");
