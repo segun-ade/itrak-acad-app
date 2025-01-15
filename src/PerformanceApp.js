@@ -174,7 +174,7 @@ class PerformanceApp extends React.Component {
         //console.log("Current msg counter value: "+this.msg_counter);
         return prevState;
     }
-//'/session_request_status'
+    ////'/session_request_status'
     componentDidUpdate = () => {
         console.log("Component updated.");
         this.reqSrc = 'ext';
@@ -938,12 +938,13 @@ class PerformanceApp extends React.Component {
             if(!this.perf_requested){
                 axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkstdtperformance?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 //API.get(this.itrakacadAPI, '/check_stdt_performance?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
-/*                get({
+                /*get({
                     apiName: this.itrakacadAPI,
                     path: '/check_stdt_performance?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term
                   })*/
                 .then(response => {
                     console.log(response.data);
+                    alert(JSON.stringify(response.data));
                     this.perf_data_counter++;
                     if(response.data.status == 'OK') {
                         this.day_perf = response.data.day_perf;
@@ -969,12 +970,13 @@ class PerformanceApp extends React.Component {
                 })
                 axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkstdtassignment?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 //API.get(this.itrakacadAPI, '/check_stdt_assignment?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
-/*                get({
+                /*get({
                     apiName: this.itrakacadAPI,
                     path: '/check_stdt_assignment?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term
                   })*/
                 .then(response => {
                     console.log(response.data);
+                    alert(JSON.stringify(response.data));
                     this.perf_data_counter++;
                     if(response.data.status == 'OK') {
                         this.day_asgmt = response.data.day_asgmt;
@@ -1000,12 +1002,13 @@ class PerformanceApp extends React.Component {
                 })
                 axios.get('http://https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkstdtactivity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 //API.get(this.itrakacadAPI, '/check_stdt_activity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
-/*                get({
+                /*get({
                     apiName: this.itrakacadAPI,
                     path: '/check_stdt_activity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term
                   })*/
                 .then(response => {
                     console.log(response.data);
+                    alert(JSON.stringify(response.data));
                     this.perf_data_counter++;
                     if(response.data.status == 'OK') {
                         this.day_xtra_cur = response.data.day_xtra_cur;
@@ -1031,12 +1034,13 @@ class PerformanceApp extends React.Component {
                 })
                 axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkstdtnews?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 //API.get(this.itrakacadAPI, '/check_stdt_news?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
-/*                get({
+                /*get({
                     apiName: this.itrakacadAPI,
                     path: '/check_stdt_news?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term
                   })*/
                 .then(response => {
                     console.log(response.data);
+                    alert(JSON.stringify(response.data));
                     this.perf_data_counter++;
                     if(response.data.status == 'OK') {
                         this.day_news = response.data.day_news;
