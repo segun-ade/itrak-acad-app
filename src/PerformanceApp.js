@@ -944,7 +944,7 @@ class PerformanceApp extends React.Component {
                   })*/
                 .then(response => {
                     console.log(response.data);
-                    alert(JSON.stringify(response.data));
+                    //alert(JSON.stringify(response.data));
                     this.perf_data_counter++;
                     if(response.data.status == 'OK') {
                         this.day_perf = response.data.day_perf;
@@ -976,7 +976,7 @@ class PerformanceApp extends React.Component {
                   })*/
                 .then(response => {
                     console.log(response.data);
-                    alert(JSON.stringify(response.data));
+                    //alert(JSON.stringify(response.data));
                     this.perf_data_counter++;
                     if(response.data.status == 'OK') {
                         this.day_asgmt = response.data.day_asgmt;
@@ -1000,7 +1000,7 @@ class PerformanceApp extends React.Component {
                         this.perf_data_counter = 0;
                     }
                 })
-                axios.get('http://https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkstdtactivity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
+                axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkstdtactivity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 //API.get(this.itrakacadAPI, '/check_stdt_activity?perf_date=' + this.props.perf_view_date + '&stdt_id=' + this.student_id + '&sess_id=' + this.acad_sess + '&term=' + this.acad_term)
                 /*get({
                     apiName: this.itrakacadAPI,
@@ -1008,7 +1008,7 @@ class PerformanceApp extends React.Component {
                   })*/
                 .then(response => {
                     console.log(response.data);
-                    alert(JSON.stringify(response.data));
+                    //alert(JSON.stringify(response.data));
                     this.perf_data_counter++;
                     if(response.data.status == 'OK') {
                         this.day_xtra_cur = response.data.day_xtra_cur;
@@ -1040,7 +1040,7 @@ class PerformanceApp extends React.Component {
                   })*/
                 .then(response => {
                     console.log(response.data);
-                    alert(JSON.stringify(response.data));
+                    //alert(JSON.stringify(response.data));
                     this.perf_data_counter++;
                     if(response.data.status == 'OK') {
                         this.day_news = response.data.day_news;
