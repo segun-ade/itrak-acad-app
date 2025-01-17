@@ -187,7 +187,7 @@ app.get('/checkreguser', (req, res) => {
                       console.log(req.query);
                       if (conresult) {
                           console.log("Remember Login:" + req.query.rem_login);
-                          if(req.query.rem_login=='true'){//remember user login
+                          if(req.query.rem_login==true){//remember user login
                               console.log(req.session);
                               req.session.user = conresult;
                               //req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;

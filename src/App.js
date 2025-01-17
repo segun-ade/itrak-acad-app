@@ -258,10 +258,10 @@ function HomePage() {
         //alert(JSON.parse(response).data.user_valid);
         //alert(JSON.parse(response.body));
         if(response.user_valid == true) {
-            alert("Welcome, " + response.userID + ": You are still logged in.");
+            alert("Welcome, " + response.session.userID + ": You are still logged in.");
             setUserValid(true);
-            setUserName(response.userID);
-            setInputs({"userid":response.userID});
+            setUserName(response.session.userID);
+            setInputs({"userid":response.session.userID});
             //setUserName(userid);
         }else{
             alert("User_valid: " + response.user_valid +". Pls log in!");
