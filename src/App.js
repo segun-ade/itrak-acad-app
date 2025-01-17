@@ -337,8 +337,8 @@ function HomePage() {
       })*/
       .then(response => {
          console.log(response);
-         //alert(JSON.stringify(response));
-         if(response.data == true) {
+         alert(JSON.stringify(response));
+         if(response.data.user_valid == true) {
               alert("You have been successfully logged in.");
               setUserValid(true);
               setUserName(userid);

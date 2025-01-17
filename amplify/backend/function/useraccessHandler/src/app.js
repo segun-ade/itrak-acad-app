@@ -194,7 +194,7 @@ app.get('/checkreguser', (req, res) => {
                               req.session.userid = req.query.user_id;
                               console.log(req.session);
                           }
-                          res.send(conresult + " session: " + req.session);
+                          res.send({"user_valid": conresult, "session": req.session});
                       } else {
                           res.send("Wrong username or password. Pls check your inputs and try again!")
                       }
