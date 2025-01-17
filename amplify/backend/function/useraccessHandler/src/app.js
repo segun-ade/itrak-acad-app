@@ -121,10 +121,10 @@ app.get('/checkregusersession', (req, res) => {
   console.log(req.session);
   if(req.session.user){
       console.log("User is still logged in.");
-      res.send({"user_valid":true, "userID":req.session.userid});
+      res.send({"user_valid":true, "userID":req.session.userid,  " session: ": req.session});
   }else{
       console.log("Session expired or does not exist");
-      res.send({"user_valid":false});
+      res.send({"user_valid":false,  " session: ": req.session});
   }
 });
 
@@ -194,7 +194,7 @@ app.get('/checkreguser', (req, res) => {
                               req.session.userid = req.query.user_id;
                               console.log(req.session);
                           }
-                          res.send(conresult);
+                          res.send(conresult + " session: " + req.session);
                       } else {
                           res.send("Wrong username or password. Pls check your inputs and try again!")
                       }

@@ -270,7 +270,7 @@ function HomePage() {
     
         } catch (error) {
             console.log('GET call failed: ', error);
-            alert ('GET call failed: ' + error + ' apiName: ' + itrakapiName + ' path: ' + itrakpath )
+            alert ('GET call failed: ' + error)
         }
      }
      alert("Application loading. Pls wait...");
