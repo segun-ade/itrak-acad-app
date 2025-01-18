@@ -18,6 +18,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 app.use(cookieparser());
+//app.set('trust proxy', 1)//trust first proxy
 
 app.use(
   session({
@@ -26,7 +27,8 @@ app.use(
       resave: "false",
       saveUninitialized: "true",
       cookie: {
-          expires: 1000 * 60 * 60 * 24
+          maxAge: 1000 * 60 * 60 * 24,
+          //secure: true
       }
   })
 )
@@ -118,6 +120,7 @@ app.post('/newuser/*', function(req, res) {
 app.get('/checkregusersession', (req, res) => {
   console.log(req);
   console.log(req.session);
+  console.log(req.sessionID);
   req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
   res.cookie('userID', "itrak user"+req.session.view_no);
   req.session.user_identity = "itrak_user"+req.session.view_no;
