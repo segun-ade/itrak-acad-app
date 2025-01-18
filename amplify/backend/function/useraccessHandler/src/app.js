@@ -28,7 +28,7 @@ app.use(
       saveUninitialized: "true",
       cookie: {
           maxAge: 1000 * 60 * 60 * 24,
-          secure: false
+          sameSite: true
       }
   })
 )
@@ -39,7 +39,6 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "*")
   next()
 });
-
 
 /**********************
  * Example get method *
@@ -124,6 +123,7 @@ app.get('/checkregusersession', (req, res) => {
   req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
   res.cookie('userID', "itrak user"+req.session.view_no);
   req.session.user_identity = "itrak_user"+req.session.view_no;
+  session.save();
   console.log(req.session);
   if(req.session.user){
       console.log("User is still logged in.");
