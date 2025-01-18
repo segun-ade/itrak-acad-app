@@ -24,7 +24,7 @@ app.use(
       key: "userid",
       secret: "loginsession",
       resave: "false",
-      saveUninitialized: "false",
+      saveUninitialized: "true",
       cookie: {
           expires: 1000 * 60 * 60 * 24
       }
