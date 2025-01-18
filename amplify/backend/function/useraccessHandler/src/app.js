@@ -17,8 +17,8 @@ const bcrypt = require('bcryptjs');//bcrypt does not work on aws due to linux en
 const app = express()
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
-app.use(cookieparser());
-//app.set('trust proxy', 1)//trust first proxy
+//app.use(cookieparser());
+app.set('trust proxy', 1)//trust first proxy
 
 app.use(
   session({
@@ -28,7 +28,7 @@ app.use(
       saveUninitialized: "true",
       cookie: {
           maxAge: 1000 * 60 * 60 * 24,
-          //secure: true
+          secure: false
       }
   })
 )
