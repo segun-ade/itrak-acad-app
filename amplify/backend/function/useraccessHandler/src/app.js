@@ -116,15 +116,16 @@ app.post('/newuser/*', function(req, res) {
 });
 
 app.get('/checkregusersession', (req, res) => {
+  console.log(req);
   console.log(req.session);
   req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
   console.log(req.session);
   if(req.session.user){
       console.log("User is still logged in.");
-      res.send({"user_valid":true, "userID":req.session.userid,  " session: ": req.session});
+      res.send({"user_valid":true, "userID":req.session.userid,  "session": req.session});
   }else{
       console.log("Session expired or does not exist");
-      res.send({"user_valid":false,  " session: ": req.session});
+      res.send({"user_valid":false,  "session": req.session});
   }
 });
 
@@ -143,6 +144,8 @@ app.get('/removeregusersession', (req, res) => {
 app.get('/checkreguser', (req, res) => {
   //res.json({message: "Hello from itrak server! We are pretty okay now!"});
       //res.json({message: "Ready to connect"});
+      console.log(req);
+      console.log(req.url);
       let conresult = 'Ready to connect';
       const conn_string = {
           host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
@@ -196,7 +199,8 @@ app.get('/checkreguser', (req, res) => {
                           }
                           req.session.user = conresult;
                           req.session.userid = req.query.user_id;
-                          res.send({"user_valid": conresult, "session": req.session});
+                          
+                          res.send({"user_valid": conresult});//, "session": req.session
                       } else {
                           res.send("Wrong username or password. Pls check your inputs and try again!")
                       }

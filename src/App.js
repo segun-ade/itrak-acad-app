@@ -329,7 +329,7 @@ function HomePage() {
       const userid = inputs.userid;
       const pwd = inputs.password;
       alert(pwd);
-      axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?user_id=' + userid + '&pwd=' + pwd + '&rem_login=' + rem_login)
+      axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login=' + rem_login + 'user_id=' + userid + '&pwd=' + pwd + '&debugging=' + true)
       //API.get(itrakacadAPI, '/check_reg_user?user_id=' + userid + '&pwd=' + pwd + '&rem_login=' + rem_login)
 /*      get({
         apiName: itrakacadAPI,
