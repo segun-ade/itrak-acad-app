@@ -123,7 +123,7 @@ app.get('/checkregusersession', (req, res) => {
   req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
   res.cookie('userID', "itrak user"+req.session.view_no);
   req.session.user_identity = "itrak_user"+req.session.view_no;
-  session.save();
+  req.session.save();
   console.log(req.session);
   if(req.session.user){
       console.log("User is still logged in.");
