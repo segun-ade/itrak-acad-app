@@ -119,13 +119,15 @@ app.get('/checkregusersession', (req, res) => {
   console.log(req);
   console.log(req.session);
   req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
+  res.cookie('userID', "itrak user"+req.session.view_no);
+  req.session.user_identity = "itrak_user"+req.session.view_no;
   console.log(req.session);
   if(req.session.user){
       console.log("User is still logged in.");
-      res.send({"user_valid":true, "userID":req.session.userid,  "session": req.session});
+      res.send({"user_valid":true, "userID":req.session.userid});//,  "session": req.session
   }else{
       console.log("Session expired or does not exist");
-      res.send({"user_valid":false,  "session": req.session});
+      res.send({"user_valid":false});//,  "session": req.session
   }
 });
 
@@ -199,7 +201,7 @@ app.get('/checkreguser', (req, res) => {
                           }
                           req.session.user = conresult;
                           req.session.userid = req.query.user_id;
-                          
+
                           res.send({"user_valid": conresult});//, "session": req.session
                       } else {
                           res.send("Wrong username or password. Pls check your inputs and try again!")

@@ -253,6 +253,7 @@ function HomePage() {
         //const response = await API.get(itrakapiName,itrakpath);
         //const response = await client.get()
         console.log(resp);
+        console.log(response);
         alert(resp);
         alert(response.user_valid);
         //alert(JSON.parse(response).data.user_valid);
