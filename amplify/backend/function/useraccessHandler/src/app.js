@@ -10,25 +10,33 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const session = require('express-session');
+const uuid = require('uuid');
 const cookieparser = require('cookie-parser');
 var mysql = require('mysql2');
 const bcrypt = require('bcryptjs');//bcrypt does not work on aws due to linux env
 // declare a new express app
-const app = express()
+const app = express();
+const users = [
+    {
+        id: 1,
+        username: "user1"
+    }
+]
+const user_sessions = {};
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 //app.use(cookieparser());
-app.set('trust proxy', 1)//trust first proxy
+//////app.set('trust proxy', 1)//trust first proxy
 
 app.use(
   session({
       key: "userid",
       secret: "loginsession",
       resave: "false",
-      saveUninitialized: "true",
+      saveUninitialized: "false",
       cookie: {
           maxAge: 1000 * 60 * 60 * 24,
-          sameSite: true
+          //sameSite: true
       }
   })
 )
@@ -121,9 +129,9 @@ app.get('/checkregusersession', (req, res) => {
   console.log(req.session);
   console.log(req.sessionID);
   req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
-  res.cookie('userID', "itrak user"+req.session.view_no);
-  req.session.user_identity = "itrak_user"+req.session.view_no;
-  req.session.save();
+  //res.cookie('userID', "itrak user"+req.session.view_no);
+  //req.session.user_identity = "itrak_user"+req.session.view_no;
+  //req.session.save();
   console.log(req.session);
   if(req.session.user){
       console.log("User is still logged in.");
@@ -200,10 +208,13 @@ app.get('/checkreguser', (req, res) => {
                               req.session.user = conresult;
                               //req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
                               req.session.userid = req.query.user_id;
+                              const sessiontoken = uuid.v4();
+                              req.session.token = sessiontoken;
+                              res.cookie("session_token", sessiontoken, {maxAge:900000});
                               console.log(req.session);
                           }
-                          req.session.user = conresult;
-                          req.session.userid = req.query.user_id;
+                          //req.session.user = conresult;
+                          //req.session.userid = req.query.user_id;
 
                           res.send({"user_valid": conresult});//, "session": req.session
                       } else {
