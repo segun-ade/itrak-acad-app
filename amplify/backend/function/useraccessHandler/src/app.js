@@ -34,10 +34,10 @@ app.use(
       secret: "loginsession",
       resave: "false",
       saveUninitialized: "false",
-      /*cookie: {
-          maxAge: 1000 * 60 * 60 * 24,
+      cookie: {
+          maxAge: 1000 * 60 * 60 * 48,
           //sameSite: true
-      }*/
+      }
   })
 )
 
@@ -203,7 +203,7 @@ app.get('/checkreguser', (req, res) => {
                       console.log(req.query);
                       if (conresult) {
                           console.log("Remember Login:" + req.query.rem_login);
-                          if(req.query.rem_login==true){//remember user login
+                          if(req.query.rem_login=='true'){//remember user login
                               console.log(req.session);
                               req.session.user = conresult;
                               //req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
