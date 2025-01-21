@@ -28,18 +28,18 @@ app.use(awsServerlessExpressMiddleware.eventContext())
 //app.use(cookieparser());
 //////app.set('trust proxy', 1)//trust first proxy
 
-/*app.use(
+app.use(
   session({
       key: "userid",
       secret: "loginsession",
       resave: "false",
       saveUninitialized: "false",
-      cookie: {
+      /*cookie: {
           maxAge: 1000 * 60 * 60 * 24,
           //sameSite: true
-      }
+      }*/
   })
-)*/
+)
 
 // Enable CORS for all methods
 app.use(function(req, res, next) {
