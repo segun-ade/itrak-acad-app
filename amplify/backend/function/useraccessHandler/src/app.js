@@ -34,10 +34,10 @@ app.use(
       secret: "loginsession",
       resave: "false",
       saveUninitialized: "false",
-      cookie: {
+      /*cookie: {
           maxAge: 1000 * 60 * 60 * 24,
           //sameSite: true
-      }
+      }*/
   })
 )
 
