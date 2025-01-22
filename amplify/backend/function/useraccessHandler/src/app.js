@@ -34,10 +34,10 @@ app.use(
       secret: "loginsession",
       resave: "false",
       saveUninitialized: "false",
-      cookie: {
+      /*cookie: {
           maxAge: 1000 * 60 * 60 * 48,
           //sameSite: true
-      }
+      }*/
   })
 )
 
@@ -211,7 +211,7 @@ app.get('/checkreguser', (req, res) => {
                               const sessiontoken = uuid.v4();
                               req.session.token = sessiontoken;
                               res.cookie("session_token", sessiontoken, {maxAge:900000});
-                              console.log(req.session);
+                              console.log(sessiontoken);
                           }
                           //req.session.user = conresult;
                           //req.session.userid = req.query.user_id;
