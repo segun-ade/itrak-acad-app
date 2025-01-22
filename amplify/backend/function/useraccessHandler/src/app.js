@@ -210,7 +210,7 @@ app.get('/checkreguser', (req, res) => {
                               req.session.userid = req.query.user_id;
                               const sessiontoken = uuid.v4();
                               req.session.token = sessiontoken;
-                              res.cookie("session_token", sessiontoken, {maxAge:900000});
+                              res.cookie("session_token", sessiontoken, {maxAge:90000000});
                               console.log(sessiontoken);
                           }
                           //req.session.user = conresult;
