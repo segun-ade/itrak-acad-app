@@ -34,10 +34,12 @@ app.use(
       secret: "loginsession",
       resave: "false",
       saveUninitialized: "false",
-      /*cookie: {
-          maxAge: 1000 * 60 * 60 * 48,
+      cookie: {
+          maxAge: 1000 * 60 * 60 * 144,
+          httpOnly: true,
+          secure: true
           //sameSite: true
-      }*/
+      }
   })
 )
 
@@ -133,7 +135,7 @@ app.get('/checkregusersession', (req, res) => {
   //req.session.user_identity = "itrak_user"+req.session.view_no;
   //req.session.save();
   console.log(req.session);
-  if(req.session.user){
+  if(req.session.user_logged_in){
       console.log("User is still logged in.");
       res.send({"user_valid":true, "userID":req.session.userid});//,  "session": req.session
   }else{
@@ -205,14 +207,15 @@ app.get('/checkreguser', (req, res) => {
                           console.log("Remember Login:" + req.query.rem_login);
                           if(req.query.rem_login=='true'){//remember user login
                               console.log(req.session);
-                              req.session.user = conresult;
+                              req.session.user_logged_in = conresult;
                               //req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
                               req.session.userid = req.query.user_id;
-                              const sessiontoken = uuid.v4();
-                              req.session.token = sessiontoken;
-                              res.cookie("session_token", sessiontoken, {maxAge:90000000});
-                              console.log(sessiontoken);
+                              //const sessiontoken = uuid.v4();
+                              //req.session.token = sessiontoken;
+                              //res.cookie("session_token", sessiontoken, {maxAge:90000000});
+                              //console.log(sessiontoken);
                               console.log(req.cookies);
+                              console.log(req.session);
                           }
                           //req.session.user = conresult;
                           //req.session.userid = req.query.user_id;
