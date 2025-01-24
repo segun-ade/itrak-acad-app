@@ -128,6 +128,7 @@ app.post('/newuser/*', function(req, res) {
 
 app.get('/checkregusersession', (req, res) => {
   console.log(req);
+  console.log(req.cookies)
   console.log(req.session);
   console.log(req.sessionID);
   req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
@@ -160,7 +161,8 @@ app.get('/checkreguser', (req, res) => {
   //res.json({message: "Hello from itrak server! We are pretty okay now!"});
       //res.json({message: "Ready to connect"});
       console.log(req);
-      console.log(req.url);
+      console.log(req.cookies);
+      //console.log(req.url);
       let conresult = 'Ready to connect';
       const conn_string = {
           host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
