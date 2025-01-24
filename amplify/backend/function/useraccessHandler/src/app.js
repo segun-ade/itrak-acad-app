@@ -35,7 +35,7 @@ app.use(
       resave: "true",
       saveUninitialized: "true",
       cookie: {
-          maxAge: 1000 * 60 * 60 * 144,
+          maxAge: 1000 * 60 * 60 * 24,
           httpOnly: true,
           secure: true
           //sameSite: true
@@ -210,9 +210,14 @@ app.get('/checkreguser', (req, res) => {
                               req.session.user_logged_in = conresult;
                               //req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
                               req.session.userid = req.query.user_id;
-                              //const sessiontoken = uuid.v4();
-                              //req.session.token = sessiontoken;
-                              //res.cookie("session_token", sessiontoken, {maxAge:90000000});
+                              const sessiontoken = uuid.v4();
+                              req.session.token = sessiontoken;
+                              res.cookie("login_token", sessiontoken, {
+                                maxAge: 1000 * 60 * 60 * 144,
+                                httpOnly: true,
+                                secure: true
+                                //sameSite: true
+                            });
                               //console.log(sessiontoken);
                               console.log(req.cookies);
                               console.log(req.session);
