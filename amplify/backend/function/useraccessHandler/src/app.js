@@ -32,8 +32,8 @@ app.use(
   session({
       key: "userid",
       secret: "loginsession",
-      resave: "false",
-      saveUninitialized: "false",
+      resave: "true",
+      saveUninitialized: "true",
       cookie: {
           maxAge: 1000 * 60 * 60 * 144,
           httpOnly: true,
