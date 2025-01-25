@@ -134,8 +134,10 @@ app.get('/checkregusersession', (req, res) => {
   console.log(req.cookies);
   console.log(req.sessionID);
   console.log(req.session);
-  user_sessions = sessionStore.all((err,session)=>{
+  sessionStore.all((err,sessions)=>{
     if(err) throw err;
+    user_sessions = sessions;
+    console.log(user_sessions);
   });
   console.log(user_sessions);
   req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
