@@ -37,7 +37,8 @@ app.use(
       cookie: {
           maxAge: 1000 * 60 * 60 * 144,
           httpOnly: true,
-          secure: true
+          secure: true,
+          rolling: false
           //sameSite: true
       }
   })
@@ -217,11 +218,11 @@ app.get('/checkreguser', (req, res) => {
                               req.session.save();
                               //const sessiontoken = uuid.v4();
                               //req.session.token = sessiontoken;
-                              /*if(req.cookies.login_token){
+                              if(req.cookies.user_token){
                                 res.cookie("login_token", '', {
                                     maxAge: 1000 * 60 * 60 * 0,                                    
                                 });
-                              }*/
+                              }
                               /*res.cookie("login_token", sessiontoken, {
                                 maxAge: 1000 * 60 * 60 * 144,
                                 httpOnly: true,
