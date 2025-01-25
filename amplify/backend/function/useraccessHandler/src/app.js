@@ -22,10 +22,10 @@ const users = [
         username: "user1"
     }
 ]
-const user_sessions = {};
+//const user_sessions = {};
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
-app.use(cookieparser());
+//app.use(cookieparser());
 //////app.set('trust proxy', 1)//trust first proxy
 
 app.use(
@@ -33,7 +33,7 @@ app.use(
       key: "user_token",
       secret: "loginsession",
       resave: "false",
-      saveUninitialized: "false",
+      saveUninitialized: "true",
       cookie: {
           maxAge: 1000 * 60 * 60 * 144,
           httpOnly: true,
@@ -214,13 +214,14 @@ app.get('/checkreguser', (req, res) => {
                               req.session.user_logged_in = conresult;
                               //req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
                               req.session.userid = req.query.user_id;
+                              req.session.save();
                               //const sessiontoken = uuid.v4();
                               //req.session.token = sessiontoken;
-                              if(req.cookies.login_token){
+                              /*if(req.cookies.login_token){
                                 res.cookie("login_token", '', {
                                     maxAge: 1000 * 60 * 60 * 0,                                    
                                 });
-                              }
+                              }*/
                               /*res.cookie("login_token", sessiontoken, {
                                 maxAge: 1000 * 60 * 60 * 144,
                                 httpOnly: true,
