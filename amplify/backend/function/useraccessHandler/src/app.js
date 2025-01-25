@@ -219,7 +219,7 @@ app.get('/checkreguser', (req, res) => {
                               //const sessiontoken = uuid.v4();
                               //req.session.token = sessiontoken;
                               if(req.cookies.user_token){
-                                res.cookie("login_token", '', {
+                                res.cookie("user_token", '', {
                                     maxAge: 1000 * 60 * 60 * 0,                                    
                                 });
                               }
@@ -233,6 +233,7 @@ app.get('/checkreguser', (req, res) => {
                               console.log(req.cookies);
                               console.log(req.sessionID);
                               console.log(req.session);
+                              req.session.save();
                           }
                           //req.session.user = conresult;
                           //req.session.userid = req.query.user_id;
