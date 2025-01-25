@@ -38,7 +38,7 @@ app.use(
           maxAge: 1000 * 60 * 60 * 144,
           httpOnly: true,
           secure: true,
-          rolling: false
+          //rolling: false
           //sameSite: true
       }
   })
@@ -215,7 +215,7 @@ app.get('/checkreguser', (req, res) => {
                               req.session.user_logged_in = conresult;
                               //req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
                               req.session.userid = req.query.user_id;
-                              req.session.save();
+                              //req.session.save();
                               //const sessiontoken = uuid.v4();
                               //req.session.token = sessiontoken;
                               if(req.cookies.user_token){
@@ -223,6 +223,12 @@ app.get('/checkreguser', (req, res) => {
                                     maxAge: 1000 * 60 * 60 * 0,                                    
                                 });
                               }
+                              const sessiontoken = req.sessionID;
+                              res.cookie("user_token", sessiontoken, {
+                                maxAge: 1000 * 60 * 60 * 1440,    
+                                httpOnly: true,
+                                secure: true                                
+                              });
                               /*res.cookie("login_token", sessiontoken, {
                                 maxAge: 1000 * 60 * 60 * 144,
                                 httpOnly: true,
@@ -233,7 +239,7 @@ app.get('/checkreguser', (req, res) => {
                               console.log(req.cookies);
                               console.log(req.sessionID);
                               console.log(req.session);
-                              req.session.save();
+                              //req.session.save();
                           }
                           //req.session.user = conresult;
                           //req.session.userid = req.query.user_id;
