@@ -32,12 +32,12 @@ app.use(
   session({
       key: "user_token",
       secret: "loginsession",
-      resave: "true",
-      saveUninitialized: "true",
+      resave: "false",
+      saveUninitialized: "false",
       cookie: {
-          maxAge: 1000 * 60 * 60 * 24,
+          maxAge: 1000 * 60 * 60 * 144,
           httpOnly: true,
-          //secure: true
+          secure: true
           //sameSite: true
       }
   })
@@ -147,7 +147,7 @@ app.get('/checkregusersession', (req, res) => {
 
 app.get('/removeregusersession', (req, res) => {
   console.log(req.session);
-  if(req.session.user){
+  if(req.session.user_logged_in){
       req.session.destroy();
       console.log("User has been removed.");
       res.send(true);
@@ -214,14 +214,19 @@ app.get('/checkreguser', (req, res) => {
                               req.session.user_logged_in = conresult;
                               //req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
                               req.session.userid = req.query.user_id;
-                              const sessiontoken = uuid.v4();
-                              req.session.token = sessiontoken;
-                              res.cookie("login_token", sessiontoken, {
+                              //const sessiontoken = uuid.v4();
+                              //req.session.token = sessiontoken;
+                              if(req.cookies.login_token){
+                                res.cookie("login_token", '', {
+                                    maxAge: 1000 * 60 * 60 * 0,                                    
+                                });
+                              }
+                              /*res.cookie("login_token", sessiontoken, {
                                 maxAge: 1000 * 60 * 60 * 144,
                                 httpOnly: true,
                                 secure: true
                                 //sameSite: true
-                            });
+                            });*/
                               //console.log(sessiontoken);
                               console.log(req.cookies);
                               console.log(req.sessionID);
