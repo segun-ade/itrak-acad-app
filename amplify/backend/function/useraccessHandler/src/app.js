@@ -23,7 +23,7 @@ const users = [
         username: "user1"
     }
 ]
-var user_sessions = {};
+//var user_sessions = {};
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 app.use(cookieparser());
@@ -136,22 +136,23 @@ app.get('/checkregusersession', (req, res) => {
   console.log(req.session);
   sessionStore.all((err,sessions)=>{
     if(err) throw err;
-    user_sessions = sessions;
+    const user_sessions = sessions;
     console.log(user_sessions);
-  });
-  console.log(user_sessions);
-  req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
+  
+  //console.log(user_sessions);
+    req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
   //res.cookie('userID', "itrak user"+req.session.view_no);
   //req.session.user_identity = "itrak_user"+req.session.view_no;
   //req.session.save();
-  console.log(req.session);
-  if(req.session.user_logged_in){
-      console.log("User is still logged in.");
-      res.send({"user_valid":true, "userID":req.session.userid});//,  "session": req.session
-  }else{
-      console.log("Session expired or does not exist");
-      res.send({"user_valid":false});//,  "session": req.session
-  }
+    console.log(req.session);
+    if(req.session.user_logged_in){
+        console.log("User is still logged in.");
+        res.send({"user_valid":true, "userID":req.session.userid});//,  "session": req.session
+    }else{
+        console.log("Session expired or does not exist");
+        res.send({"user_valid":false});//,  "session": req.session
+    }
+   });
 });
 
 app.get('/removeregusersession', (req, res) => {
