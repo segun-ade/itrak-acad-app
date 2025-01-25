@@ -16,13 +16,14 @@ var mysql = require('mysql2');
 const bcrypt = require('bcryptjs');//bcrypt does not work on aws due to linux env
 // declare a new express app
 const app = express();
+const sessionStore = new session.MemoryStore();
 const users = [
     {
         id: 1,
         username: "user1"
     }
 ]
-//const user_sessions = {};
+const user_sessions = {};
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 app.use(cookieparser());
@@ -34,6 +35,7 @@ app.use(
       secret: "loginsession",
       resave: "false",
       saveUninitialized: "true",
+      store: sessionStore,
       cookie: {
           maxAge: 1000 * 60 * 60 * 144,
           httpOnly: true,
@@ -132,6 +134,10 @@ app.get('/checkregusersession', (req, res) => {
   console.log(req.cookies);
   console.log(req.sessionID);
   console.log(req.session);
+  user_sessions = sessionStore.all((err,session)=>{
+    if(err) throw err;
+  });
+  console.log(user_sessions);
   req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
   //res.cookie('userID', "itrak user"+req.session.view_no);
   //req.session.user_identity = "itrak_user"+req.session.view_no;
