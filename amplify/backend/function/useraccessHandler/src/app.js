@@ -25,7 +25,7 @@ const users = [
 //const user_sessions = {};
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
-//app.use(cookieparser());
+app.use(cookieparser());
 //////app.set('trust proxy', 1)//trust first proxy
 
 app.use(
