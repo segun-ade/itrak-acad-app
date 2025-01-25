@@ -23,7 +23,7 @@ const users = [
         username: "user1"
     }
 ]
-const user_sessions = {};
+var user_sessions = {};
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 app.use(cookieparser());
