@@ -30,14 +30,14 @@ app.use(cookieparser());
 
 app.use(
   session({
-      key: "userid",
+      key: "user_token",
       secret: "loginsession",
       resave: "true",
       saveUninitialized: "true",
       cookie: {
           maxAge: 1000 * 60 * 60 * 24,
           httpOnly: true,
-          secure: true
+          //secure: true
           //sameSite: true
       }
   })
@@ -128,9 +128,9 @@ app.post('/newuser/*', function(req, res) {
 
 app.get('/checkregusersession', (req, res) => {
   console.log(req);
-  console.log(req.cookies)
-  console.log(req.session);
+  console.log(req.cookies);
   console.log(req.sessionID);
+  console.log(req.session);
   req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
   //res.cookie('userID', "itrak user"+req.session.view_no);
   //req.session.user_identity = "itrak_user"+req.session.view_no;
@@ -162,6 +162,8 @@ app.get('/checkreguser', (req, res) => {
       //res.json({message: "Ready to connect"});
       console.log(req);
       console.log(req.cookies);
+      console.log(req.sessionID);
+      console.log(req.session);
       //console.log(req.url);
       let conresult = 'Ready to connect';
       const conn_string = {
@@ -222,6 +224,7 @@ app.get('/checkreguser', (req, res) => {
                             });
                               //console.log(sessiontoken);
                               console.log(req.cookies);
+                              console.log(req.sessionID);
                               console.log(req.session);
                           }
                           //req.session.user = conresult;
