@@ -33,7 +33,7 @@ app.use(cookieparser());
 
 //Initialize client
 let redisClient = createClient();
-//redisClient.connect().catch(console.error);
+redisClient.connect().catch(console.error);
 
 //Initialize store
 let redisStore = new RedisStore({
