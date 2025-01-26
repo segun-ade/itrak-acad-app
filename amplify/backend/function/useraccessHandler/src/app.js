@@ -11,12 +11,14 @@ const bodyParser = require('body-parser')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const session = require('express-session');
 const uuid = require('uuid');
+const {RedisStore} = require ("connect-redis");
+const {createClient} = require ("redis");
 const cookieparser = require('cookie-parser');
 var mysql = require('mysql2');
 const bcrypt = require('bcryptjs');//bcrypt does not work on aws due to linux env
 // declare a new express app
 const app = express();
-const sessionStore = new session.MemoryStore();
+//const sessionStore = new session.MemoryStore();
 const users = [
     {
         id: 1,
@@ -29,20 +31,31 @@ app.use(awsServerlessExpressMiddleware.eventContext())
 app.use(cookieparser());
 //////app.set('trust proxy', 1)//trust first proxy
 
+//Initialize client
+let redisClient = createClient();
+redisClient.connect().catch(console.error);
+
+//Initialize store
+let redisStore = RedisStore({
+  client: redisClient,
+  preix: "itrakuser"
+});
+
+//Initialize session storage
 app.use(
   session({
-      key: "user_token",
-      secret: "loginsession",
+      //key: "user_token",
+      store: redisStore,
       resave: "false",
       saveUninitialized: "true",
-      store: sessionStore,
-      cookie: {
+      secret: "loginsession"
+      /*cookie: {
           maxAge: 1000 * 60 * 60 * 144,
           httpOnly: true,
           secure: true,
           //rolling: false
           //sameSite: true
-      }
+      }*/
   })
 )
 
@@ -134,10 +147,10 @@ app.get('/checkregusersession', (req, res) => {
   console.log(req.cookies);
   console.log(req.sessionID);
   console.log(req.session);
-  sessionStore.all((err,sessions)=>{
+  /*sessionStore.all((err,sessions)=>{
     if(err) throw err;
     const user_sessions = sessions;
-    console.log(user_sessions);
+    console.log(user_sessions);*/
   
   //console.log(user_sessions);
     req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
@@ -152,7 +165,7 @@ app.get('/checkregusersession', (req, res) => {
         console.log("Session expired or does not exist");
         res.send({"user_valid":false});//,  "session": req.session
     }
-   });
+   //});
 });
 
 app.get('/removeregusersession', (req, res) => {
