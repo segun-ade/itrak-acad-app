@@ -44,7 +44,7 @@ let redisStore = new RedisStore({
 //Initialize session storage
 app.use(
   session({
-      //key: "user_token",
+      key: "log_token",
       store: redisStore,
       resave: "false",
       saveUninitialized: "true",
