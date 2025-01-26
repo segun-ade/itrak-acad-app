@@ -36,7 +36,7 @@ let redisClient = createClient();
 redisClient.connect().catch(console.error);
 
 //Initialize store
-let redisStore = RedisStore({
+let redisStore = new RedisStore({
   client: redisClient,
   preix: "itrakuser"
 });
