@@ -47,22 +47,22 @@ let redisStore = new RedisStore({
 });*/
 
 //Initialize session storage
-/*app.use(
+app.use(
   session({
       key: "login_token",
       //store: redisStore,
       resave: "false",
       saveUninitialized: "true",
       secret: "loginsession"
-      cookie: {
+      /*cookie: {
           maxAge: 1000 * 60 * 60 * 144,
           httpOnly: true,
           secure: true,
           //rolling: false
           //sameSite: true
-      }
+      }*/
   })
-)*/
+)
 
 // Enable CORS for all methods
 app.use(function(req, res, next) {
