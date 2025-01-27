@@ -11,18 +11,23 @@ const bodyParser = require('body-parser')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const session = require('express-session');
 const uuid = require('uuid');
-const {RedisStore} = require ("connect-redis");
-const {createClient} = require ("redis");
+//const {RedisStore} = require ("connect-redis");
+//const {createClient} = require ("redis");
 const cookieparser = require('cookie-parser');
 var mysql = require('mysql2');
 const bcrypt = require('bcryptjs');//bcrypt does not work on aws due to linux env
 // declare a new express app
 const app = express();
 //const sessionStore = new session.MemoryStore();
-const users = [
+let userSession = [
     {
-        id: 1,
-        username: "user1"
+        user_logged_in: false,
+        userid: 1,
+        username: "user1",
+        view: 0,
+        cookie: {
+          expires: ''
+        }
     }
 ]
 //var user_sessions = {};
@@ -31,7 +36,7 @@ app.use(awsServerlessExpressMiddleware.eventContext())
 app.use(cookieparser());
 //////app.set('trust proxy', 1)//trust first proxy
 
-//Initialize client
+/*//Initialize client
 let redisClient = createClient();
 redisClient.connect().catch(console.error);
 
@@ -39,25 +44,25 @@ redisClient.connect().catch(console.error);
 let redisStore = new RedisStore({
   client: redisClient,
   preix: "itrakuser"
-});
+});*/
 
 //Initialize session storage
-app.use(
+/*app.use(
   session({
-      key: "log_token",
-      store: redisStore,
+      key: "login_token",
+      //store: redisStore,
       resave: "false",
       saveUninitialized: "true",
       secret: "loginsession"
-      /*cookie: {
+      cookie: {
           maxAge: 1000 * 60 * 60 * 144,
           httpOnly: true,
           secure: true,
           //rolling: false
           //sameSite: true
-      }*/
+      }
   })
-)
+)*/
 
 // Enable CORS for all methods
 app.use(function(req, res, next) {
@@ -66,9 +71,9 @@ app.use(function(req, res, next) {
   next()
 });
 
-redisClient.on('error',(err) => {
+/*redisClient.on('error',(err) => {
   console.log(err);
-});
+});*/
 /**********************
  * Example get method *
  **********************/
@@ -148,25 +153,27 @@ app.post('/newuser/*', function(req, res) {
 app.get('/checkregusersession', (req, res) => {
   console.log(req);
   console.log(req.cookies);
-  console.log(req.sessionID);
-  console.log(req.session);
+  const token = req.cookies.user_token;
+  console.log(token);
+  console.log(userSession[token]);
   /*sessionStore.all((err,sessions)=>{
     if(err) throw err;
     const user_sessions = sessions;
     console.log(user_sessions);*/
   
   //console.log(user_sessions);
-    req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
+  //if()
+    userSession[token].view_no = (userSession[token].view_no)? userSession[token].view_no + 1 : 1;
   //res.cookie('userID', "itrak user"+req.session.view_no);
   //req.session.user_identity = "itrak_user"+req.session.view_no;
   //req.session.save();
-    console.log(req.session);
-    if(req.session.user_logged_in){
+    console.log(userSession[token]);
+    if(userSession[token].user_logged_in){
         console.log("User is still logged in.");
-        res.send({"user_valid":true, "userID":req.session.userid});//,  "session": req.session
+        res.send({"user_valid":true, "userID":userSession[token].userid});//,  "session": req.session
     }else{
         console.log("Session expired or does not exist");
-        res.send({"user_valid":false});//,  "session": req.session
+        res.send({"user_valid":false, "sessions": userSession});//,  "session": req.session
     }
    //});
 });
@@ -188,8 +195,15 @@ app.get('/checkreguser', (req, res) => {
       //res.json({message: "Ready to connect"});
       console.log(req);
       console.log(req.cookies);
-      console.log(req.sessionID);
-      console.log(req.session);
+      /*console.log(req.sessionID);
+      console.log(req.session);*/
+      if(req.cookies.user_token){
+        const token = req.cookies.user_token;
+        console.log(token);
+        console.log(userSession[token]);
+        userSession[token].user_logged_in = false;
+      }
+
       //console.log(req.url);
       let conresult = 'Ready to connect';
       const conn_string = {
@@ -236,40 +250,48 @@ app.get('/checkreguser', (req, res) => {
                       if (conresult) {
                           console.log("Remember Login:" + req.query.rem_login);
                           if(req.query.rem_login=='true'){//remember user login
-                              console.log(req.session);
-                              req.session.user_logged_in = conresult;
-                              //req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
-                              req.session.userid = req.query.user_id;
-                              //req.session.save();
-                              //const sessiontoken = uuid.v4();
-                              //req.session.token = sessiontoken;
-                              if(req.cookies.user_token){
-                                res.cookie("user_token", '', {
-                                    maxAge: 1000 * 60 * 60 * 0,                                    
-                                });
-                              }
-                              const sessiontoken = req.sessionID;
+                              const sessiontoken = uuid.v4();
+                              console.log(sessiontoken);
+                              const expireAt = 1000 * 60 * 60 * 1440;
                               res.cookie("user_token", sessiontoken, {
-                                maxAge: 1000 * 60 * 60 * 1440,    
+                                maxAge: expireAt,    
                                 httpOnly: true,
                                 secure: true                                
                               });
+                              userSession[sessiontoken] =     {
+                                user_logged_in: conresult,
+                                userid: req.query.user_id,
+                                username: "user1",
+                                view: 1,
+                                cookie: {
+                                  expires: expireAt//change to date
+                                }
+                            }
+                              ////req.session.user_logged_in = conresult;
+                              //req.session.view_no = (req.session.view_no)? req.session.view_no + 1 : 1;
+                              ////req.session.userid = req.query.user_id;
+                              //req.session.save();
+                              
+                              //req.session.token = sessiontoken;
+                              
+                              //const sessiontoken = req.sessionID;
+                              
                               /*res.cookie("login_token", sessiontoken, {
                                 maxAge: 1000 * 60 * 60 * 144,
                                 httpOnly: true,
                                 secure: true
                                 //sameSite: true
                             });*/
-                              //console.log(sessiontoken);
-                              console.log(req.cookies);
-                              console.log(req.sessionID);
-                              console.log(req.session);
+                              ////console.log(sessiontoken);
+                              ////console.log(req.cookies);
+                              ////console.log(req.sessionID);
+                              ////console.log(req.session);
                               //req.session.save();
                           }
                           //req.session.user = conresult;
                           //req.session.userid = req.query.user_id;
 
-                          res.send({"user_valid": conresult});//, "session": req.session
+                          res.send({"user_valid": conresult, "sessions": userSession});//
                       } else {
                           res.send("Wrong username or password. Pls check your inputs and try again!")
                       }
