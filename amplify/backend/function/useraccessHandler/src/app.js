@@ -153,29 +153,26 @@ app.post('/newuser/*', function(req, res) {
 app.get('/checkregusersession', (req, res) => {
   console.log(req);
   console.log(req.cookies);
-  const token = req.cookies.user_token;
-  console.log(token);
-  console.log(userSession[token]);
-  /*sessionStore.all((err,sessions)=>{
-    if(err) throw err;
-    const user_sessions = sessions;
-    console.log(user_sessions);*/
-  
-  //console.log(user_sessions);
-  //if()
-    userSession[token].view_no = (userSession[token].view_no)? userSession[token].view_no + 1 : 1;
-  //res.cookie('userID', "itrak user"+req.session.view_no);
-  //req.session.user_identity = "itrak_user"+req.session.view_no;
-  //req.session.save();
-    console.log(userSession[token]);
-    if(userSession[token].user_logged_in){
+  if(req.cookies.user_token){
+    const token = req.cookies.user_token;
+    console.log(token);
+    if(userSession[token]){
+      console.log(userSession[token]);
+      userSession[token].view_no = (userSession[token].view_no)? userSession[token].view_no + 1 : 1;
+      console.log(userSession[token]);
+
+      if(userSession[token].user_logged_in){
         console.log("User is still logged in.");
         res.send({"user_valid":true, "userID":userSession[token].userid});//,  "session": req.session
-    }else{
+      }else{
         console.log("Session expired or does not exist");
         res.send({"user_valid":false, "sessions": userSession});//,  "session": req.session
+      }
     }
-   //});
+  }else{
+    console.log("Session does not exist");
+    res.send({"user_valid":false, "sessions": userSession});
+  }
 });
 
 app.get('/removeregusersession', (req, res) => {
@@ -200,8 +197,10 @@ app.get('/checkreguser', (req, res) => {
       if(req.cookies.user_token){
         const token = req.cookies.user_token;
         console.log(token);
-        console.log(userSession[token]);
-        userSession[token].user_logged_in = false;
+        if(userSession[token]){
+          console.log(userSession[token]);
+          userSession[token].user_logged_in = false;
+        }
       }
 
       //console.log(req.url);
