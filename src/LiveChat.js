@@ -8,6 +8,8 @@ import { get } from 'aws-amplify/api';
 
 //import { useState } from 'react';
 
+axios.defaults.withCredentials = true;
+
 class LiveChatApp extends React.Component {
     constructor(props) {
         super(props);

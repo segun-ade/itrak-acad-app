@@ -14,6 +14,8 @@ import axios from "axios";
 import { post } from 'aws-amplify/api';
 import { get } from 'aws-amplify/api';
 
+axios.defaults.withCredentials = true;
+
 class PerformanceApp extends React.Component {
     constructor(props) {
         super(props);
