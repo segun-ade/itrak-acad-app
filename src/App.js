@@ -15,6 +15,8 @@ import { Amplify } from 'aws-amplify';
 //import { generateClient } from 'aws-amplify/api';
 import awsconfig from './amplifyconfiguration.json';
 
+axios.defaults.withCredentials = true;
+
 Amplify.configure(awsconfig);
 //const API = generateClient();
 
@@ -212,7 +214,7 @@ function HomePage() {
   }
 
   useEffect(()=>{
-   /*   axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkregusersession')
+   /*   axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkregusersession', {withCredentials: true})
           .then(response => {
              console.log(response.data);
              alert(JSON.stringify(response.data));
@@ -282,7 +284,6 @@ function HomePage() {
 
       }, []
   )
-  //axios.defaults.withCredentials = true;
 
         /*: {
                     apiName: string,
