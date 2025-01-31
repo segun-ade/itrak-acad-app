@@ -6,9 +6,10 @@ or in the "license" file accompanying this file. This file is distributed on an 
 See the License for the specific language governing permissions and limitations under the License.
 */
 
-const express = require('express')
-const bodyParser = require('body-parser')
-const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
 const session = require('express-session');
 const uuid = require('uuid');
 //const {RedisStore} = require ("connect-redis");
@@ -31,7 +32,13 @@ let userSession = [
     }
 ]
 //var user_sessions = {};
+app.use(cors({
+  origin: ["https://www.itraktech.com"],//http://localhost:3000
+  methods: ["GET","POST","PUT","DELETE","OPTIONS","PATCH"],
+  credentials: true
+}));
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(awsServerlessExpressMiddleware.eventContext())
 app.use(cookieparser());
 //////app.set('trust proxy', 1)//trust first proxy
@@ -49,28 +56,30 @@ let redisStore = new RedisStore({
 //Initialize session storage
 app.use(
   session({
-      key: "login_token",
+      key: "auth_token",
       //store: redisStore,
       resave: "false",
       saveUninitialized: "true",
-      secret: "loginsession"
-      /*cookie: {
+      secret: "loginsession",
+      cookie: {
           maxAge: 1000 * 60 * 60 * 144,
           httpOnly: true,
           secure: true,
           //rolling: false
           //sameSite: true
-      }*/
+      }
   })
 )
 
-// Enable CORS for all methods
+/*// Enable CORS for all methods
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", 'https://www.itraktech.com')
-  res.header("Access-Control-Allow-Headers", 'https://www.itraktech.com')
+  res.header("Access-Control-Allow-Headers", '*')
   res.header("Access-Control-Allow-Credentials", true)
   next()
-});
+});*/
+
+app.use(express.json());
 
 /*redisClient.on('error',(err) => {
   console.log(err);
