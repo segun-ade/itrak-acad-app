@@ -19,7 +19,7 @@ import ResultApp from './ResultApp';
 //var CanvasJSReact = require('@canvasjs/react-charts');
 let perf_day = 1;
 
-axios.defaults.withCredentials = true;
+//axios.defaults.withCredentials = true;
 
 //const itrakacadAPI = "api9f6ae8ba";
 //const path = '\sessions';
