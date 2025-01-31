@@ -35,6 +35,7 @@ let userSession = [
 app.use(cors({
   origin: ["https://www.itraktech.com"],//http://localhost:3000
   methods: ["GET","POST","PUT","DELETE","OPTIONS","PATCH"],
+  allowedHeaders: '*',
   credentials: true
 }));
 app.use(bodyParser.json())
