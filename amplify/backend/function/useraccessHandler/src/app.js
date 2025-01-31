@@ -74,7 +74,7 @@ app.use(
 
 // Enable CORS for all methods
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", ['https://www.itraktech.com','https://main.d30qj1a33kc2he.amplifyapp.com'])
+  res.header("Access-Control-Allow-Origin", 'https://www.itraktech.com')
   res.header("Access-Control-Allow-Headers", '*')
   res.header("Access-Control-Allow-Credentials", true)
   next()
