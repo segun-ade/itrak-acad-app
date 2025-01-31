@@ -15,7 +15,7 @@ import { Amplify } from 'aws-amplify';
 //import { generateClient } from 'aws-amplify/api';
 import awsconfig from './amplifyconfiguration.json';
 
-axios.defaults.withCredentials = true;
+//axios.defaults.withCredentials = true;
 
 Amplify.configure(awsconfig);
 //const API = generateClient();
