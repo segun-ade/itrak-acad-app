@@ -32,14 +32,14 @@ let userSession = [
     }
 ]
 //var user_sessions = {};
-app.use(cors({
+/*app.use(cors({
   origin: ["https://www.itraktech.com"],//http://localhost:3000
   methods: ["GET","POST","PUT","DELETE","OPTIONS","PATCH"],
   allowedHeaders: '*',
   credentials: true
-}));
+}));*/
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}));
+//app.use(bodyParser.urlencoded({extended: true}));
 app.use(awsServerlessExpressMiddleware.eventContext())
 app.use(cookieparser());
 //////app.set('trust proxy', 1)//trust first proxy
@@ -72,13 +72,13 @@ app.use(
   })
 )
 
-/*// Enable CORS for all methods
+// Enable CORS for all methods
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", 'https://www.itraktech.com')
+  res.header("Access-Control-Allow-Origin", ['https://www.itraktech.com','https://main.d30qj1a33kc2he.amplifyapp.com'])
   res.header("Access-Control-Allow-Headers", '*')
   res.header("Access-Control-Allow-Credentials", true)
   next()
-});*/
+});
 
 app.use(express.json());
 

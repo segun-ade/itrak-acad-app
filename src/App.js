@@ -240,14 +240,13 @@ function HomePage() {
         });
         const response = await apimesg.response;
       } catch (error) {
-        
       }*/
     const checkuser = async () => {
         try {
             alert("Welcome, Checking session data...");
         const {body} = await get({
-            apiName: itrakapiName, 
-            path: itrakpath
+            apiName: itrakapiName, //'itrakeduapi';
+            path: itrakpath // '/checkregusersession'
         }).response;
         //const response = await resp.response;
         const response = await body.json();
