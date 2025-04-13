@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "paths": {
+    "/updateDB/students/{school}/{session}/{class}": {
+      "name": "/updateDB/students/{school}/{session}/{class}",
+      "lambdaFunction": "fileDBupdater",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/updateFile/students/{school}/{session}/{class}": {
+      "name": "/updateFile/students/{school}/{session}/{class}",
+      "lambdaFunction": "fileDBupdater",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/performanceAnalyzer/{school}/{session}/{studentID}": {
+      "name": "/performanceAnalyzer/{school}/{session}/{studentID}",
+      "lambdaFunction": "performanceAI",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/reportgenerator/{school}/{session}/{studentID}": {
+      "name": "/reportgenerator/{school}/{session}/{studentID}",
+      "lambdaFunction": "generateReport",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

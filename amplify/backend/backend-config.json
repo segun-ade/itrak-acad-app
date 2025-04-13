@@ -14,6 +14,36 @@
       "providerPlugin": "awscloudformation",
       "service": "API Gateway"
     },
+    "itrakdataproc": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "fileDBupdater"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "performanceAI"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "generateReport"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
     "itrakeduapi": {
       "dependsOn": [
         {
@@ -64,7 +94,22 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "fileDBupdater": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "generateReport": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "newuserHandler": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "performanceAI": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

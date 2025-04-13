@@ -438,6 +438,7 @@ function HomePage() {
                                                       <a className="sub-link-item">i-Trak Educational App</a>
                                                       <a className="sub-link-item">i-Trak Industrial Process Control</a>
                                                       <a className="sub-link-item">i-Trak Autonomous Machines</a>
+                                                      <a className="sub-link-item">i-Trak Power Solutions</a>
                                                   </div>
                                               </div>
                                               <a className="sub-link-item">i-Trak Business Segments</a>

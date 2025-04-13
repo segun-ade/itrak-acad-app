@@ -36,7 +36,10 @@
         "stdtrecordHandler": {
           "deploymentBucketName": "amplify-itrakacadapp-dev-10744-deployment",
           "s3Key": "amplify-builds/stdtrecordHandler-766b6a58435243513344-build.zip"
-        }
+        },
+        "fileDBupdater": {},
+        "performanceAI": {},
+        "generateReport": {}
       },
       "api": {
         "api9f6ae8ba": {},
