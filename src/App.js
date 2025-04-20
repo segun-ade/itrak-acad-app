@@ -423,7 +423,7 @@ function HomePage() {
                       <div id="nvbw12" className="navbar-wrapper">
                           <div id="lgc12" className="logo-container">
                               <a id="lglk12" href="SimpleReactPage.html">
-                                  <img id="lgimg12" src="logo192.png" />
+                                  <img id="lgimg12" src="itrak-logo.png" />
                               </a>
                           </div>
                           <div id="nvc12" className="nav-container">
@@ -443,19 +443,19 @@ function HomePage() {
                                               </div>
                                               <a className="sub-link-item">i-Trak Business Segments</a>
                                               <div className="sub-link2">
-                                                  <a className="sub-link-item">Contact Us @iTTeC</a>
+                                                  <a className="sub-link-item">Contact Us @iTraktech</a>
                                                   <div className="sub-link-menu2">
                                                       <div className="sub-link2">
                                                           <a className="sub-link-item">i-Trak Educational App</a>
                                                           <div className="sub-link-menu2">
-                                                              <a className="sub-link-item">i-Trak Educational App</a>
-                                                              <a className="sub-link-item">i-Trak Industrial Process Control</a>
+                                                              <a className="sub-link-item">Purchase License</a>
+                                                              <a className="sub-link-item">Renew License</a>
                                                               <div className="sub-link2">
-                                                                  <a className="sub-link-item">i-Trak Autonomous Machines</a>
+                                                                  <a className="sub-link-item">Request Quotes - RFQ</a>
                                                                   <div className="sub-link-menu2">
-                                                                      <a className="sub-link-item">i-Trak Educational App</a>
-                                                                      <a className="sub-link-item">i-Trak Industrial Process Control</a>
-                                                                      <a className="sub-link-item">i-Trak Autonomous Machines</a>
+                                                                      <a className="sub-link-item">RFQ - Internal Students</a>
+                                                                      <a className="sub-link-item">RFQ - External Students</a>
+                                                                      <a className="sub-link-item">RFQ - Company</a>
                                                                   </div>
                                                               </div>
                                                           </div>
@@ -472,17 +472,17 @@ function HomePage() {
                                               <div className=" = sub-link2">
                                                   <a className="sub-link-item">i-Trak Educational App</a>
                                                   <div className="sub-link-menu2">
-                                                      <a className="sub-link-item">i-Trak Educational App</a>
-                                                      <a className="sub-link-item">i-Trak Industrial Process Control</a>
-                                                      <a className="sub-link-item">i-Trak Autonomous Machines</a>
+                                                      <a className="sub-link-item">Internal Student Management Software</a>
+                                                      <a className="sub-link-item">External Student Management Software</a>
+                                                      <a className="sub-link-item">E-Learning Laboratory</a>
                                                   </div>
                                               </div>
                                               <div className="sub-link2">
                                                   <a className="sub-link-item">i-Trak Industrial Process Control</a>
                                                   <div className="sub-link-menu2">
-                                                      <a className="sub-link-item">i-Trak Educational App</a>
-                                                      <a className="sub-link-item">i-Trak Industrial Process Control</a>
-                                                      <a className="sub-link-item">i-Trak Autonomous Machines</a>
+                                                      <a className="sub-link-item">i-Trak Robotics App</a>
+                                                      <a className="sub-link-item">i-Trak Process Control</a>
+                                                      <a className="sub-link-item">i-Trak Power Solutions</a>
                                                   </div>
                                               </div>
                                               <a className="sub-link-item">i-Trak Autonomous Machines</a>
@@ -506,10 +506,10 @@ function HomePage() {
                   <div className="hero-container">
                       <h1>
                           Improve your Academic Performance
-                          <strong style={{ color: "blue" }}>by 100% plus</strong>
+                          <strong style={{ color: "blue" }}> by 100% plus</strong>
                       </h1>
                       <div className="hero-logo">
-                          <img src="track-car.png" className="logo-style" />
+                          <img src="track-perf.png" className="logo-style" />
                           <p className="medium-text">
                               i-Trak Educational Software is an academic booster and performance tracker application for every level of education
                               and professional training. It is also a One-Stop storage solution for Academic records and official transcripts for
@@ -522,15 +522,16 @@ function HomePage() {
                       <a onClick={displaySignUp}>
                           <i> Click Here to <b>Register</b> or use below link to access i-Trak App portal if you are already a user.</i>
                       </a>
-                      <button onClick={displayLogin}>Login Here to Access i-Trak.edu</button>
+                      <button onClick={displayLogin}>Login Here to Access i-Trak Academic App</button>
 
-                      <img src="uni-img7.jpg" id="hero-img" className="logo-style" />
+                      <img src="itrakacad-banner.png" id="hero-img" className="logo-style" />
                   </div>
               </section>
               <section className="feature-left" id="iTrak-description">
                   <div className="feature-container">
                       <div className="advert-panel">
                           <h1 className="header-style">i-Trak Updates</h1>
+                          <img src="itrakacad-bgnd.png" className='side-panel-img'/>
                       </div>
                       <div className="feature-wrapper">
 
@@ -561,22 +562,24 @@ function HomePage() {
                       </div>
                       <div className="chat-panel">
                           <h1 className="header-style">Chat or Email Us</h1>
+                          <img src="itrakacad-bgnd.png" className='side-panel-img'/>
+                          <a href='mailto:info@itraktech.com'>email: info@itraktech.com</a>
                       </div>
                   </div>
               </section>
               <section className="feature-grid">
                   <div className="feature-grid-container">
                       <div className="features">
-                          <h1 className="header-style2">i-Trak Educ ational App is ready to help you!</h1>
+                          <h1 className="header-style2">i-Trak Educational App is ready to help you!</h1>
                           <h1 className="header-style3">Register and launch i-Trak app today for <em style={{ color: "blue" }}>an amazing experience</em></h1>
                           <p className="header-style4">
                               Request teaching assistance for yourself or your child in any subject or professional course and get connected to both online
                               and offline proven and capable teachers in your location for an amazing academic boosting experience. <br />
-                              Explore some of the powerful features of <a href="#iTrak-description">i-Trak Educational App</a> below.
+                              Explore some of the powerful features of <a href="#feature1">i-Trak Educational App</a> below.
                           </p>
                       </div>
                       <div className="feature-item" id="feature1">
-                          <img src="uni-img3.jpg" />
+                          <img src="realtime.png" />
                           <h1>Real-time Updates</h1>
                           <p className="header-style4">
                               Get live updates on your child's performance in both academic and extra-curricular activities in their school without
@@ -584,7 +587,7 @@ function HomePage() {
                           </p>
                       </div>
                       <div className="feature-item" id="feature2">
-                          <img src="uni-img4.jpg" />
+                          <img src="livechat.png" />
                           <h1>Quick Feedback &amp; Live Chat </h1>
                           <p className="header-style4">
                               Have a chance to talk with your child's school teachers and admin once there is need to raise a concern or appreciate
@@ -592,11 +595,11 @@ function HomePage() {
                           </p>
                       </div>
                       <div className="feature-item" id="feature3">
-                          <img src="uni-img1.jpg" />
+                          <img src="gen-result.png" />
                           <h1>Super-fast Final Grade Results Generation</h1>
                           <p className="header-style4">
-                              Get your students results computed, and generate course or semester or term reports in seconds after final exams
-                              using our AI-powered i-Trak educational management software.
+                              Get your students results computed, and generate course, semester or term reports in seconds after final exams
+                              using our AI-powered i-Trak academic software.
                           </p>
                       </div>
                   </div>
@@ -604,42 +607,59 @@ function HomePage() {
               <section className="testimonial-section">
                   <div className="feedback-container">
                       <div style={{textAlign:"center"}}>
-                          <h1>Testimonial Section</h1>
+                          <h1>Application Benefits</h1>
                           <p>
-                              What are you waiting for? See what i-Trak users are saying below:
+                            <h3>
+                                 What are you waiting for? Register today and be part of the new era of intelligent student performance tracking and analysis for full time benefits!
+                            </h3>
                           </p>
                       </div>
 
                       <div className="testimonials">
                           <div className="testimonial-item">
-                              <img src="uni-img2.jpg" />
+                              <img src="analytics.png" />
                               <div>
-                                  <h1>Jose Brown</h1>
-                                  <p>Student / Integrated Technology Center</p>
+                                  <h1>AI Analytics</h1>
+                                  <p>Students Benefits</p>
                               </div>
                               <p>
-                                  I used i-Trak AI analytics to review and understand my IQ level and areas that require improvement in my studies.
-                                  Today, I'm 100% plus better.<br />Thanks to i-Trak...
+                                  Use i-Trak AI analytics to review and understand your IQ level and areas that require improvement in your studies.
+                                  Shortly, you would be <strong style={{ color: "blue" }}>100% plus</strong> better.<br />
+                                  <br />
+                                  <br />
+                                  <br />
                               </p>
+                              <a onClick={displaySignUp}>
+                                <em> Register Now </em> 
+                              </a>
+                              <a onClick={displayLogin}>
+                                <em> Login </em>
+                              </a>
                           </div>
                           <div className="testimonial-item">
-                              <img src="uni-img4.jpg" />
+                              <img src="award.png" />
                               <div>
-                                  <h1>Adebayo Johnson</h1>
-                                  <p>Teacher / St Morris International School</p>
+                                  <h1>Award Winners School</h1>
+                                  <p>Teachers Benefits</p>
                               </div>
                               <p>
-                                  We use i-Trak software in my schoolto share live updates on students performance with their parents real-time,
-                                  and guess what? It works like magic..<br />Our students are now national award winners due to parents support
-                                  through proper performance visibility and quick feedbacks to us.<br />Many thanks to i-Trak App
+                                  Use i-Trak software in your school to share live updates on students performance with their parents real-time,
+                                  and guess what? It works like magic..<br />Your students will soon become national award winners due to parents support
+                                  through proper performance visibility and quick feedbacks to the school.<br />While waiting any longer? Click below links to register or login.
                               </p>
+                              <a onClick={displaySignUp}>
+                                <em> Register Now </em> 
+                              </a>
+                              <a onClick={displayLogin}>
+                                <em> Login </em>
+                              </a>
                           </div>
                       </div>
                   </div>
               </section>
               <section className="footer-section">
                   <div className="footer-container">
-                      <img src="logo512.png" />
+                      <img src="itrak-logo.png" />
                       <div className="foot-links">
                           <a href="">Pricing</a>
                           <a href="">Terms &amp; Conditions</a>
@@ -656,7 +676,7 @@ function HomePage() {
               <div id="login-w" className="login-wrapper">
                   <div className="login-header">
                       <h1>i-Trak Technology </h1>
-                      <img src="logo192.png" />
+                      <img src="itrak-logo.png" />
                   </div>
                   <form id="login-form" className="login-content" onSubmit={handleSubmit}>
 
@@ -698,7 +718,7 @@ function HomePage() {
               <div id="reg-w" className="login-wrapper">
                   <div className="login-header">
                       <h1>i-Trak Technology </h1>
-                      <img src="logo192.png" />
+                      <img src="itrak-logo.png" />
                   </div>
                   <form id="register-form" className="login-content" onSubmit={handleUserRegSubmit}>
 
