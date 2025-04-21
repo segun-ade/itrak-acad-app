@@ -423,7 +423,7 @@ function HomePage() {
                       <div id="nvbw12" className="navbar-wrapper">
                           <div id="lgc12" className="logo-container">
                               <a id="lglk12" href="SimpleReactPage.html">
-                                  <img id="lgimg12" src="itrak-logo.png" />
+                                  <img id="company-logo" src="itrak-logo.png" />
                               </a>
                           </div>
                           <div id="nvc12" className="nav-container">
@@ -453,8 +453,8 @@ function HomePage() {
                                                               <div className="sub-link2">
                                                                   <a className="sub-link-item">Request Quotes - RFQ</a>
                                                                   <div className="sub-link-menu2">
-                                                                      <a className="sub-link-item">RFQ - Internal Students</a>
-                                                                      <a className="sub-link-item">RFQ - External Students</a>
+                                                                      <a className="sub-link-item">RFQ - Int. Students</a>
+                                                                      <a className="sub-link-item">RFQ - Ext. Students</a>
                                                                       <a className="sub-link-item">RFQ - Company</a>
                                                                   </div>
                                                               </div>
@@ -659,7 +659,7 @@ function HomePage() {
               </section>
               <section className="footer-section">
                   <div className="footer-container">
-                      <img src="itrak-logo.png" />
+                      <img src="itrak-logo.png" id="company-logo"/>
                       <div className="foot-links">
                           <a href="">Pricing</a>
                           <a href="">Terms &amp; Conditions</a>
@@ -676,7 +676,7 @@ function HomePage() {
               <div id="login-w" className="login-wrapper">
                   <div className="login-header">
                       <h1>i-Trak Technology </h1>
-                      <img src="itrak-logo.png" />
+                      <img src="itrak-logo.png" id="company-logo"/>
                   </div>
                   <form id="login-form" className="login-content" onSubmit={handleSubmit}>
 
@@ -718,7 +718,7 @@ function HomePage() {
               <div id="reg-w" className="login-wrapper">
                   <div className="login-header">
                       <h1>i-Trak Technology </h1>
-                      <img src="itrak-logo.png" />
+                      <img src="itrak-logo.png" id="company-logo"/>
                   </div>
                   <form id="register-form" className="login-content" onSubmit={handleUserRegSubmit}>
 

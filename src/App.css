@@ -72,6 +72,12 @@
     box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.14);
     max-height: inherit;
 }
+
+#company-logo {
+    width: 70px;
+    height: 60px;
+}
+
 .content-area {
     display:flex;
 }
