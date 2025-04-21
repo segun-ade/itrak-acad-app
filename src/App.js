@@ -524,7 +524,7 @@ function HomePage() {
                       </a>
                       <button onClick={displayLogin}>Login Here to Access i-Trak Academic App</button>
 
-                      <img src="itrakacad-banner.png" id="hero-img" className="logo-style" />
+                      <img src="itrak-banner.png" id="hero-img" className="logo-style" />
                   </div>
               </section>
               <section className="feature-left" id="iTrak-description">
