@@ -18,3 +18,11 @@ def handler(event, context):
       },
       'body': json.dumps('Hello from your new Amplify Python lambda!' + school)
   }
+
+#aws-wsgi = "*"
+#boto3 = "*"
+#flask = "*"
+#flask-cors = "*"
+#pandas = "*"
+#mysql-connector = "*"
+#openpyxl = "*"
