@@ -11,9 +11,12 @@
 # production
 /build
 
-#backup
+# backup
 /bup
 
+# python local venv files
+amplify/backend/function/fileDBupdater/fileDBvenv/
+amplify/backend/function/fileDBupdater/src/test files/
 # misc
 .DS_Store
 .env.local
