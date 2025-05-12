@@ -17,6 +17,7 @@
 # python local venv files
 amplify/backend/function/fileDBupdater/fileDBvenv/
 amplify/backend/function/fileDBupdater/src/test files/
+amplify/backend/function/fileDBupdater/src/fileupdater.py
 # misc
 .DS_Store
 .env.local
