@@ -8,8 +8,8 @@ from uuid import uuid4
 def handler(event, context):
   print('received event:')
   print(event)
-  school = event['pathParameters']
-  print(event['pathParameters'])
+  #school = event['pathParameters']
+  #print(event['pathParameters'])
   return {
       'statusCode': 200,
       'headers': {
@@ -17,7 +17,7 @@ def handler(event, context):
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
       },
-      'body': json.dumps('Hello from your new Amplify Python lambda!' + school)
+      'body': json.dumps('Hello from your new Amplify Python lambda! Welcome to iTrak!')
   }
 
 #aws-wsgi = "*"
