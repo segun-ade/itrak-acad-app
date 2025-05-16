@@ -12,19 +12,19 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route(DB_BASE_ROUTE, methods=['POST'])
-def fileToDB():
+def postFileToDB():
   return jsonify(message="Students record file successfully written to database!", method="POST")
 
 @app.route(DB_BASE_ROUTE, methods=['GET'])
-def fileToDB():
+def getFileToDB():
   return jsonify(message="Students record file successfully written to database!", method="GET")
 
 @app.route(FILE_BASE_ROUTE, methods=['POST'])
-def DBToFile():
+def postDBToFile():
   return jsonify(message="Students data record successfully written to file!", method="POST")
 
 @app.route(FILE_BASE_ROUTE, methods=['GET'])
-def DBToFile():
+def getDBToFile():
   return jsonify(message="Students data record successfully written to file!", method="GET")
 
 def handler(event, context):
