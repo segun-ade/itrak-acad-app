@@ -8,7 +8,8 @@ from uuid import uuid4
 def handler(event, context):
   print('received event:')
   print(event)
-  school = event.pathParameters.school
+  school = event['pathParameters']
+  print(event['pathParameters'])
   return {
       'statusCode': 200,
       'headers': {
