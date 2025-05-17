@@ -28,7 +28,10 @@ def getDBToFile():
   return jsonify(message="Students data record successfully written to file!", method="GET")
 
 def handler(event, context):
-  return awsgi.response(app, event, context)
+  event['httpMethod'] = event['requestContext']['http']['method']
+  event['path'] = event['requestContext']['http']['path']
+  event['queryStringParameters'] = event.get('queryStringParameters', {})
+  return awsgi.response(app, event, context) 
 
 #def handler(event, context):
 #  print('received event:')
