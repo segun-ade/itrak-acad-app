@@ -19,7 +19,7 @@ def postFileToDB():
 def getFileToDB():
   return jsonify(message="Students record file successfully written to database!", method="GET")
 
-@app.route(FILE_BASE_ROUTE, methods=['POST'])
+@app.route(FILE_BASE_ROUTE, methods =['POST'])
 def postDBToFile():
   return jsonify(message="Students data record successfully written to file!", method="POST")
 
@@ -28,9 +28,9 @@ def getDBToFile():
   return jsonify(message="Students data record successfully written to file!", method="GET")
 
 def handler(event, context):
-  event['httpMethod'] = event['requestContext']['http']['method']
-  event['path'] = event['requestContext']['http']['path']
-  event['queryStringParameters'] = event.get('queryStringParameters', {})
+  #event['httpMethod'] = event['requestContext']['http']['method']
+  #event['path'] = event['requestContext']['http']['path']
+  #event['queryStringParameters'] = event.get('queryStringParameters', {})
   return awsgi.response(app, event, context) 
 
 #def handler(event, context):

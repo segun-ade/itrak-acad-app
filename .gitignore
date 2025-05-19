@@ -18,6 +18,9 @@
 amplify/backend/function/fileDBupdater/fileDBvenv/
 amplify/backend/function/fileDBupdater/src/test files/
 amplify/backend/function/fileDBupdater/src/fileupdater.py
+amplify/backend/function/fileDBupdater/python/
+amplify/backend/function/fileDBupdater/layers/
+amplify/backend/function/fileDBupdater/python.zip
 # misc
 .DS_Store
 .env.local
