@@ -28,9 +28,9 @@ def getDBToFile():
   return jsonify(message="Students data record successfully written to file!", method="GET")
 
 def handler(event, context):
-  #event['httpMethod'] = event['requestContext']['http']['method']
-  #event['path'] = event['requestContext']['http']['path']
-  #event['queryStringParameters'] = event.get('queryStringParameters', {})
+  event['httpMethod'] = 'GET'#event['requestContext']['http']['method']
+  event['path'] = 'updateDB/students/{school}/{session}/{class}'#event['requestContext']['http']['path']
+  event['queryStringParameters'] = {}#event.get('queryStringParameters', {})
   return awsgi.response(app, event, context) 
 
 #def handler(event, context):
