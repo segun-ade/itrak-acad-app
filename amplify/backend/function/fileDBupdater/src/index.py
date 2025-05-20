@@ -35,6 +35,7 @@ def handler(event, context):
   req_school = event['pathParameters']['school']
   req_class = event['pathParameters']['class']
   req_session = event['pathParameters']['session']
+  print('school: '+req_school+', session: '+req_session+', class: '+req_class)
   event['httpMethod'] = event['httpMethod']
   event['path'] = event['resource']#'updateDB/students/{school}/{session}/{class}'
   if event['queryStringParameters']=='None':
