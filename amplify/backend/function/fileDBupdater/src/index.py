@@ -7,31 +7,40 @@ from uuid import uuid4
 
 DB_BASE_ROUTE = "/updateDB/students/{school}/{session}/{class}"
 FILE_BASE_ROUTE = "/updateFile/students/{school}/{session}/{class}"
+req_school = ""
+req_session = ""
+req_class = ""
 
 app = Flask(__name__)
 CORS(app)
 
 @app.route(DB_BASE_ROUTE, methods=['POST'])
 def postFileToDB():
-  return jsonify(message="Students record file successfully written to database!", method="POST")
+  return jsonify(message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class)
 
 @app.route(DB_BASE_ROUTE, methods=['GET'])
 def getFileToDB():
-  return jsonify(message="Students record file successfully written to database!", method="GET")
+  return jsonify(message="Students record file successfully written to database!", method="GET", school=req_school, session=req_session, student_class=req_class)
 
 @app.route(FILE_BASE_ROUTE, methods =['POST'])
 def postDBToFile():
-  return jsonify(message="Students data record successfully written to file!", method="POST")
+  return jsonify(message="Students data record successfully written to file!", method="POST", school=req_school, session=req_session, student_class=req_class)
 
 @app.route(FILE_BASE_ROUTE, methods=['GET'])
 def getDBToFile():
-  return jsonify(message="Students data record successfully written to file!", method="GET")
+  return jsonify(message="Students data record successfully written to file!", method="GET", school=req_school, session=req_session, student_class=req_class)
 
 def handler(event, context):
   print(event)
-  event['httpMethod'] = 'GET'#event['requestContext']['http']['method']
-  event['path'] = 'updateDB/students/{school}/{session}/{class}'#event['requestContext']['http']['path']
-  event['queryStringParameters'] = {}#event.get('queryStringParameters', {})
+  req_school = event['pathParameters']['school']
+  req_class = event['pathParameters']['class']
+  req_session = event['pathParameters']['session']
+  event['httpMethod'] = event['httpMethod']
+  event['path'] = event['resource']#'updateDB/students/{school}/{session}/{class}'
+  if event['queryStringParameters']=='None':
+    event['queryStringParameters']={}
+  else:
+    event['queryStringParameters'] = event['queryStringParameters']
   return awsgi.response(app, event, context) 
 
 #def handler(event, context):
