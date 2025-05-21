@@ -14,6 +14,7 @@ flask-cors = "*"
 pandas = "*"
 mysql-connector = "*"
 openpyxl = "*"
+fileupdater = "*"
 
 [requires]
 python_version = "3.10"
