@@ -4,6 +4,7 @@ import boto3
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 from uuid import uuid4
+import fileupdater as fDBWriter
 
 DB_BASE_ROUTE = "/updateDB/students/{school}/{session}/{class}"
 FILE_BASE_ROUTE = "/updateFile/students/{school}/{session}/{class}"
@@ -21,6 +22,7 @@ def postFileToDB():
 
 @app.route(DB_BASE_ROUTE, methods=['GET'])
 def getFileToDB():
+  fDBWriter.read_record_sheet("SENSYCAMv2_DHE updated.xlsm","SENSYCAMv2")
   return jsonify(message="Students record file successfully written to database!", method="GET", school=req_school, session=req_session, student_class=req_class)
 
 @app.route(FILE_BASE_ROUTE, methods =['POST'])
