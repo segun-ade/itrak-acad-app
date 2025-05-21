@@ -14,6 +14,7 @@ req_class = "Pry6"
 app = Flask(__name__)
 CORS(app)
 
+
 @app.route(DB_BASE_ROUTE, methods=['POST'])
 def postFileToDB():
   return jsonify(message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class)
@@ -32,6 +33,9 @@ def getDBToFile():
 
 def handler(event, context):
   print(event)
+  global req_school
+  global req_class
+  global req_session
   req_school = event['pathParameters']['school']
   req_class = event['pathParameters']['class']
   req_session = event['pathParameters']['session']
