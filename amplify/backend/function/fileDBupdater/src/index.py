@@ -7,9 +7,9 @@ from uuid import uuid4
 
 DB_BASE_ROUTE = "/updateDB/students/{school}/{session}/{class}"
 FILE_BASE_ROUTE = "/updateFile/students/{school}/{session}/{class}"
-req_school = ""
-req_session = ""
-req_class = ""
+req_school = "Chamba"
+req_session = "2003_04"
+req_class = "Pry6"
 
 app = Flask(__name__)
 CORS(app)
