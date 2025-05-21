@@ -12,5 +12,6 @@ boto3 = "*"
 flask = "*"
 flask-cors = "*"
 pandas = "*"
+
 [requires]
 python_version = "3.10"
