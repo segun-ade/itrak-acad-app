@@ -25,7 +25,7 @@ def postFileToDB():
 
 @app.route(DB_BASE_ROUTE, methods=['GET'])
 def getFileToDB():
-  fDBWriter.read_record_sheet("SENSYCAMv2_DHE updated.xlsm","SENSYCAMv2")
+  #fDBWriter.read_record_sheet("SENSYCAMv2_DHE updated.xlsm","SENSYCAMv2")
   return jsonify(message="Students record file successfully written to database!", method="GET", school=req_school, session=req_session, student_class=req_class)
 
 @app.route(FILE_BASE_ROUTE, methods =['POST'])
@@ -67,11 +67,3 @@ def handler(event, context):
 #      },
 #      'body': json.dumps('Hello from your new Amplify Python lambda! Welcome to iTrak!')
 #  }
-
-#aws-wsgi = "*"
-#boto3 = "*"
-#flask = "*"
-#flask-cors = "*"
-#pandas = "*"
-#mysql-connector = "*"
-#openpyxl = "*"
