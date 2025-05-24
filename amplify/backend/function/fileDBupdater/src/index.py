@@ -1,6 +1,6 @@
 import json
 import awsgi
-import boto3
+#import boto3
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 from uuid import uuid4

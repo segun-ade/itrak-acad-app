@@ -11,6 +11,8 @@ mysql-connector = "*"
 flask = "*"
 flask-cors = "*"
 pandas = "*"
+aws-wsgi = "*"
+openpyxl = "*"
 
 [requires]
 python_version = "3.10"
