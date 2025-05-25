@@ -25,26 +25,29 @@ def postFileToDB():
 
 @app.route(DB_BASE_ROUTE, methods=['GET'])
 def getFileToDB():
-  fDBWriter.read_record_sheet("SENSYCAMv2_DHE updated.xlsm","SENSYCAMv2")
+  if fDBWriter.connectDB() == "connected":
+    fDBWriter.read_record_sheet("SENSYCAMv2_DHE updated.xlsm","SENSYCAMv2")
   return jsonify(message="Students record file successfully written to database!", method="GET", school=req_school, session=req_session, student_class=req_class)
 
 @app.route(FILE_BASE_ROUTE, methods =['POST'])
 def postDBToFile():
-  fDBWriter.create_stdt_workbook("-class performance",False,False,34547,req_school,"*","*")
-  #create_stdt_workbook("-class performance",True,False,34547,'BRT0002A',"*","*")
-  #create_stdt_workbook("-student performance",True,False,34547,'CHF0003T','adeypatb0003',"*")
-  #create_stdt_workbook("-admin record",False,False,63628,'MSB0001A',"*","*")
-  fDBWriter.create_stdt_workbook("-class attendance",False,False,59405,'MSB0001A',"*","*")
-  fDBWriter.create_stdt_workbook("-class attendance",True,False,59405,'MSB0001A',"*","*")
-  #create_stdt_workbook("-school form",False,True,0,'MSB0001A',"*","*")
-  #create_stdt_workbook("-school record",True,True,0,'MSB0001A',"*","*")
-  #create_stdt_workbook("-schools form",False,True,0,"*","*","*")
-  #create_stdt_workbook("-schools record",True,True,0,"*","*","*")
+  if fDBWriter.connectDB() == "connected":
+    fDBWriter.create_stdt_workbook("-class performance",False,False,34547,req_school,"*","*")
+    #create_stdt_workbook("-class performance",True,False,34547,'BRT0002A',"*","*")
+    #create_stdt_workbook("-student performance",True,False,34547,'CHF0003T','adeypatb0003',"*")
+    #create_stdt_workbook("-admin record",False,False,63628,'MSB0001A',"*","*")
+    fDBWriter.create_stdt_workbook("-class attendance",False,False,59405,'MSB0001A',"*","*")
+    fDBWriter.create_stdt_workbook("-class attendance",True,False,59405,'MSB0001A',"*","*")
+    #create_stdt_workbook("-school form",False,True,0,'MSB0001A',"*","*")
+    #create_stdt_workbook("-school record",True,True,0,'MSB0001A',"*","*")
+    #create_stdt_workbook("-schools form",False,True,0,"*","*","*")
+    #create_stdt_workbook("-schools record",True,True,0,"*","*","*")
   return jsonify(message="Students data record successfully written to file!", method="POST", school=req_school, session=req_session, student_class=req_class)
 
 @app.route(FILE_BASE_ROUTE, methods=['GET'])
 def getDBToFile():
-  fDBWriter.update_record_sheet("MSB0001A-class attendance.xlsx","Attendance",record_data)
+  if fDBWriter.connectDB() == "connected":
+    fDBWriter.update_record_sheet("MSB0001A-class attendance.xlsx","Attendance",record_data)
   return jsonify(message="Students data record successfully written to file!", method="GET", school=req_school, session=req_session, student_class=req_class)
 
 def handler(event, context):
