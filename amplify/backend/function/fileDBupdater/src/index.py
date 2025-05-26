@@ -281,7 +281,9 @@ def postFileToDB():
 
 @app.route(DB_BASE_ROUTE, methods=['GET'])
 def getFileToDB():
-  if connectDB() == "connected":
+  conn_status = connectDB()
+  print(conn_status)
+  if conn_status == "connected":
     read_record_sheet("SENSYCAMv2_DHE updated.xlsm","SENSYCAMv2")
   return jsonify(message="Students record file successfully written to database!", method="GET", school=req_school, session=req_session, student_class=req_class)
 

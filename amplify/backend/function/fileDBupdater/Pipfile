@@ -13,6 +13,8 @@ flask-cors = "*"
 pandas = "*"
 aws-wsgi = "*"
 openpyxl = "*"
+boto3 = "*"
+matplotlib = "*"
 
 [requires]
 python_version = "3.10"
