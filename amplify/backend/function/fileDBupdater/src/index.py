@@ -11,6 +11,7 @@ from openpyxl import load_workbook
 
 DB_BASE_ROUTE = "/updateDB/students/{school}/{session}/{class}"
 FILE_BASE_ROUTE = "/updateFile/students/{school}/{session}/{class}"
+FILEDB_BASE_URL = "https://itrakacadapp-repos-data.s3.us-east-1.amazonaws.com/fileDBoperations/"
 req_school = "Chamba"
 req_session = "2003_04"
 req_class = "Pry6"
@@ -218,7 +219,8 @@ def create_stdt_workbook(posttitle,isdatarec,allrec,selectioncode,schoolid,stude
     if schoolid == "*": schoolid = "All"
     if isdatarec: booktitle = schoolid + posttitle + ".xlsx"
     else: booktitle = schoolid + posttitle + "-template.xlsx"
-    with pd.ExcelWriter(booktitle) as wkbk_writer:
+    wkbk_url = FILEDB_BASE_URL + booktitle
+    with pd.ExcelWriter(wkbk_url) as wkbk_writer:
         if sel_sch: sch_df.to_excel(wkbk_writer, sheet_name='School')
         if sel_teacher: teacher_df.to_excel(wkbk_writer, sheet_name='Teachers')
         if sel_class: class_df.to_excel(wkbk_writer, sheet_name='Classes')
@@ -250,17 +252,19 @@ def create_stdt_workbook(posttitle,isdatarec,allrec,selectioncode,schoolid,stude
 
 
 def update_record_sheet(workbookname,sheetname,record_data):
-    workbook = load_workbook(filename=workbookname)
+    wkbk_url = FILEDB_BASE_URL + workbookname
+    workbook = load_workbook(filename=wkbk_url)
 #    sheet = workbook.active
 #    sheet["B3"] = "Adeyemi Oluwasegun Stephen as Chief Engineer!"
     sheet = workbook[sheetname]
     sheet["B8"] = record_data #"Adeyemi Oluwasegun Stephen as Software Engineer!"
     workbook.save
-    workbook.save("updated record.xlsm")
+    workbook.save(FILEDB_BASE_URL + "updated record.xlsm") #Save As
     #rec_string = "update * from itrakedu." + sheetname
 
 def read_record_sheet(workbookname,sheetname):
-    dataframe = load_workbook(filename=workbookname,data_only=True)
+    wkbk_url = FILEDB_BASE_URL + workbookname
+    dataframe = load_workbook(filename=wkbk_url,data_only=True)
 #   df_sheet1 = dataframe.active
     df_sheet = dataframe[sheetname]
 #    print(df_sheet)
