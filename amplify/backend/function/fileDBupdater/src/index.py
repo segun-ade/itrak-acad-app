@@ -259,7 +259,7 @@ def update_record_sheet(workbookname,sheetname,record_data):
     sheet = workbook[sheetname]
     sheet["B8"] = record_data #"Adeyemi Oluwasegun Stephen as Software Engineer!"
     workbook.save
-    workbook.save(FILEDB_BASE_URL + "updated record.xlsm") #Save As
+    workbook.save(FILEDB_BASE_URL + "updated-record.xlsm") #Save As
     #rec_string = "update * from itrakedu." + sheetname
 
 def read_record_sheet(workbookname,sheetname):
@@ -288,18 +288,18 @@ def getFileToDB():
   conn_status = connectDB()
   print(conn_status)
   if conn_status == "connected":
-    read_record_sheet("SENSYCAMv2_DHE updated.xlsm","SENSYCAMv2")
+    read_record_sheet("SENSYCAMv2_DHE-updated.xlsm","SENSYCAMv2")
   return jsonify(message="Students record file successfully written to database!", method="GET", school=req_school, session=req_session, student_class=req_class)
 
 @app.route(FILE_BASE_ROUTE, methods =['POST'])
 def postDBToFile():
   if connectDB() == "connected":
-    create_stdt_workbook("-class performance",False,False,34547,req_school,"*","*")
+    create_stdt_workbook("-class-performance",False,False,34547,req_school,"*","*")
     #create_stdt_workbook("-class performance",True,False,34547,'BRT0002A',"*","*")
     #create_stdt_workbook("-student performance",True,False,34547,'CHF0003T','adeypatb0003',"*")
     #create_stdt_workbook("-admin record",False,False,63628,'MSB0001A',"*","*")
-    create_stdt_workbook("-class attendance",False,False,59405,'MSB0001A',"*","*")
-    create_stdt_workbook("-class attendance",True,False,59405,'MSB0001A',"*","*")
+    create_stdt_workbook("-class-attendance",False,False,59405,'MSB0001A',"*","*")
+    create_stdt_workbook("-class-attendance",True,False,59405,'MSB0001A',"*","*")
     #create_stdt_workbook("-school form",False,True,0,'MSB0001A',"*","*")
     #create_stdt_workbook("-school record",True,True,0,'MSB0001A',"*","*")
     #create_stdt_workbook("-schools form",False,True,0,"*","*","*")
@@ -309,7 +309,7 @@ def postDBToFile():
 @app.route(FILE_BASE_ROUTE, methods=['GET'])
 def getDBToFile():
   if connectDB() == "connected":
-    update_record_sheet("MSB0001A-class attendance.xlsx","Attendance",record_data)
+    update_record_sheet("MSB0001A-class-attendance.xlsx","Attendance",record_data)
   return jsonify(message="Students data record successfully written to file!", method="GET", school=req_school, session=req_session, student_class=req_class)
 
 def handler(event, context):
