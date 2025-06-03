@@ -1,6 +1,6 @@
 import json
 import awsgi
-#import boto3
+import boto3
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 from uuid import uuid4
@@ -8,6 +8,7 @@ from uuid import uuid4
 import pandas as pd
 import mysql.connector as mysql
 from openpyxl import load_workbook
+import requests
 
 DB_BASE_ROUTE = "/updateDB/students/{school}/{session}/{class}"
 FILE_BASE_ROUTE = "/updateFile/students/{school}/{session}/{class}"
@@ -219,8 +220,8 @@ def create_stdt_workbook(posttitle,isdatarec,allrec,selectioncode,schoolid,stude
     if schoolid == "*": schoolid = "All"
     if isdatarec: booktitle = schoolid + posttitle + ".xlsx"
     else: booktitle = schoolid + posttitle + "-template.xlsx"
-    wkbk_url = FILEDB_BASE_URL + booktitle
-    with pd.ExcelWriter(wkbk_url) as wkbk_writer:
+    url = FILEDB_BASE_URL + booktitle
+    with pd.ExcelWriter(booktitle) as wkbk_writer:
         if sel_sch: sch_df.to_excel(wkbk_writer, sheet_name='School')
         if sel_teacher: teacher_df.to_excel(wkbk_writer, sheet_name='Teachers')
         if sel_class: class_df.to_excel(wkbk_writer, sheet_name='Classes')
@@ -238,6 +239,10 @@ def create_stdt_workbook(posttitle,isdatarec,allrec,selectioncode,schoolid,stude
         if sel_book: book_df.to_excel(wkbk_writer, sheet_name='Books')
         if sel_attend: attend_df.to_excel(wkbk_writer, sheet_name='Attendance')
         print("Workbook created successfully.")
+    with open(booktitle, 'rb') as file:
+        data = file.read()
+        response = requests.put(url, data=data) 
+        print(response)
 
 #create_stdt_workbook("-class performance",False,False,34547,'BRT0002A',"*","*")
 #create_stdt_workbook("-class performance",True,False,34547,'BRT0002A',"*","*")
