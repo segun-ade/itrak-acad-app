@@ -221,7 +221,7 @@ def create_stdt_workbook(posttitle,isdatarec,allrec,selectioncode,schoolid,stude
     if isdatarec: booktitle = schoolid + posttitle + ".xlsx"
     else: booktitle = schoolid + posttitle + "-template.xlsx"
     url = FILEDB_BASE_URL + booktitle
-    with pd.ExcelWriter(booktitle) as wkbk_writer:
+    with pd.ExcelWriter("/tmp/" + booktitle) as wkbk_writer:
         if sel_sch: sch_df.to_excel(wkbk_writer, sheet_name='School')
         if sel_teacher: teacher_df.to_excel(wkbk_writer, sheet_name='Teachers')
         if sel_class: class_df.to_excel(wkbk_writer, sheet_name='Classes')
@@ -239,7 +239,7 @@ def create_stdt_workbook(posttitle,isdatarec,allrec,selectioncode,schoolid,stude
         if sel_book: book_df.to_excel(wkbk_writer, sheet_name='Books')
         if sel_attend: attend_df.to_excel(wkbk_writer, sheet_name='Attendance')
         print("Workbook created successfully.")
-    with open(booktitle, 'rb') as file:
+    with open("/tmp/" + booktitle, 'rb') as file:
         data = file.read()
         response = requests.put(url, data=data) 
         print(response)
