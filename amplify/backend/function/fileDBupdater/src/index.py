@@ -90,6 +90,18 @@ def format_rec_string(isdatarec,record,columnid,queryclause):
     print(rec_string)
     return rec_string
 
+def download_data_files(url, destination):
+    try:
+        with requests.get(url, stream=True) as response:
+            response.raise_for_status()
+            with open(destination, 'wb') as file:
+                for chunk in response.iter_content(chunk_size=8192):
+                    file.write(chunk)
+        print("Download was successful")
+    except requests.exceptions.RequestException as e:
+        print ("Error downloading file", e)
+
+        
 def create_stdt_workbook(posttitle,isdatarec,allrec,selectioncode,schoolid,studentid,columnid):
     #Initialize selection flags
     sel_sch = False
@@ -259,9 +271,22 @@ def create_stdt_workbook(posttitle,isdatarec,allrec,selectioncode,schoolid,stude
         print("Workbook created successfully.")
     with open("/tmp/" + booktitle, 'rb') as file:
         data = file.read()
-        response = requests.put(url, data=data) 
+        headers = {'Content-Type': 'application/octet-stream'}
+        response = requests.put(url, headers=headers, data=data, stream=True) 
         print(response)
+    obj = boto3.client("s3")
+    obj.upload_file(
+        Filename="/tmp/" + booktitle,
+        Bucket="itrakacadapp-repos-data",
+        Key="fileDBoperations/data-record.xlsm"
+    )
 
+    obj.download_file(
+        Filename="/tmp/" + "copy-" + booktitle,
+        Bucket="itrakacadapp-repos-data",
+        Key="fileDBoperations/data-record.xlsm"
+    )
+    download_data_files(url,"/tmp/uploaded-data.xlsm")
 #create_stdt_workbook("-class performance",False,False,34547,'BRT0002A',"*","*")
 #create_stdt_workbook("-class performance",True,False,34547,'BRT0002A',"*","*")
 #create_stdt_workbook("-student performance",True,False,34547,'CHF0003T','adeypatb0003',"*")
