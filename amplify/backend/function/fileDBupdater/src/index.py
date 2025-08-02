@@ -329,7 +329,9 @@ def read_record_sheet(workbookname,sheetname):
 
 @app.route(DB_BASE_ROUTE, methods=['POST'])
 def postFileToDB():
-  return jsonify(message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class)
+  mesg = request.get_json()
+  print(mesg)
+  return jsonify(message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class,data=mesg)
 
 @app.route(DB_BASE_ROUTE, methods=['GET'])
 def getFileToDB():
@@ -371,9 +373,7 @@ def handler(event, context):
   global record_data
   record_data = 'school: '+req_school+', session: '+req_session+', class: '+req_class
   print(record_data)
-  print(event['body'])
-  mesg = jsonify(event['body'])
-  print(mesg)
+  #print(event['body'])
   event['httpMethod'] = event['httpMethod']
   event['path'] = event['resource']#'updateDB/students/{school}/{session}/{class}'
   if event['queryStringParameters']=='None':
