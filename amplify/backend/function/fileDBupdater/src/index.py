@@ -371,6 +371,7 @@ def handler(event, context):
   global record_data
   record_data = 'school: '+req_school+', session: '+req_session+', class: '+req_class
   print(record_data)
+  print(event['body'])
   event['httpMethod'] = event['httpMethod']
   event['path'] = event['resource']#'updateDB/students/{school}/{session}/{class}'
   if event['queryStringParameters']=='None':
