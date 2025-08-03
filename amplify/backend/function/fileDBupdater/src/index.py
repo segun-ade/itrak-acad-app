@@ -331,14 +331,26 @@ def read_record_sheet(workbookname,sheetname):
 def postFileToDB():
   mesg = request.get_json()
   print(mesg)
-  return jsonify(DB_updated="False", message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class,data=mesg)
+  record_string = 'SELECT * FROM itrakedu.extra_cur_activity'
+  headerText = ['Activity_id','Student_id','Session_id','Term','School_id','Class_id','Act_type','Title','Description','Date','Time','Score','Grade']
+
+  conn_status = connectDB()
+  print(conn_status)
+
+  concursor.execute(record_string)
+  result = concursor.fetchall() #data workbook
+  print(result)
+  record_df = pd.DataFrame(result,
+                   columns=[headerText])
+
+  return jsonify(DB_updated="False", record=record_df, message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class,data=mesg)
 
 @app.route(DB_BASE_ROUTE, methods=['GET'])
 def getFileToDB():
   conn_status = connectDB()
   print(conn_status)
   #if conn_status == "connected":
-  read_record_sheet("sensycam_file.xlsm","SENSYCAMv2")
+  #/#read_record_sheet("sensycam_file.xlsm","SENSYCAMv2")
   return jsonify(message="Students record file successfully written to database!", method="GET", school=req_school, session=req_session, student_class=req_class)
 
 @app.route(FILE_BASE_ROUTE, methods =['POST'])
