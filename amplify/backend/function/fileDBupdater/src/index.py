@@ -359,7 +359,7 @@ def postFileToDB():
   record_df = pd.DataFrame(result,
                    columns=[headerText])
 
-  return jsonify(DB_updated="True", record=record_df, message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class,data=mesg)
+  return jsonify(DB_updated="True", record=result, message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class,data=mesg)
 
 @app.route(DB_BASE_ROUTE, methods=['GET'])
 def getFileToDB():
