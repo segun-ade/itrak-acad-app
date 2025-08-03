@@ -57,7 +57,7 @@ def connectDB():#implement try--catch
     print("Database connected!")
     global concursor 
     concursor = con.cursor()
-    return conresult
+    return concursor #conresult
 
 def fetch_sheet_data(record_string,headerText):
     if record_string=="":
@@ -334,8 +334,9 @@ def postFileToDB():
   record_string = 'SELECT * FROM itrakedu.extra_cur_activity'
   headerText = ['Activity_id','Student_id','Session_id','Term','School_id','Class_id','Act_type','Title','Description','Date','Time','Score','Grade']
 
-  conn_status = connectDB()
-  print(conn_status)
+  #conn_status = connectDB()
+  concursor = connectDB()
+  #print(conn_status)
 
   concursor.execute(record_string)
   result = concursor.fetchall() #data workbook
