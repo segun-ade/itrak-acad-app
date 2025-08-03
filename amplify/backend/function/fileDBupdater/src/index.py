@@ -57,7 +57,7 @@ def connectDB():#implement try--catch
     print("Database connected!")
     global concursor 
     concursor = con.cursor()
-    return concursor #conresult
+    return conresult
 
 def fetch_sheet_data(record_string,headerText):
     if record_string=="":
@@ -335,16 +335,31 @@ def postFileToDB():
   headerText = ['Activity_id','Student_id','Session_id','Term','School_id','Class_id','Act_type','Title','Description','Date','Time','Score','Grade']
 
   #conn_status = connectDB()
-  concursor = connectDB()
   #print(conn_status)
-
+  conresult = 'Ready to connect'
+  print(conresult)
+  conn_string = {
+    'host': "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
+    'user': "root",#root
+    'password': "ROOTuser12!",#;e_xbAi*f0ae
+    'database': "itrakedu"
+    }
+  con = mysql.connect(
+    host= conn_string['host'],
+    user= conn_string['user'],#root
+    password= conn_string['password'],#;e_xbAi*f0ae
+    database= conn_string['database']
+    )
+  conresult = "connected"
+  print("Database connected!")
+  concursor = con.cursor()
   concursor.execute(record_string)
   result = concursor.fetchall() #data workbook
   print(result)
   record_df = pd.DataFrame(result,
                    columns=[headerText])
 
-  return jsonify(DB_updated="False", record=record_df, message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class,data=mesg)
+  return jsonify(DB_updated="True", record=record_df, message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class,data=mesg)
 
 @app.route(DB_BASE_ROUTE, methods=['GET'])
 def getFileToDB():
