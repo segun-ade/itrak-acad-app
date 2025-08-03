@@ -331,7 +331,7 @@ def read_record_sheet(workbookname,sheetname):
 def postFileToDB():
   mesg = request.get_json()
   print(mesg)
-  return jsonify(message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class,data=mesg)
+  return jsonify(DB_updated="False", message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class,data=mesg)
 
 @app.route(DB_BASE_ROUTE, methods=['GET'])
 def getFileToDB():
