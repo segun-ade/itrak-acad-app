@@ -385,8 +385,8 @@ def postFileToDB():
   print(resultjson)
 
   
-  record_df = pd.DataFrame(result,
-                   columns=[headerText])
+#  record_df = pd.DataFrame(result,
+#                   columns=[headerText])
 
   return jsonify(DB_updated=rec_updated, result=resultjson, message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class,data=mesg)
 
