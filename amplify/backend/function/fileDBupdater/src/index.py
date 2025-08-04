@@ -344,22 +344,49 @@ def postFileToDB():
     'password': "ROOTuser12!",#;e_xbAi*f0ae
     'database': "itrakedu"
     }
-  con = mysql.connect(
-    host= conn_string['host'],
-    user= conn_string['user'],#root
-    password= conn_string['password'],#;e_xbAi*f0ae
-    database= conn_string['database']
-    )
-  conresult = "connected"
-  print("Database connected!")
-  concursor = con.cursor()
-  concursor.execute(record_string)
-  result = concursor.fetchall() #data workbook
+  
+  try:
+    con = mysql.connect(**conn_string)
+#  con = mysql.connect(
+#    host= conn_string['host'],
+#    user= conn_string['user'],#root
+#    password= conn_string['password'],#;e_xbAi*f0ae
+#    database= conn_string['database']
+#    )
+    conresult = "connected"
+    print("Database connected!")
+    concursor = con.cursor()
+    concursor.execute(record_string)
+    result = concursor.fetchall() #data workbook
+  
+  except mysql.connector.Error as err:
+      print(f"Error: {err}")
+      result = []
+      rec_updated="False"
+    
+  finally:
+      rec_updated="True"
+      if concursor in locals() and concursor:
+          concursor.close()
+      if con in locals() and con:
+          con.close()
+  if result:
+      headers = [column[0] for column in concursor.description]
+  else:
+      headers=[]
+  result_list = []
+  for row in result:
+      row_dict = dict(zip(headers,row))
+      result_list.append(row_dict)
+
+  resultjson = json.dumps(result_list,indent=4)
+  print(resultjson)
+
   print(result)
   record_df = pd.DataFrame(result,
                    columns=[headerText])
 
-  return jsonify(DB_updated="True", record=result, message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class,data=mesg)
+  return jsonify(DB_updated=rec_updated, result=resultjson, message="Students record file successfully written to database!", method="POST", school=req_school, session=req_session, student_class=req_class,data=mesg)
 
 @app.route(DB_BASE_ROUTE, methods=['GET'])
 def getFileToDB():
