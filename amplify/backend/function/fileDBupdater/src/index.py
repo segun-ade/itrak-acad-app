@@ -331,7 +331,7 @@ def read_record_sheet(workbookname,sheetname):
 def postFileToDB():
   mesg = request.get_json()
   print(mesg)
-  record_string = 'SELECT * FROM itrakedu.extra_cur_activity'
+  record_string = f'SELECT student_id FROM itrakedu.extra_cur_activity where school_id={req_school} and session_id={req_session} and class_id={req_class}'
   headerText = ['Activity_id','Student_id','Session_id','Term','School_id','Class_id','Act_type','Title','Description','Date','Time','Score','Grade']
 
   #conn_status = connectDB()
@@ -358,7 +358,8 @@ def postFileToDB():
     concursor = con.cursor()
     concursor.execute(record_string)
     result = concursor.fetchall() #data workbook
-  
+    print(result)
+
   except mysql.connector.Error as err:
       print(f"Error: {err}")
       result = []
@@ -382,7 +383,7 @@ def postFileToDB():
   resultjson = json.dumps(result_list,indent=4)
   print(resultjson)
 
-  print(result)
+  
   record_df = pd.DataFrame(result,
                    columns=[headerText])
 
