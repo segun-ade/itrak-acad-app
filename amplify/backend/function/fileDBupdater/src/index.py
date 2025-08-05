@@ -381,7 +381,7 @@ def postFileToDB():
       row_dict = dict(zip(headers,row))
       result_list.append(row_dict)
 
-  resultjson = json.dumps(result_list,indent=4)
+  resultjson = json.dumps(result_list)#,indent=4)
   print(resultjson)
 
   
