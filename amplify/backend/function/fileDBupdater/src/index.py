@@ -392,11 +392,72 @@ def postFileToDB():
 
 @app.route(DB_BASE_ROUTE, methods=['GET'])
 def getFileToDB():
-  conn_status = connectDB()
-  print(conn_status)
+  #conn_status = connectDB()
+  #print(conn_status)
   #if conn_status == "connected":
   #/#read_record_sheet("sensycam_file.xlsm","SENSYCAMv2")
-  return jsonify(message="Students record file successfully written to database!", method="GET", school=req_school, session=req_session, student_class=req_class)
+  mesg = request.get_json()
+  print(mesg)
+  #record_string = f'SELECT student_id FROM itrakedu.extra_cur_activity where school_id=\'{req_school}\' and session_id=\'{req_session}\' and class_id=\'{req_class}\''
+  record_string = f'SELECT students.student_id, students.firstname, students.lastname, students.middlename FROM extra_cur_activity inner join students on students.student_id=extra_cur_activity.student_id where extra_cur_activity.school_id=\'{req_school}\' and extra_cur_activity.session_id=\'{req_session}\' and extra_cur_activity.class_id=\'{req_class}\''
+  headerText = ['Activity_id','Student_id','Session_id','Term','School_id','Class_id','Act_type','Title','Description','Date','Time','Score','Grade']
+
+  #conn_status = connectDB()
+  #print(conn_status)
+  conresult = 'Ready to connect'
+  print(conresult)
+  conn_string = {
+    'host': "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
+    'user': "root",#root
+    'password': "ROOTuser12!",#;e_xbAi*f0ae
+    'database': "itrakedu"
+    }
+  
+  try:
+    con = mysql.connect(**conn_string)
+#  con = mysql.connect(
+#    host= conn_string['host'],
+#    user= conn_string['user'],#root
+#    password= conn_string['password'],#;e_xbAi*f0ae
+#    database= conn_string['database']
+#    )
+    conresult = "connected"
+    print("Database connected!")
+    concursor = con.cursor()
+    concursor.execute(record_string)
+    result = concursor.fetchall() #data workbook
+    print(result)
+
+  except mysql.connector.Error as err:
+      print(f"Error: {err}")
+      result = []
+      rec_fetched="False"
+    
+  finally:
+      rec_fetched="True"
+      if concursor in locals() and concursor:
+          concursor.close()
+      if con in locals() and con:
+          con.close()
+  if result:
+      headers = [column[0] for column in concursor.description]
+  else:
+      headers=[]
+  result_list = []
+  for row in result:
+      row_dict = dict(zip(headers,row))
+      result_list.append(row_dict)
+
+  resultjson = json.dumps(result_list)#,indent=4)
+  print(resultjson)
+
+  
+#  record_df = pd.DataFrame(result,
+#                   columns=[headerText])
+
+  return jsonify(Record_Fetched=rec_fetched, result=resultjson, message="Students record file successfully fetched from the database!", method="PGET", school=req_school, session=req_session, student_class=req_class,data=mesg)
+
+  #return jsonify(message="Students record file successfully fetched from the database!", method="GET", school=req_school, session=req_session, student_class=req_class)
 
 @app.route(FILE_BASE_ROUTE, methods =['POST'])
 def postDBToFile():
