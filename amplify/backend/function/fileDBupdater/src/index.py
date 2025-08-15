@@ -396,8 +396,8 @@ def getFileToDB():
   #print(conn_status)
   #if conn_status == "connected":
   #/#read_record_sheet("sensycam_file.xlsm","SENSYCAMv2")
-  mesg = request.get_json()
-  print(mesg)
+  #/mesg = request.get_json()
+  #/print(mesg)
   #record_string = f'SELECT student_id FROM itrakedu.extra_cur_activity where school_id=\'{req_school}\' and session_id=\'{req_session}\' and class_id=\'{req_class}\''
   record_string = f'SELECT students.student_id, students.firstname, students.lastname, students.middlename FROM extra_cur_activity inner join students on students.student_id=extra_cur_activity.student_id where extra_cur_activity.school_id=\'{req_school}\' and extra_cur_activity.session_id=\'{req_session}\' and extra_cur_activity.class_id=\'{req_class}\''
   headerText = ['Activity_id','Student_id','Session_id','Term','School_id','Class_id','Act_type','Title','Description','Date','Time','Score','Grade']
