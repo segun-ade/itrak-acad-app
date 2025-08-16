@@ -396,10 +396,12 @@ def getFileToDB():
   #print(conn_status)
   #if conn_status == "connected":
   #/#read_record_sheet("sensycam_file.xlsm","SENSYCAMv2")
-  #/mesg = request.get_json()
-  #/print(mesg)
+  mesg = req_act_type
+  print(mesg)
   #record_string = f'SELECT student_id FROM itrakedu.extra_cur_activity where school_id=\'{req_school}\' and session_id=\'{req_session}\' and class_id=\'{req_class}\''
-  record_string = f'SELECT students.student_id, students.firstname, students.lastname, students.middlename FROM extra_cur_activity inner join students on students.student_id=extra_cur_activity.student_id where extra_cur_activity.school_id=\'{req_school}\' and extra_cur_activity.session_id=\'{req_session}\' and extra_cur_activity.class_id=\'{req_class}\''
+  #/record_string = f'SELECT students.student_id, students.firstname, students.lastname, students.middlename FROM extra_cur_activity inner join students on students.student_id=extra_cur_activity.student_id where extra_cur_activity.school_id=\'{req_school}\' and extra_cur_activity.session_id=\'{req_session}\' and extra_cur_activity.class_id=\'{req_class}\''
+  record_string = f'SELECT students.student_id, students.firstname, students.lastname, students.middlename FROM {req_act_type} inner join students on students.student_id={req_act_type}.student_id where {req_act_type}.school_id=\'{req_school}\' and {req_act_type}.session_id=\'{req_session}\' and {req_act_type}.class_id=\'{req_class}\''
+  print(record_string)
   headerText = ['Activity_id','Student_id','Session_id','Term','School_id','Class_id','Act_type','Title','Description','Date','Time','Score','Grade']
 
   #conn_status = connectDB()
@@ -485,6 +487,7 @@ def handler(event, context):
   global req_school
   global req_class
   global req_session
+  global req_act_type
   req_school = event['pathParameters']['school']
   req_class = event['pathParameters']['class']
   req_session = event['pathParameters']['session']
@@ -497,6 +500,8 @@ def handler(event, context):
   if event['queryStringParameters']=='None':
     event['queryStringParameters']={}
   else:
+    req_act_type = event['queryStringParameters']['act_type']
+    print(req_act_type)
     event['queryStringParameters'] = event['queryStringParameters']
   return awsgi.response(app, event, context) 
 
