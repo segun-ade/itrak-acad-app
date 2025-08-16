@@ -400,7 +400,8 @@ def getFileToDB():
   print(mesg)
   #record_string = f'SELECT student_id FROM itrakedu.extra_cur_activity where school_id=\'{req_school}\' and session_id=\'{req_session}\' and class_id=\'{req_class}\''
   #/record_string = f'SELECT students.student_id, students.firstname, students.lastname, students.middlename FROM extra_cur_activity inner join students on students.student_id=extra_cur_activity.student_id where extra_cur_activity.school_id=\'{req_school}\' and extra_cur_activity.session_id=\'{req_session}\' and extra_cur_activity.class_id=\'{req_class}\''
-  record_string = f'SELECT students.student_id, students.firstname, students.lastname, students.middlename FROM {req_act_type} inner join students on students.student_id={req_act_type}.student_id where {req_act_type}.school_id=\'{req_school}\' and {req_act_type}.session_id=\'{req_session}\' and {req_act_type}.class_id=\'{req_class}\''
+  #record_string = f'SELECT students.student_id, students.firstname, students.lastname, students.middlename FROM {req_act_type} inner join students on students.student_id={req_act_type}.student_id where {req_act_type}.school_id=\'{req_school}\' and {req_act_type}.session_id=\'{req_session}\' and {req_act_type}.class_id=\'{req_class}\''
+  record_string = f'SELECT students.student_id, students.firstname, students.lastname, students.middlename FROM students where students.school_id=\'{req_school}\' and students.class_id=\'{req_class}\''
   print(record_string)
   headerText = ['Activity_id','Student_id','Session_id','Term','School_id','Class_id','Act_type','Title','Description','Date','Time','Score','Grade']
 
@@ -457,7 +458,7 @@ def getFileToDB():
 #  record_df = pd.DataFrame(result,
 #                   columns=[headerText])
 
-  return jsonify(Record_Fetched=rec_fetched, result=resultjson, message="Students record file successfully fetched from the database!", method="PGET", school=req_school, session=req_session, student_class=req_class,data=mesg)
+  return jsonify(Record_Fetched=rec_fetched, result=resultjson, message="Students record file successfully fetched from the database!", method="GET", school=req_school, session=req_session, student_class=req_class,data=mesg)
 
   #return jsonify(message="Students record file successfully fetched from the database!", method="GET", school=req_school, session=req_session, student_class=req_class)
 
