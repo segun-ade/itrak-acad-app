@@ -363,10 +363,13 @@ def postFileToDB():
     concursor = con.cursor()
     for i in range(data_len):
       insert_query = ''
+      insert_key = ''
       for value in insert_data[i].values():
         insert_query += '\'' + value + '\'' + ','
-      act_type = '\'' + 'itrakedu' + '\'' + '.' + '\'' + {req_act_type} + '\''
-      insert_string = f'INSERT INTO {act_type} VALUES ({insert_query})'
+      for key in insert_data[i].keys():
+        insert_key += '\'' + key + '\'' + ','
+      #act_type = '\'' + 'itrakedu' + '\'' + '.' + '\'' + {req_act_type} + '\''
+      insert_string = f'INSERT INTO \'itrakedu\'.\'{req_act_type}\'({insert_key}) VALUES ({insert_query})'
       insert_string =  insert_string.replace(",)", ")")
       print(insert_string)
       concursor.execute(insert_string)
