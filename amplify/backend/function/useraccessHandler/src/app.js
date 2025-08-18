@@ -20,6 +20,7 @@ const bcrypt = require('bcryptjs');//bcrypt does not work on aws due to linux en
 // declare a new express app
 const app = express();
 //const sessionStore = new session.MemoryStore();
+const saltRounds = 10;
 let userSession = [
     {
         user_logged_in: false,
