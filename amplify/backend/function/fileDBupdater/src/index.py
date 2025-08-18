@@ -347,9 +347,9 @@ def postFileToDB():
     'database': "itrakedu"
     }
   
-  insert_data = mesg("data")
+  insert_data = mesg["data"]
   data_len = len(insert_data)
-
+  print(insert_data)
   try:
     con = mysql.connect(**conn_string)
 #  con = mysql.connect(
