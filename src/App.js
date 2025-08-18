@@ -392,7 +392,7 @@ function HomePage() {
 /*          post({
             apiName: itrakacadAPI,
             path: '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type
-          })
+          })*/
           .then(response => {
              console.log(response.data);
              alert(response.data);
@@ -407,7 +407,7 @@ function HomePage() {
               console.log("Unable to connect to the server.");
               alert("Server Error! Unable to process your request at this time, pls try again later.");
           })
-*/      }
+      }
   }
 
   if (user_valid){
