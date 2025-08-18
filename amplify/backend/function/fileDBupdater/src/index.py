@@ -367,11 +367,11 @@ def postFileToDB():
         insert_query += '\'' + value + '\''
         if i < data_len-1:
             insert_query += ','
-        insert_string = f'INSERT INTO \`{req_act_type}\` VALUES ({insert_query})'
-        print(insert_string)
-        concursor.execute(insert_string)
-        result = concursor.fetchall() #data workbook
-        print(result)
+      insert_string = f'INSERT INTO {req_act_type} VALUES ({insert_query})'
+      print(insert_string)
+      concursor.execute(insert_string)
+      result = concursor.fetchall() #data workbook
+      print(result)
 
   except mysql.connector.Error as err:
       print(f"Error: {err}")
