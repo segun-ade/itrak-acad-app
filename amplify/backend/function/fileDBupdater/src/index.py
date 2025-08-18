@@ -369,7 +369,7 @@ def postFileToDB():
       insert_string =  insert_string.replace(",)", ")")
       print(insert_string)
       concursor.execute(insert_string)
-      result = concursor.fetchall() #data workbook
+      result = []#concursor.fetchall() #data workbook
       print(result)
 
   except mysql.connector.Error as err:
