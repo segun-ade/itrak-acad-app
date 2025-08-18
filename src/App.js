@@ -329,7 +329,7 @@ function HomePage() {
       event.preventDefault();
       const userid = inputs.userid;
       const pwd = inputs.password;
-      alert(pwd);
+      //alert(pwd);
       axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login=' + rem_login + '&user_id=' + userid + '&pwd=' + pwd + '&debugging=' + true)
       //API.get(itrakacadAPI, '/check_reg_user?user_id=' + userid + '&pwd=' + pwd + '&rem_login=' + rem_login)
 /*      get({
@@ -386,7 +386,8 @@ function HomePage() {
       if(pwd != pwd2){
           alert("Password mismatch! Pls check your entries and try again!");
       }else{
-          //axios.post('http://localhost:8000/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
+            //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
+          axios.post('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
 /*          post({
             apiName: itrakacadAPI,
