@@ -387,7 +387,7 @@ function HomePage() {
           alert("Password mismatch! Pls check your entries and try again!");
       }else{
             //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
-          axios.post('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
+          axios.post('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
 /*          post({
             apiName: itrakacadAPI,
@@ -405,7 +405,7 @@ function HomePage() {
           })
           .catch((err) => {
               console.log("Unable to connect to the server.");
-              alert("Server Error! Unable to process your request at this time, pls try again later.");
+              alert(err + ": Server Error! Unable to process your request at this time, pls try again later.");
           })
       }
   }
