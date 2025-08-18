@@ -365,8 +365,8 @@ def postFileToDB():
       insert_query = ''
       for value in insert_data[i].values():
         insert_query += '\'' + value + '\'' + ','
-        insert_query =  insert_query.replace(",)", ")")
       insert_string = f'INSERT INTO {req_act_type} VALUES ({insert_query})'
+      insert_query =  insert_query.replace(",)", ")")
       print(insert_string)
       concursor.execute(insert_string)
       result = concursor.fetchall() #data workbook
