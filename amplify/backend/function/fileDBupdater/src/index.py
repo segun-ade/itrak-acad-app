@@ -369,7 +369,7 @@ def postFileToDB():
       for key in insert_data[i].keys():
         insert_key += '\'' + key + '\'' + ','
       #act_type = '\'' + 'itrakedu' + '\'' + '.' + '\'' + {req_act_type} + '\''
-      insert_string = f'INSERT INTO \'itrakedu\'.\'{req_act_type}\'({insert_key}) VALUES ({insert_query})'
+      insert_string = f'INSERT INTO \'itrakedu\'.\'{req_act_type}\' ({insert_key}) VALUES ({insert_query})'
       insert_string =  insert_string.replace(",)", ")")
       print(insert_string)
       concursor.execute(insert_string)
