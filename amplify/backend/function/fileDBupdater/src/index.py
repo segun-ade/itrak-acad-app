@@ -364,9 +364,8 @@ def postFileToDB():
     for i in range(data_len):
       insert_query = ''
       for value in insert_data[i].values():
-        insert_query += '\'' + value + '\''
-        if i < data_len-1:
-            insert_query += ','
+        insert_query += '\'' + value + '\'' + ','
+        insert_query =  insert_query.replace(",)", ")")
       insert_string = f'INSERT INTO {req_act_type} VALUES ({insert_query})'
       print(insert_string)
       concursor.execute(insert_string)
