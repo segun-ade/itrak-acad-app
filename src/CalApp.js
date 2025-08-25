@@ -45,7 +45,7 @@ function TermCalApp(props) {
     const [perf_viewType, setPerfViewType] = useState('performance');
     const [contentView, setContentView] = useState('calendar');
     const [targ_date, setTargDate] = useState(new Date());
-    const [student_id, setStudentID] = useState('oluwsupo0001');
+    const [student_id, setStudentID] = useState(props.userID);//useState('oluwsupo0001');
     const termCal = [];
     //let attendance_table = [];
     let acad_wk = 0;
@@ -512,7 +512,7 @@ function navSection() {
                     <div id="nvbw13" className="navbar-wrapper">
                         <div id="lgc12" className="logo-container">
                             <a id="lglk12" href="SimpleReactPage.html">
-                                <img id="lgimg12" src="logo192.png" />
+                                <img id="company-logo" src="itrak-logo.png" />
                             </a>
                         </div>
                         <div id="nvc12" className="nav-container">
