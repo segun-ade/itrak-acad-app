@@ -352,7 +352,7 @@ def postFileToDB():
   print(insert_data)
   try:
     con = mysql.connect(**conn_string)
-#  con = mysql.connect(
+#   con = mysql.connect(
 #    host= conn_string['host'],
 #    user= conn_string['user'],#root
 #    password= conn_string['password'],#;e_xbAi*f0ae
@@ -377,7 +377,10 @@ def postFileToDB():
       concursor.execute(insert_string)
       result = []#concursor.fetchall() #data workbook
       print(result)
-
+    sel_string = f'SELECT * FROM extra_cur_activity'
+    concursor.execute(sel_string)
+    result = concursor.fetchall() #data workbook
+    print(result)
   except mysql.connector.Error as err:
       print(f"Error: {err}")
       result = []
