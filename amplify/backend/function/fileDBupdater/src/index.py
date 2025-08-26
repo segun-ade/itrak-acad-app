@@ -344,7 +344,8 @@ def postFileToDB():
     'host': "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
     'user': "root",#root
     'password': "ROOTuser12!",#;e_xbAi*f0ae
-    'database': "itrakedu"
+    'database': "itrakedu",
+    'port':3306
     }
   
   insert_data = mesg["data"]
