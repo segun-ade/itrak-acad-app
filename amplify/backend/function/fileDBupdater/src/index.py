@@ -377,7 +377,7 @@ def postFileToDB():
       concursor.execute(insert_string)
       result = []#concursor.fetchall() #data workbook
       print(result)
-    sel_string = f'SELECT * FROM extra_cur_activity'
+    sel_string = f'SELECT activity_id, student_id, session_id, term, school_id, class_id, act_type, title, description, score, grade FROM extra_cur_activity'
     concursor.execute(sel_string)
     result = concursor.fetchall() #data workbook
     print(result)
