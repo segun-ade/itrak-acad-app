@@ -388,6 +388,7 @@ def postFileToDB():
       rec_updated="False"
     
   finally:
+      con.commit()
       rec_updated="True"
       if concursor in locals() and concursor:
           concursor.close()
