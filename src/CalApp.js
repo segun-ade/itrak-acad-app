@@ -227,7 +227,7 @@ function TermCalApp(props) {
                 if(response.data.status == 'OK') {
                     //alert("Attendance record found!");
                     console.log("Session ID: "+response.data.session_id);
-                    console.log("Attendance Record: "+response.data.attendance_table[4].week_end);
+                    console.log("First Attendance Record: "+response.data.attendance_table[0].week_end);
                     setAttendTable(response.data.attendance_table);
                     setSessionID(response.data.session_id);
                     setAcadTerm(term);
