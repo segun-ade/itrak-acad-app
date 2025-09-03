@@ -391,7 +391,7 @@ def postFileToDB():
         insert_string = f'INSERT INTO itrakedu.{req_act_type} ({insert_key}) VALUES ({insert_query})'
         insert_string =  insert_string.replace(",)", ")")
       elif req_type == 'update':   
-        insert_string = f'UPDATE itrakedu.{req_act_type} SET {update_string} WHERE ({req_act_id_key} = {req_act_id_value})'
+        insert_string = f'UPDATE itrakedu.{req_act_type} SET {update_string} WHERE ({req_act_id_key} = \'{req_act_id_value}\')'
 
       print(insert_string)
       concursor.execute(insert_string)
