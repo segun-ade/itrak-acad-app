@@ -376,7 +376,8 @@ def postFileToDB():
       for key in insert_data[i].keys():
         #insert_key += '\'' + key + '\'' + ','
         insert_key += key + ','           
-        update_string += '\'' +  key + '\'' + '=' +  '\'' +  insert_data[i][key] + '\'' + ','
+        #update_string += '\'' +  key + '\'' + '=' +  '\'' +  insert_data[i][key] + '\'' + ','
+        update_string += key + '=' +  '\'' +  insert_data[i][key] + '\'' + ','
         print(update_string)
       update_string += ')'
       update_string = update_string.replace(",)", "")
