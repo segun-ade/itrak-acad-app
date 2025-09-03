@@ -365,26 +365,44 @@ def postFileToDB():
     for i in range(data_len):
       insert_query = ''
       insert_key = ''
-      for value in insert_data[i].values():
-        insert_query += '\'' + value + '\'' + ','
+      update_string = ''
+      req_type = insert_data[i]['req_type']
+      print(req_type)
+      del insert_data[i]['req_type']
+      req_act_id_key = req_act_type + '_id'
+      req_act_id_value = insert_data[i][req_act_id_key]
+      print(req_act_id_key + ': ' + req_act_id_value)
+      
       for key in insert_data[i].keys():
         #insert_key += '\'' + key + '\'' + ','
-        insert_key += key + ','
+        insert_key += key + ','           
+        update_string += '\'' +  key + '\'' + '=' +  '\'' +  insert_data[i][key] + '\'' + ','
+        print(update_string)
+      update_string += ')'
+      update_string = update_string.replace(",)", "")
+      
+      for value in insert_data[i].values():
+        insert_query += '\'' + value + '\'' + ','
+
       #act_type = '\'' + 'itrakedu' + '\'' + '.' + '\'' + {req_act_type} + '\''
       #insert_string = f'INSERT INTO \'itrakedu\'.\'{req_act_type}\' ({insert_key}) VALUES ({insert_query})'
-      insert_string = f'INSERT INTO itrakedu.{req_act_type} ({insert_key}) VALUES ({insert_query})'
-      insert_string =  insert_string.replace(",)", ")")
+      if req_type == 'insert':
+        insert_string = f'INSERT INTO itrakedu.{req_act_type} ({insert_key}) VALUES ({insert_query})'
+        insert_string =  insert_string.replace(",)", ")")
+      elif req_type == 'update':   
+        insert_string = f'UPDATE itrakedu.{req_act_type} SET {update_string} WHERE ({req_act_id_key} = {req_act_id_value})'
+
       print(insert_string)
       concursor.execute(insert_string)
-      result = []#concursor.fetchall() #data workbook
-      print(result)
-    sel_string = f'SELECT activity_id, student_id, session_id, term, school_id, class_id, act_type, title, description, score, grade FROM extra_cur_activity'
-    concursor.execute(sel_string)
-    result = concursor.fetchall() #data workbook
-    print(result)
+#      result = []#concursor.fetchall() #data workbook
+#      print(result)
+#    sel_string = f'SELECT activity_id, student_id, session_id, term, school_id, class_id, act_type, title, description, score, grade FROM extra_cur_activity'
+#    concursor.execute(sel_string)
+#   result = concursor.fetchall() #data workbook
+#    print(result)
   except mysql.connector.Error as err:
       print(f"Error: {err}")
-      result = []
+#      result = []
       rec_updated="False"
     
   finally:
@@ -394,17 +412,17 @@ def postFileToDB():
           concursor.close()
       if con in locals() and con:
           con.close()
-  if result:
-      headers = [column[0] for column in concursor.description]
-  else:
-      headers=[]
-  result_list = []
-  for row in result:
-      row_dict = dict(zip(headers,row))
-      result_list.append(row_dict)
+#  if result:
+#      headers = [column[0] for column in concursor.description]
+# else:
+#      headers=[]
+#  result_list = []
+#  for row in result:
+#      row_dict = dict(zip(headers,row))
+#      result_list.append(row_dict)
 
-  resultjson = json.dumps(result_list)#,indent=4)
-  print(resultjson)
+  resultjson = ''#json.dumps(result_list)#,indent=4)
+#  print(resultjson)
 
   
 #  record_df = pd.DataFrame(result,
