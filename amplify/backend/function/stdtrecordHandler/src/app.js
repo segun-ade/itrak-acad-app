@@ -87,7 +87,8 @@ app.get('/checkstdtperformance', (req, res) => {
           else if(5<=mth<=8) term = '3rd';
           console.log(attend_date);
           //res.send(reply);*/
-          let sql = "SELECT performance.assessment_type, subjects.title, performance.score, performance.assessment_date FROM itrakedu.performance inner join itrakedu.subject_offering on performance.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and subject_offering.term='" + term + "' and subject_offering.session_id='" + sess_id + "'";
+//          let sql = "SELECT performance.assessment_type, subjects.title, performance.score, performance.assessment_date FROM itrakedu.performance inner join itrakedu.subject_offering on performance.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and subject_offering.term='" + term + "' and subject_offering.session_id='" + sess_id + "'";
+          let sql = "SELECT performance.assessment_type, performance.subject_id, performance.score, performance.assessment_date FROM itrakedu.performance where performance.student_id='" + stdt_id + "' and performance.term='" + term + "' and performance.session_id='" + sess_id + "'";
           //let sql = "select session_id from itrakedu.acad_sessions where session_start <= '" + attend_date + "' and session_end >= '" + attend_date + "'";
           //let sql = "select session_id from itrakedu.acad_sessions where session_start <= '2024-09-21' and session_end >= '2024-09-21'";
           //let sql = "SELECT pwd from itrak_user WHERE email_addr="+"'"+req.query.user_id+"'";
@@ -96,7 +97,8 @@ app.get('/checkstdtperformance', (req, res) => {
               if(err) throw err;
               if (term_result.length) {
                   console.log(term_result);
-                  let sql2 = "SELECT performance.assessment_type, subjects.title, performance.score, performance.assessment_date FROM itrakedu.performance inner join itrakedu.subject_offering on performance.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and performance.assessment_date='" + perf_date + "'";
+//                  let sql2 = "SELECT performance.assessment_type, subjects.title, performance.score, performance.assessment_date FROM itrakedu.performance inner join itrakedu.subject_offering on performance.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and performance.assessment_date='" + perf_date + "'";
+                  let sql2 = "SELECT performance.assessment_type, performance.subject_id, performance.score, performance.assessment_date FROM itrakedu.performance where performance.student_id='" + stdt_id + "' and performance.assessment_date='" + perf_date + "'";
                   con.query(sql2, function (err, day_perf_result) {
                       if(err) throw err;
                       if (day_perf_result.length) {
@@ -104,7 +106,8 @@ app.get('/checkstdtperformance', (req, res) => {
                           for (let index = 0; index < day_perf_result.length; index++) {
                               let title =day_perf_result[index].title;
                               console.log(title);
-                              let sql3 = "SELECT performance.score FROM itrakedu.performance inner join itrakedu.subject_offering on performance.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and performance.assessment_date<'" + perf_date + "' and subjects.title='" + title + "'";
+                    //          let sql3 = "SELECT performance.score FROM itrakedu.performance inner join itrakedu.subject_offering on performance.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and performance.assessment_date<'" + perf_date + "' and subjects.title='" + title + "'";
+                              let sql3 = "SELECT performance.score FROM itrakedu.performance where performance.student_id='" + stdt_id + "' and performance.assessment_date<'" + perf_date + "' and performance.subject_id='" + title + "'";
                               con.query(sql3, function (err, perf_trend_result) {
                                   if(err) throw err;
 
@@ -198,12 +201,14 @@ app.get('/checkstdtassignment', (req, res) => {
           let perf_trend = [''];
           let trend_count = 0;
           console.log(perf_date);
-          let sql = "SELECT subjects.title, assignments.page_no, assignments.question_no, assignments.score, assignments.assignment_date FROM itrakedu.assignments inner join itrakedu.subject_offering on assignments.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and subject_offering.term='" + term + "' and subject_offering.session_id='" + sess_id + "'";
+//          let sql = "SELECT subjects.title, assignments.page_no, assignments.question_no, assignments.score, assignments.assignment_date FROM itrakedu.assignments inner join itrakedu.subject_offering on assignments.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and subject_offering.term='" + term + "' and subject_offering.session_id='" + sess_id + "'";
+          let sql = "SELECT assignments.subject_id, assignments.page_no, assignments.question_no, assignments.score, assignments.assignment_date FROM itrakedu.assignments where assignments.student_id='" + stdt_id + "' and assignments.term='" + term + "' and assignments.session_id='" + sess_id + "'";
           con.query(sql, function (err, term_result) {
               if(err) throw err;
               if (term_result.length) {
                   console.log(term_result);
-                  let sql2 = "SELECT subjects.title, assignments.page_no, assignments.question_no, assignments.score, assignments.assignment_date FROM itrakedu.assignments inner join itrakedu.subject_offering on assignments.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and assignments.assignment_date='" + perf_date + "'";
+//                  let sql2 = "SELECT subjects.title, assignments.page_no, assignments.question_no, assignments.score, assignments.assignment_date FROM itrakedu.assignments inner join itrakedu.subject_offering on assignments.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and assignments.assignment_date='" + perf_date + "'";
+                  let sql2 = "SELECT assignments.subject_id, assignments.page_no, assignments.question_no, assignments.score, assignments.assignment_date FROM itrakedu.assignments where assignments.student_id='" + stdt_id + "' and assignments.assignment_date='" + perf_date + "'";
                   con.query(sql2, function (err, day_asgnmt_result) {
                       if(err) throw err;
                       if (day_asgnmt_result.length) {
@@ -211,7 +216,8 @@ app.get('/checkstdtassignment', (req, res) => {
                           for (let index = 0; index < day_asgnmt_result.length; index++) {
                               let title =day_asgnmt_result[index].title;
                               console.log(title);
-                              let sql3 = "SELECT assignments.score FROM itrakedu.assignments inner join itrakedu.subject_offering on assignments.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and assignments.assignment_date<'" + perf_date + "' and subjects.title='" + title + "'";
+//                              let sql3 = "SELECT assignments.score FROM itrakedu.assignments inner join itrakedu.subject_offering on assignments.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and assignments.assignment_date<'" + perf_date + "' and subjects.title='" + title + "'";
+                              let sql3 = "SELECT assignments.score FROM itrakedu.assignments where assignments.student_id='" + stdt_id + "' and assignments.assignment_date<'" + perf_date + "' and assignments.subject_id='" + title + "'";
                               con.query(sql3, function (err, asgnmt_trend_result) {
                                   if(err) throw err;
 
