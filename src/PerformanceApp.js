@@ -643,7 +643,7 @@ class PerformanceApp extends React.Component {
             examTestComp.push(
                 <div className='note-data-row'>
                     <input type='checkbox'/>
-                    <div> {this.day_perf[index].assessment_type} - {this.day_perf[index].title}</div>
+                    <div> {this.day_perf[index].assessment_type} - {this.day_perf[index].subject_id}</div>
                     <img src = {trendIcon}/>
                     <div style={{color:score_color}}>{this.day_perf[index].score}%</div>
                 </div>
@@ -746,7 +746,7 @@ class PerformanceApp extends React.Component {
             assignmentComp.push(
                 <div className='note-data-row'>
                     <input type='checkbox'/>
-                    <div> {this.day_asgmt[index].title} - pg{this.day_asgmt[index].page_no}/{this.day_asgmt[index].question_no}</div>
+                    <div> {this.day_asgmt[index].subject_id} - pg{this.day_asgmt[index].page_no}/{this.day_asgmt[index].question_no}</div>
                     <img src = {trendIcon}/>
                     <div style={{color:score_color}}>{this.day_asgmt[index].score}%</div>
                 </div>

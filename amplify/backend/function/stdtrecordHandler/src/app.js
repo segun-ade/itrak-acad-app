@@ -104,10 +104,10 @@ app.get('/checkstdtperformance', (req, res) => {
                       if (day_perf_result.length) {
                           console.log(day_perf_result);
                           for (let index = 0; index < day_perf_result.length; index++) {
-                              let title =day_perf_result[index].title;
-                              console.log(title);
+                              let subject_id =day_perf_result[index].subject_id;
+                              console.log(subject_id);
                     //          let sql3 = "SELECT performance.score FROM itrakedu.performance inner join itrakedu.subject_offering on performance.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and performance.assessment_date<'" + perf_date + "' and subjects.title='" + title + "'";
-                              let sql3 = "SELECT performance.score FROM itrakedu.performance where performance.student_id='" + stdt_id + "' and performance.assessment_date<'" + perf_date + "' and performance.subject_id='" + title + "'";
+                              let sql3 = "SELECT performance.score FROM itrakedu.performance where performance.student_id='" + stdt_id + "' and performance.assessment_date<'" + perf_date + "' and performance.subject_id='" + subject_id + "'";
                               con.query(sql3, function (err, perf_trend_result) {
                                   if(err) throw err;
 
@@ -214,10 +214,10 @@ app.get('/checkstdtassignment', (req, res) => {
                       if (day_asgnmt_result.length) {
                           console.log(day_asgnmt_result);
                           for (let index = 0; index < day_asgnmt_result.length; index++) {
-                              let title =day_asgnmt_result[index].title;
-                              console.log(title);
+                              let subject_id =day_asgnmt_result[index].subject_id;
+                              console.log(subject_id);
 //                              let sql3 = "SELECT assignment.score FROM itrakedu.assignment inner join itrakedu.subject_offering on assignment.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and assignment.assignment_date<'" + perf_date + "' and subjects.title='" + title + "'";
-                              let sql3 = "SELECT assignment.score FROM itrakedu.assignment where assignment.student_id='" + stdt_id + "' and assignment.assignment_date<'" + perf_date + "' and assignment.subject_id='" + title + "'";
+                              let sql3 = "SELECT assignment.score FROM itrakedu.assignment where assignment.student_id='" + stdt_id + "' and assignment.assignment_date<'" + perf_date + "' and assignment.subject_id='" + subject_id + "'";
                               con.query(sql3, function (err, asgnmt_trend_result) {
                                   if(err) throw err;
 
