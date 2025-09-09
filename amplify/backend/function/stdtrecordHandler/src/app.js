@@ -107,14 +107,26 @@ app.get('/checkstdtperformance', (req, res) => {
                               let subject_id =day_perf_result[index].subject_id;
                               console.log(subject_id);
                     //          let sql3 = "SELECT performance.score FROM itrakedu.performance inner join itrakedu.subject_offering on performance.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and performance.assessment_date<'" + perf_date + "' and subjects.title='" + title + "'";
-                              let sql3 = "SELECT performance.score FROM itrakedu.performance where performance.student_id='" + stdt_id + "' and performance.assessment_date<'" + perf_date + "' and performance.subject_id='" + subject_id + "'";
+                              let sql3 = "SELECT performance.score, performance.assessment_date FROM itrakedu.performance where performance.student_id='" + stdt_id + "' and performance.assessment_date<'" + perf_date + "' and performance.subject_id='" + subject_id + "'";
                               con.query(sql3, function (err, perf_trend_result) {
                                   if(err) throw err;
-
+//new
                                   if (perf_trend_result.length) {
-                                      console.log(perf_trend_result[0]);
+                                      console.log(perf_trend_result);
+                                      let prev_date_idx = 0;//most recent date idx
+                                      let prev_date1 = Date.parse(perf_trend_result[0].assessment_date);//most recent date
+                                      let prev_date2 = 0;
+                                      for(let x = 1; x < perf_trend_result.length; x++){                             
+                                        prev_date2 = Date.parse(perf_trend_result[x].assessment_date)
+                                        if(prev_date2 > prev_date1){
+                                            prev_date_idx = x;
+                                            prev_date1 = prev_date2;
+                                        }
+                                      }
+                                      //prev_dates.sort((a,b) => b - a)
+                                      console.log(perf_trend_result[prev_date_idx]);
                                       let cur_score = parseInt(day_perf_result[index].score);
-                                      let prev_score = parseInt(perf_trend_result[0].score);
+                                      let prev_score = parseInt(perf_trend_result[prev_date_idx].score);
                                       console.log(cur_score + ': '+prev_score);
                                       if (cur_score > prev_score){
                                           console.log(cur_score + ': '+prev_score + ' up');
@@ -217,14 +229,31 @@ app.get('/checkstdtassignment', (req, res) => {
                               let subject_id =day_asgnmt_result[index].subject_id;
                               console.log(subject_id);
 //                              let sql3 = "SELECT assignment.score FROM itrakedu.assignment inner join itrakedu.subject_offering on assignment.offering_id=subject_offering.offering_id inner join itrakedu.subjects on subject_offering.subject_id=subjects.subject_id where subject_offering.student_id='" + stdt_id + "' and assignment.assignment_date<'" + perf_date + "' and subjects.title='" + title + "'";
-                              let sql3 = "SELECT assignment.score FROM itrakedu.assignment where assignment.student_id='" + stdt_id + "' and assignment.assignment_date<'" + perf_date + "' and assignment.subject_id='" + subject_id + "'";
+                              let sql3 = "SELECT assignment.score, assignment.assignment_date FROM itrakedu.assignment where assignment.student_id='" + stdt_id + "' and assignment.assignment_date<'" + perf_date + "' and assignment.subject_id='" + subject_id + "'";
                               con.query(sql3, function (err, asgnmt_trend_result) {
                                   if(err) throw err;
 
                                   if (asgnmt_trend_result.length) {
-                                      console.log(asgnmt_trend_result[0]);
+                                      //console.log(asgnmt_trend_result[0]);
+                                      //let cur_score = parseInt(day_asgnmt_result[index].score);
+                                      //let prev_score = parseInt(asgnmt_trend_result[0].score);
+
+                                      console.log(asgnmt_trend_result);
+                                      let prev_date_idx = 0;//most recent date idx
+                                      let prev_date1 = Date.parse(asgnmt_trend_result[0].assignment_date);//most recent date
+                                      let prev_date2 = 0;
+                                      for(let x = 1; x < asgnmt_trend_result.length; x++){                             
+                                        prev_date2 = Date.parse(asgnmt_trend_result[x].assignment_date)
+                                        if(prev_date2 > prev_date1){
+                                            prev_date_idx = x;
+                                            prev_date1 = prev_date2;
+                                        }
+                                      }
+                                      //prev_dates.sort((a,b) => b - a)
+                                      console.log(day_asgnmt_result[prev_date_idx]);
                                       let cur_score = parseInt(day_asgnmt_result[index].score);
-                                      let prev_score = parseInt(asgnmt_trend_result[0].score);
+                                      let prev_score = parseInt(asgnmt_trend_result[prev_date_idx].score);
+
                                       console.log(cur_score + ': '+prev_score);
                                       if (cur_score > prev_score){
                                           console.log(cur_score + ': '+prev_score + ' up');
@@ -321,14 +350,31 @@ app.get('/checkstdtactivity', (req, res) => {
                       for (let index = 0; index < day_perf_result.length; index++) {
                           let title =day_perf_result[index].title;
                           console.log(title);
-                          let sql3 = "SELECT extra_cur_activity.score FROM itrakedu.extra_cur_activity where extra_cur_activity.student_id='" + stdt_id + "' and extra_cur_activity.date<'" + perf_date + "' and extra_cur_activity.title='" + title + "'";
+                          let sql3 = "SELECT extra_cur_activity.score, extra_cur_activity.date FROM itrakedu.extra_cur_activity where extra_cur_activity.student_id='" + stdt_id + "' and extra_cur_activity.date<'" + perf_date + "' and extra_cur_activity.title='" + title + "'";
                           con.query(sql3, function (err, perf_trend_result) {
                               if(err) throw err;
 
                               if (perf_trend_result.length) {
-                                  console.log(perf_trend_result[0]);
-                                  let cur_score = parseInt(day_perf_result[index].score);
-                                  let prev_score = parseInt(perf_trend_result[0].score);
+                                  //console.log(perf_trend_result[0]);
+                                  //let cur_score = parseInt(day_perf_result[index].score);
+                                  //let prev_score = parseInt(perf_trend_result[0].score);
+                                  
+                                      console.log(perf_trend_result);
+                                      let prev_date_idx = 0;//most recent date idx
+                                      let prev_date1 = Date.parse(perf_trend_result[0].date);//most recent date
+                                      let prev_date2 = 0;
+                                      for(let x = 1; x < perf_trend_result.length; x++){                             
+                                        prev_date2 = Date.parse(perf_trend_result[x].date)
+                                        if(prev_date2 > prev_date1){
+                                            prev_date_idx = x;
+                                            prev_date1 = prev_date2;
+                                        }
+                                      }
+                                      //prev_dates.sort((a,b) => b - a)
+                                      console.log(perf_trend_result[prev_date_idx]);
+                                      let cur_score = parseInt(day_perf_result[index].score);
+                                      let prev_score = parseInt(perf_trend_result[prev_date_idx].score);
+
                                   console.log(cur_score + ': '+prev_score);
                                   if (cur_score > prev_score){
                                       console.log(cur_score + ': '+prev_score + ' up');
@@ -425,14 +471,31 @@ app.get('/checkstdtnews', (req, res) => {
                       for (let index = 0; index < day_news_result.length; index++) {
                           let title =day_news_result[index].title;
                           console.log(title);
-                          let sql3 = "SELECT news.score FROM itrakedu.news where news.student_id='" + stdt_id + "' and news.news_date<'" + perf_date + "' and news.title='" + title + "'";
+                          let sql3 = "SELECT news.score, news.news_date FROM itrakedu.news where news.student_id='" + stdt_id + "' and news.news_date<'" + perf_date + "' and news.title='" + title + "'";
                           con.query(sql3, function (err, news_trend_result) {
                               if(err) throw err;
 
                               if (news_trend_result.length) {
-                                  console.log(news_trend_result[0]);
-                                  let cur_score = parseInt(day_news_result[index].score);
-                                  let prev_score = parseInt(news_trend_result[0].score);
+                                  //console.log(news_trend_result[0]);
+                                  //let cur_score = parseInt(day_news_result[index].score);
+                                  //let prev_score = parseInt(news_trend_result[0].score);
+                                                                    
+                                      console.log(perf_trend_result);
+                                      let prev_date_idx = 0;//most recent date idx
+                                      let prev_date1 = Date.parse(news_trend_result[0].news_date);//most recent date
+                                      let prev_date2 = 0;
+                                      for(let x = 1; x < news_trend_result.length; x++){                             
+                                        prev_date2 = Date.parse(news_trend_result[x].news_date)
+                                        if(prev_date2 > prev_date1){
+                                            prev_date_idx = x;
+                                            prev_date1 = prev_date2;
+                                        }
+                                      }
+                                      //prev_dates.sort((a,b) => b - a)
+                                      console.log(news_trend_result[prev_date_idx]);
+                                      let cur_score = parseInt(day_news_result[index].score);
+                                      let prev_score = parseInt(news_trend_result[prev_date_idx].score);
+
                                   console.log(cur_score + ': '+prev_score);
                                   if (cur_score > prev_score){
                                       console.log(cur_score + ': '+prev_score + ' up');
