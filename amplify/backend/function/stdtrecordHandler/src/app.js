@@ -480,7 +480,7 @@ app.get('/checkstdtnews', (req, res) => {
                                   //let cur_score = parseInt(day_news_result[index].score);
                                   //let prev_score = parseInt(news_trend_result[0].score);
                                                                     
-                                      console.log(perf_trend_result);
+                                      console.log(news_trend_result);
                                       let prev_date_idx = 0;//most recent date idx
                                       let prev_date1 = Date.parse(news_trend_result[0].news_date);//most recent date
                                       let prev_date2 = 0;
