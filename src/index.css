@@ -45,6 +45,95 @@ code {
     color:#475569;
 }
 
+@media screen and (max-width: 480px) {
+    #nvb12{
+    justify-content:center;
+    position:sticky;
+    top:15px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:2px;
+    padding-right:2px;
+    max-height:60px;
+    max-width:480px;/*800px*/
+    }
+
+    
+#nvbc12{
+    width:100%;
+    max-height:inherit;
+    /*max-width:1200px;*/
+}
+
+#nvbw12{
+    display:flex;
+    /*flex-direction:row;*/
+    align-items:center;
+    justify-content:space-between;
+    padding-top:0px;
+    padding-bottom:0px;
+    background-color:rgba(255,255,255,0.8);
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    border-bottom-right-radius:10px;
+    border-bottom-left-radius:10px;
+    backdrop-filter:blur(13px);
+    box-shadow:0px 2px 7px 0px rgba(0,0,0,0.14);
+    max-height:inherit;
+}
+
+#lgc12 {
+    flex: 0 1 auto;
+    
+}
+
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    #nvb12{
+    justify-content:center;
+    position:sticky;
+    top:15px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left:5px;
+    padding-right:5px;
+    max-height:60px;
+    min-width:481px;/*800px*/
+    max-width: 768px
+    }
+
+    
+#nvbc12{
+    width:100%;
+    max-height:inherit;
+    /*max-width:1200px;*/
+}
+
+#nvbw12{
+    display:flex;
+    /*flex-direction:row;*/
+    align-items:center;
+    justify-content:space-between;
+    padding-top:0px;
+    padding-bottom:0px;
+    background-color:rgba(255,255,255,0.8);
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    border-bottom-right-radius:10px;
+    border-bottom-left-radius:10px;
+    backdrop-filter:blur(13px);
+    box-shadow:0px 2px 7px 0px rgba(0,0,0,0.14);
+    max-height:inherit;
+}
+
+#lgc12 {
+    flex: 0 1 auto;
+    
+}
+
+}
+
 #nvb12{
     justify-content:center;
     position:sticky;
@@ -54,7 +143,7 @@ code {
     padding-left:20px;
     padding-right:20px;
     max-height:60px;
-    min-width:800px;
+    min-width:800px;/*800px*/
 }
 
 #nvbc12{
