@@ -764,6 +764,21 @@ display:inline-block;
     justify-content: space-around;
     text-decoration:none;
     }
+    .login-wrapper {
+    width: 400px;
+    max-width:400px;
+    min-width:400px;
+    height: auto;
+    position: fixed;
+    overflow:hidden;
+    top: 10px;
+    margin: 10px;
+    /*left: 0px;*/
+    background-color: rgba(250,250,250,1);
+    border-radius:5%;
+    display:block;
+    z-index:2;
+    }
 }
 
 @media screen and (min-width:480px){
