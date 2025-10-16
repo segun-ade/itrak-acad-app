@@ -431,7 +431,7 @@ function HomePage() {
                               <div id="nvm12" className="nav-menu">
                                   <div className="nav-item">
                                       <div className="sub-link">
-                                          <a className="nav-link" id="abt-us" href="">About Us</a>
+                                          <a className="nav-link" id="abt-us">About Us</a>
                                           <div className="sub-link-menu">
                                               <div className="sub-link2">
                                                   <a className="sub-link-item">iTrak Technology Company</a>
@@ -468,7 +468,7 @@ function HomePage() {
                                           </div>
                                       </div>
                                       <div className="sub-link">
-                                          <a id="products" href="" className="nav-link">iTrak Products</a>
+                                          <a id="products" className="nav-link">Products</a>
                                           <div className="sub-link-menu">
                                               <div className=" = sub-link2">
                                                   <a className="sub-link-item">iTrak Educational App</a>
