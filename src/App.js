@@ -191,15 +191,23 @@ function removeSignUp() {
   document.getElementById("signUp").style.display = "none";
 }
 
+function removeRFQ() {
+  document.getElementById("RFQ").style.display = "none";
+}
+
 let displayLogin = () => document.getElementById("login").style.display = "flex";
 
 let displaySignUp = () => document.getElementById("signUp").style.display = "flex";
+
+let displayRFQ = () => document.getElementById("RFQ").style.display = "flex";
 
 function HomePage() {
 
   const [inputs, setInputs] = useState({});
   const [reginputs, setRegInputs] = useState({});
+  const [RFQinputs, setRFQInputs] = useState({});
   const [rem_login, setRemLoginChecked] = useState(false);
+  const [RFQ_autorenew, setRFQAutoChecked] = useState(false);
   const [user_valid, setUserValid] = useState(false);
   const [username, setUserName] = useState('User1');
 
@@ -213,6 +221,9 @@ function HomePage() {
       setRemLoginChecked(event.target.checked);
   }
 
+const handleRFQCheckChange = (event) => {
+    setRFQAutoChecked(event.target.checked);
+  }
   useEffect(()=>{
    /*   axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkregusersession', {withCredentials: true})
           .then(response => {
@@ -376,6 +387,13 @@ function HomePage() {
       setRegInputs(values => ({ ...values, [name]: value }));
   }
 
+  const handleRFQInputChange = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      setRFQInputs(values => ({ ...values, [name]: value }));
+  }
+
+
   const handleUserRegSubmit = (event) => {
       event.preventDefault();
       const email_addr = reginputs.email_addr;
@@ -410,6 +428,42 @@ function HomePage() {
       }
   }
 
+  const handleUserRFQSubmit = (event) => {
+      event.preventDefault();
+      const email_addr = RFQinputs.email_addr;
+      const school = RFQinputs.school;
+      const studentsNo = RFQinputs.studentsNo;
+      const duration = RFQinputs.duration;
+      //RFQ_autorenew ==>state
+/*/      if(pwd != pwd2){
+          alert("Password mismatch! Pls check your entries and try again!");
+      }else{/*/
+            //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
+//*//          axios.post('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
+          //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
+/*          post({
+            apiName: itrakacadAPI,
+            path: '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type
+          })*/
+/*/          .then(response => {
+             console.log(response.data);
+             alert(response.data);
+             if(response.data=="OK") {
+                  alert("You have been successfully registered!");
+                  removeSignUp();
+             }else{
+                  alert("Registration Error! Pls check your inputs and try again!");
+             }  
+          })
+          .catch((err) => {
+              console.log("Unable to connect to the server.");
+              alert(err + ": Server Error! Unable to process your request at this time, pls try again later.");
+          })
+      }/*/
+      alert("RFQ has been submitted successfully!");
+  }
+
+
   if (user_valid){
       //alert(inputs.userid + ", " + username + ", " + checked);
       return (<TermCalApp cal_size="4" userID={inputs.userid} username={username} />);//(<LiveChatApp mtype="medium-classic" size="83" />);
@@ -423,7 +477,7 @@ function HomePage() {
                   <nav id="nvbc12" className="navbar-container">
                       <div id="nvbw12" className="navbar-wrapper">
                           <div id="lgc12" className="logo-container">
-                              <a id="lglk12" href="SimpleReactPage.html">
+                              <a id="lglk12" href="">
                                   <img id="company-logo" src="itrak-logo.png" />
                               </a>
                           </div>
@@ -666,6 +720,11 @@ function HomePage() {
                           <a href="">Terms &amp; Conditions</a>
                           <a href="">Refund Policy</a>
                           <a href="">Contact Us</a>
+                          <a onClick={displayRFQ}>
+                             <em> RFQ </em> 
+                          </a>
+                          <a href="">Purchase License</a>
+                          <a href="">Renew License</a>
                       </div>
                       <p>Copyright 2024 iTrak Software is a licensed product of iTrak Technology Company</p>
                   </div>
@@ -676,7 +735,7 @@ function HomePage() {
               <div className="login-container" onClick={removeLogin}></div>
               <div id="login-w" className="login-wrapper">
                   <div className="login-header">
-                      <h1>iTrak Technology </h1>
+                      <h1>iTrak Technology Company</h1>
                       <img src="itrak-logo.png" id="company-logo"/>
                   </div>
                   <form id="login-form" className="login-content" onSubmit={handleSubmit}>
@@ -718,7 +777,7 @@ function HomePage() {
               <div className="login-container" onClick={removeSignUp}></div>
               <div id="reg-w" className="login-wrapper">
                   <div className="login-header">
-                      <h1>iTrak Technology </h1>
+                      <h1>iTrak Technology Company</h1>
                       <img src="itrak-logo.png" id="company-logo"/>
                   </div>
                   <form id="register-form" className="login-content" onSubmit={handleUserRegSubmit}>
@@ -784,7 +843,67 @@ function HomePage() {
                   </form>
               </div>
           </div>
+          <div id="RFQ" className="sign-up-window">
+              <div className="login-container" onClick={removeRFQ}></div>
+              <div id="reg-w" className="login-wrapper">
+                  <div className="login-header">
+                      <h1>iTrak Technology Company</h1>
+                      <img src="itrak-logo.png" id="company-logo"/>
+                  </div>
+                  <form id="RFQ-form" className="login-content" onSubmit={handleUserRFQSubmit}>
 
+                      <h5>Request For Quote</h5>
+
+                      <label for="username-r" className="header-text">Username</label>
+                      <span className="prompt-text">Enter a registered e-mail address</span>
+                      <input type="text" placeholder="E-mail address" id="user-email" 
+                          name="email_addr"
+                          value={RFQinputs.email_addr || ""}                                                        
+                          onChange={handleRFQInputChange}                                                                                                                
+                      />
+
+                      <label for="school" className="header-text">School</label>
+                      <span className="prompt-text">Enter Name of School</span>
+                      <input type="text" placeholder="Name of School" id="school" 
+                          name="school"
+                          value={RFQinputs.school || ""}                                                        
+                          onChange={handleRFQInputChange} 
+                      />
+
+                      <label for="studentsNo" className="header-text">No of Students</label>
+                      <span className="prompt-text">Enter number of students for the license.</span>
+                      <input type="text" placeholder="How many students?" id="studentsNo" 
+                          name="studentsNo"
+                          value={RFQinputs.studentsNo || ""}                                                        
+                          onChange={handleRFQInputChange} 
+                      />
+
+                      <label for="duration" className="header-text">License Period</label>
+                      <span className="prompt-text">Select License Period</span>
+                      <select id="duration" className="select-user"
+                          name="duration"
+                          value={RFQinputs.duration || ""}                                                        
+                          onChange={handleRFQInputChange} 
+                      >
+                          <option value="4">4 Months - One Term</option>
+                          <option value="12">12 Months - One Session</option>
+
+                      </select>
+                      <div className="checkbox container">
+                          <input type="checkbox" id="RFQ_autorenew" 
+                              name="RFQ_autorenew"
+                              value="RFQ_autorenew"
+                              onChange={handleRFQCheckChange}
+                          />
+                          <label for="RFQ_autorenew" className="prompt-text">Autorenew License</label>
+                      </div>
+
+                      <button type="submit">Submit RFQ</button>
+
+                      <a href="info@itraktech.com" className="prompt-text">Any questions? Contact us.</a>
+                  </form>
+              </div>
+          </div>
       </div>
   );
 }

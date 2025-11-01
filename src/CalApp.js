@@ -511,72 +511,73 @@ function navSection() {
                 <nav id="nvbc13" className="navbar-container">
                     <div id="nvbw13" className="navbar-wrapper">
                         <div id="lgc12" className="logo-container">
-                            <a id="lglk12" href="SimpleReactPage.html">
+                            <a id="lglk12" href="">
                                 <img id="company-logo" src="itrak-logo.png" />
                             </a>
                         </div>
                         <div id="nvc12" className="nav-container">
                             <div id="nvm12" className="nav-menu">
                                 <div className="nav-item">
-                                    <div className="sub-link">
-                                        <a className="nav-link" id="abt-us" href="">About Us</a>
-                                        <div className="sub-link-menu">
-                                            <div className="sub-link2">
-                                                <a className="sub-link-item">i-Trak Technology Company</a>
-                                                <div className="sub-link-menu2">
-                                                    <a className="sub-link-item">i-Trak Educational App</a>
-                                                    <a className="sub-link-item">i-Trak Industrial Process Control</a>
-                                                    <a className="sub-link-item">i-Trak Autonomous Machines</a>
-                                                </div>
-                                            </div>
-                                            <a className="sub-link-item">i-Trak Business Segments</a>
-                                            <div className="sub-link2">
-                                                <a className="sub-link-item">Contact Us @iTTeC</a>
-                                                <div className="sub-link-menu2">
-                                                    <div className="sub-link2">
-                                                        <a className="sub-link-item">i-Trak Educational App</a>
-                                                        <div className="sub-link-menu2">
-                                                            <a className="sub-link-item">i-Trak Educational App</a>
-                                                            <a className="sub-link-item">i-Trak Industrial Process Control</a>
-                                                            <div className="sub-link2">
-                                                                <a className="sub-link-item">i-Trak Autonomous Machines</a>
-                                                                <div className="sub-link-menu2">
-                                                                    <a className="sub-link-item">i-Trak Educational App</a>
-                                                                    <a className="sub-link-item">i-Trak Industrial Process Control</a>
-                                                                    <a className="sub-link-item">i-Trak Autonomous Machines</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <a className="sub-link-item">i-Trak Industrial Process Control</a>
-                                                    <a className="sub-link-item">i-Trak Autonomous Machines</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="sub-link">
-                                        <a id="products" href="" className="nav-link">i-Trak Products</a>
-                                        <div className="sub-link-menu">
-                                            <div className=" = sub-link2">
-                                                <a className="sub-link-item">i-Trak Educational App</a>
-                                                <div className="sub-link-menu2">
-                                                    <a className="sub-link-item">i-Trak Educational App</a>
-                                                    <a className="sub-link-item">i-Trak Industrial Process Control</a>
-                                                    <a className="sub-link-item">i-Trak Autonomous Machines</a>
-                                                </div>
-                                            </div>
-                                            <div className="sub-link2">
-                                                <a className="sub-link-item">i-Trak Industrial Process Control</a>
-                                                <div className="sub-link-menu2">
-                                                    <a className="sub-link-item">i-Trak Educational App</a>
-                                                    <a className="sub-link-item">i-Trak Industrial Process Control</a>
-                                                    <a className="sub-link-item">i-Trak Autonomous Machines</a>
-                                                </div>
-                                            </div>
-                                            <a className="sub-link-item">i-Trak Autonomous Machines</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                      <div className="sub-link">
+                                          <a className="nav-link" id="abt-us">About Us</a>
+                                          <div className="sub-link-menu">
+                                              <div className="sub-link2">
+                                                  <a className="sub-link-item">iTrak Technology Company</a>
+                                                  <div className="sub-link-menu2">
+                                                      <a className="sub-link-item">iTrak Educational App</a>
+                                                      <a className="sub-link-item">iTrak Industrial Process Control</a>
+                                                      <a className="sub-link-item">iTrak Autonomous Machines</a>
+                                                      <a className="sub-link-item">iTrak Power Solutions</a>
+                                                  </div>
+                                              </div>
+                                              <a className="sub-link-item">iTrak Business Segments</a>
+                                              <div className="sub-link2">
+                                                  <a className="sub-link-item">Contact Us @iTraktech</a>
+                                                  <div className="sub-link-menu2">
+                                                      <div className="sub-link2">
+                                                          <a className="sub-link-item">iTrak Educational App</a>
+                                                          <div className="sub-link-menu2">
+                                                              <a className="sub-link-item">Purchase License</a>
+                                                              <a className="sub-link-item">Renew License</a>
+                                                              <div className="sub-link2">
+                                                                  <a className="sub-link-item">Request Quotes - RFQ</a>
+                                                                  <div className="sub-link-menu2">
+                                                                      <a className="sub-link-item">RFQ - Int. Students</a>
+                                                                      <a className="sub-link-item">RFQ - Ext. Students</a>
+                                                                      <a className="sub-link-item">RFQ - Company</a>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <a className="sub-link-item">iTrak Industrial Process Control</a>
+                                                      <a className="sub-link-item">iTrak Autonomous Machines</a>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div className="sub-link">
+                                          <a id="products" className="nav-link">Products</a>
+                                          <div className="sub-link-menu">
+                                              <div className=" = sub-link2">
+                                                  <a className="sub-link-item">iTrak Educational App</a>
+                                                  <div className="sub-link-menu2">
+                                                      <a className="sub-link-item">Internal Student Management Software</a>
+                                                      <a className="sub-link-item">External Student Management Software</a>
+                                                      <a className="sub-link-item">E-Learning Laboratory</a>
+                                                  </div>
+                                              </div>
+                                              <div className="sub-link2">
+                                                  <a className="sub-link-item">iTrak Industrial Process Control</a>
+                                                  <div className="sub-link-menu2">
+                                                      <a className="sub-link-item">iTrak Robotics App</a>
+                                                      <a className="sub-link-item">iTrak Process Control</a>
+                                                      <a className="sub-link-item">iTrak Power Solutions</a>
+                                                  </div>
+                                              </div>
+                                              <a className="sub-link-item">iTrak Autonomous Machines</a>
+                                          </div>
+                                      </div>
+                                  </div>
                                 <div className="nav-item">
                                     <a id="nav-sign-up" className="nav-link" onClick={displaySignUp}>Contact Us</a>
                                 </div>
@@ -597,14 +598,14 @@ function footerSection() {
     return (
             <section className="footer-section">
                 <div className="footer-container">
-                    <img src="logo512.png" />
+                    <img src="itrak-logo.png" id="company-logo" />
                     <div className="foot-links">
                         <a href="">Pricing</a>
                         <a href="">Terms &amp; Conditions</a>
                         <a href="">Refund Policy</a>
                         <a href="">Contact Us</a>
                     </div>
-                    <p>Copyright 2024 i-Trak Software is a licensed product of i-Trak Technology Company</p>
+                    <p>Copyright 2024 iTrak Software is a licensed product of iTrak Technology Company</p>
                 </div>
             </section>
         );
