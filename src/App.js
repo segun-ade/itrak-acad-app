@@ -254,7 +254,8 @@ const handleRFQCheckChange = (event) => {
       }*/
     const checkuser = async () => {
         try {
-            alert("Welcome, Checking session data...");
+                console.log("Welcome, Checking session data...");
+///            alert("Welcome, Checking session data...");
         const {body} = await get({
             apiName: itrakapiName, //'itrakeduapi';
             path: itrakpath // '/checkregusersession'
@@ -266,8 +267,8 @@ const handleRFQCheckChange = (event) => {
         //const response = await client.get()
         console.log(resp);
         console.log(response);
-        alert(resp);
-        alert(response.user_valid);
+///        alert(resp);
+///        alert(response.user_valid);
         //alert(JSON.parse(response).data.user_valid);
         //alert(JSON.parse(response.body));
         if(response.user_valid == true) {
@@ -283,7 +284,7 @@ const handleRFQCheckChange = (event) => {
     
         } catch (error) {
             console.log('GET call failed: ', error);
-            alert ('GET call failed: ' + error)
+///            alert ('GET call failed: ' + error)
         }
      }
      alert("Application loading. Pls wait...");
@@ -349,7 +350,7 @@ const handleRFQCheckChange = (event) => {
       })*/
       .then(response => {
          console.log(response);
-         alert(JSON.stringify(response));
+///         alert(JSON.stringify(response));
          if(response.data.user_valid == true) {
               alert("You have been successfully logged in.");
               setUserValid(true);
@@ -413,7 +414,7 @@ const handleRFQCheckChange = (event) => {
           })*/
           .then(response => {
              console.log(response.data);
-             alert(response.data);
+///             alert(response.data);
              if(response.data=="OK") {
                   alert("You have been successfully registered!");
                   removeSignUp();
@@ -720,7 +721,7 @@ const handleRFQCheckChange = (event) => {
                           <a href="">Terms &amp; Conditions</a>
                           <a href="">Refund Policy</a>
                           <a href="">Contact Us</a>
-                          <a onClick={displayRFQ}>
+                          <a href="" onClick={displayRFQ}>
                              <em> RFQ </em> 
                           </a>
                           <a href="">Purchase License</a>
