@@ -721,7 +721,7 @@ const handleRFQCheckChange = (event) => {
                           <a href="">Terms &amp; Conditions</a>
                           <a href="">Refund Policy</a>
                           <a href="">Contact Us</a>
-                          <a href="" onClick={displayRFQ}>
+                          <a style={{cursor:"pointer", textDecoration:"underline"}} onClick={displayRFQ}>
                              <em> RFQ </em> 
                           </a>
                           <a href="">Purchase License</a>

@@ -9,6 +9,7 @@ import pandas as pd
 import mysql.connector as mysql
 from openpyxl import load_workbook
 import requests
+from flask_mail import Mail, Message
 
 DB_BASE_ROUTE = "/updateDB/students/{school}/{session}/{class}"
 FILE_BASE_ROUTE = "/updateFile/students/{school}/{session}/{class}"
@@ -20,6 +21,15 @@ req_class = "Pry6"
 app = Flask(__name__)
 CORS(app)
 
+app.config['MAIL_SERVER'] = 'smtpout.secureserver.net'
+app.config['MAIL_PORT'] = '465'
+app.config['MAIL_USE_TLS'] = 'False'
+app.config['MAIL_USE_SSL'] = 'True'
+app.config['MAIL_USERNAME'] = 'info@itraktech.com'
+app.config['MAIL_PASSWORD'] = 'itrakT25#'
+app.config['MAIL_DEFAULT_SENDER'] = 'info@itraktech.com'
+
+mail = Mail(app)
 conresult = 'Ready to connect'
 print(conresult)
 conn_string = {
@@ -495,7 +505,17 @@ def getFileToDB():
   resultjson = json.dumps(result_list)#,indent=4)
   print(resultjson)
 
-  
+  msg = Message(
+      subject = 'Test Email from Flask App',
+      recipients = ['seguncongrat@gmail.com'],
+      body = 'FYI. Test email from ITRAK TECHNOLOGY COMPANY - SERVICE INFO'
+  )
+
+  try:
+      mail.send(msg)
+      print("Email sent successfully!")
+  except Exception as e:
+      print (f"Error sending email: {str(e)}")
 #  record_df = pd.DataFrame(result,
 #                   columns=[headerText])
 
