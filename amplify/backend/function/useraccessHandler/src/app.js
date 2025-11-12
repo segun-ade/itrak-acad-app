@@ -174,11 +174,13 @@ app.post('/newuser', function(req, res) {
                   try {
                     mail_resp = mailsender.sendMail(email_string);
                     console.log('Email sent: ', mail_resp.response)
+                    res.send(conresult);
                   } 
                   catch (error) {
                     console.error('Error sending email: ', err)
+                    res.send('Error sending email: ', err);
                   }
-                  res.send(conresult);
+                  
   
                   con.end((err)=>{
                       if(err) throw err;
