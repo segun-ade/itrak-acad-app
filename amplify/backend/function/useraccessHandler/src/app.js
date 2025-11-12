@@ -7,6 +7,7 @@ See the License for the specific language governing permissions and limitations 
 */
 
 const express = require('express');
+const nodemailer = require('nodemailer');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
@@ -83,6 +84,24 @@ app.use(function(req, res, next) {
 
 app.use(express.json());
 
+const mailsender = nodemailer.createTransport({
+  host: 'smtpout.secureserver.net',
+  port: 465,
+  secure: true, //SSL
+  auth: {
+    user: 'info@itraktech.com',
+    pass: 'itrakT25#'
+  }
+});
+/*
+#app.config['MAIL_SERVER'] = 'smtpout.secureserver.net'
+#app.config['MAIL_PORT'] = '465'
+#app.config['MAIL_USE_TLS'] = 'False'
+#app.config['MAIL_USE_SSL'] = 'True'
+#app.config['MAIL_USERNAME'] = 'info@itraktech.com'
+#app.config['MAIL_PASSWORD'] = 'itrakT25#'
+#app.config['MAIL_DEFAULT_SENDER'] = 'info@itraktech.com'
+*/
 /*redisClient.on('error',(err) => {
   console.log(err);
 });*/
@@ -112,6 +131,13 @@ app.post('/newuser', function(req, res) {
           user: "root",//root
           password: "ROOTuser12!",//;e_xbAi*f0ae
           database: "logindb"
+      };
+      const email_string = {
+          from: "info@itraktech.com",
+          to: req.query.email_addr,
+          replyTo: "info@itraktech.com",//;e_xbAi*f0ae
+          subject: "ITRAK Academic App Registration",
+          text: "Hello User! Thank you for choosing our software to monitor and boost the performance of your students.\n\nKindly see your registration details below:\n\nUsername: " + req.query.email_addr + "\nUser Type: " + req.query.user_type + "\n\nBest Regards, \n\nItrak Technology Company Ltd"
       };
       var con = mysql.createConnection({
           host: conn_string.host,
@@ -144,6 +170,14 @@ app.post('/newuser', function(req, res) {
                   });*/
                   conresult = 'OK';
                   console.log(conresult);
+
+                  try {
+                    mail_resp = mailsender.sendMail(email_string);
+                    console.log('Email sent: ', mail_resp.response)
+                  } 
+                  catch (error) {
+                    console.error('Error sending email: ', err)
+                  }
                   res.send(conresult);
   
                   con.end((err)=>{
