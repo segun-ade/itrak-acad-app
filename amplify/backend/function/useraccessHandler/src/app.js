@@ -84,15 +84,6 @@ app.use(function(req, res, next) {
 
 app.use(express.json());
 
-const mailsender = nodemailer.createTransport({
-  host: 'smtpout.secureserver.net',
-  port: 465,
-  secure: true, //SSL
-  auth: {
-    user: 'info@itraktech.com',
-    pass: 'itrakT25#'
-  }
-});
 /*
 #app.config['MAIL_SERVER'] = 'smtpout.secureserver.net'
 #app.config['MAIL_PORT'] = '465'
@@ -132,6 +123,15 @@ app.post('/newuser', function(req, res) {
           password: "ROOTuser12!",//;e_xbAi*f0ae
           database: "logindb"
       };
+      const mailsender = nodemailer.createTransport({
+        host: 'smtpout.secureserver.net',
+        port: 465,
+        secure: true, //SSL
+        auth: {
+          user: 'info@itraktech.com',
+          pass: 'itrakT25#'
+        }
+      });
       const email_string = {
           from: "info@itraktech.com",
           to: req.query.email_addr,
@@ -139,6 +139,20 @@ app.post('/newuser', function(req, res) {
           subject: "ITRAK Academic App Registration",
           text: "Hello User! Thank you for choosing our software to monitor and boost the performance of your students.\n\nKindly see your registration details below:\n\nUsername: " + req.query.email_addr + "\nUser Type: " + req.query.user_type + "\n\nBest Regards, \n\nItrak Technology Company Ltd"
       };
+
+
+                  try {
+                    mail_resp = mailsender.sendMail(email_string);
+                    console.log('Email sent: ', mail_resp.response)
+                    res.send(conresult);
+                  } 
+
+                  catch (error) {
+                    console.error('Error sending email: ', err)
+                    res.send('Error sending email: ', err);
+                  }
+                  
+/*/
       var con = mysql.createConnection({
           host: conn_string.host,
           user: conn_string.user,//root
@@ -168,7 +182,7 @@ app.post('/newuser', function(req, res) {
                        console.log("Query Result" + i + ": " + result[i].user_type + " " + result[i].email_addr + " " + result[i].pwd);
                       i++;
                   });*/
-                  conresult = 'OK';
+/*/                  conresult = 'OK';
                   console.log(conresult);
 
                   try {
@@ -189,7 +203,7 @@ app.post('/newuser', function(req, res) {
           })
   
       });
-      //res.send(conresult);
+/*/      //res.send(conresult);
 //  res.json({success: 'post call succeed!', url: req.url, body: conn_string})
 });
 
