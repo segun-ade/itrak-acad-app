@@ -127,6 +127,7 @@ app.post('/newuser', function(req, res) {
         host: 'smtpout.secureserver.net',
         port: 465,
         secure: true, //SSL
+        secureConnection: 'false',
         auth: {
           user: 'info@itraktech.com',
           pass: 'itrakT25#'
@@ -141,16 +142,20 @@ app.post('/newuser', function(req, res) {
       };
 
 
-                  try {
-                    mail_resp = mailsender.sendMail(email_string);
-                    console.log('Email sent: ', mail_resp.response)
-                    res.send(conresult);
-                  } 
-
-                  catch (error) {
+                  
+                    mailsender.sendMail(email_string)
+                    .then((info) => {
+                      console.log('Email sent: ', info.response)
+                      conresult = 'OK';
+                      res.send(conresult);
+                    })
+                    .catch ((err) =>{
                     console.error('Error sending email: ', err)
                     res.send('Error sending email: ', err);
-                  }
+                    });
+                  
+
+                  
                   
 /*/
       var con = mysql.createConnection({
