@@ -133,13 +133,107 @@ app.post('/newuser', function(req, res) {
           pass: 'itrakT25#'
         }
       });
+      const loginHeader = `
+        position:relative; 
+        width:stretch; 
+        height:80px; 
+        margin:10px; 
+        padding:20px; 
+        border-bottom:5px solid rgba(0,0,0,0.05); 
+        /*background-color:azure;*/
+        display:flex;
+        justify-content:center;
+        align-content:center;`
+      
+        const bodyContainer = `
+        position:relative; 
+        width:auto; 
+        height:auto; 
+        margin:10px; 
+        padding:20px; 
+        border:1px solid rgba(0,0,0,0.05); 
+        background-color: rgba(0,0,0,0.03);
+        display:flex;
+        display-direction:column;
+        justify-content:center;
+        align-content:center;`
+
+      const bodyContent = `
+        min-width:300; 
+        height:auto; 
+        padding:20px; 
+        background-color:white; 
+        display:inline-block; 
+        justify-content:left; 
+        font-size: 1.2em; 
+        align-content:left;`
+
+      const footerContainer = `
+        display:grid;
+        justify-content:center;
+        align-content:center;
+        background-color: #aeaeae;
+        position:relative; 
+        width:auto; 
+        height:180px; 
+        margin:10px; 
+        padding:20px;`
+
+      const footerLinks = `
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
+        justify-content: space-around;
+        text-decoration:none;`
+
+      const logoImg = `
+        width:80px;
+        height:100px;
+        margin:10px;`
+
       const email_string = {
-          from: "info@itraktech.com",
+          from: "Itrak Technology Company <info@itraktech.com>",
           to: req.query.email_addr,
           replyTo: "info@itraktech.com",//;e_xbAi*f0ae
           subject: "ITRAK Academic App Registration",
-          text: "Hello User! Thank you for choosing our software to monitor and boost the performance of your students.\n\nKindly see your registration details below:\n\nUsername: " + req.query.email_addr + "\nUser Type: " + req.query.user_type + "\n\nBest Regards, \n\nItrak Technology Company Ltd"
-      };
+      //  text: "Hello User! Thank you for choosing our software to monitor and boost the performance of your students.\n\nKindly see your registration details below:\n\nUsername: " + req.query.email_addr + "\nUser Type: " + req.query.user_type + "\n\nBest Regards, \n\nService Delivery Team\nItrak Technology Company Ltd",
+          html: `<div style="` + loginHeader + `">` +
+                      `<h1>iTrak Technology Company</h1>
+                      <img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/>
+                  </div>
+                  <div style="` + bodyContainer  +`" id="body-container"> 
+                    <h1>Real-time Updates</h1>
+                    <p style="` + bodyContent  +`">
+                      Hello User! Thank you for choosing our software to monitor and boost the performance of your students.
+                      <br />
+                      <br />
+                      Kindly see your registration details below:
+                      <br />
+                      <br />
+                      Username: ` + req.query.email_addr + 
+                      `<br />
+                      User Type: ` + req.query.user_type + 
+                      `<br />
+                      <br />
+                      Best Regards,
+                      <br />
+                      <br />
+                      Support Team
+                      <br />
+                      Itrak Technology Company Ltd
+                    </p>
+                  </div>
+                  <div style="` + footerContainer  +`">
+                    <img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/>
+                    <div style="` + footerLinks  +`">
+                      <a href="www.itraktech.com">Contact Us</a>
+                      <a href="www.itraktech.com">Terms &amp; Conditions</a>
+                      <a href="www.itraktech.com">Purchase License</a>
+                      <a href="www.itraktech.com">Renew License</a>
+                    </div>
+                    <p>Copyright 2024 iTrak Software is a licensed product of iTrak Technology Company Ltd</p>
+                  </div>`
+        };
 
 
                   
