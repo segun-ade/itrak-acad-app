@@ -125,10 +125,10 @@ app.post('/newuser', function(req, res) {
           database: "logindb"
       };
       const mailsender = nodemailer.createTransport({
-        host: 'smtpout.secureserver.net',
-        port: 465,
-        secure: true, //SSL
-        secureConnection: 'false',
+        host: smtp.office365.com, //'smtpout.secureserver.net',
+        port: 587, //465,
+        //secure: true, //SSL
+        secureConnection: 'true',
         auth: {
           user: 'info@itraktech.com',
           pass: 'itrakT25#'
@@ -204,7 +204,7 @@ app.post('/newuser', function(req, res) {
                       <img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/>
                   </div>
                   <div style="` + bodyContainer  +`" id="body-container"> 
-                    <h1>Software License Registration</h1>
+                    <h3>Software License Registration</h3>
                     <p style="` + bodyContent  +`">
                       Hello User! Thank you for choosing our software to monitor and boost the performance of your students.
                       <br />
@@ -219,7 +219,7 @@ app.post('/newuser', function(req, res) {
                       User License: ` + user_license + 
                       `<br />
                       <br />
-                      Please visit our website: www.itraktech.com to submit a Request For Quote - RFQ, 
+                      Please visit our website: <a href="www.itraktech.com">www.itraktech.com</a> to submit a Request For Quote - RFQ, 
                       in order to purchase or renew your License.                    
                       <br />
                       <br />
