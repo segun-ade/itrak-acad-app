@@ -416,7 +416,7 @@ const handleRFQCheckChange = (event) => {
              console.log(response.data);
 ///             alert(response.data);
              if(response.data=="OK") {
-                  alert("You have been successfully registered!");
+                  alert("You have been successfully registered! \nPlease check your email for next steps");
                   removeSignUp();
              }else{
                   alert("Registration Error! Pls check your inputs and try again!");
