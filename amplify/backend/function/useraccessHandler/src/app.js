@@ -135,22 +135,14 @@ app.post('/newuser', function(req, res) {
         }
       });
       const loginHeader = `
-        display:flex;
-        justify-content:space-between;
-        align-content:center;
-        position:relative; 
         width:stretch; 
         height:80px; 
         margin:10px; 
         padding:20px; 
         border:5px solid rgba(0,0,0,0.05); 
-        background-color:rgba(206, 231, 230, 0.15);`
+        background-color:rgba(206, 231, 230, 0.85);`
       
-        const bodyContainer = `
-        position:relative; 
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
+      const bodyContainer = `
         align-content:center;
         width:auto; 
         height:auto; 
@@ -170,20 +162,14 @@ app.post('/newuser', function(req, res) {
         align-content:left;`
 
       const footerContainer = `
-        display:grid;
-        justify-content:center;
         align-content:center;
         background-color: #aeaeae;
-        position:relative; 
         width:auto; 
         height:180px; 
         margin:10px; 
         padding:20px;`
 
       const footerLinks = `
-        display: grid;
-        grid-template-columns: auto auto;
-        grid-template-rows: auto auto;
         justify-content: space-around;
         text-decoration:none;`
         
@@ -200,44 +186,60 @@ app.post('/newuser', function(req, res) {
           subject: "ITRAK Academic App Registration",
       //  text: "Hello User! Thank you for choosing our software to monitor and boost the performance of your students.\n\nKindly see your registration details below:\n\nUsername: " + req.query.email_addr + "\nUser Type: " + req.query.user_type + "\n\nBest Regards, \n\nService Delivery Team\nItrak Technology Company Ltd",
           html: `<div style="` + loginHeader + `">` +
-                      `<h1>iTrak Technology Company</h1>
-                      <img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/>
+                      `<img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/>
+                      <h1 style="text-align";>iTrak Technology Company</h1>
                   </div>
                   <div style="` + bodyContainer  +`" id="body-container"> 
-                    <h3>Software License Registration</h3>
-                    <p style="` + bodyContent  +`">
-                      Hello User! Thank you for choosing our software to monitor and boost the performance of your students.
-                      <br />
-                      <br />
-                      Kindly see your registration details below:
-                      <br />
-                      <br />
-                      Username: ` + req.query.email_addr + 
-                      `<br />
-                      User Type: ` + req.query.user_type + 
-                      `<br />
-                      User License: ` + user_license + 
-                      `<br />
-                      <br />
-                      Please visit our website: <a href="www.itraktech.com">www.itraktech.com</a> to submit a Request For Quote - RFQ, 
-                      in order to purchase or renew your License.                    
-                      <br />
-                      <br />
-                      Best Regards,
-                      <br />
-                      <br />
-                      Support Team
-                      <br />
-                      Itrak Technology Company Ltd
-                    </p>
+                    <table>
+                      <tr>
+                        <td><h2 style="text-align:center">Software License Registration</h2></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p style="` + bodyContent  +`">
+                            Hello User! Thank you for choosing our software to monitor and boost the performance of your students.
+                            <br />
+                            <br />
+                            Kindly see your registration details below:
+                            <br />
+                            <br />
+                            Username: ` + req.query.email_addr + 
+                            `<br />
+                            User Type: ` + req.query.user_type + 
+                            `<br />
+                            User License: ` + user_license + 
+                            `<br />
+                            <br />
+                            Please visit our website: <a href="www.itraktech.com">www.itraktech.com</a> to submit a Request For Quote - RFQ, 
+                            in order to purchase or renew your License.                    
+                            <br />
+                            <br />
+                            Best Regards,
+                            <br />
+                            <br />
+                            Support Team
+                            <br />
+                            Itrak Technology Company Ltd
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    
+                    
                   </div>
                   <div style="` + footerContainer  +`">
                     <img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/>
                     <div style="` + footerLinks  +`">
-                      <a href="www.itraktech.com">Contact Us</a>
-                      <a href="www.itraktech.com">Terms &amp; Conditions</a>
-                      <a href="www.itraktech.com">Purchase License</a>
-                      <a href="www.itraktech.com">Renew License</a>
+                      <table>
+                        <tr>
+                          <td style="padding:20"><a href="www.itraktech.com">Contact Us</a></td>
+                          <td style="padding:20"><a href="www.itraktech.com">Terms &amp; Conditions</a></td>
+                        </tr>
+                        <tr>
+                          <td style="padding:20"><a href="www.itraktech.com">Purchase License</a></td>
+                          <td style="padding:20"><a href="www.itraktech.com">Renew License</a></td>
+                        </tr>
+                      </table>
                     </div>
                     <p>Copyright 2024 iTrak Software is a licensed product of iTrak Technology Company Ltd</p>
                   </div>`
