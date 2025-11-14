@@ -186,8 +186,12 @@ app.post('/newuser', function(req, res) {
           subject: "ITRAK Academic App Registration",
       //  text: "Hello User! Thank you for choosing our software to monitor and boost the performance of your students.\n\nKindly see your registration details below:\n\nUsername: " + req.query.email_addr + "\nUser Type: " + req.query.user_type + "\n\nBest Regards, \n\nService Delivery Team\nItrak Technology Company Ltd",
           html: `<div style="` + loginHeader + `">` +
-                      `<img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/>
-                      <h1 style="text-align";>iTrak Technology Company</h1>
+                  `<table>
+                      <tr>
+                        <td><img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/></td>
+                        <td><h1 style="text-align:center";>iTrak Technology Company</h1></td>
+                      </tr>
+                    </table>
                   </div>
                   <div style="` + bodyContainer  +`" id="body-container"> 
                     <table>
@@ -195,7 +199,7 @@ app.post('/newuser', function(req, res) {
                         <td><h2 style="text-align:center">Software License Registration</h2></td>
                       </tr>
                       <tr>
-                        <td>
+                        <td style="align-content:center">
                           <p style="` + bodyContent  +`">
                             Hello User! Thank you for choosing our software to monitor and boost the performance of your students.
                             <br />
@@ -224,19 +228,17 @@ app.post('/newuser', function(req, res) {
                         </td>
                       </tr>
                     </table>
-                    
-                    
                   </div>
                   <div style="` + footerContainer  +`">
                     <img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/>
                     <div style="` + footerLinks  +`">
                       <table>
                         <tr>
-                          <td style="padding:20"><a href="www.itraktech.com">Contact Us</a></td>
+                          <td style="padding:20; margin-right:20"><a href="www.itraktech.com">Contact Us</a></td>
                           <td style="padding:20"><a href="www.itraktech.com">Terms &amp; Conditions</a></td>
                         </tr>
                         <tr>
-                          <td style="padding:20"><a href="www.itraktech.com">Purchase License</a></td>
+                          <td style="padding:20; margin-right:20"><a href="www.itraktech.com">Purchase License</a></td>
                           <td style="padding:20"><a href="www.itraktech.com">Renew License</a></td>
                         </tr>
                       </table>
