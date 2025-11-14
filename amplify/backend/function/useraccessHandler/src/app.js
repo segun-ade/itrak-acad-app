@@ -125,7 +125,7 @@ app.post('/newuser', function(req, res) {
           database: "logindb"
       };
       const mailsender = nodemailer.createTransport({
-        host: smtp.office365.com, //'smtpout.secureserver.net',
+        host: 'smtp.office365.com', //'smtpout.secureserver.net',
         port: 587, //465,
         //secure: true, //SSL
         secureConnection: 'true',
