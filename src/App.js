@@ -416,15 +416,18 @@ const handleRFQCheckChange = (event) => {
              console.log(response.data);
 ///             alert(response.data);
              if(response.data=="OK") {
-                  alert("You have been successfully registered! \nPlease check your email for next steps");
+                  alert("You have been successfully registered! \nPlease check your email for next steps.");
                   removeSignUp();
-             }else{
-                  alert("Registration Error! Pls check your inputs and try again!");
+             }else if(response.data=="Invalid email"){
+                  alert("Invalid email! Pls check your email address and try again!");
+             }  
+             else {
+                  alert("Registration Error! Pls check your inputs and try again! \nIf the problem persists, pls contact us.");
              }  
           })
           .catch((err) => {
               console.log("Unable to connect to the server.");
-              alert(err + ": Server Error! Unable to process your request at this time, pls try again later.");
+              alert(err + ": Server Error! Unable to process your request at this time, pls try again later.\nIf the problem persists, pls contact us.");
           })
       }
   }

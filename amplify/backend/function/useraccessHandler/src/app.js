@@ -140,7 +140,7 @@ app.post('/newuser', function(req, res) {
         margin:10px; 
         padding:20px; 
         border:5px solid rgba(0,0,0,0.05); 
-        background-color:rgba(206, 231, 230, 0.85);`
+        background-color:rgba(206, 231, 230, 0.85);`;
       
       const bodyContainer = `
         align-content:center;
@@ -149,7 +149,7 @@ app.post('/newuser', function(req, res) {
         margin:10px; 
         padding:20px; 
         border:1px solid rgba(0,0,0,0.05); 
-        background-color: rgba(0,0,0,0.03);`
+        background-color: rgba(0,0,0,0.03);`;
 
       const bodyContent = `
         display:inline-block; 
@@ -158,7 +158,7 @@ app.post('/newuser', function(req, res) {
         padding:20px; 
         background-color:white; 
         font-size: 1.2em; 
-        text-align:left;`
+        text-align:left;`;
 
       const footerContainer = `
         align-content:center;
@@ -166,16 +166,16 @@ app.post('/newuser', function(req, res) {
         width:auto; 
         height:180px; 
         margin:10px; 
-        padding:20px;`
+        padding:20px;`;
 
       const footerLinks = `
         justify-content: space-around;
-        text-decoration:none;`
+        text-decoration:none;`;
         
       const logoImg = `
         width:40px;
         height:60px;
-        margin:0px;`
+        margin:0px;`;
 
       const email_string = {
           from: "Itrak Technology Company <info@itraktech.com>",
@@ -250,23 +250,11 @@ app.post('/newuser', function(req, res) {
                   </div>`
         };
 
+    mailsender.sendMail(email_string)
+    .then((info) => {              
+      console.log('Email sent: ', info.response)
+      //conresult = 'OK';                      
 
-                  
-                    mailsender.sendMail(email_string)
-                    .then((info) => {
-                      console.log('Email sent: ', info.response)
-                      conresult = 'OK';
-                      res.send(conresult);
-                    })
-                    .catch ((err) =>{
-                    console.error('Error sending email: ', err)
-                    res.send('Error sending email: ', err);
-                    });
-                  
-
-                  
-                  
-/*/
       var con = mysql.createConnection({
           host: conn_string.host,
           user: conn_string.user,//root
@@ -296,28 +284,22 @@ app.post('/newuser', function(req, res) {
                        console.log("Query Result" + i + ": " + result[i].user_type + " " + result[i].email_addr + " " + result[i].pwd);
                       i++;
                   });*/
-/*/                  conresult = 'OK';
+                  conresult = 'OK';
                   console.log(conresult);
-
-                  try {
-                    mail_resp = mailsender.sendMail(email_string);
-                    console.log('Email sent: ', mail_resp.response)
-                    res.send(conresult);
-                  } 
-                  catch (error) {
-                    console.error('Error sending email: ', err)
-                    res.send('Error sending email: ', err);
-                  }
-                  
+                  res.send(conresult);
+                  });
   
                   con.end((err)=>{
                       if(err) throw err;
                   });
               });
-          })
-  
-      });
-/*/      //res.send(conresult);
+          });
+    })
+    .catch ((err) =>{
+      console.error('Error sending email: ', err)
+      res.send('Invalid email');
+    });
+      //res.send(conresult);
 //  res.json({success: 'post call succeed!', url: req.url, body: conn_string})
 });
 
