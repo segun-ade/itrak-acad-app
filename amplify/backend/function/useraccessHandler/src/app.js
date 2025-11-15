@@ -136,7 +136,7 @@ app.post('/newuser', function(req, res) {
       });
       const loginHeader = `
         width:stretch; 
-        height:80px; 
+        min-height:80px; 
         margin:10px; 
         padding:20px; 
         border:5px solid rgba(0,0,0,0.05); 
@@ -153,13 +153,12 @@ app.post('/newuser', function(req, res) {
 
       const bodyContent = `
         display:inline-block; 
-        justify-content:left; 
         min-width:300; 
         height:auto; 
         padding:20px; 
         background-color:white; 
         font-size: 1.2em; 
-        align-content:left;`
+        text-align:left;`
 
       const footerContainer = `
         align-content:center;
@@ -176,7 +175,7 @@ app.post('/newuser', function(req, res) {
       const logoImg = `
         width:40px;
         height:60px;
-        margin:10px;`
+        margin:0px;`
 
       const email_string = {
           from: "Itrak Technology Company <info@itraktech.com>",
@@ -190,12 +189,12 @@ app.post('/newuser', function(req, res) {
                       <tr>
                         <td align="left"><img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/></td>
                         <td align="center"><h1 style="text-align:center";>ITrak Technology Company Limited</h1></td>
-                        <td align="right"><h1 style="text-align:right"; "margin-left:50px">(RC-8893573)</h1></td>
-                      </tr>
-                      <tr>
-                        <td align="center"><p style="text-align:center"; "font-size:1em">Electrical Engineering, Electronics Manufacturing, Software Development and ICT Services.</p></td>
+                        <td align="right"><h3 style="text-align:right"; "margin-left:50px">(RC-8893573)</h3></td>
                       </tr>
                     </table>
+                    <div style="margin:0 auto">
+                      <p style="text-align:center"; "font-size:1.2em">Electrical Engineering, Electronics Manufacturing, Software Development and ICT Services.</p>
+                    </div>
                   </div>
                   <div style="` + bodyContainer  +`" id="body-container"> 
                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
