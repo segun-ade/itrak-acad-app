@@ -102,7 +102,212 @@ app.use(express.json());
 
 app.get('/newuser', function(req, res) {
   // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
+        //res.json({message: "Ready to connect"});
+      let conresult = 'Ready to connect';
+      //let user_license = 'None'; req.query.students_no + ` students for ` + req.query.duration
+      let dollar_rate = 1500;//naira per dollar
+      let per_user_mthly_license_cost = 6.99;//in dollar
+      let license_cost = req.query.students_no * req.query.duration * per_user_mthly_license_cost;
+      let autorenew_license = (req.query.autorenew) ? "Yes" : "No";
+      let account_no = '0168032083';
+      let bank_name = 'Guaranty Trust Bank';
+      const conn_string = {
+          host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
+          user: "root",//root
+          password: "ROOTuser12!",//;e_xbAi*f0ae
+          database: "logindb"
+      };
+      const mailsender = nodemailer.createTransport({
+        host: 'smtp.office365.com', //'smtpout.secureserver.net',
+        port: 587, //465,
+        //secure: true, //SSL
+        secureConnection: 'true',
+        auth: {
+          user: 'info@itraktech.com',
+          pass: 'itrakT25#'
+        }
+      });
+      const loginHeader = `
+        width:stretch; 
+        min-height:80px; 
+        margin:10px; 
+        padding:20px; 
+        border:5px solid rgba(0,0,0,0.05); 
+        background-color:rgba(206, 231, 230, 0.85);`;
+      
+      const bodyContainer = `
+        align-content:center;
+        width:auto; 
+        height:auto; 
+        margin:10px; 
+        padding:20px; 
+        border:1px solid rgba(0,0,0,0.05); 
+        background-color: rgba(0,0,0,0.03);`;
+
+      const bodyContent = `
+        display:inline-block; 
+        min-width:300; 
+        height:auto; 
+        padding:20px; 
+        background-color:white; 
+        font-size: 1.2em; 
+        text-align:left;`;
+
+      const footerContainer = `
+        align-content:center;
+        background-color: #aeaeae;
+        width:auto; 
+        height:180px; 
+        margin:10px; 
+        padding:20px;`;
+
+      const footerLinks = `
+        justify-content: space-around;
+        text-decoration:none;`;
+        
+      const logoImg = `
+        width:40px;
+        height:60px;
+        margin:0px;`;
+//newuser?email_addr=' + email_addr + '&school=' + school + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
+          //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
+      const email_string = {
+          from: "Itrak Technology Company <info@itraktech.com>",
+          to: req.query.email_addr,
+          cc: "admin@itraktech.com",
+          replyTo: "info@itraktech.com",//;e_xbAi*f0ae
+          subject: "ITRAK Academic App Registration",
+      //  text: "Hello User! Thank you for choosing our software to monitor and boost the performance of your students.\n\nKindly see your registration details below:\n\nUsername: " + req.query.email_addr + "\nUser Type: " + req.query.user_type + "\n\nBest Regards, \n\nService Delivery Team\nItrak Technology Company Ltd",
+          html: `<div style="` + loginHeader + `">` +
+                  `<table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="left"><img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/></td>
+                        <td align="center"><h1 style="text-align:center";>ITrak Technology Company Limited</h1></td>
+                        <td align="right"><h3 style="text-align:right"; "margin-left:50px">(RC-8893573)</h3></td>
+                      </tr>
+                    </table>
+                    <div style="margin:0 auto">
+                      <p style="text-align:center"; "font-size:1.2em">Electrical Engineering, Electronics Manufacturing, Software Development and ICT Services.</p>
+                    </div>
+                  </div>
+                  <div style="` + bodyContainer  +`" id="body-container"> 
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center"><h2 style="text-align:center">Software License Registration</h2></td>
+                      </tr>
+                      <tr>
+                        <td align="center">
+                          <p style="` + bodyContent  +`">
+                            Hello User! Thank you for choosing our software to monitor and boost the performance of your students.
+                            <br />
+                            <br />
+                            Kindly see your request details below:
+                            <br />
+                            <br />
+                            Username: ` + req.query.email_addr + 
+                            `<br />
+                            School: ` + req.query.school + 
+                            `<br />
+                            No of Students to be registered: ` + req.query.students_no + 
+                            `<br />
+                            License Duration: ` + req.query.duration + 
+                            `<br />
+                            Autorenew License: ` + autorenew_license + 
+                            `<br /><hr>
+                            <br /> 
+                            License Cost for ` + req.query.students_no + ` students for ` + req.query.duration + ` months: ` + license_cost + 
+                            `<br />
+                            <br /> 
+                            Kindly pay the required sum of ` + license_cost + ` into below account:`
+                            `<br />
+                            <br />
+                            Account No: ` + account_no + 
+                            `<br />
+                            Bank: ` + bank_name + 
+                            `<br /><hr>
+                            <br />
+                            After payment, please reply this email with your payment details.                    
+                            <br />
+                            <br />
+                            Best Regards,
+                            <br />
+                            <br />
+                            Support Team
+                            <br />
+                            Itrak Technology Company Ltd
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div style="` + footerContainer  +`">
+                    <img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/>
+                    <div style="` + footerLinks  +`">
+                      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                          <td align="left" style="padding:20"><a href="www.itraktech.com">Contact Us</a></td>
+                          <td align="right" style="padding:20"><a href="www.itraktech.com">Terms &amp; Conditions</a></td>
+                        </tr>
+                        <tr>
+                          <td align="left" style="padding:20"><a href="www.itraktech.com">Purchase License</a></td>
+                          <td align="right" style="padding:20"><a href="www.itraktech.com">Renew License</a></td>
+                        </tr>
+                      </table>
+                    </div>
+                    <p style="text-align:center">Copyright 2024 iTrak Software is a licensed product of iTrak Technology Company Limited. All rights reserved.</p>
+                  </div>`
+        };
+
+    mailsender.sendMail(email_string)
+    .then((info) => {              
+      console.log('Email sent: ', info.response)
+      //conresult = 'OK';                      
+
+      var con = mysql.createConnection({
+          host: conn_string.host,
+          user: conn_string.user,//root
+          password: conn_string.password,//;e_xbAi*f0ae
+          database: conn_string.database
+      });
+      
+      con.connect(function(err) {
+          if(err) {       
+              conresult = 'Error: Unable to connect to database.';
+              console.log(conresult + ": " + err);
+              throw err;
+          }
+          console.log("Connected!");
+          conresult = "Successfully connected to " + conn_string.user + '@' + conn_string.host;
+          console.log(conresult);
+          //let sql1 = "SELECT * from itrak_user";
+          bcrypt.hash(req.query.pwd,saltRounds,(err,hash)=>{
+              if(err) throw err;
+              //let sql = "INSERT INTO itrak_user (email_addr, pwd, user_type) VALUES (" + "'" + req.query.email_addr +  "'" + "," +  "'" + req.query.pwd +  "'" + "," +  "'" + req.query.user_type +  "'" + ")";
+              let sql = "INSERT INTO licenses (email_addr, school, students_no, duration, autorenew) VALUES (" + "'" + email_addr +  "'" + "," + "'" + school +  "'" + "," + "'" + students_no +  "'" + "," +  "'" + duration +  "'" + "," + "'" + autorenew_license +  "'" + ")";
+              con.query(sql, function (err, result) {
+                  if(err) throw err;
+                  console.log("1 new user record inserted.");
+                  /*var i = 0;
+                  result.forEach(element => {
+                       console.log("Query Result" + i + ": " + result[i].user_type + " " + result[i].email_addr + " " + result[i].pwd);
+                      i++;
+                  });*/
+                  conresult = 'OK';
+                  console.log(conresult);
+                  res.send(conresult);
+                  });
+  
+                  con.end((err)=>{
+                      if(err) throw err;
+                  });
+              });
+          });
+    })
+    .catch ((err) =>{
+      console.error('Error sending email: ', err)
+      res.send('Invalid email');
+    });
+  //res.json({success: 'get call succeed!', url: req.url});
 });
 
 app.get('/newuser/*', function(req, res) {

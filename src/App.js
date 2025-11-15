@@ -438,33 +438,36 @@ const handleRFQCheckChange = (event) => {
       const school = RFQinputs.school;
       const studentsNo = RFQinputs.studentsNo;
       const duration = RFQinputs.duration;
-      //RFQ_autorenew ==>state
-/*/      if(pwd != pwd2){
-          alert("Password mismatch! Pls check your entries and try again!");
-      }else{/*/
+      const autorenew = RFQ_autorenew; 
+      if(email_addr=''){
+          alert("Pls enter a registerd email address!");
+      }else{
             //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
-//*//          axios.post('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
+          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school=' + school + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
 /*          post({
             apiName: itrakacadAPI,
             path: '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type
           })*/
-/*/          .then(response => {
+          .then(response => {
              console.log(response.data);
              alert(response.data);
              if(response.data=="OK") {
-                  alert("You have been successfully registered!");
-                  removeSignUp();
-             }else{
-                  alert("Registration Error! Pls check your inputs and try again!");
+                  alert("RFQ has been submitted successfully! \nPlease check your email for next steps.");
+                  removeRFQ();
+             }else if(response.data=="Invalid email"){
+                  alert("Invalid email! Pls check your email address and try again!");
              }  
+             else {
+                  alert("Submission Error! Pls check your inputs and try again! \nIf the problem persists, pls contact us.");
+             }   
           })
           .catch((err) => {
               console.log("Unable to connect to the server.");
-              alert(err + ": Server Error! Unable to process your request at this time, pls try again later.");
+              alert(err + ": Server Error! Unable to process your request at this time, pls try again later.\nIf the problem persists, pls contact us.");
           })
-      }/*/
-      alert("RFQ has been submitted successfully!");
+      }
+      //alert("RFQ has been submitted successfully!");
   }
 
 
@@ -550,6 +553,9 @@ const handleRFQCheckChange = (event) => {
                                   </div>
                                   <div className="nav-item">
                                       <a id="nav-sign-up" className="nav-link" onClick={displaySignUp}>Sign-Up</a>
+                                  </div>
+                                  <div className="nav-item">
+                                      <a id="nav-rfq" className="nav-link" onClick={displayRFQ}>RFQ</a>
                                   </div>
                               </div>
                           </div>
