@@ -186,20 +186,24 @@ app.post('/newuser', function(req, res) {
           subject: "ITRAK Academic App Registration",
       //  text: "Hello User! Thank you for choosing our software to monitor and boost the performance of your students.\n\nKindly see your registration details below:\n\nUsername: " + req.query.email_addr + "\nUser Type: " + req.query.user_type + "\n\nBest Regards, \n\nService Delivery Team\nItrak Technology Company Ltd",
           html: `<div style="` + loginHeader + `">` +
-                  `<table>
+                  `<table width="100%" border="0" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td><img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/></td>
-                        <td><h1 style="text-align:center";>iTrak Technology Company</h1></td>
+                        <td align="left"><img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/></td>
+                        <td align="center"><h1 style="text-align:center";>ITrak Technology Company Limited</h1></td>
+                        <td align="right"><h1 style="text-align:right"; "margin-left:50px">(RC-8893573)</h1></td>
+                      </tr>
+                      <tr>
+                        <td align="center"><p style="text-align:center"; "font-size:1em">Electrical Engineering, Electronics Manufacturing, Software Development and ICT Services.</p></td>
                       </tr>
                     </table>
                   </div>
                   <div style="` + bodyContainer  +`" id="body-container"> 
-                    <table>
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td><h2 style="text-align:center">Software License Registration</h2></td>
+                        <td align="center"><h2 style="text-align:center">Software License Registration</h2></td>
                       </tr>
                       <tr>
-                        <td style="align-content:center">
+                        <td align="center">
                           <p style="` + bodyContent  +`">
                             Hello User! Thank you for choosing our software to monitor and boost the performance of your students.
                             <br />
@@ -232,18 +236,18 @@ app.post('/newuser', function(req, res) {
                   <div style="` + footerContainer  +`">
                     <img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/>
                     <div style="` + footerLinks  +`">
-                      <table>
+                      <table width="100%" border="0" cellpadding="0" cellspacing="0">
                         <tr>
-                          <td style="padding:20; margin-right:20"><a href="www.itraktech.com">Contact Us</a></td>
-                          <td style="padding:20"><a href="www.itraktech.com">Terms &amp; Conditions</a></td>
+                          <td align="left" style="padding:20"><a href="www.itraktech.com">Contact Us</a></td>
+                          <td align="right" style="padding:20"><a href="www.itraktech.com">Terms &amp; Conditions</a></td>
                         </tr>
                         <tr>
-                          <td style="padding:20; margin-right:20"><a href="www.itraktech.com">Purchase License</a></td>
-                          <td style="padding:20"><a href="www.itraktech.com">Renew License</a></td>
+                          <td align="left" style="padding:20"><a href="www.itraktech.com">Purchase License</a></td>
+                          <td align="right" style="padding:20"><a href="www.itraktech.com">Renew License</a></td>
                         </tr>
                       </table>
                     </div>
-                    <p>Copyright 2024 iTrak Software is a licensed product of iTrak Technology Company Ltd</p>
+                    <p style="text-align:center">Copyright 2024 iTrak Software is a licensed product of iTrak Technology Company Limited. All rights reserved.</p>
                   </div>`
         };
 
