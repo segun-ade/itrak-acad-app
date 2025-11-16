@@ -230,7 +230,7 @@ app.get('/newuser', function(req, res) {
                             License Duration: ` + req.query.duration + 
                             `<br />
                             Autorenew License: ` + autorenew_license + 
-                            `<br /><hr>
+                            `<br />
                             <br /> 
                             License Cost for ` + req.query.students_no + ` students for ` + req.query.duration + ` months: ` + license_cost + 
                             `<br />
@@ -241,7 +241,7 @@ app.get('/newuser', function(req, res) {
                             Account No: ` + account_no + 
                             `<br />
                             Bank: ` + bank_name + 
-                            `<br /><hr>
+                            `<br />
                             <br />
                             After payment, please reply this email with your payment details.                    
                             <br />

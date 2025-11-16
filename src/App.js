@@ -439,7 +439,7 @@ const handleRFQCheckChange = (event) => {
       const school_rep = RFQinputs.school_rep;
       const phone_no = RFQinputs.phone_no;    
       const studentsNo = RFQinputs.studentsNo;
-      const duration = RFQinputs.duration;
+      const duration = RFQinputs.duration ? RFQinputs.duration : 4;
       const autorenew = RFQ_autorenew; 
       if(email_addr==''||school==''){
           alert("Pls enter required details!");
@@ -836,9 +836,9 @@ const handleRFQCheckChange = (event) => {
                           <option value="professional">Professional</option>
                           <option value="company-rep">Company Rep</option>
                           <option value="vendor">Company Vendor</option>
-                          <option value="professional">Logistics/Transportation</option>
-                          <option value="company-rep">e-Commerce</option>
-                          <option value="vendor">Domestic/Construction</option>
+                          <option value="logistics">Logistics/Transportation</option>
+                          <option value="commerce">e-Commerce</option>
+                          <option value="construction">Domestic/Construction</option>
                       </select>
                       <div className="checkbox container">
                           <input type="checkbox" id="autofill-check-r" 
