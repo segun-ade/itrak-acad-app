@@ -138,6 +138,11 @@ code {
 #nav-sign-up{
     cursor:pointer;
 }
+
+#nav-rfq{
+    cursor:pointer;
+}
+
 .nav-link a {
         
         text-decoration: none;
