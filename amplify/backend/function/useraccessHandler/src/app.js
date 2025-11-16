@@ -111,6 +111,16 @@ app.get('/newuser', function(req, res) {
       let autorenew_license = (req.query.autorenew) ? "Yes" : "No";
       let account_no = '0168032083';
       let bank_name = 'Guaranty Trust Bank';
+      const curDate = new Date();
+      const curYear = curDate.getFullYear();
+      const curMonth = curDate.getMonth() + 1;
+      const curDay = curDate.getDate();
+      const RFQ_Date = curDate.toString();
+      const school_names = req.query.school.split(" ");
+      const firstletters = school_names.map(name => name[0]);
+      const school_id = firstletters.toString() + curDay + curMonth + curYear;
+      console.log(school_id);
+      console.log(RFQ_Date);
       const conn_string = {
           host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
           user: "root",//root
@@ -193,20 +203,27 @@ app.get('/newuser', function(req, res) {
                   <div style="` + bodyContainer  +`" id="body-container"> 
                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td align="center"><h2 style="text-align:center">Software License Registration</h2></td>
+                        <td align="center"><h2 style="text-align:center">Software License Quotation Request</h2></td>
                       </tr>
                       <tr>
                         <td align="center">
                           <p style="` + bodyContent  +`">
-                            Hello User! Thank you for choosing our software to monitor and boost the performance of your students.
+                            Dear User, 
                             <br />
                             <br />
-                            Kindly see your request details below:
+                            Thank you for choosing our software to monitor and boost the performance of your students.
+                            <br />
+                            <br />
+                            Kindly see your information and request details below:
                             <br />
                             <br />
                             Username: ` + req.query.email_addr + 
                             `<br />
                             School: ` + req.query.school + 
+                            `<br />
+                            School Representative: ` + req.query.school_rep + 
+                            `<br />
+                            Rep's Phone No: ` + req.query.phone_no + 
                             `<br />
                             No of Students to be registered: ` + req.query.students_no + 
                             `<br />
@@ -283,7 +300,7 @@ app.get('/newuser', function(req, res) {
           bcrypt.hash(req.query.pwd,saltRounds,(err,hash)=>{
               if(err) throw err;
               //let sql = "INSERT INTO itrak_user (email_addr, pwd, user_type) VALUES (" + "'" + req.query.email_addr +  "'" + "," +  "'" + req.query.pwd +  "'" + "," +  "'" + req.query.user_type +  "'" + ")";
-              let sql = "INSERT INTO licenses (email_addr, school, students_no, duration, autorenew) VALUES (" + "'" + email_addr +  "'" + "," + "'" + school +  "'" + "," + "'" + students_no +  "'" + "," +  "'" + duration +  "'" + "," + "'" + autorenew_license +  "'" + ")";
+              let sql = "INSERT INTO licenses (email_addr, school, school_id school_rep, phone_no, students_no, duration, autorenew, rfq_date) VALUES (" + "'" + email_addr +  "'" + "," + "'" + school +  "'" + "," + "'" + school_id +  "'" + "," + "'" + school_rep +  "'" + "," + "'" + phone_no +  "'" + "," + "'" + students_no +  "'" + "," +  "'" + duration +  "'" + "," + "'" + autorenew_license +  "'" + "," + "'" + RFQ_Date +  "'" + ")";
               con.query(sql, function (err, result) {
                   if(err) throw err;
                   console.log("1 new user record inserted.");

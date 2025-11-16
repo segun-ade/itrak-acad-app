@@ -436,14 +436,16 @@ const handleRFQCheckChange = (event) => {
       event.preventDefault();
       const email_addr = RFQinputs.email_addr;
       const school = RFQinputs.school;
+      const school_rep = RFQinputs.school_rep;
+      const phone_no = RFQinputs.phone_no;    
       const studentsNo = RFQinputs.studentsNo;
       const duration = RFQinputs.duration;
       const autorenew = RFQ_autorenew; 
-      if(email_addr=''){
-          alert("Pls enter a registerd email address!");
+      if(email_addr==''||school==''){
+          alert("Pls enter required details!");
       }else{
             //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
-          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school=' + school + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
+          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school=' + school + '&school_rep=' + school_rep + '&phone_no=' + phone_no + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
 /*          post({
             apiName: itrakacadAPI,
@@ -857,7 +859,7 @@ const handleRFQCheckChange = (event) => {
               <div className="login-container" onClick={removeRFQ}></div>
               <div id="reg-w" className="login-wrapper">
                   <div className="login-header">
-                      <h1>iTrak Technology Company</h1>
+                      <h1>ITrak Technology Company</h1>
                       <img src="itrak-logo.png" id="company-logo"/>
                   </div>
                   <form id="RFQ-form" className="login-content" onSubmit={handleUserRFQSubmit}>
@@ -865,31 +867,42 @@ const handleRFQCheckChange = (event) => {
                       <h5>Request For Quote</h5>
 
                       <label for="username-r" className="header-text">Username</label>
-                      <span className="prompt-text">Enter a registered e-mail address</span>
-                      <input type="text" placeholder="E-mail address" id="user-email" 
+                      <input type="text" placeholder="Enter a registered e-mail address" id="user-email" 
                           name="email_addr"
                           value={RFQinputs.email_addr || ""}                                                        
                           onChange={handleRFQInputChange}                                                                                                                
                       />
 
                       <label for="school" className="header-text">School</label>
-                      <span className="prompt-text">Enter Name of School</span>
-                      <input type="text" placeholder="Name of School" id="school" 
+                      <input type="text" placeholder="Enter Name of School" id="school" 
                           name="school"
                           value={RFQinputs.school || ""}                                                        
                           onChange={handleRFQInputChange} 
                       />
 
+                      <label for="school_rep" className="header-text">School Representative</label>
+                      <input type="text" placeholder="Enter Name(s) of School Rep" id="school_rep" 
+                          name="school_rep"
+                          value={RFQinputs.school_rep || ""}                                                        
+                          onChange={handleRFQInputChange} 
+                      />
+
+                      <label for="phone_no" className="header-text">Rep's Phone No'</label>
+                      <input type="text" placeholder="Enter Phone No of School Rep" id="school" 
+                          name="phone_no"
+                          value={RFQinputs.phone_no || ""}                                                        
+                          onChange={handleRFQInputChange} 
+                      />
+
+
                       <label for="studentsNo" className="header-text">No of Students</label>
-                      <span className="prompt-text">Enter number of students for the license.</span>
-                      <input type="text" placeholder="How many students?" id="studentsNo" 
+                      <input type="text" placeholder="Enter number of students for the license." id="studentsNo" 
                           name="studentsNo"
                           value={RFQinputs.studentsNo || ""}                                                        
                           onChange={handleRFQInputChange} 
                       />
 
                       <label for="duration" className="header-text">License Period</label>
-                      <span className="prompt-text">Select License Period</span>
                       <select id="duration" className="select-user"
                           name="duration"
                           value={RFQinputs.duration || ""}                                                        
