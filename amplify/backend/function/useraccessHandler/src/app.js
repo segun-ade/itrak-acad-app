@@ -118,7 +118,7 @@ app.get('/newuser', function(req, res) {
       const RFQ_Date = curDate.toString();
       const school_names = req.query.school.split(" ");
       const firstletters = school_names.map(name => name[0]);
-      const school_id = firstletters.toString() + curDay + curMonth + curYear;
+      const school_id = firstletters.toString().replace(/,/g, "") + curDay + curMonth + curYear;
       console.log(school_id);
       console.log(RFQ_Date);
       const conn_string = {
@@ -235,8 +235,8 @@ app.get('/newuser', function(req, res) {
                             License Cost for ` + req.query.students_no + ` students for ` + req.query.duration + ` months: ` + license_cost + 
                             `<br />
                             <br /> 
-                            Kindly pay the required sum of ` + license_cost + ` into below account:`
-                            `<br />
+                            Kindly pay the required sum of ` + license_cost + ` into below account:
+                            <br />
                             <br />
                             Account No: ` + account_no + 
                             `<br />
