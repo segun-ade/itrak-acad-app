@@ -226,32 +226,32 @@ app.get('/newuser', function(req, res) {
                             Kindly see your information and request details below:
                             <br />
                             <br />
-                            Username:               <strong>` + req.query.email_addr + `</strong>` +
-                            `<br />
-                            School:                 <strong>` + req.query.school + `</strong>` +
-                            `<br />
-                            School Representative:  <strong>` + req.query.school_rep + `</strong>` +
-                            `<br />
-                            Rep's Phone No:         <strong>` + req.query.phone_no + `</strong>` +
-                            `<br />
+                            Username:               <strong>` + req.query.email_addr + `</strong> 
+                            <br />
+                            School:                 <strong>` + req.query.school + `</strong>
+                            <br />
+                            School Representative:  <strong>` + req.query.school_rep + `</strong>
+                            <br />
+                            Rep's Phone No:         <strong>` + req.query.phone_no + `</strong>
+                            <br />
                             No of Students to be<br /> 
-                            registered:             <strong>` + req.query.students_no + `</strong>` +
-                            `<br />
-                            License Duration:       <strong>` + req.query.duration + `</strong>` +` months`
-                            `<br />
-                            Autorenew License:      <strong>` + autorenew_license + `</strong>` +
-                            `<br />
+                            registered:             <strong>` + req.query.students_no + `</strong>
+                            <br />
+                            License Duration:       <strong>` + req.query.duration + `</strong> months
+                            <br />
+                            Autorenew License:      <strong>` + autorenew_license + `</strong>
+                            <br />
                             <br /> 
-                            License Cost for <strong>` + req.query.students_no + `</strong> students for <strong>` + req.query.duration + `</strong> months: <strong>` + license_cost + `</strong>` +
-                            `<br />
+                            License Cost for <strong>` + req.query.students_no + `</strong> students for <strong>` + req.query.duration + `</strong> months: <strong>` + license_cost + `</strong>
+                            <br />
                             <br /> 
                             Kindly pay the required sum of <strong>` + license_cost + `<strong> into below account:
                             <br />
                             <br />
-                            Account No: <strong>` + account_no + `</strong>` +
-                            `<br />
-                            Bank: <strong>` + bank_name + `</strong>` +
-                            `<br />
+                            Account No: <strong>` + account_no + `</strong>
+                            <br />
+                            Bank: <strong>` + bank_name + `</strong>
+                            <br />
                             <br />
                             After payment, please reply this email with your payment details.                    
                             <br />
