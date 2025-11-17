@@ -226,20 +226,19 @@ app.get('/newuser', function(req, res) {
                             Kindly see your information and request details below:
                             <br />
                             <br />
-                            Username:               <strong>` + req.query.email_addr + `</strong> 
+                            Username: <strong>` + req.query.email_addr + `</strong> 
                             <br />
-                            School:                 <strong>` + req.query.school + `</strong>
+                            School: <strong>` + req.query.school + `</strong>
                             <br />
-                            School Representative:  <strong>` + req.query.school_rep + `</strong>
+                            School Representative: <strong>` + req.query.school_rep + `</strong>
                             <br />
-                            Rep's Phone No:         <strong>` + req.query.phone_no + `</strong>
+                            Rep's Phone No: <strong>` + req.query.phone_no + `</strong>
                             <br />
-                            No of Students to be<br /> 
-                            registered:             <strong>` + req.query.students_no + `</strong>
+                            No of Students to be registered: <strong>` + req.query.students_no + `</strong>
                             <br />
-                            License Duration:       <strong>` + req.query.duration + `</strong> months
+                            License Duration: <strong>` + req.query.duration + `</strong> months
                             <br />
-                            Autorenew License:      <strong>` + autorenew_license + `</strong>
+                            Autorenew License: <strong>` + autorenew_license + `</strong>
                             <br />
                             <br /> 
                             License Cost for <strong>` + req.query.students_no + `</strong> students for <strong>` + req.query.duration + `</strong> months: <strong>` + license_cost + `</strong>
