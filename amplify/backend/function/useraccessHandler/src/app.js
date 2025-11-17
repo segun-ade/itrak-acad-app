@@ -105,12 +105,13 @@ app.get('/newuser', function(req, res) {
         //res.json({message: "Ready to connect"});
       let conresult = 'Ready to connect';
       //let user_license = 'None'; req.query.students_no + ` students for ` + req.query.duration
-      let dollar_rate = 1500;//naira per dollar
-      let per_user_mthly_license_cost = 6.99;//in dollar
-      let license_cost = req.query.students_no * req.query.duration * per_user_mthly_license_cost;
+      let dollar_rate = 1500;//naira per dollar from DB based on http req location
+      const user_currency = 'NGN';//currency from DB based on http req location
+      let per_user_mthly_license_cost = 6.99;//in dollar  from DB based on http req location
+      let lic_cost = req.query.students_no * req.query.duration * per_user_mthly_license_cost * dollar_rate;
       let autorenew_license = (req.query.autorenew) ? "Yes" : "No";
-      let account_no = '0168032083';
-      let bank_name = 'Guaranty Trust Bank';
+      let account_no = '0168032083';// from DB
+      let bank_name = 'Guaranty Trust Bank';// from DB
       const curDate = new Date();
       const curYear = curDate.getFullYear();
       const curMonth = curDate.getMonth() + 1;
@@ -119,8 +120,16 @@ app.get('/newuser', function(req, res) {
       const school_names = req.query.school.split(" ");
       const firstletters = school_names.map(name => name[0]);
       const school_id = firstletters.toString().replace(/,/g, "") + curDay + curMonth + curYear;
+      
+      const currency_formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: user_currency
+      });
+      const license_cost = currency_formatter.format(lic_cost);
+
       console.log(school_id);
       console.log(RFQ_Date);
+
       const conn_string = {
           host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
           user: "root",//root
@@ -186,7 +195,7 @@ app.get('/newuser', function(req, res) {
           to: req.query.email_addr,
           cc: "admin@itraktech.com",
           replyTo: "info@itraktech.com",//;e_xbAi*f0ae
-          subject: "ITRAK Academic App Registration",
+          subject: "ITRAK Academic App Licensing",
       //  text: "Hello User! Thank you for choosing our software to monitor and boost the performance of your students.\n\nKindly see your registration details below:\n\nUsername: " + req.query.email_addr + "\nUser Type: " + req.query.user_type + "\n\nBest Regards, \n\nService Delivery Team\nItrak Technology Company Ltd",
           html: `<div style="` + loginHeader + `">` +
                   `<table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -213,34 +222,35 @@ app.get('/newuser', function(req, res) {
                             <br />
                             Thank you for choosing our software to monitor and boost the performance of your students.
                             <br />
-                            <br />
+                            <br />  
                             Kindly see your information and request details below:
                             <br />
                             <br />
-                            Username: ` + req.query.email_addr + 
+                            Username:               <strong>` + req.query.email_addr + `</strong>` +
                             `<br />
-                            School: ` + req.query.school + 
+                            School:                 <strong>` + req.query.school + `</strong>` +
                             `<br />
-                            School Representative: ` + req.query.school_rep + 
+                            School Representative:  <strong>` + req.query.school_rep + `</strong>` +
                             `<br />
-                            Rep's Phone No: ` + req.query.phone_no + 
+                            Rep's Phone No:         <strong>` + req.query.phone_no + `</strong>` +
                             `<br />
-                            No of Students to be registered: ` + req.query.students_no + 
+                            No of Students to be<br /> 
+                            registered:             <strong>` + req.query.students_no + `</strong>` +
                             `<br />
-                            License Duration: ` + req.query.duration + 
+                            License Duration:       <strong>` + req.query.duration + `</strong>` +` months`
                             `<br />
-                            Autorenew License: ` + autorenew_license + 
-                            `<br />
-                            <br /> 
-                            License Cost for ` + req.query.students_no + ` students for ` + req.query.duration + ` months: ` + license_cost + 
+                            Autorenew License:      <strong>` + autorenew_license + `</strong>` +
                             `<br />
                             <br /> 
-                            Kindly pay the required sum of ` + license_cost + ` into below account:
-                            <br />
-                            <br />
-                            Account No: ` + account_no + 
+                            License Cost for <strong>` + req.query.students_no + `</strong> students for <strong>` + req.query.duration + `</strong> months: <strong>` + license_cost + `</strong>` +
                             `<br />
-                            Bank: ` + bank_name + 
+                            <br /> 
+                            Kindly pay the required sum of <strong>` + license_cost + `<strong> into below account:
+                            <br />
+                            <br />
+                            Account No: <strong>` + account_no + `</strong>` +
+                            `<br />
+                            Bank: <strong>` + bank_name + `</strong>` +
                             `<br />
                             <br />
                             After payment, please reply this email with your payment details.                    
@@ -297,13 +307,13 @@ app.get('/newuser', function(req, res) {
           conresult = "Successfully connected to " + conn_string.user + '@' + conn_string.host;
           console.log(conresult);
           //let sql1 = "SELECT * from itrak_user";
-          bcrypt.hash(req.query.pwd,saltRounds,(err,hash)=>{
-              if(err) throw err;
+        //*bcrypt//  bcrypt.hash(req.query.pwd,saltRounds,(err,hash)=>{
+        //*bcrypt//      if(err) throw err;
               //let sql = "INSERT INTO itrak_user (email_addr, pwd, user_type) VALUES (" + "'" + req.query.email_addr +  "'" + "," +  "'" + req.query.pwd +  "'" + "," +  "'" + req.query.user_type +  "'" + ")";
               let sql = "INSERT INTO licenses (email_addr, school, school_id school_rep, phone_no, students_no, duration, autorenew, rfq_date) VALUES (" + "'" + email_addr +  "'" + "," + "'" + school +  "'" + "," + "'" + school_id +  "'" + "," + "'" + school_rep +  "'" + "," + "'" + phone_no +  "'" + "," + "'" + students_no +  "'" + "," +  "'" + duration +  "'" + "," + "'" + autorenew_license +  "'" + "," + "'" + RFQ_Date +  "'" + ")";
               con.query(sql, function (err, result) {
                   if(err) throw err;
-                  console.log("1 new user record inserted.");
+                  console.log("1 new RFQ record inserted.");
                   /*var i = 0;
                   result.forEach(element => {
                        console.log("Query Result" + i + ": " + result[i].user_type + " " + result[i].email_addr + " " + result[i].pwd);
@@ -317,7 +327,7 @@ app.get('/newuser', function(req, res) {
                   con.end((err)=>{
                       if(err) throw err;
                   });
-              });
+        //*bcrypt//      });
           });
     })
     .catch ((err) =>{
