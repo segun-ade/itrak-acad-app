@@ -112,11 +112,11 @@ app.get('/newuser', function(req, res) {
       let autorenew_license = (req.query.autorenew) ? "Yes" : "No";
       let account_no = '0168032083';// from DB
       let bank_name = 'Guaranty Trust Bank';// from DB
-      const curDate = new Date();
-      const curYear = curDate.getFullYear();
+      const curDate = new Date();//
+      const curYear = curDate.getFullYear(); 
       const curMonth = curDate.getMonth() + 1;
       const curDay = curDate.getDate();
-      const RFQ_Date = curDate.toString();
+      const RFQ_Date = curDate.toISOString();
       const school_names = req.query.school.split(" ");
       const firstletters = school_names.map(name => name[0]);
       const school_id = firstletters.toString().replace(/,/g, "") + curDay + curMonth + curYear;
@@ -309,7 +309,7 @@ app.get('/newuser', function(req, res) {
         //*bcrypt//  bcrypt.hash(req.query.pwd,saltRounds,(err,hash)=>{
         //*bcrypt//      if(err) throw err;
               //let sql = "INSERT INTO itrak_user (email_addr, pwd, user_type) VALUES (" + "'" + req.query.email_addr +  "'" + "," +  "'" + req.query.pwd +  "'" + "," +  "'" + req.query.user_type +  "'" + ")";
-              let sql = "INSERT INTO licenses (email_addr, school, school_id school_rep, phone_no, students_no, duration, autorenew, rfq_date) VALUES (" + "'" + req.query.email_addr +  "'" + "," + "'" + req.query.school +  "'" + "," + "'" + school_id +  "'" + "," + "'" + req.query.school_rep +  "'" + "," + "'" + req.query.phone_no +  "'" + "," + "'" + req.query.students_no +  "'" + "," +  "'" + req.query.duration +  "'" + "," + "'" + autorenew_license +  "'" + "," + "'" + RFQ_Date +  "'" + ")";
+              let sql = "INSERT INTO licenses (email_addr, school, school_id, school_rep, phone_no, students_no, duration, autorenew, rfq_date) VALUES (" + "'" + req.query.email_addr +  "'" + "," + "'" + req.query.school +  "'" + "," + "'" + school_id +  "'" + "," + "'" + req.query.school_rep +  "'" + "," + "'" + req.query.phone_no +  "'" + "," + "'" + req.query.students_no +  "'" + "," +  "'" + req.query.duration +  "'" + "," + "'" + autorenew_license +  "'" + "," + "'" + RFQ_Date +  "'" + ")";
               con.query(sql, function (err, result) {
                   if(err) throw err;
                   console.log("1 new RFQ record inserted.");
