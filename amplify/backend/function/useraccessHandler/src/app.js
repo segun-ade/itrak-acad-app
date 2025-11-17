@@ -245,7 +245,7 @@ app.get('/newuser', function(req, res) {
                             License Cost for <strong>` + req.query.students_no + `</strong> students for <strong>` + req.query.duration + `</strong> months: <strong>` + license_cost + `</strong>
                             <br />
                             <br /> 
-                            Kindly pay the required sum of <strong>` + license_cost + `<strong> into below account:
+                            Kindly pay the required sum of <strong>` + license_cost + `</strong> into below account:
                             <br />
                             <br />
                             Account No: <strong>` + account_no + `</strong>
