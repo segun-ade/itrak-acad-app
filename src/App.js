@@ -436,7 +436,7 @@ const handleRFQCheckChange = (event) => {
       event.preventDefault();
       const email_addr = RFQinputs.email_addr;
       const school = RFQinputs.school;
-      const school_rep = RFQinputs.school_rep;
+      const school_email = RFQinputs.school_email;
       const phone_no = RFQinputs.phone_no;    
       const studentsNo = RFQinputs.studentsNo;
       const duration = RFQinputs.duration ? RFQinputs.duration : 4;
@@ -445,7 +445,7 @@ const handleRFQCheckChange = (event) => {
           alert("Pls enter required details!");
       }else{
             //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
-          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school=' + school + '&school_rep=' + school_rep + '&phone_no=' + phone_no + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
+          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school=' + school + '&school_email=' + school_email + '&phone_no=' + phone_no + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
 /*          post({
             apiName: itrakacadAPI,
@@ -867,10 +867,17 @@ const handleRFQCheckChange = (event) => {
                       <h5>Request For Quote</h5>
 
                       <label for="username-r" className="header-text">Username</label>
-                      <input type="text" placeholder="Enter a registered e-mail address" id="user-email" 
+                      <input type="text" placeholder="Enter your registered e-mail address" id="user-email" 
                           name="email_addr"
                           value={RFQinputs.email_addr || ""}                                                        
                           onChange={handleRFQInputChange}                                                                                                                
+                      />
+
+                      <label for="phone_no" className="header-text">Phone No</label>
+                      <input type="text" placeholder="Enter your Phone No" id="school" 
+                          name="phone_no"
+                          value={RFQinputs.phone_no || ""}                                                        
+                          onChange={handleRFQInputChange} 
                       />
 
                       <label for="school" className="header-text">School</label>
@@ -880,20 +887,12 @@ const handleRFQCheckChange = (event) => {
                           onChange={handleRFQInputChange} 
                       />
 
-                      <label for="school_rep" className="header-text">School Representative</label>
-                      <input type="text" placeholder="Enter Name(s) of School Rep" id="school_rep" 
-                          name="school_rep"
-                          value={RFQinputs.school_rep || ""}                                                        
+                      <label for="school_email" className="header-text">School Email</label>
+                      <input type="text" placeholder="Enter Email Address of the School" id="school_email" 
+                          name="school_email"
+                          value={RFQinputs.school_email || ""}                                                        
                           onChange={handleRFQInputChange} 
                       />
-
-                      <label for="phone_no" className="header-text">Rep's Phone No'</label>
-                      <input type="text" placeholder="Enter Phone No of School Rep" id="school" 
-                          name="phone_no"
-                          value={RFQinputs.phone_no || ""}                                                        
-                          onChange={handleRFQInputChange} 
-                      />
-
 
                       <label for="studentsNo" className="header-text">No of Students</label>
                       <input type="text" placeholder="Enter number of students for the license." id="studentsNo" 

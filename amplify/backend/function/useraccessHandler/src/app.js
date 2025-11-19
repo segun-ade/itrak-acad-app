@@ -109,7 +109,8 @@ app.get('/newuser', function(req, res) {
       const user_currency = 'NGN';//currency from DB based on http req location
       let per_user_mthly_license_cost = 6.99;//in dollar  from DB based on http req location
       let lic_cost = req.query.students_no * req.query.duration * per_user_mthly_license_cost * dollar_rate;
-      let autorenew_license = (req.query.autorenew) ? "Yes" : "No";
+      console.log('Autorenew: ', req.query.autorenew)
+      let autorenew_license = (req.query.autorenew=='true') ? "Yes" : "No";
       let account_no = '0168032083';// from DB
       let bank_name = 'Guaranty Trust Bank';// from DB
       const curDate = new Date();//
@@ -228,11 +229,11 @@ app.get('/newuser', function(req, res) {
                             <br />
                             Username: <strong>` + req.query.email_addr + `</strong> 
                             <br />
+                            Phone No: <strong>` + req.query.phone_no + `</strong>
+                            <br />
                             School: <strong>` + req.query.school + `</strong>
                             <br />
-                            School Representative: <strong>` + req.query.school_rep + `</strong>
-                            <br />
-                            Rep's Phone No: <strong>` + req.query.phone_no + `</strong>
+                            School Email: <strong>` + req.query.school_email + `</strong>
                             <br />
                             No of Students to be registered: <strong>` + req.query.students_no + `</strong>
                             <br />
@@ -309,7 +310,7 @@ app.get('/newuser', function(req, res) {
         //*bcrypt//  bcrypt.hash(req.query.pwd,saltRounds,(err,hash)=>{
         //*bcrypt//      if(err) throw err;
               //let sql = "INSERT INTO itrak_user (email_addr, pwd, user_type) VALUES (" + "'" + req.query.email_addr +  "'" + "," +  "'" + req.query.pwd +  "'" + "," +  "'" + req.query.user_type +  "'" + ")";
-              let sql = "INSERT INTO licenses (email_addr, school, school_id, school_rep, phone_no, students_no, duration, autorenew, rfq_date) VALUES (" + "'" + req.query.email_addr +  "'" + "," + "'" + req.query.school +  "'" + "," + "'" + school_id +  "'" + "," + "'" + req.query.school_rep +  "'" + "," + "'" + req.query.phone_no +  "'" + "," + "'" + req.query.students_no +  "'" + "," +  "'" + req.query.duration +  "'" + "," + "'" + autorenew_license +  "'" + "," + "'" + RFQ_Date +  "'" + ")";
+              let sql = "INSERT INTO licenses (email_addr, school, school_id, school_email, phone_no, students_no, duration, autorenew, rfq_date) VALUES (" + "'" + req.query.email_addr +  "'" + "," + "'" + req.query.school +  "'" + "," + "'" + school_id +  "'" + "," + "'" + req.query.school_email +  "'" + "," + "'" + req.query.phone_no +  "'" + "," + "'" + req.query.students_no +  "'" + "," +  "'" + req.query.duration +  "'" + "," + "'" + autorenew_license +  "'" + "," + "'" + RFQ_Date +  "'" + ")";
               con.query(sql, function (err, result) {
                   if(err) throw err;
                   console.log("1 new RFQ record inserted.");

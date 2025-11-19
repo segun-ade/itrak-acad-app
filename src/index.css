@@ -605,6 +605,10 @@ display:inline-block;
     line-height:20px;
 }
 
+.login-content button:hover{
+    background-color:darksalmon;
+}
+
 .header-text{
     font-weight:bold;
     font-size:smaller;
