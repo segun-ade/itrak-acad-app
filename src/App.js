@@ -195,19 +195,27 @@ function removeRFQ() {
   document.getElementById("RFQ").style.display = "none";
 }
 
+function removeLicense() {
+  document.getElementById("license").style.display = "none";
+}
+
 let displayLogin = () => document.getElementById("login").style.display = "flex";
 
 let displaySignUp = () => document.getElementById("signUp").style.display = "flex";
 
 let displayRFQ = () => document.getElementById("RFQ").style.display = "flex";
 
+let displayLicense = () => document.getElementById("license").style.display = "flex";
+
 function HomePage() {
 
   const [inputs, setInputs] = useState({});
   const [reginputs, setRegInputs] = useState({});
   const [RFQinputs, setRFQInputs] = useState({});
+  const [licenseinputs, setLicenseInputs] = useState({});
   const [rem_login, setRemLoginChecked] = useState(false);
   const [RFQ_autorenew, setRFQAutoChecked] = useState(false);
+  const [promo_sub, setLicensePromoChecked] = useState(false);
   const [user_valid, setUserValid] = useState(false);
   const [username, setUserName] = useState('User1');
 
@@ -224,6 +232,11 @@ function HomePage() {
 const handleRFQCheckChange = (event) => {
     setRFQAutoChecked(event.target.checked);
   }
+
+const handleLicenseCheckChange = (event) => {
+    setLicensePromoChecked(event.target.checked);
+  }
+
   useEffect(()=>{
    /*   axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkregusersession', {withCredentials: true})
           .then(response => {
@@ -394,6 +407,11 @@ const handleRFQCheckChange = (event) => {
       setRFQInputs(values => ({ ...values, [name]: value }));
   }
 
+  const handleLicenseInputChange = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      setLicenseInputs(values => ({ ...values, [name]: value }));
+  }
 
   const handleUserRegSubmit = (event) => {
       event.preventDefault();
@@ -433,6 +451,46 @@ const handleRFQCheckChange = (event) => {
   }
 
   const handleUserRFQSubmit = (event) => {
+      event.preventDefault();
+      const email_addr = RFQinputs.email_addr;
+      const school = RFQinputs.school;
+      const school_email = RFQinputs.school_email;
+      const phone_no = RFQinputs.phone_no;    
+      const studentsNo = RFQinputs.studentsNo;
+      const duration = RFQinputs.duration ? RFQinputs.duration : 4;
+      const autorenew = RFQ_autorenew; 
+      if(email_addr==''||school==''){
+          alert("Pls enter required details!");
+      }else{
+            //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
+          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school=' + school + '&school_email=' + school_email + '&phone_no=' + phone_no + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
+          //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
+/*          post({
+            apiName: itrakacadAPI,
+            path: '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type
+          })*/
+          .then(response => {
+             console.log(response.data);
+             alert(response.data);
+             if(response.data=="OK") {
+                  alert("RFQ has been submitted successfully! \nPlease check your email for next steps.");
+                  removeRFQ();
+             }else if(response.data=="Invalid email"){
+                  alert("Invalid email! Pls check your email address and try again!");
+             }  
+             else {
+                  alert("Submission Error! Pls check your inputs and try again! \nIf the problem persists, pls contact us.");
+             }   
+          })
+          .catch((err) => {
+              console.log("Unable to connect to the server.");
+              alert(err + ": Server Error! Unable to process your request at this time, pls try again later.\nIf the problem persists, pls contact us.");
+          })
+      }
+      //alert("RFQ has been submitted successfully!");
+  }
+
+  const handleUserLicenseSubmit = (event) => {
       event.preventDefault();
       const email_addr = RFQinputs.email_addr;
       const school = RFQinputs.school;
@@ -512,7 +570,7 @@ const handleRFQCheckChange = (event) => {
                                                       <div className="sub-link2">
                                                           <a className="sub-link-item">iTrak Educational App</a>
                                                           <div className="sub-link-menu2">
-                                                              <a className="sub-link-item">Purchase License</a>
+                                                              <a className="sub-link-item" onClick={displayLicense}>Purchase License</a>
                                                               <a className="sub-link-item">Renew License</a>
                                                               <div className="sub-link2">
                                                                   <a className="sub-link-item">Request Quotes - RFQ</a>
@@ -735,7 +793,7 @@ const handleRFQCheckChange = (event) => {
                           <a style={{cursor:"pointer", textDecoration:"underline"}} onClick={displayRFQ}>
                              <em> RFQ </em> 
                           </a>
-                          <a href="">Purchase License</a>
+                          <a style={{cursor:"pointer", textDecoration:"underline"}} onClick={displayLicense}>Purchase License</a>
                           <a href="">Renew License</a>
                       </div>
                       <p>Copyright 2024 iTrak Software is a licensed product of iTrak Technology Company</p>
@@ -924,8 +982,80 @@ const handleRFQCheckChange = (event) => {
 
                       <a href="info@itraktech.com" className="prompt-text">Any questions? Contact us.</a>
                   </form>
+             </div>
+          </div>
+          <div id="license" className="sign-up-window">
+              <div className="login-container" onClick={removeLicense}></div>
+              <div id="reg-w" className="login-wrapper">
+                  <div className="login-header">
+                      <h1>ITrak Technology Company</h1>
+                      <img src="itrak-logo.png" id="company-logo"/>
+                  </div>
+                  <form id="license-form" className="login-content" onSubmit={handleUserLicenseSubmit}>
+
+                      <h5>Activate Student License</h5>
+
+                      <label for="username-r" className="header-text">Parent's Username</label>
+                      <input type="text" placeholder="Enter parent's registered e-mail address" id="user-email" 
+                          name="email_addr"
+                          value={licenseinputs.email_addr || ""}                                                        
+                          onChange={handleLicenseInputChange}                                                                                                                
+                      />
+
+                      <label for="names" className="header-text">Student's Names - (Last First Middle)</label>
+                      <input type="text" placeholder="Format - (Lastname Firstname Middlename)" id="names" 
+                          name="names"
+                          value={licenseinputs.names || ""}                                                        
+                          onChange={handleLicenseInputChange} 
+                      />
+
+                      <label for="reg_no" className="header-text">Student's Reg No</label>
+                      <input type="text" placeholder="Enter Student's Reg No" id="reg_no" 
+                          name="reg_no"
+                          value={licenseinputs.reg_no || ""}                                                        
+                          onChange={handleLicenseInputChange} 
+                      />
+
+                      <label for="school_email" className="header-text">School Email</label>
+                      <input type="text" placeholder="Enter Email Address of the School" id="school_email" 
+                          name="school_email"
+                          value={licenseinputs.school_email || ""}                                                        
+                          onChange={handleLicenseInputChange} 
+                      />
+
+                      <label for="school_id" className="header-text">School ID</label>
+                      <input type="text" placeholder="Unknown School." id="school_id" 
+                          name="school_id"
+                          value={licenseinputs.school_id || ""}                                                        
+                          onChange={handleLicenseInputChange} 
+                      />
+
+                      <label for="class_id" className="header-text">Student's Class ID</label>
+                      <select id="class_id" className="select-user"
+                          name="class_id"
+                          value={licenseinputs.class_id || ""}                                                        
+                          onChange={handleLicenseInputChange} 
+                      >
+                          <option value="JSS1">JSS1</option>
+                          <option value="JSS2">JSS2</option>
+
+                      </select>
+                      <div className="checkbox container">
+                          <input type="checkbox" id="promo_sub" 
+                              name="promo_sub"
+                              value="promo_sub"
+                              onChange={handleLicenseCheckChange}
+                          />
+                          <label for="promo_sub" className="prompt-text">Subscribe to promotional updates.</label>
+                      </div>
+
+                      <button type="submit">Activate License</button>
+
+                      <a href="info@itraktech.com" className="prompt-text">Any questions? Contact us.</a>
+                  </form>
               </div>
           </div>
+
       </div>
   );
 }
