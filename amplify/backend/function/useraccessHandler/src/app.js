@@ -420,7 +420,7 @@ app.get('/newuser', function(req, res) {
                     host: conn_string.host,
                     user: conn_string.user,//root
                     password: conn_string.password,//;e_xbAi*f0ae
-                    database: "itrak_user"//conn_string.database
+                    database: "itrakedu"//conn_string.database
                     });
 
                     let sql2 = "INSERT INTO students (student_id, parent_id, school_id, class_id, firstname, lastname, middlename, reg_no, age, dateofbirth, sex, student_type) VALUES (" + "'" + student_id +  "'" + "," + "'" + req.query.email_addr +  "'" + "," + "'" + req.query.school_id +  "'" + "," + "'" + req.query.class_id +  "'" + "," + "'" + firstname +  "'" + "," + "'" + lastname +  "'" + "," + "'" + middlename +  "'" + "," + "'" + req.query.reg_no +  "'" + "," + "'" + age +  "'" + "," +  "'" + dateofbirth +  "'" + "," + "'" + sex +  "'" + "," + "'" + student_type +  "'" + ")";
@@ -568,7 +568,7 @@ app.get('/newuser', function(req, res) {
                       if(err) throw err;
                     });
                   } else {
-                    conresult = "License Limit Exceeded! \nYou have registered the maximum no of students under you license. \nPls click on RFQ to purchase license for more students.";
+                    conresult = "License Limit Exceeded! \nYou have registered the maximum no of students under your license. \nPls click on RFQ to purchase license for more students.";
                     console.log(conresult);
                     res.send(conresult);
                   }

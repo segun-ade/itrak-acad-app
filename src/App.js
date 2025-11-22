@@ -492,28 +492,28 @@ const handleLicenseCheckChange = (event) => {
   }
 
   const handleUserLicenseSubmit = (event) => {
-      alert("Pls click OK.");
+      //alert("Pls click OK.");
       event.preventDefault();
       const email_addr = licenseinputs.email_addr;
-      alert(email_addr);
+      //alert(email_addr);
       const school_id = licenseinputs.school_id;
-      alert(school_id);
+      //alert(school_id);
       const school_email = licenseinputs.school_email;
-      alert(school_email); 
+      //alert(school_email); 
       const reg_no = licenseinputs.reg_no;   
-      alert(reg_no); 
+      //alert(reg_no); 
       const names = licenseinputs.names;
-      alert(names); 
+      //alert(names); 
       const class_id = licenseinputs.class_id// ? RFQinputs.duration : 4;
-      alert(class_id); 
+      //alert(class_id); 
       const promo = promo_sub; 
-      alert(promo); 
+      //alert(promo); 
       const service = 'license'; 
-      alert("Pls click OK to proceed.");
+      //alert("Pls click OK to proceed.");
       if(email_addr==''||school_id==''||school_email==''||reg_no==''||names==''||class_id==''){
           alert("Pls enter ALL required details to activate the student's license!");
       }else{
-            alert("Pls click OK to continue.");
+            //alert("Pls click OK to continue.");
             //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
           axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school_id=' + school_id + '&school_email=' + school_email + '&reg_no=' + reg_no + '&names=' + names + '&class_id=' + class_id + '&promo_sub=' + promo + '&service=' + service)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
