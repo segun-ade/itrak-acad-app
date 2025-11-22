@@ -101,42 +101,6 @@ app.use(express.json());
  **********************/
 
 app.get('/newuser', function(req, res) {
-  // Add your code here
-        //res.json({message: "Ready to connect"});
-      let conresult = 'Ready to connect';
-      //let user_license = 'None'; req.query.students_no + ` students for ` + req.query.duration
-      let dollar_rate = 1500;//naira per dollar from DB based on http req location
-      const user_currency = 'NGN';//currency from DB based on http req location
-      let per_user_mthly_license_cost = 6.99;//in dollar  from DB based on http req location
-      let lic_cost = req.query.students_no * req.query.duration * per_user_mthly_license_cost * dollar_rate;
-      console.log('Autorenew: ', req.query.autorenew)
-      let autorenew_license = (req.query.autorenew=='true') ? "Yes" : "No";
-      let account_no = '0168032083';// from DB
-      let bank_name = 'Guaranty Trust Bank';// from DB
-      const curDate = new Date();//
-      const curYear = curDate.getFullYear(); 
-      const curMonth = curDate.getMonth() + 1;
-      const curDay = curDate.getDate();
-      const RFQ_Date = curDate.toISOString();
-      const school_names = req.query.school.split(" ");
-      const firstletters = school_names.map(name => name[0]);
-      const school_id = firstletters.toString().replace(/,/g, "") + curDay + curMonth + curYear;
-      
-      const currency_formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: user_currency
-      });
-      const license_cost = currency_formatter.format(lic_cost);
-
-      console.log(school_id);
-      console.log(RFQ_Date);
-
-      const conn_string = {
-          host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
-          user: "root",//root
-          password: "ROOTuser12!",//;e_xbAi*f0ae
-          database: "logindb"
-      };
       const mailsender = nodemailer.createTransport({
         host: 'smtp.office365.com', //'smtpout.secureserver.net',
         port: 587, //465,
@@ -147,6 +111,7 @@ app.get('/newuser', function(req, res) {
           pass: 'itrakT25#'
         }
       });
+
       const loginHeader = `
         width:stretch; 
         min-height:80px; 
@@ -189,6 +154,45 @@ app.get('/newuser', function(req, res) {
         width:40px;
         height:60px;
         margin:0px;`;
+
+  if(req.query.service=='rfq'){
+  
+        //res.json({message: "Ready to connect"});
+      let conresult = 'Ready to connect';
+      //let user_license = 'None'; req.query.students_no + ` students for ` + req.query.duration
+      let dollar_rate = 1500;//naira per dollar from DB based on http req location
+      const user_currency = 'NGN';//currency from DB based on http req location
+      let per_user_mthly_license_cost = 6.99;//in dollar  from DB based on http req location
+      let lic_cost = req.query.students_no * req.query.duration * per_user_mthly_license_cost * dollar_rate;
+      console.log('Autorenew: ', req.query.autorenew)
+      let autorenew_license = (req.query.autorenew=='true') ? "Yes" : "No";
+      let account_no = '0168032083';// from DB
+      let bank_name = 'Guaranty Trust Bank';// from DB
+      const curDate = new Date();//
+      const curYear = curDate.getFullYear(); 
+      const curMonth = curDate.getMonth() + 1;
+      const curDay = curDate.getDate();
+      const RFQ_Date = curDate.toISOString();
+      const school_names = req.query.school.split(" ");
+      const firstletters = school_names.map(name => name[0]);
+      const school_id = firstletters.toString().replace(/,/g, "") + curDay + curMonth + curYear;
+      
+      const currency_formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: user_currency
+      });
+      const license_cost = currency_formatter.format(lic_cost);
+
+      console.log(school_id);
+      console.log(RFQ_Date);
+
+      const conn_string = {
+          host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
+          user: "root",//root
+          password: "ROOTuser12!",//;e_xbAi*f0ae
+          database: "logindb"
+      };
+  
 //newuser?email_addr=' + email_addr + '&school=' + school + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
       const email_string = {
@@ -334,7 +338,238 @@ app.get('/newuser', function(req, res) {
       console.error('Error sending email: ', err)
       res.send('Invalid email');
     });
-  //res.json({success: 'get call succeed!', url: req.url});
+    //res.json({success: 'get call succeed!', url: req.url});
+  }
+  else if(req.query.service=='license')
+  {
+    
+        //res.json({message: "Ready to connect"});
+      let conresult = 'Ready to connect';
+      //let user_license = 'None'; req.query.students_no + ` students for ` + req.query.duration
+///      let dollar_rate = 1500;//naira per dollar from DB based on http req location
+///      const user_currency = 'NGN';//currency from DB based on http req location
+///      let per_user_mthly_license_cost = 6.99;//in dollar  from DB based on http req location
+///      let lic_cost = req.query.students_no * req.query.duration * per_user_mthly_license_cost * dollar_rate;
+      console.log('Promo subscription: ', req.query.promo_sub)
+      let promo_sub = (req.query.promo_sub=='true') ? "Yes" : "No";
+///      let account_no = '0168032083';// from DB
+///      let bank_name = 'Guaranty Trust Bank';// from DB
+/*/      const curDate = new Date();//
+//      const lic_expire_date = curDate.setDate(curDate.getDate()+license_days);
+//      const curYear = curDate.getFullYear(); 
+      const curMonth = curDate.getMonth() + 1;
+      const curDay = curDate.getDate();
+      const expire_date = lic_expire_date.toISOString();
+/*/   const student_names = req.query.names.split(" ");
+      const lastname = student_names[0]
+      const firstname = student_names[1]
+      const middlename = student_names[2]
+      const student_id = lastname.substring(0,4) + firstname.substring(0,3) + middlename.substring(0,1);
+      const age = '';
+      const dateofbirth = '';
+      const sex = '';
+      const student_type = 'REGULAR';
+//      const firstletters = student_names.map(name => name[0]);
+//      const school_id = firstletters.toString().replace(/,/g, "") + curDay + curMonth + curYear;
+      
+/*/      const currency_formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: user_currency
+      });
+      const license_cost = currency_formatter.format(lic_cost);
+/*/
+      console.log(student_names);
+      console.log(student_id);
+
+      const conn_string = {
+          host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
+          user: "root",//root
+          password: "ROOTuser12!",//;e_xbAi*f0ae
+          database: "itrakedu"
+      };
+
+      var con = mysql.createConnection({
+          host: conn_string.host,
+          user: conn_string.user,//root
+          password: conn_string.password,//;e_xbAi*f0ae
+          database: "logindb"//conn_string.database
+      });
+      
+      con.connect(function(err) {
+          if(err) {       
+              conresult = 'Error: Unable to connect to database.';
+              console.log(conresult + ": " + err);
+              throw err;
+          }
+          console.log("Connected!");
+          conresult = "Successfully connected to " + conn_string.user + '@' + conn_string.host;
+          console.log(conresult);
+//let sql3 = "SELECT news.score, news.news_date FROM itrakedu.news where news.student_id='" + stdt_id + "' and news.news_date<'" + perf_date + "' and news.title='" + title + "'";
+          let sql1 = "SELECT * from licenses WHERE email_addr='"+req.query.email_addr+"' and school_id='"+req.query.school_id+"' and school_email='"+req.query.school_email+"' and email_addr='"+req.query.email_addr+"'";
+          con.query(sql1, function (err, result) {
+              if(err) throw err;
+              if (result.length) {
+                if(result[0].lic_status == 'active'){
+                  if(result[0].students_no > result[0].no_registered){
+                    let no_registered = result[0].no_registered;
+                    const lic_no = result[0].license_no;
+                    const lic_duration = result[0].duration;
+                    const lic_expire_date =  result[0].rfq_date;
+
+                    let sql2 = "INSERT INTO students (student_id, parent_id, school_id, class_id, firstname, lastname, middlename, reg_no, age, dateofbirth, sex, student_type) VALUES (" + "'" + student_id +  "'" + "," + "'" + req.query.email_addr +  "'" + "," + "'" + req.query.school_id +  "'" + "," + "'" + req.query.class_id +  "'" + "," + "'" + firstname +  "'" + "," + "'" + lastname +  "'" + "," + "'" + middlename +  "'" + "," + "'" + req.query.reg_no +  "'" + "," + "'" + age +  "'" + "," +  "'" + dateofbirth +  "'" + "," + "'" + sex +  "'" + "," + "'" + student_type +  "'" + ")";
+                    con.query(sql2, function (err, result) {
+                      if(err) throw err;
+                      console.log("1 new student record inserted.");
+                      //UPDATE `logindb`.`licenses` SET `no_registered` = '1' WHERE (`license_no` = '3');
+                      no_registered += 1;
+                      let sql3 = "UPDATE licenses SET 'no_registered' = '" + no_registered + "' WHERE (`license_no` = '" + lic_no + "')";
+                      con.query(sql3, function (err, result) {
+                        if(err) throw err;
+                        console.log("License no " + lic_no + " updated.");
+
+          const email_string = {
+          from: "Itrak Technology Company <info@itraktech.com>",
+          to: req.query.email_addr,
+          cc: "admin@itraktech.com",
+          replyTo: "info@itraktech.com",//;e_xbAi*f0ae
+          subject: "ITRAK Academic App Student Registration",
+      //  text: "Hello User! Thank you for choosing our software to monitor and boost the performance of your students.\n\nKindly see your registration details below:\n\nUsername: " + req.query.email_addr + "\nUser Type: " + req.query.user_type + "\n\nBest Regards, \n\nService Delivery Team\nItrak Technology Company Ltd",
+          html: `<div style="` + loginHeader + `">` +
+                  `<table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="left"><img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/></td>
+                        <td align="center"><h1 style="text-align:center";>ITrak Technology Company Limited</h1></td>
+                        <td align="right"><h3 style="text-align:right"; "margin-left:50px">(RC-8893573)</h3></td>
+                      </tr>
+                    </table>
+                    <div style="margin:0 auto">
+                      <p style="text-align:center"; "font-size:1.2em">Electrical Engineering, Electronics Manufacturing, Software Development and ICT Services.</p>
+                    </div>
+                  </div>
+                  <div style="` + bodyContainer  +`" id="body-container"> 
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center"><h2 style="text-align:center">Software License Quotation Request</h2></td>
+                      </tr>
+                      <tr>
+                        <td align="center">
+                          <p style="` + bodyContent  +`">
+                            Dear ` + req.query.names + `, 
+                            <br />
+                            <br />
+                            Thank you for purchasing a license to use ITRAK Academic App for your performance tracking and support.
+                            <br />
+                            <br />  
+                            You will be registered with the details below:
+                            <br />
+                            <br />
+                            LastName: <strong>` + lastname + `</strong> 
+                            <br />
+                            FirstName: <strong>` + firstname + `</strong> 
+                            <br />
+                            MiddleName: <strong>` + middlename + `</strong> 
+                            <br />
+                            Student ID: <strong>` + student_id + `</strong> 
+                            <br />
+                            Parent's Email: <strong>` + req.query.email_addr + `</strong> 
+                            <br />
+                            Student's Reg No: <strong>` + req.query.reg_no + `</strong>
+                            <br />
+                            Student's Class ID: <strong>` + req.query.class_id + `</strong>
+                            <br />
+                            School ID: <strong>` + req.query.school_id + `</strong>
+                            <br />
+                            School Email: <strong>` + req.query.school_email + `</strong>
+                            <br />
+                            License Duration: <strong>` + lic_duration + `</strong> months
+                            <br />
+                            License Expires: <strong>` + lic_expire_date + `</strong> months
+                            <br />
+                            Autorenew License: <strong>` + promo_sub + `</strong>
+                            <br />
+                            <br /> 
+                            Kindly visit our website <a href="www.itraktech.com"> and sign up with below details:
+                            <br />
+                            <br />
+                            Username: <strong>` + student_id + `</strong> (Enter your Student ID)
+                            <br />
+                            Password: <i>Enter a strong password to protect your account privacy</i>
+                            <br />
+                            User Category: <strong>Student</strong>
+                            <br />
+                            <br />
+                            Now you are all set! Your daily performance record can now be accessed by login into your account using your <strong>Student ID</strong> and <strong>Password</strong>.                   
+                            <br />
+                            <br />
+                            Please do not hesitate to <a href="info@itraktech.com">Contact Us</a> if you have any questions or need help while using the software.
+                            <br />
+                            <br />
+                            Thanks and Best Regards,
+                            <br />
+                            <br />
+                            Support Team
+                            <br />
+                            Itrak Technology Company Ltd
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div style="` + footerContainer  +`">
+                    <img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/>
+                    <div style="` + footerLinks  +`">
+                      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                          <td align="left" style="padding:20"><a href="www.itraktech.com">Contact Us</a></td>
+                          <td align="right" style="padding:20"><a href="www.itraktech.com">Terms &amp; Conditions</a></td>
+                        </tr>
+                        <tr>
+                          <td align="left" style="padding:20"><a href="www.itraktech.com">Purchase License</a></td>
+                          <td align="right" style="padding:20"><a href="www.itraktech.com">Renew License</a></td>
+                        </tr>
+                      </table>
+                    </div>
+                    <p style="text-align:center">Copyright 2024 iTrak Software is a licensed product of iTrak Technology Company Limited. All rights reserved.</p>
+                  </div>`
+        };
+
+                        mailsender.sendMail(email_string)
+                        .then((info) => {              
+                          console.log('Email sent: ', info.response);
+                          conresult = 'OK';
+                          res.send(conresult);
+                        })
+                        .catch ((err) =>{
+                          console.error('Error sending email: ', err)
+                          res.send('Invalid email');
+                        });
+
+                        //res.send(conresult);
+                      });
+                    });
+                    con.end((err)=>{
+                      if(err) throw err;
+                  });
+                  } else {
+                    conresult = "License Limit Exceeded! \nYou have registered the maximum no of students under you license. \nPls click on RFQ to purchase license for more students.";
+                    console.log(conresult);
+                    res.send(conresult);
+                  }
+                } else {
+                  conresult = "Invalid or expired license! \nPls sign up or click on RFQ to purchase or renew a license.";
+                  console.log(conresult);
+                  res.send(conresult);
+                }
+
+              } else {
+                  conresult = "User doesn't exist! \nPls sign up or click on RFQ to purchase a license.";
+                  console.log(conresult);
+                  res.send(conresult);
+              }
+          });
+        });
+    //res.json({success: 'get call succeed!', url: req.url});
+  }
 });
 
 app.get('/newuser/*', function(req, res) {

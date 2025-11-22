@@ -459,11 +459,12 @@ const handleLicenseCheckChange = (event) => {
       const studentsNo = RFQinputs.studentsNo;
       const duration = RFQinputs.duration ? RFQinputs.duration : 4;
       const autorenew = RFQ_autorenew; 
-      if(email_addr==''||school==''){
+      const service = 'rfq'; 
+      if(email_addr==''||school==''||school_email==''||phone_no==''||studentsNo==''){
           alert("Pls enter required details!");
       }else{
             //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
-          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school=' + school + '&school_email=' + school_email + '&phone_no=' + phone_no + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
+          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school=' + school + '&school_email=' + school_email + '&phone_no=' + phone_no + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew + '&service=' + service)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
 /*          post({
             apiName: itrakacadAPI,
@@ -492,18 +493,19 @@ const handleLicenseCheckChange = (event) => {
 
   const handleUserLicenseSubmit = (event) => {
       event.preventDefault();
-      const email_addr = RFQinputs.email_addr;
-      const school = RFQinputs.school;
-      const school_email = RFQinputs.school_email;
-      const phone_no = RFQinputs.phone_no;    
-      const studentsNo = RFQinputs.studentsNo;
-      const duration = RFQinputs.duration ? RFQinputs.duration : 4;
-      const autorenew = RFQ_autorenew; 
-      if(email_addr==''||school==''){
-          alert("Pls enter required details!");
+      const email_addr = licenseinputs.email_addr;
+      const school_id = licenseinputs.school_id;
+      const school_email = licenseinputs.school_email;
+      const reg_no = licenseinputs.reg_no;    
+      const names = licenseinputs.names;
+      const class_id = licenseinputs.class_id// ? RFQinputs.duration : 4;
+      const promo_sub = promo_sub; 
+      const service = 'license'; 
+      if(email_addr==''||school_id==''||school_email==''||reg_no==''||names==''||class_id==''){
+          alert("Pls enter ALL required details to activate the student's license!");
       }else{
             //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
-          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school=' + school + '&school_email=' + school_email + '&phone_no=' + phone_no + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
+          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school_id=' + school_id + '&school_email=' + school_email + '&reg_no=' + reg_no + '&names=' + names + '&class_id=' + class_id + '&promo_sub=' + promo_sub + '&service=' + service)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
 /*          post({
             apiName: itrakacadAPI,
@@ -1017,29 +1019,26 @@ const handleLicenseCheckChange = (event) => {
                       />
 
                       <label for="school_email" className="header-text">School Email</label>
-                      <input type="text" placeholder="Enter Email Address of the School" id="school_email" 
+                      <input type="text" placeholder="Enter Email Address provided by the school" id="school_email" 
                           name="school_email"
                           value={licenseinputs.school_email || ""}                                                        
                           onChange={handleLicenseInputChange} 
                       />
 
                       <label for="school_id" className="header-text">School ID</label>
-                      <input type="text" placeholder="Unknown School." id="school_id" 
+                      <input type="text" placeholder="Enter School ID provided by the school" id="school_id" 
                           name="school_id"
                           value={licenseinputs.school_id || ""}                                                        
                           onChange={handleLicenseInputChange} 
                       />
 
                       <label for="class_id" className="header-text">Student's Class ID</label>
-                      <select id="class_id" className="select-user"
+                      <input type="text" placeholder="Enter Class ID provided by the school" id="class_id" 
                           name="class_id"
                           value={licenseinputs.class_id || ""}                                                        
                           onChange={handleLicenseInputChange} 
-                      >
-                          <option value="JSS1">JSS1</option>
-                          <option value="JSS2">JSS2</option>
+                      />
 
-                      </select>
                       <div className="checkbox container">
                           <input type="checkbox" id="promo_sub" 
                               name="promo_sub"
@@ -1060,3 +1059,15 @@ const handleLicenseCheckChange = (event) => {
   );
 }
 export default HomePage;
+
+/*                       <label for="class_id" className="header-text">Student's Class ID</label>
+                      <select id="class_id" className="select-user"
+                          name="class_id"
+                          value={licenseinputs.class_id || ""}                                                        
+                          onChange={handleLicenseInputChange} 
+                      >
+                          <option value="JSS1">JSS1</option>
+                          <option value="JSS2">JSS2</option>
+
+                      </select>
+*/
