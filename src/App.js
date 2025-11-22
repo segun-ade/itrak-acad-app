@@ -506,8 +506,8 @@ const handleLicenseCheckChange = (event) => {
       alert(names); 
       const class_id = licenseinputs.class_id// ? RFQinputs.duration : 4;
       alert(class_id); 
-      const promo_sub = promo_sub; 
-      alert(promo_sub); 
+      const promo = promo_sub; 
+      alert(promo); 
       const service = 'license'; 
       alert("Pls click OK to proceed.");
       if(email_addr==''||school_id==''||school_email==''||reg_no==''||names==''||class_id==''){
@@ -515,7 +515,7 @@ const handleLicenseCheckChange = (event) => {
       }else{
             alert("Pls click OK to continue.");
             //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
-          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school_id=' + school_id + '&school_email=' + school_email + '&reg_no=' + reg_no + '&names=' + names + '&class_id=' + class_id + '&promo_sub=' + promo_sub + '&service=' + service)
+          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school_id=' + school_id + '&school_email=' + school_email + '&reg_no=' + reg_no + '&names=' + names + '&class_id=' + class_id + '&promo_sub=' + promo + '&service=' + service)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
 /*          post({
             apiName: itrakacadAPI,
