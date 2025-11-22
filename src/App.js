@@ -495,12 +495,19 @@ const handleLicenseCheckChange = (event) => {
       alert("Pls click OK.");
       event.preventDefault();
       const email_addr = licenseinputs.email_addr;
+      alert(email_addr);
       const school_id = licenseinputs.school_id;
+      alert(school_id);
       const school_email = licenseinputs.school_email;
-      const reg_no = licenseinputs.reg_no;    
+      alert(school_email); 
+      const reg_no = licenseinputs.reg_no;   
+      alert(reg_no); 
       const names = licenseinputs.names;
+      alert(names); 
       const class_id = licenseinputs.class_id// ? RFQinputs.duration : 4;
+      alert(class_id); 
       const promo_sub = promo_sub; 
+      alert(promo_sub); 
       const service = 'license'; 
       alert("Pls click OK to proceed.");
       if(email_addr==''||school_id==''||school_email==''||reg_no==''||names==''||class_id==''){
