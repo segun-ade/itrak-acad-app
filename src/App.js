@@ -492,6 +492,7 @@ const handleLicenseCheckChange = (event) => {
   }
 
   const handleUserLicenseSubmit = (event) => {
+      alert("Pls click OK to proceed.");
       event.preventDefault();
       const email_addr = licenseinputs.email_addr;
       const school_id = licenseinputs.school_id;
