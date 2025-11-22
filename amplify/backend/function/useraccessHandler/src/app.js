@@ -436,7 +436,7 @@ app.get('/newuser', function(req, res) {
                         password: conn_string.password,//;e_xbAi*f0ae
                         database: "logindb"//conn_string.database
       });
-                      let sql3 = "UPDATE licenses SET 'no_registered' = '" + no_registered + "' WHERE ('license_no' = '" + lic_no + "')";
+                      let sql3 = "UPDATE licenses SET no_registered = " + no_registered + " WHERE license_no = " + lic_no + ")";
                       con.query(sql3, function (err, result) {
                         if(err) throw err;
                         console.log("License no " + lic_no + " updated.");
