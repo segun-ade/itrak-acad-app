@@ -504,6 +504,7 @@ const handleLicenseCheckChange = (event) => {
       if(email_addr==''||school_id==''||school_email==''||reg_no==''||names==''||class_id==''){
           alert("Pls enter ALL required details to activate the student's license!");
       }else{
+            alert("Pls click OK to continue.");
             //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
           axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school_id=' + school_id + '&school_email=' + school_email + '&reg_no=' + reg_no + '&names=' + names + '&class_id=' + class_id + '&promo_sub=' + promo_sub + '&service=' + service)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
@@ -515,8 +516,8 @@ const handleLicenseCheckChange = (event) => {
              console.log(response.data);
              alert(response.data);
              if(response.data=="OK") {
-                  alert("RFQ has been submitted successfully! \nPlease check your email for next steps.");
-                  removeRFQ();
+                  alert("You have been successfully registered! \nPlease check your email for next steps.");
+                  removeLicense();
              }else if(response.data=="Invalid email"){
                   alert("Invalid email! Pls check your email address and try again!");
              }  

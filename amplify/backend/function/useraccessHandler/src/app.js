@@ -416,12 +416,26 @@ app.get('/newuser', function(req, res) {
                     const lic_duration = result[0].duration;
                     const lic_expire_date =  result[0].rfq_date;
 
+                    var con = mysql.createConnection({
+                    host: conn_string.host,
+                    user: conn_string.user,//root
+                    password: conn_string.password,//;e_xbAi*f0ae
+                    database: "itrak_user"//conn_string.database
+                    });
+
                     let sql2 = "INSERT INTO students (student_id, parent_id, school_id, class_id, firstname, lastname, middlename, reg_no, age, dateofbirth, sex, student_type) VALUES (" + "'" + student_id +  "'" + "," + "'" + req.query.email_addr +  "'" + "," + "'" + req.query.school_id +  "'" + "," + "'" + req.query.class_id +  "'" + "," + "'" + firstname +  "'" + "," + "'" + lastname +  "'" + "," + "'" + middlename +  "'" + "," + "'" + req.query.reg_no +  "'" + "," + "'" + age +  "'" + "," +  "'" + dateofbirth +  "'" + "," + "'" + sex +  "'" + "," + "'" + student_type +  "'" + ")";
                     con.query(sql2, function (err, result) {
                       if(err) throw err;
                       console.log("1 new student record inserted.");
                       //UPDATE `logindb`.`licenses` SET `no_registered` = '1' WHERE (`license_no` = '3');
                       no_registered += 1;
+
+                      var con = mysql.createConnection({
+                        host: conn_string.host,
+                        user: conn_string.user,//root
+                        password: conn_string.password,//;e_xbAi*f0ae
+                        database: "logindb"//conn_string.database
+      });
                       let sql3 = "UPDATE licenses SET 'no_registered' = '" + no_registered + "' WHERE (`license_no` = '" + lic_no + "')";
                       con.query(sql3, function (err, result) {
                         if(err) throw err;
@@ -546,10 +560,13 @@ app.get('/newuser', function(req, res) {
 
                         //res.send(conresult);
                       });
+                      con.end((err)=>{
+                      if(err) throw err;
+                      });
                     });
                     con.end((err)=>{
                       if(err) throw err;
-                  });
+                    });
                   } else {
                     conresult = "License Limit Exceeded! \nYou have registered the maximum no of students under you license. \nPls click on RFQ to purchase license for more students.";
                     console.log(conresult);
@@ -566,6 +583,9 @@ app.get('/newuser', function(req, res) {
                   console.log(conresult);
                   res.send(conresult);
               }
+          });
+          con.end((err)=>{
+            if(err) throw err;
           });
         });
     //res.json({success: 'get call succeed!', url: req.url});

@@ -939,6 +939,9 @@ display:inline-block;
     line-height:20px;
 }
 
+.login-content button:hover{
+    background-color:darksalmon;
+}
 }
 
 
@@ -995,7 +998,9 @@ display:inline-block;
     margin-bottom:30px;
     line-height:15px;
 }
-
+.login-content button:hover{
+    background-color:darksalmon;
+}
 }
 
 @media (min-width:480px){
