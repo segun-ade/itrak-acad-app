@@ -501,6 +501,7 @@ const handleLicenseCheckChange = (event) => {
       const class_id = licenseinputs.class_id// ? RFQinputs.duration : 4;
       const promo_sub = promo_sub; 
       const service = 'license'; 
+      alert("Pls click OK to proceed.");
       if(email_addr==''||school_id==''||school_email==''||reg_no==''||names==''||class_id==''){
           alert("Pls enter ALL required details to activate the student's license!");
       }else{
