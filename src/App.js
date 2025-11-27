@@ -419,12 +419,14 @@ const handleLicenseCheckChange = (event) => {
       const pwd = reginputs.pwd;
       const pwd2 = reginputs.pwd2;
       const user_type = reginputs.user_type;
+      const lic_status = reginputs.lic_status || "";
+      const lic_expire_date = reginputs.lic_expire_date || "";
       
       if(pwd != pwd2){
           alert("Password mismatch! Pls check your entries and try again!");
       }else{
             //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
-          axios.post('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
+          axios.post('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type + '&lic_status=' + lic_status + '&lic_expire_date=' + lic_expire_date)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
 /*          post({
             apiName: itrakacadAPI,
@@ -524,9 +526,16 @@ const handleLicenseCheckChange = (event) => {
           .then(response => {
              console.log(response.data);
              alert(response.data);
-             if(response.data=="OK") {
-                  alert("You have been successfully registered! \nPlease check your email for next steps.");
+             if(response.data.status=="OK") {
+                //  alert("You have been successfully registered! \nPlease check your email for next steps.");
+                  alert("You have been successfully registered! \nPlease create a strong password to access your account after now.");
                   removeLicense();
+                  setRegInputs(values => ({ ...values, ['email_addr']: response.data.student_id }));
+                  setRegInputs(values => ({ ...values, ['user_type']: response.data.user_category }));
+                  setRegInputs(values => ({ ...values, ['lic_status']: response.data.lic_status }));
+                  setRegInputs(values => ({ ...values, ['lic_expire_date']: response.data.lic_expire_date }));
+                  displaySignUp();
+
              }else if(response.data=="Invalid email"){
                   alert("Invalid email! Pls check your email address and try again!");
              }  

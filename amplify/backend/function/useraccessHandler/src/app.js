@@ -414,7 +414,16 @@ app.get('/newuser', function(req, res) {
                     let no_registered = result[0].no_registered;
                     const lic_no = result[0].license_no;
                     const lic_duration = result[0].duration;
-                    const lic_expire_date =  result[0].rfq_date;
+                    const lic_start =  result[0].lic_start;
+                    const lic_status =  result[0].lic_status;
+                    //const lic_expire_date =  result[0].rfq_date;
+
+                    const licDate = new Date(lic_start);//
+                    const lic_expire_date = licDate.setDate(licDate.getDate()+lic_duration*30);
+            //      const curYear = curDate.getFullYear(); 
+                    const curMonth = curDate.getMonth() + 1;
+                    const curDay = curDate.getDate();
+                    const expire_date = lic_expire_date.toISOString();
 
                     var con = mysql.createConnection({
                     host: conn_string.host,
@@ -497,7 +506,7 @@ app.get('/newuser', function(req, res) {
                             <br />
                             License Duration: <strong>` + lic_duration + `</strong> months
                             <br />
-                            License Expires: <strong>` + lic_expire_date + `</strong> months
+                            License Expires: <strong>` + expire_date + `</strong> months
                             <br />
                             Autorenew License: <strong>` + promo_sub + `</strong>
                             <br />
@@ -551,7 +560,8 @@ app.get('/newuser', function(req, res) {
                         .then((info) => {              
                           console.log('Email sent: ', info.response);
                           conresult = 'OK';
-                          res.send(conresult);
+                          //res.send(conresult);
+                          res.json({status: 'OK', student_id: student_id, user_category: 'student', lic_status: lic_status, lic_expire_date: expire_date})
                         })
                         .catch ((err) =>{
                           console.error('Error sending email: ', err)
@@ -761,8 +771,10 @@ app.post('/newuser', function(req, res) {
           //let sql1 = "SELECT * from itrak_user";
           bcrypt.hash(req.query.pwd,saltRounds,(err,hash)=>{
               if(err) throw err;
+                //const lic_status = reginputs.lic_status || "";
+                //const lic_expire_date = reginputs.lic_expire_date || "";
               //let sql = "INSERT INTO itrak_user (email_addr, pwd, user_type) VALUES (" + "'" + req.query.email_addr +  "'" + "," +  "'" + req.query.pwd +  "'" + "," +  "'" + req.query.user_type +  "'" + ")";
-              let sql = "INSERT INTO itrak_user (email_addr, pwd, user_type) VALUES (" + "'" + req.query.email_addr +  "'" + "," +  "'" + hash +  "'" + "," +  "'" + req.query.user_type +  "'" + ")";
+              let sql = "INSERT INTO itrak_user (email_addr, pwd, user_type, lic_status, lic_expire_date) VALUES (" + "'" + req.query.email_addr +  "'" + "," +  "'" + hash +  "'" + "," +  "'" + req.query.user_type +  "'" + "," +  "'" + req.query.lic_status +  "'" + "," +  "'" + req.query.lic_expire_date +  "'" + ")";
               con.query(sql, function (err, result) {
                   if(err) throw err;
                   console.log("1 new user record inserted.");
