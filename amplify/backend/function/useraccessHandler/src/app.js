@@ -421,8 +421,8 @@ app.get('/newuser', function(req, res) {
                     const licDate = new Date(lic_start);//
                     const lic_expire_date = licDate.setDate(licDate.getDate()+lic_duration*30);
             //      const curYear = curDate.getFullYear(); 
-                    const curMonth = curDate.getMonth() + 1;
-                    const curDay = curDate.getDate();
+            //        const curMonth = curDate.getMonth() + 1;
+            //        const curDay = curDate.getDate();
                     const expire_date = lic_expire_date.toISOString();
 
                     var con = mysql.createConnection({
