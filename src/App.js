@@ -199,6 +199,14 @@ function removeLicense() {
   document.getElementById("license").style.display = "none";
 }
 
+function removeConfirm() {
+  document.getElementById("license").style.display = "none";
+}
+
+function removePricing() {
+  document.getElementById("license").style.display = "none";
+}
+
 let displayLogin = () => document.getElementById("login").style.display = "flex";
 
 let displaySignUp = () => document.getElementById("signUp").style.display = "flex";
@@ -207,12 +215,18 @@ let displayRFQ = () => document.getElementById("RFQ").style.display = "flex";
 
 let displayLicense = () => document.getElementById("license").style.display = "flex";
 
+let displayPricing = () => document.getElementById("license").style.display = "flex";
+
+let displayConfirm = () => document.getElementById("license").style.display = "flex";
+
 function HomePage() {
 
   const [inputs, setInputs] = useState({});
   const [reginputs, setRegInputs] = useState({});
   const [RFQinputs, setRFQInputs] = useState({});
   const [licenseinputs, setLicenseInputs] = useState({});
+  const [confirminputs, setConfirmInputs] = useState({});
+  const [pricinginputs, setPricingInputs] = useState({});
   const [rem_login, setRemLoginChecked] = useState(false);
   const [RFQ_autorenew, setRFQAutoChecked] = useState(false);
   const [promo_sub, setLicensePromoChecked] = useState(false);
@@ -366,8 +380,14 @@ const handleLicenseCheckChange = (event) => {
 ///         alert(JSON.stringify(response));
          if(response.data.user_valid == true) {
               alert("You have been successfully logged in.");
-              setUserValid(true);
-              setUserName(userid);
+              if(userid=='itrak-admin2511'){
+                displayPricing();
+              } else if(userid=='itrak-admin2601'){
+                displayConfirm();
+              } else {
+                setUserValid(true);
+                setUserName(userid);
+              }          
          }else{
               alert("Invalid login details.")//alert(JSON.stringify(response));
               setUserValid(false);
@@ -411,6 +431,18 @@ const handleLicenseCheckChange = (event) => {
       const name = event.target.name;
       const value = event.target.value;
       setLicenseInputs(values => ({ ...values, [name]: value }));
+  }
+
+  const handlePricingInputChange = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      setPricingInputs(values => ({ ...values, [name]: value }));
+  }
+
+  const handleConfirmInputChange = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      setConfirmInputs(values => ({ ...values, [name]: value }));
   }
 
   const handleUserRegSubmit = (event) => {
@@ -551,6 +583,83 @@ const handleLicenseCheckChange = (event) => {
       //alert("RFQ has been submitted successfully!");
   }
 
+    const handlePricingSubmit = (event) => {
+      //alert("Pls click OK.");
+      event.preventDefault();
+      const account_no = pricinginputs.account_no;
+      const bank_name = pricinginputs.bank_name;
+      const bank_swift = pricinginputs.bank_swift || '';
+      const bank_sort = pricinginputs.bank_sort || '';   
+      const naira_per_dollar = pricinginputs.naira_per_dollar;
+      const monthly_cost = pricinginputs.monthly_cost
+      const annual_discount = pricinginputs.annual_discount; 
+      const service = 'pricing'; 
+      //alert("Pls click OK to proceed.");
+      if(account_no==''||bank_name==''||naira_per_dollar==''||monthly_cost==''||annual_discount==''){
+          alert("Pls enter ALL required details to record new pricing!");
+      }else{
+            //alert("Pls click OK to continue.");
+            //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
+          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?account_no=' + account_no + '&bank_name=' + bank_name + '&bank_swift=' + bank_swift + '&bank_sort=' + bank_sort + '&naira_per_dollar=' + naira_per_dollar + '&monthly_cost=' + monthly_cost + '&annual_discount=' + annual_discount + '&service=' + service)
+          //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
+/*          post({
+            apiName: itrakacadAPI,
+            path: '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type
+          })*/
+          .then(response => {
+             console.log(response.data);
+             alert(response.data);
+             if(response.data.status=="OK") {
+                //  alert("You have been successfully registered! \nPlease check your email for next steps.");
+                  alert(response.data.message);
+                  removePricing();
+                /*  setRegInputs(values => ({ ...values, ['email_addr']: response.data.student_id }));
+                  setRegInputs(values => ({ ...values, ['user_type']: response.data.user_category }));
+                  setRegInputs(values => ({ ...values, ['lic_status']: response.data.lic_status }));
+                  setRegInputs(values => ({ ...values, ['lic_expire_date']: response.data.lic_expire_date }));
+                  displaySignUp();*/
+
+             }
+          })
+          .catch((err) => {
+              console.log("Unable to connect to the server.");
+              alert(err + ": Server Error! Unable to process your request at this time, pls try again later.\nIf the problem persists, pls contact us.");
+          })
+      }
+      //alert("RFQ has been submitted successfully!");
+  }
+
+      const handleConfirmSubmit = (event) => {
+      //alert("Pls click OK.");
+      event.preventDefault();
+      const email_addr = confirminputs.email_addr;
+      //alert(email_addr);
+      const school_id = confirminputs.school_id;
+      //alert(school_id);
+      const school_email = confirminputs.school_email || '';
+      //alert(school_email); 
+      const service = 'confirm'; 
+      //alert("Pls click OK to proceed.");
+      if(email_addr==''||school_id==''||school_email==''){
+          alert("Pls enter ALL required details to update license!");
+      }else{
+            //alert("Pls click OK to continue.");
+          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school_id=' + school_id + '&school_email=' + school_email + '&service=' + service)
+          .then(response => {
+             console.log(response.data);
+             alert(response.data);
+             if(response.data.status=="OK") {
+                //  alert("You have been successfully registered! \nPlease check your email for next steps.");
+                  alert(response.data.message);
+                  removeConfirm();
+             }
+          })
+          .catch((err) => {
+              console.log("Unable to connect to the server.");
+              alert(err + ": Server Error! Unable to process your request at this time, pls try again later.\nIf the problem persists, pls contact us.");
+          })
+      }
+  }
 
   if (user_valid){
       //alert(inputs.userid + ", " + username + ", " + checked);
@@ -1068,6 +1177,110 @@ const handleLicenseCheckChange = (event) => {
                       </div>
 
                       <button type="submit">Activate License</button>
+
+                      <a href="info@itraktech.com" className="prompt-text">Any questions? Contact us.</a>
+                  </form>
+              </div>
+          </div>
+          <div id="pricing" className="sign-up-window">
+              <div className="login-container" onClick={removePricing}></div>
+              <div id="reg-w" className="login-wrapper">
+                  <div className="login-header">
+                      <h1>ITrak Technology Company</h1>
+                      <img src="itrak-logo.png" id="company-logo"/>
+                  </div>
+                  <form id="pricing-form" className="login-content" onSubmit={handlePricingSubmit}>
+
+                      <h5>Record New Pricing</h5>
+
+                      <label for="account_no" className="header-text">Account No</label>
+                      <input type="text" placeholder="Account No" id="account_no" 
+                          name="account_no"
+                          value={pricinginputs.account_no || ""}                                                        
+                          onChange={handlePricingInputChange}                                                                                                                
+                      />
+
+                      <label for="bank_name" className="header-text">Bank Name</label>
+                      <input type="text" placeholder="Bank Name" id="bank_name" 
+                          name="bank_name"
+                          value={pricinginputs.bank_name || ""}                                                        
+                          onChange={handlePricingInputChange} 
+                      />
+
+                      <label for="bank_swift" className="header-text">Bank Swift Code</label>
+                      <input type="text" placeholder="Enter Bank Swift Code" id="bank_swift" 
+                          name="bank_swift"
+                          value={pricinginputs.bank_swift || ""}                                                        
+                          onChange={handlePricingInputChange} 
+                      />
+
+                      <label for="bank_sort" className="header-text">Bank Sort Code</label>
+                      <input type="text" placeholder="Enter Bank Sort Code" id="bank_sort" 
+                          name="bank_sort"
+                          value={pricinginputs.bank_sort || ""}                                                        
+                          onChange={handlePricingInputChange} 
+                      />
+
+                      <label for="naira_per_dollar" className="header-text">Naira Per Dollar</label>
+                      <input type="text" placeholder="Enter Exchange Rate - NGN/USD" id="naira_per_dollar" 
+                          name="naira_per_dollar"
+                          value={pricinginputs.naira_per_dollar || ""}                                                        
+                          onChange={handlePricingInputChange} 
+                      />
+
+                      <label for="monthly_cost" className="header-text">User Monthly Cost</label>
+                      <input type="text" placeholder="Enter User Monthly Cost" id="monthly_cost" 
+                          name="monthly_cost"
+                          value={pricinginputs.monthly_cost || ""}                                                        
+                          onChange={handlePricingInputChange} 
+                      />
+
+                      <label for="annual_discount" className="header-text">Annual Subscription Discount</label>
+                      <input type="text" placeholder="Enter Annual Subscription Discount" id="annual_discount" 
+                          name="annual_discount"
+                          value={pricinginputs.annual_discount || ""}                                                        
+                          onChange={handlePricingInputChange} 
+                      />
+
+                      <button type="submit">Submit Pricing</button>
+
+                      <a href="info@itraktech.com" className="prompt-text">Any questions? Contact us.</a>
+                  </form>
+              </div>
+          </div>
+          <div id="confirm" className="sign-up-window">
+              <div className="login-container" onClick={removeConfirm}></div>
+              <div id="reg-w" className="login-wrapper">
+                  <div className="login-header">
+                      <h1>ITrak Technology Company</h1>
+                      <img src="itrak-logo.png" id="company-logo"/>
+                  </div>
+                  <form id="confirm-form" className="login-content" onSubmit={handleConfirmSubmit}>
+
+                      <h5>Confirm User Payment</h5>
+
+                      <label for="email_addr" className="header-text">Parent's Username</label>
+                      <input type="text" placeholder="Enter parent's e-mail address  from RFQ" id="email_addr" 
+                          name="email_addr"
+                          value={confirminputs.email_addr || ""}                                                        
+                          onChange={handleConfirmInputChange}                                                                                                                
+                      />
+
+                      <label for="school_email" className="header-text">School Email</label>
+                      <input type="text" placeholder="Enter School Email Address from RFQ" id="school_email" 
+                          name="school_email"
+                          value={confirminputs.school_email || ""}                                                        
+                          onChange={handleConfirmInputChange} 
+                      />
+
+                      <label for="school_id" className="header-text">School ID</label>
+                      <input type="text" placeholder="Enter School ID from RFQ" id="school_id" 
+                          name="school_id"
+                          value={confirminputs.school_id || ""}                                                        
+                          onChange={handleConfirmInputChange} 
+                      />
+
+                      <button type="submit">Confirm Payment</button>
 
                       <a href="info@itraktech.com" className="prompt-text">Any questions? Contact us.</a>
                   </form>

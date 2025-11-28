@@ -156,18 +156,52 @@ app.get('/newuser', function(req, res) {
         margin:0px;`;
 
   if(req.query.service=='rfq'){
-  
+    let conresult = 'Ready to connect';
+      const conn_string = {
+          host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
+          user: "root",//root
+          password: "ROOTuser12!",//;e_xbAi*f0ae
+          database: "logindb"
+      };
+
+      var con = mysql.createConnection({
+          host: conn_string.host,
+          user: conn_string.user,//root
+          password: conn_string.password,//;e_xbAi*f0ae
+          database: conn_string.database
+      });
+      
+      con.connect(function(err) {
+          if(err) {       
+              conresult = 'Error: Unable to connect to database.';
+              console.log(conresult + ": " + err);
+              throw err;
+          }
+          console.log("Connected!");
+          conresult = "Successfully connected to " + conn_string.user + '@' + conn_string.host;
+          console.log(conresult);
+          let sql_p = "SELECT * from pricing WHERE pricing_id='"+ 1 +"'";
+          con.query(sql_p, function (err, result) {
+              if(err) throw err;
+              if (result.length) {
+                    const account_no = result[0].account_no;
+                    const bank_name = result[0].bank_name;
+                    const dollar_rate =  result[0].naira_per_dollar;
+                    const per_user_mthly_license_cost =  result[0].monthly_cost;
+                    const annual_discount =  result[0].annual_discount;
+
         //res.json({message: "Ready to connect"});
       let conresult = 'Ready to connect';
       //let user_license = 'None'; req.query.students_no + ` students for ` + req.query.duration
-      let dollar_rate = 1500;//naira per dollar from DB based on http req location
+      //let dollar_rate = 1500;//naira per dollar from DB based on http req location
       const user_currency = 'NGN';//currency from DB based on http req location
-      let per_user_mthly_license_cost = 6.99;//in dollar  from DB based on http req location
+      //let per_user_mthly_license_cost = 6.99;//in dollar  from DB based on http req location
       let lic_cost = req.query.students_no * req.query.duration * per_user_mthly_license_cost * dollar_rate;
+      lic_cost = (req.query.duration >= 12) ? lic_cost * (1 - annual_discount/100) : lic_cost;
       console.log('Autorenew: ', req.query.autorenew)
       let autorenew_license = (req.query.autorenew=='true') ? "Yes" : "No";
-      let account_no = '0168032083';// from DB
-      let bank_name = 'Guaranty Trust Bank';// from DB
+      //let account_no = '0168032083';// from DB
+      //et bank_name = 'Guaranty Trust Bank';// from DB
       const curDate = new Date();//
       const curYear = curDate.getFullYear(); 
       const curMonth = curDate.getMonth() + 1;
@@ -186,12 +220,12 @@ app.get('/newuser', function(req, res) {
       console.log(school_id);
       console.log(RFQ_Date);
 
-      const conn_string = {
+     /* const conn_string = {
           host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
           user: "root",//root
           password: "ROOTuser12!",//;e_xbAi*f0ae
           database: "logindb"
-      };
+      };*/
   
 //newuser?email_addr=' + email_addr + '&school=' + school + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
@@ -246,7 +280,7 @@ app.get('/newuser', function(req, res) {
                             Autorenew License: <strong>` + autorenew_license + `</strong>
                             <br />
                             <br /> 
-                            License Cost for <strong>` + req.query.students_no + `</strong> students for <strong>` + req.query.duration + `</strong> months: <strong>` + license_cost + `</strong>
+                            License Cost for <strong>` + req.query.students_no + `</strong> student(s) for <strong>` + req.query.duration + `</strong> months: <strong>` + license_cost + `</strong>
                             <br />
                             <br /> 
                             Kindly pay the required sum of <strong>` + license_cost + `</strong> into below account:
@@ -333,12 +367,24 @@ app.get('/newuser', function(req, res) {
                   });
         //*bcrypt//      });
           });
-    })
-    .catch ((err) =>{
-      console.error('Error sending email: ', err)
-      res.send('Invalid email');
+        })
+        .catch ((err) =>{
+          console.error('Error sending email: ', err)
+          res.send('Invalid email');
+        });
+        //res.json({success: 'get call succeed!', url: req.url});
+    
+          } else {
+            conresult = "Error: pls contact Admin";
+            console.log("No pricing data found!");
+            res.send(conresult);
+          }
+      });
     });
-    //res.json({success: 'get call succeed!', url: req.url});
+    con.end((err)=>{
+     if(err) throw err;
+    });
+      
   }
   else if(req.query.service=='license')
   {
@@ -404,8 +450,8 @@ app.get('/newuser', function(req, res) {
           console.log("Connected!");
           conresult = "Successfully connected to " + conn_string.user + '@' + conn_string.host;
           console.log(conresult);
-//let sql3 = "SELECT news.score, news.news_date FROM itrakedu.news where news.student_id='" + stdt_id + "' and news.news_date<'" + perf_date + "' and news.title='" + title + "'";
-          let sql1 = "SELECT * from licenses WHERE email_addr='"+req.query.email_addr+"' and school_id='"+req.query.school_id+"' and school_email='"+req.query.school_email+"' and email_addr='"+req.query.email_addr+"'";
+        //let sql3 = "SELECT news.score, news.news_date FROM itrakedu.news where news.student_id='" + stdt_id + "' and news.news_date<'" + perf_date + "' and news.title='" + title + "'";
+          let sql1 = "SELECT * from licenses WHERE email_addr='"+req.query.email_addr+"' and school_id='"+req.query.school_id+"' and school_email='"+req.query.school_email+"'";
           con.query(sql1, function (err, result) {
               if(err) throw err;
               if (result.length) {
@@ -422,8 +468,8 @@ app.get('/newuser', function(req, res) {
                     const lic_expire_date = licDate.setDate(licDate.getDate()+lic_duration*30);
             //      const curYear = curDate.getFullYear(); 
             //        const curMonth = curDate.getMonth() + 1;
-            //        const curDay = curDate.getDate();
-                    const expire_date = lic_expire_date.toString();
+            //        const curDay = curDate.getDate(); 
+                    const expire_date = new Date(lic_expire_date).toISOString();
 
                     var con = mysql.createConnection({
                     host: conn_string.host,
@@ -472,7 +518,7 @@ app.get('/newuser', function(req, res) {
                   <div style="` + bodyContainer  +`" id="body-container"> 
                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td align="center"><h2 style="text-align:center">Software License Quotation Request</h2></td>
+                        <td align="center"><h2 style="text-align:center">Academic App - Student Registration</h2></td>
                       </tr>
                       <tr>
                         <td align="center">
@@ -483,7 +529,7 @@ app.get('/newuser', function(req, res) {
                             Thank you for purchasing a license to use ITRAK Academic App for your performance tracking and support.
                             <br />
                             <br />  
-                            You will be registered with the details below:
+                            You have been registered with the following details:
                             <br />
                             <br />
                             LastName: <strong>` + lastname + `</strong> 
@@ -506,22 +552,22 @@ app.get('/newuser', function(req, res) {
                             <br />
                             License Duration: <strong>` + lic_duration + `</strong> months
                             <br />
-                            License Expires: <strong>` + expire_date + `</strong> months
+                            License Expires: <strong>` + expire_date + `</strong>
                             <br />
-                            Autorenew License: <strong>` + promo_sub + `</strong>
+                            Receive regular promo updates? <strong>` + promo_sub + `</strong>
                             <br />
                             <br /> 
-                            Kindly visit our website <a href="www.itraktech.com"> and sign up with below details:
+                            Kindly visit <a href="www.itraktech.com">our website</a> and login with below details to access your student dashboard anytime:
                             <br />
                             <br />
                             Username: <strong>` + student_id + `</strong> (Enter your Student ID)
                             <br />
-                            Password: <i>Enter a strong password to protect your account privacy</i>
+                            Password: <strong><i>Enter your student account password</i></strong>
                             <br />
                             User Category: <strong>Student</strong>
                             <br />
                             <br />
-                            Now you are all set! Your daily performance record can now be accessed by login into your account using your <strong>Student ID</strong> and <strong>Password</strong>.                   
+                            Now you are all set! We wish you all the best in your academic career.                  
                             <br />
                             <br />
                             Please do not hesitate to <a href="info@itraktech.com">Contact Us</a> if you have any questions or need help while using the software.
@@ -599,6 +645,91 @@ app.get('/newuser', function(req, res) {
           });
         });
     //res.json({success: 'get call succeed!', url: req.url});
+  }
+  else if(req.query.service=='confirm'){
+    const today = new Date();
+    const today_str = today.toISOString();
+    
+    let conresult = 'Ready to connect';
+      const conn_string = {
+          host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
+          user: "root",//root
+          password: "ROOTuser12!",//;e_xbAi*f0ae
+          database: "logindb"
+      };
+
+      var con = mysql.createConnection({
+          host: conn_string.host,
+          user: conn_string.user,//root
+          password: conn_string.password,//;e_xbAi*f0ae
+          database: conn_string.database
+      });
+      
+      con.connect(function(err) {
+          if(err) {       
+              conresult = 'Error: Unable to connect to database.';
+              console.log(conresult + ": " + err);
+              throw err;
+          }
+          console.log("Connected!");
+          conresult = "Successfully connected to " + conn_string.user + '@' + conn_string.host;
+          console.log(conresult);
+          let sql_conf = "UPDATE licenses SET lic_status = 'active', lic_start = " + today_str + " WHERE email_addr='"+req.query.email_addr+"' and school_id='"+req.query.school_id+"' and school_email='"+req.query.school_email+"'";//license_no = " + lic_no
+          con.query(sql_conf, function (err, result) {
+            if(err) throw err;
+              conresult = "License status for " + req.query.email_addr + " updated.";
+              console.log(conresult);
+              res.json({status: 'OK', message: conresult})
+              //res.send(conresult);
+          });
+  
+          con.end((err)=>{
+            if(err) throw err;
+          });
+        });     
+  }
+  else if(req.query.service=='pricing'){
+    const today = new Date();
+    const today_str = today.toISOString();
+    
+    let conresult = 'Ready to connect';
+      const conn_string = {
+          host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
+          user: "root",//root
+          password: "ROOTuser12!",//;e_xbAi*f0ae
+          database: "logindb"
+      };
+
+      var con = mysql.createConnection({
+          host: conn_string.host,
+          user: conn_string.user,//root
+          password: conn_string.password,//;e_xbAi*f0ae
+          database: conn_string.database
+      });
+      
+      con.connect(function(err) {
+          if(err) {       
+              conresult = 'Error: Unable to connect to database.';
+              console.log(conresult + ": " + err);
+              throw err;
+          }
+          console.log("Connected!");
+          conresult = "Successfully connected to " + conn_string.user + '@' + conn_string.host;
+          console.log(conresult);
+          //let sql_conf = "UPDATE licenses SET lic_status = 'active', lic_start = " + today_str + " WHERE email_addr='"+req.query.email_addr+"' and school_id='"+req.query.school_id+"' and school_email='"+req.query.school_email+"'";//license_no = " + lic_no
+          let sql_pr = "INSERT INTO pricing (account_no, bank_name, bank_swift, bank_sort, naira_per_dollar, monthly_cost, pricing_date, annual_discount) VALUES (" + "'" + req.query.account_no +  "'" + "," + "'" + req.query.bank_name +  "'" + "," + "'" + req.query.bank_swift +  "'" + "," + "'" + req.query.bank_sort +  "'" + "," + "'" + req.query.naira_per_dollar +  "'" + "," + "'" + req.query.monthly_cost +  "'" + "," +  "'" + today_str +  "'" + "," + "'" + req.query.annual_discount +  "'" + ")";
+          con.query(sql_pr, function (err, result) {
+            if(err) throw err;
+              conresult = "1 pricing record inserted.";
+              console.log(conresult);
+              res.json({status: 'OK', message: conresult})
+              //res.send(conresult);
+          });
+  
+          con.end((err)=>{
+            if(err) throw err;
+          });
+        });     
   }
 });
 
