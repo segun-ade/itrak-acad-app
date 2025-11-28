@@ -380,9 +380,9 @@ const handleLicenseCheckChange = (event) => {
 ///         alert(JSON.stringify(response));
          if(response.data.user_valid == true) {
               alert("You have been successfully logged in.");
-              if(userid=='itrak-admin2511'){
+              if(response.data.userid=='itrak-admin2511'){
                 displayPricing();
-              } else if(userid=='itrak-admin2601'){
+              } else if(response.data.userid=='itrak-admin2601'){
                 displayConfirm();
               } else {
                 setUserValid(true);
