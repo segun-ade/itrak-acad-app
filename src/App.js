@@ -215,9 +215,9 @@ let displayRFQ = () => document.getElementById("RFQ").style.display = "flex";
 
 let displayLicense = () => document.getElementById("license").style.display = "flex";
 
-let displayPricing = () => document.getElementById("license").style.display = "flex";
+let displayPricing = () => document.getElementById("pricing").style.display = "flex";
 
-let displayConfirm = () => document.getElementById("license").style.display = "flex";
+let displayConfirm = () => document.getElementById("confirm").style.display = "flex";
 
 function HomePage() {
 
