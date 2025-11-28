@@ -200,11 +200,11 @@ function removeLicense() {
 }
 
 function removeConfirm() {
-  document.getElementById("license").style.display = "none";
+  document.getElementById("confirm").style.display = "none";
 }
 
 function removePricing() {
-  document.getElementById("license").style.display = "none";
+  document.getElementById("pricing").style.display = "none";
 }
 
 let displayLogin = () => document.getElementById("login").style.display = "flex";
