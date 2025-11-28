@@ -423,7 +423,7 @@ app.get('/newuser', function(req, res) {
             //      const curYear = curDate.getFullYear(); 
             //        const curMonth = curDate.getMonth() + 1;
             //        const curDay = curDate.getDate();
-                    const expire_date = lic_expire_date.toISOString();
+                    const expire_date = lic_expire_date.toString();
 
                     var con = mysql.createConnection({
                     host: conn_string.host,
