@@ -190,9 +190,8 @@ app.get('/newuser', function(req, res) {
                     const per_user_mthly_license_cost =  result[0].monthly_cost;
                     const annual_discount =  result[0].annual_discount;
 
-        //res.json({message: "Ready to connect"});
-      let conresult = 'Ready to connect';
-      //let user_license = 'None'; req.query.students_no + ` students for ` + req.query.duration
+      ////let conresult = 'Ready to connect';
+      
       //let dollar_rate = 1500;//naira per dollar from DB based on http req location
       const user_currency = 'NGN';//currency from DB based on http req location
       //let per_user_mthly_license_cost = 6.99;//in dollar  from DB based on http req location
@@ -227,7 +226,7 @@ app.get('/newuser', function(req, res) {
           database: "logindb"
       };*/
   
-//newuser?email_addr=' + email_addr + '&school=' + school + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
+          //newuser?email_addr=' + email_addr + '&school=' + school + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
       const email_string = {
           from: "Itrak Technology Company <info@itraktech.com>",
@@ -380,11 +379,10 @@ app.get('/newuser', function(req, res) {
             res.send(conresult);
           }
       });
-    });
-    con.end((err)=>{
-     if(err) throw err;
-    });
-      
+      con.end((err)=>{
+       if(err) throw err;
+      });
+    });   
   }
   else if(req.query.service=='license')
   {
