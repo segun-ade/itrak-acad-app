@@ -208,26 +208,47 @@ app.get('/newuser', function(req, res) {
       const RFQ_Date = curDate.toISOString();
       const school_names = req.query.school.split(" ");
       const firstletters = school_names.map(name => name[0]);
-      const school_id = firstletters.toString().replace(/,/g, "") + curDay + curMonth + curYear;
-      
+      let school_id = firstletters.toString().replace(/,/g, "") + curDay + curMonth + curYear;
+      //let user_type = 'school-admin';
       const currency_formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: user_currency
       });
       const license_cost = currency_formatter.format(lic_cost);
 
+        //user_type = 'parent';
+        
+        var con = mysql.createConnection({
+          host: conn_string.host,
+          user: conn_string.user,//root
+          password: conn_string.password,//;e_xbAi*f0ae
+          database: conn_string.database
+      });
+      
+      con.connect(function(err) {
+          if(err) {       
+              conresult = 'Error: Unable to connect to database.';
+              console.log(conresult + ": " + err);
+              throw err;
+          }
+          console.log("Connected!");
+          conresult = "Successfully connected to " + conn_string.user + '@' + conn_string.host;
+          console.log(conresult);
+          let sql_l = "SELECT school_id from licenses WHERE school_email='"+req.query.school_email+"'";
+          con.query(sql_l, function (err, result) {
+              if(err) throw err;
+              if (req.query.email_addr != req.query.school_email){
+                if (result.length) {
+                  school_id = result[0].school_id;
+                }else {
+                  school_id = 'UNLICENSED SCHOOL';
+                }
+              }
+/************************* */
+
       console.log(school_id);
       console.log(RFQ_Date);
 
-     /* const conn_string = {
-          host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
-          user: "root",//root
-          password: "ROOTuser12!",//;e_xbAi*f0ae
-          database: "logindb"
-      };*/
-  
-          //newuser?email_addr=' + email_addr + '&school=' + school + '&students_no=' + studentsNo + '&duration=' + duration + '&autorenew=' + autorenew)
-          //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
       const email_string = {
           from: "Itrak Technology Company <info@itraktech.com>",
           to: req.query.email_addr,
@@ -271,6 +292,8 @@ app.get('/newuser', function(req, res) {
                             School: <strong>` + req.query.school + `</strong>
                             <br />
                             School Email: <strong>` + req.query.school_email + `</strong>
+                            <br />
+                            School ID: <strong>` + school_id + `</strong>
                             <br />
                             No of Students to be registered: <strong>` + req.query.students_no + `</strong>
                             <br />
@@ -373,6 +396,14 @@ app.get('/newuser', function(req, res) {
         });
         //res.json({success: 'get call succeed!', url: req.url});
     
+
+/**************************** */
+              });
+              con.end((err)=>{
+                if(err) throw err;
+              });
+            });
+      
           } else {
             conresult = "Error: pls contact Admin";
             console.log("No pricing data found!");
