@@ -672,7 +672,7 @@ app.get('/newuser', function(req, res) {
           console.log("Connected!");
           conresult = "Successfully connected to " + conn_string.user + '@' + conn_string.host;
           console.log(conresult);
-          let sql_conf = "UPDATE licenses SET lic_status = 'active', lic_start = " + today_str + " WHERE email_addr='"+req.query.email_addr+"' and school_id='"+req.query.school_id+"' and school_email='"+req.query.school_email+"'";//license_no = " + lic_no
+          let sql_conf = "UPDATE licenses SET lic_status = 'active', lic_start = '" + today_str + "' WHERE email_addr='"+req.query.email_addr+"' and school_id='"+req.query.school_id+"' and school_email='"+req.query.school_email+"'";//license_no = " + lic_no
           con.query(sql_conf, function (err, result) {
             if(err) throw err;
               conresult = "License status for " + req.query.email_addr + " updated.";
