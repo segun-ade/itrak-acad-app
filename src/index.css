@@ -550,6 +550,8 @@ display:inline-block;
     left: 0px;
     justify-content: center;
     z-index: 1;
+    overflow-y:auto;
+    overflow-x:hidden;
 }
 
 .login-container{

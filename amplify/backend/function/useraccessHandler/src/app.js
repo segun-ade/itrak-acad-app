@@ -188,15 +188,18 @@ app.get('/newuser', function(req, res) {
                     const bank_name = result[0].bank_name;
                     const dollar_rate =  result[0].naira_per_dollar;
                     const per_user_mthly_license_cost =  result[0].monthly_cost;
+                    const monthly_storage_cost =  result[0].storage_cost;
                     const annual_discount =  result[0].annual_discount;
 
       ////let conresult = 'Ready to connect';
       
       //let dollar_rate = 1500;//naira per dollar from DB based on http req location
       const user_currency = 'NGN';//currency from DB based on http req location
-      //let per_user_mthly_license_cost = 6.99;//in dollar  from DB based on http req location
+      //let per_user_mthly_license_cost = 6.99;//in dollar  from DB based on http req location  
       let lic_cost = req.query.students_no * req.query.duration * per_user_mthly_license_cost * dollar_rate;
+      let storage_cost = req.query.duration * monthly_storage_cost * dollar_rate;
       lic_cost = (req.query.duration >= 12) ? lic_cost * (1 - annual_discount/100) : lic_cost;
+      const total_cost = (req.query.email_addr != req.query.school_email) ? lic_cost : lic_cost + storage_cost;
       console.log('Autorenew: ', req.query.autorenew)
       let autorenew_license = (req.query.autorenew=='true') ? "Yes" : "No";
       //let account_no = '0168032083';// from DB
@@ -215,6 +218,8 @@ app.get('/newuser', function(req, res) {
         currency: user_currency
       });
       const license_cost = currency_formatter.format(lic_cost);
+      const upload_cost = currency_formatter.format(storage_cost);
+      const total_lic_cost = currency_formatter.format(total_cost);
 
         //user_type = 'parent';
         
@@ -248,7 +253,12 @@ app.get('/newuser', function(req, res) {
 
       console.log(school_id);
       console.log(RFQ_Date);
-
+      const storage_cost_msg = `
+        Base (Storage) Cost for <strong>` + req.query.duration + `</strong> months: <strong>` + upload_cost + `</strong>
+        <br />
+        <br /> 
+      `
+      const upload_cost_msg = (req.query.email_addr != req.query.school_email) ? '' : storage_cost_msg;
       const email_string = {
           from: "Itrak Technology Company <info@itraktech.com>",
           to: req.query.email_addr,
@@ -301,8 +311,9 @@ app.get('/newuser', function(req, res) {
                             <br />
                             Autorenew License: <strong>` + autorenew_license + `</strong>
                             <br />
-                            <br /> 
-                            License Cost for <strong>` + req.query.students_no + `</strong> student(s) for <strong>` + req.query.duration + `</strong> months: <strong>` + license_cost + `</strong>
+                            <br />`
+                            + upload_cost_msg +
+                            `License Cost for <strong>` + req.query.students_no + `</strong> student(s) for <strong>` + req.query.duration + `</strong> months: <strong>` + license_cost + `</strong>
                             <br />
                             <br /> 
                             Kindly pay the required sum of <strong>` + license_cost + `</strong> into below account:
@@ -383,7 +394,7 @@ app.get('/newuser', function(req, res) {
                   console.log(conresult);
                   res.send(conresult);
                   });
-  
+//UPDATE HERE//  
                   con.end((err)=>{
                       if(err) throw err;
                   });
@@ -746,7 +757,7 @@ app.get('/newuser', function(req, res) {
           conresult = "Successfully connected to " + conn_string.user + '@' + conn_string.host;
           console.log(conresult);
           //let sql_conf = "UPDATE licenses SET lic_status = 'active', lic_start = " + today_str + " WHERE email_addr='"+req.query.email_addr+"' and school_id='"+req.query.school_id+"' and school_email='"+req.query.school_email+"'";//license_no = " + lic_no
-          let sql_pr = "INSERT INTO pricing (account_no, bank_name, bank_swift, bank_sort, naira_per_dollar, monthly_cost, pricing_date, annual_discount) VALUES (" + "'" + req.query.account_no +  "'" + "," + "'" + req.query.bank_name +  "'" + "," + "'" + req.query.bank_swift +  "'" + "," + "'" + req.query.bank_sort +  "'" + "," + "'" + req.query.naira_per_dollar +  "'" + "," + "'" + req.query.monthly_cost +  "'" + "," +  "'" + today_str +  "'" + "," + "'" + req.query.annual_discount +  "'" + ")";
+          let sql_pr = "INSERT INTO pricing (account_no, bank_name, bank_swift, bank_sort, naira_per_dollar, storage_cost, monthly_cost, pricing_date, annual_discount) VALUES (" + "'" + req.query.account_no +  "'" + "," + "'" + req.query.bank_name +  "'" + "," + "'" + req.query.bank_swift +  "'" + "," + "'" + req.query.bank_sort +  "'" + "," + "'" + req.query.naira_per_dollar +  "'" + "," + "'" + req.query.storage_cost + "'" + "," + "'" + req.query.monthly_cost + "'" + "," +  "'" + today_str +  "'" + "," + "'" + req.query.annual_discount +  "'" + ")";
           con.query(sql_pr, function (err, result) {
             if(err) throw err;
               conresult = "1 pricing record inserted.";
@@ -1045,12 +1056,16 @@ app.get('/checkreguser', (req, res) => {
           conresult = "Successfully connected to " + conn_string.user + '@' + conn_string.host;
           console.log(conresult);
           
-          let sql = "SELECT pwd from itrak_user WHERE email_addr="+"'"+req.query.user_id+"'";
+          //let sql = "SELECT pwd from itrak_user WHERE email_addr="+"'"+req.query.user_id+"'";
+          let sql = "SELECT * from itrak_user WHERE email_addr="+"'"+req.query.user_id+"'";
           //let sql = "INSERT INTO itrak_user (email_addr, pwd, user_type) VALUES (" + req.query.email_addr + "," + req.query.pwd + "," +req.query.user_type + ")";
           con.query(sql, function (err, result) {
               if(err) throw err;
               if (result.length) {
                   let userpwd = result[0].pwd;
+                  let user_type = result[0].user_type;
+                  let lic_status = result[0].lic_status;
+                  let lic_expire_date = result[0].lic_expire_date;
                   console.log("Submitted pwd: "+req.query.pwd);
                   console.log("pwd for "+req.query.user_id+" is: "+ userpwd);
                   /*var i = 0;
@@ -1106,9 +1121,22 @@ app.get('/checkreguser', (req, res) => {
                           }
                           //req.session.user = conresult;
                           //req.session.userid = req.query.user_id;
-
+                          if(user_type=='student'){
+                            if(lic_status=='active'){
+                              const exp_date = new Date(lic_expire_date);
+                              const today = new Date();
+                              if(exp_date < today){
+                                console.log('License is expired')
+                                conresult = 'expired license';//deactivate if neccessary
+                              }
+                            } else {
+                              console.log('License is inactive')
+                              conresult = 'inactive';
+                            }
+                          }
                           res.send({"user_valid": conresult, "sessions": userSession, "userid": req.query.user_id});//
-                      } else {
+                      
+                        } else {
                           res.send("Wrong username or password. Pls check your inputs and try again!")
                       }
                       

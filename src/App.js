@@ -591,6 +591,7 @@ const handleLicenseCheckChange = (event) => {
       const bank_swift = pricinginputs.bank_swift || '';
       const bank_sort = pricinginputs.bank_sort || '';   
       const naira_per_dollar = pricinginputs.naira_per_dollar;
+      const storage_cost = pricinginputs.storage_cost
       const monthly_cost = pricinginputs.monthly_cost
       const annual_discount = pricinginputs.annual_discount; 
       const service = 'pricing'; 
@@ -600,7 +601,7 @@ const handleLicenseCheckChange = (event) => {
       }else{
             //alert("Pls click OK to continue.");
             //'https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login='
-          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?account_no=' + account_no + '&bank_name=' + bank_name + '&bank_swift=' + bank_swift + '&bank_sort=' + bank_sort + '&naira_per_dollar=' + naira_per_dollar + '&monthly_cost=' + monthly_cost + '&annual_discount=' + annual_discount + '&service=' + service)
+          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?account_no=' + account_no + '&bank_name=' + bank_name + '&bank_swift=' + bank_swift + '&bank_sort=' + bank_sort + '&naira_per_dollar=' + naira_per_dollar + '&storage_cost=' + storage_cost + '&monthly_cost=' + monthly_cost + '&annual_discount=' + annual_discount + '&service=' + service)
           //API.post(itrakacadAPI, '/new_user?email_addr=' + reginputs.email_addr + '&pwd=' + reginputs.pwd + '&user_type=' + reginputs.user_type)
 /*          post({
             apiName: itrakacadAPI,
@@ -1227,6 +1228,13 @@ const handleLicenseCheckChange = (event) => {
                       <input type="text" placeholder="Enter Exchange Rate - NGN/USD" id="naira_per_dollar" 
                           name="naira_per_dollar"
                           value={pricinginputs.naira_per_dollar || ""}                                                        
+                          onChange={handlePricingInputChange} 
+                      />
+
+                      <label for="storage_cost" className="header-text">User Monthly Storage Cost</label>
+                      <input type="text" placeholder="Enter User Monthly Cost" id="storage_cost" 
+                          name="storage_cost"
+                          value={pricinginputs.storage_cost || ""}                                                        
                           onChange={handlePricingInputChange} 
                       />
 
