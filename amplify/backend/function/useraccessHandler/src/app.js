@@ -157,6 +157,7 @@ app.get('/newuser', function(req, res) {
 
   if(req.query.service=='rfq'){
     let conresult = 'Ready to connect';
+    let user_stat = 'not registered';
       const conn_string = {
           host: "logindb.cn280y6asncv.us-east-1.rds.amazonaws.com",
           user: "root",//root
@@ -240,6 +241,8 @@ app.get('/newuser', function(req, res) {
           conresult = "Successfully connected to " + conn_string.user + '@' + conn_string.host;
           console.log(conresult);
           let sql_l = "SELECT school_id from licenses WHERE school_email='"+req.query.school_email+"'";
+          //let sql_l = "SELECT * from licenses WHERE school_email='"+req.query.school_email+"'";
+
           con.query(sql_l, function (err, result) {
               if(err) throw err;
               if (req.query.email_addr != req.query.school_email){
@@ -316,7 +319,7 @@ app.get('/newuser', function(req, res) {
                             `License Cost for <strong>` + req.query.students_no + `</strong> student(s) for <strong>` + req.query.duration + `</strong> months: <strong>` + license_cost + `</strong>
                             <br />
                             <br /> 
-                            Kindly pay the required sum of <strong>` + license_cost + `</strong> into below account:
+                            Kindly pay the required sum of <strong>` + total_lic_cost + `</strong> into below account:
                             <br />
                             <br />
                             Account No: <strong>` + account_no + `</strong>
@@ -360,7 +363,34 @@ app.get('/newuser', function(req, res) {
     .then((info) => {              
       console.log('Email sent: ', info.response)
       //conresult = 'OK';                      
+/****************** */
 
+var con = mysql.createConnection({
+          host: conn_string.host,
+          user: conn_string.user,//root
+          password: conn_string.password,//;e_xbAi*f0ae
+          database: conn_string.database
+      });
+      
+      con.connect(function(err) {
+          if(err) {       
+              conresult = 'Error: Unable to connect to database.';
+              console.log(conresult + ": " + err);
+              throw err;
+          }
+          console.log("Connected!");
+          conresult = "Successfully connected to " + conn_string.user + '@' + conn_string.host;
+          console.log(conresult);
+          //let sql_l = "SELECT school_id from licenses WHERE school_email='"+req.query.school_email+"'";
+          let sql_lic = "SELECT * from licenses WHERE email_addr='"+req.query.email_addr+"' and school_email='"+req.query.school_email+"'";
+
+          con.query(sql_lic, function (err, result) {
+              if(err) throw err;
+              if (result.length){
+                user_stat = 'registered';
+              }
+
+/**************** */
       var con = mysql.createConnection({
           host: conn_string.host,
           user: conn_string.user,//root
@@ -381,10 +411,13 @@ app.get('/newuser', function(req, res) {
         //*bcrypt//  bcrypt.hash(req.query.pwd,saltRounds,(err,hash)=>{
         //*bcrypt//      if(err) throw err;
               //let sql = "INSERT INTO itrak_user (email_addr, pwd, user_type) VALUES (" + "'" + req.query.email_addr +  "'" + "," +  "'" + req.query.pwd +  "'" + "," +  "'" + req.query.user_type +  "'" + ")";
-              let sql = "INSERT INTO licenses (email_addr, school, school_id, school_email, phone_no, students_no, duration, autorenew, rfq_date) VALUES (" + "'" + req.query.email_addr +  "'" + "," + "'" + req.query.school +  "'" + "," + "'" + school_id +  "'" + "," + "'" + req.query.school_email +  "'" + "," + "'" + req.query.phone_no +  "'" + "," + "'" + req.query.students_no +  "'" + "," +  "'" + req.query.duration +  "'" + "," + "'" + autorenew_license +  "'" + "," + "'" + RFQ_Date +  "'" + ")";
+              let sql_ins = "INSERT INTO licenses (email_addr, school, school_id, school_email, phone_no, students_no, duration, autorenew, rfq_date) VALUES (" + "'" + req.query.email_addr +  "'" + "," + "'" + req.query.school +  "'" + "," + "'" + school_id +  "'" + "," + "'" + req.query.school_email +  "'" + "," + "'" + req.query.phone_no +  "'" + "," + "'" + req.query.students_no +  "'" + "," +  "'" + req.query.duration +  "'" + "," + "'" + autorenew_license +  "'" + "," + "'" + RFQ_Date +  "'" + ")";
+              let sql_upd = "UPDATE licenses SET email_addr = " + req.query.email_addr + ", school = " + req.query.school + ", school_id = " + school_id + ", school_email = " + req.query.school_email + ", phone_no = " + req.query.phone_no + ", students_no = " + req.query.students_no + ", duration = " + req.query.duration + ", autorenew = " + autorenew_license + ", rfq_date = " + RFQ_Date + " WHERE license_no = " + lic_no;
+              sql = (user_stat=='registered') ? sql_upd : sql_ins;
               con.query(sql, function (err, result) {
                   if(err) throw err;
-                  console.log("1 new RFQ record inserted.");
+                  query_msg = (user_stat=='registered') ? "1 new RFQ record updated." : "1 new RFQ record inserted.";
+                  console.log(query_msg);
                   /*var i = 0;
                   result.forEach(element => {
                        console.log("Query Result" + i + ": " + result[i].user_type + " " + result[i].email_addr + " " + result[i].pwd);
@@ -394,12 +427,16 @@ app.get('/newuser', function(req, res) {
                   console.log(conresult);
                   res.send(conresult);
                   });
-//UPDATE HERE//  
                   con.end((err)=>{
                       if(err) throw err;
                   });
-        //*bcrypt//      });
-          });
+                });
+
+              });
+              con.end((err)=>{
+                if(err) throw err;
+              });
+            });
         })
         .catch ((err) =>{
           console.error('Error sending email: ', err)
@@ -719,7 +756,103 @@ app.get('/newuser', function(req, res) {
             if(err) throw err;
               conresult = "License status for " + req.query.email_addr + " updated.";
               console.log(conresult);
-              res.json({status: 'OK', message: conresult})
+              /******************************** */
+
+        const email_string = {
+          from: "Itrak Technology Company <info@itraktech.com>",
+          to: req.query.email_addr,
+          cc: "admin@itraktech.com",
+          replyTo: "info@itraktech.com",//;e_xbAi*f0ae
+          subject: "ITRAK Academic App Payment Confirmation",
+      //  text: "Hello User! Thank you for choosing our software to monitor and boost the performance of your students.\n\nKindly see your registration details below:\n\nUsername: " + req.query.email_addr + "\nUser Type: " + req.query.user_type + "\n\nBest Regards, \n\nService Delivery Team\nItrak Technology Company Ltd",
+          html: `<div style="` + loginHeader + `">` +
+                  `<table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="left"><img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/></td>
+                        <td align="center"><h1 style="text-align:center";>ITrak Technology Company Limited</h1></td>
+                        <td align="right"><h3 style="text-align:right"; "margin-left:50px">(RC-8893573)</h3></td>
+                      </tr>
+                    </table>
+                    <div style="margin:0 auto">
+                      <p style="text-align:center"; "font-size:1.2em">Electrical Engineering, Electronics Manufacturing, Software Development and ICT Services.</p>
+                    </div>
+                  </div>
+                  <div style="` + bodyContainer  +`" id="body-container"> 
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center"><h2 style="text-align:center">Academic App - Student Registration</h2></td>
+                      </tr>
+                      <tr>
+                        <td align="center">
+                          <p style="` + bodyContent  +`">
+                            Dear ` + `User` + `, 
+                            <br />
+                            <br />
+                            Thank you for requesting a license to use ITRAK Academic App to monitor and boost the performance of your students.
+                            <br />
+                            <br />  
+                            Your payment has been confirmed with the following details:
+                            <br />
+                            <br />
+                            Parent's Email: <strong>` + req.query.email_addr + `</strong>
+                            <br />
+                            School ID: <strong>` + req.query.school_id + `</strong>
+                            <br />
+                            School Email: <strong>` + req.query.school_email + `</strong>
+                            <br />
+                            <br /> 
+                            Kindly visit <a href="www.itraktech.com">our website</a> and click on <strong><i>Purchase License</i></strong> to register your student(s) in the application portal.
+                            <br />
+                            <br />
+                            Please do not hesitate to <a href="info@itraktech.com">Contact Us</a> if you have any questions or need help during your registration.
+                            <br />
+                            <br />
+                            Thanks and Best Regards,
+                            <br />
+                            <br />
+                            Support Team
+                            <br />
+                            Itrak Technology Company Ltd
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div style="` + footerContainer  +`">
+                    <img src="itrak-logo.png" id="company-logo" style="` + logoImg  +`"/>
+                    <div style="` + footerLinks  +`">
+                      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                          <td align="left" style="padding:20"><a href="www.itraktech.com">Contact Us</a></td>
+                          <td align="right" style="padding:20"><a href="www.itraktech.com">Terms &amp; Conditions</a></td>
+                        </tr>
+                        <tr>
+                          <td align="left" style="padding:20"><a href="www.itraktech.com">Purchase License</a></td>
+                          <td align="right" style="padding:20"><a href="www.itraktech.com">Renew License</a></td>
+                        </tr>
+                      </table>
+                    </div>
+                    <p style="text-align:center">Copyright 2024 iTrak Software is a licensed product of iTrak Technology Company Limited. All rights reserved.</p>
+                  </div>`
+        };
+
+                        mailsender.sendMail(email_string)
+                        .then((info) => {              
+                          console.log('Email sent: ', info.response);
+                          conresult = 'OK';
+                          //res.send(conresult);
+                          //res.json({status: 'OK', student_id: student_id, user_category: 'student', lic_status: lic_status, lic_expire_date: expire_date})
+                          res.json({status: 'OK', message: conresult + ' Email sent.'});
+                        })
+                        .catch ((err) =>{
+                          console.error('Error sending email: ', err)
+                          //res.send('Invalid email');
+                          res.json({status: 'Invalid email', message: 'Payment confirmed. Unable to send email.'});
+                        });
+
+
+              /******************************** */
+              //*/res.json({status: 'OK', message: conresult})//*/
               //res.send(conresult);
           });
   

@@ -1056,7 +1056,7 @@ const handleLicenseCheckChange = (event) => {
                       <h5>Request For Quote</h5>
 
                       <label for="username-r" className="header-text">Username </label>
-                      <span className="prompt-text">For School Admin: Enter School Email </span>
+                      <span className="prompt-text">If School Admin: Enter School Email </span>
                       <input type="text" placeholder="Enter your registered e-mail address" id="user-email" 
                           name="email_addr"
                           value={RFQinputs.email_addr || ""}                                                        
@@ -1078,7 +1078,7 @@ const handleLicenseCheckChange = (event) => {
                       />
 
                       <label for="school_email" className="header-text">School Email</label>
-                      <span className="prompt-text">For School Admin: Enter same email above</span>
+                      <span className="prompt-text">If School Admin: Enter same email above</span>
                       <input type="text" placeholder="Enter Email Address of the School" id="school_email" 
                           name="school_email"
                           value={RFQinputs.school_email || ""}                                                        
