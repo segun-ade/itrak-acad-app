@@ -383,10 +383,11 @@ var con = mysql.createConnection({
           console.log(conresult);
           //let sql_l = "SELECT school_id from licenses WHERE school_email='"+req.query.school_email+"'";
           let sql_lic = "SELECT * from licenses WHERE email_addr='"+req.query.email_addr+"' and school_email='"+req.query.school_email+"'";
-
+          let lic_no = 0;
           con.query(sql_lic, function (err, result) {
               if(err) throw err;
               if (result.length){
+                lic_no = result[0].license_no;
                 user_stat = 'registered';
               }
 

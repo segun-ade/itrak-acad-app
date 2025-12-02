@@ -565,9 +565,6 @@ display:inline-block;
     display:flex;
     justify-content:center;
     z-index:1;
-
-    overflow-y:auto;
-    overflow-x:hidden;
 }
 
 .login-wrapper {
@@ -583,9 +580,6 @@ display:inline-block;
     border-radius:5%;
     display:block;
     z-index:2;
-
-    overflow-y:auto;
-    overflow-x:hidden;
 }
 .login-header{
     position:relative;
