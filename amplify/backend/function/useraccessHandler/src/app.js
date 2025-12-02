@@ -390,15 +390,16 @@ var con = mysql.createConnection({
                 lic_no = result[0].license_no;
                 user_stat = 'registered';
               }
+  
+/***************** */
 
-/**************** */
       var con = mysql.createConnection({
           host: conn_string.host,
           user: conn_string.user,//root
           password: conn_string.password,//;e_xbAi*f0ae
           database: conn_string.database
       });
-      
+       
       con.connect(function(err) {
           if(err) {       
               conresult = 'Error: Unable to connect to database.';
@@ -413,7 +414,7 @@ var con = mysql.createConnection({
         //*bcrypt//      if(err) throw err;
               //let sql = "INSERT INTO itrak_user (email_addr, pwd, user_type) VALUES (" + "'" + req.query.email_addr +  "'" + "," +  "'" + req.query.pwd +  "'" + "," +  "'" + req.query.user_type +  "'" + ")";
               let sql_ins = "INSERT INTO licenses (email_addr, school, school_id, school_email, phone_no, students_no, duration, autorenew, rfq_date) VALUES (" + "'" + req.query.email_addr +  "'" + "," + "'" + req.query.school +  "'" + "," + "'" + school_id +  "'" + "," + "'" + req.query.school_email +  "'" + "," + "'" + req.query.phone_no +  "'" + "," + "'" + req.query.students_no +  "'" + "," +  "'" + req.query.duration +  "'" + "," + "'" + autorenew_license +  "'" + "," + "'" + RFQ_Date +  "'" + ")";
-              let sql_upd = "UPDATE licenses SET email_addr = " + req.query.email_addr + ", school = " + req.query.school + ", school_id = " + school_id + ", school_email = " + req.query.school_email + ", phone_no = " + req.query.phone_no + ", students_no = " + req.query.students_no + ", duration = " + req.query.duration + ", autorenew = " + autorenew_license + ", rfq_date = " + RFQ_Date + " WHERE license_no = " + lic_no;
+              let sql_upd = "UPDATE licenses SET email_addr = '" + req.query.email_addr + "', school = '" + req.query.school + "', school_id = '" + school_id + "', school_email = '" + req.query.school_email + "', phone_no = '" + req.query.phone_no + "', students_no = '" + req.query.students_no + "', duration = '" + req.query.duration + "', autorenew = '" + autorenew_license + "', rfq_date = '" + RFQ_Date + "' WHERE license_no = '" + lic_no + "'";
               sql = (user_stat=='registered') ? sql_upd : sql_ins;
               con.query(sql, function (err, result) {
                   if(err) throw err;

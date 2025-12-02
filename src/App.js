@@ -506,7 +506,7 @@ const handleLicenseCheckChange = (event) => {
           })*/
           .then(response => {
              console.log(response.data);
-             alert(response.data);
+             //alert(response.data);
              if(response.data=="OK") {
                   alert("RFQ has been submitted successfully! \nPlease check your email for next steps.");
                   removeRFQ();
