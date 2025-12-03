@@ -557,7 +557,7 @@ const handleLicenseCheckChange = (event) => {
           })*/
           .then(response => {
              console.log(response.data);
-             alert(response.data);
+             //alert(response.data);
              if(response.data.status=="OK") {
                 //  alert("You have been successfully registered! \nPlease check your email for next steps.");
                   alert("You have been successfully registered! \nPlease create a strong password to access your account after now.");
@@ -648,7 +648,7 @@ const handleLicenseCheckChange = (event) => {
           axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school_id=' + school_id + '&school_email=' + school_email + '&service=' + service)
           .then(response => {
              console.log(response.data);
-             alert(response.data);
+             //alert(response.data);
              if(response.data.status=="OK") {
                 //  alert("You have been successfully registered! \nPlease check your email for next steps.");
                   alert(response.data.message);
@@ -926,6 +926,7 @@ const handleLicenseCheckChange = (event) => {
                           </a>
                           <a style={{cursor:"pointer", textDecoration:"underline"}} onClick={displayLicense}>Purchase License</a>
                           <a href="">Renew License</a>
+                          <a style={{cursor:"pointer", textDecoration:"underline"}} onClick={displayLicense}>Recorder App</a>
                       </div>
                       <p>Copyright 2024 iTrak Software is a licensed product of iTrak Technology Company</p>
                   </div>
