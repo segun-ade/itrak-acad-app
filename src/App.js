@@ -207,6 +207,10 @@ function removePricing() {
   document.getElementById("pricing").style.display = "none";
 }
 
+function removeRecorder() {
+  document.getElementById("recorder").style.display = "none";
+}
+
 let displayLogin = () => document.getElementById("login").style.display = "flex";
 
 let displaySignUp = () => document.getElementById("signUp").style.display = "flex";
@@ -219,12 +223,15 @@ let displayPricing = () => document.getElementById("pricing").style.display = "f
 
 let displayConfirm = () => document.getElementById("confirm").style.display = "flex";
 
+let displayRecorder = () => document.getElementById("recorder").style.display = "flex";
+
 function HomePage() {
 
   const [inputs, setInputs] = useState({});
   const [reginputs, setRegInputs] = useState({});
   const [RFQinputs, setRFQInputs] = useState({});
   const [licenseinputs, setLicenseInputs] = useState({});
+  const [recorderinputs, setRecorderInputs] = useState({});
   const [confirminputs, setConfirmInputs] = useState({});
   const [pricinginputs, setPricingInputs] = useState({});
   const [rem_login, setRemLoginChecked] = useState(false);
@@ -315,6 +322,8 @@ const handleLicenseCheckChange = (event) => {
         }
      }
      alert("Application loading. Pls wait...");
+     const cur_date = new Date();
+     setRecorderInputs(values => ({ ...values, ['term_begins']: cur_date }));
      checkuser()
      .catch((error) => {
         console.log(error);
@@ -445,6 +454,12 @@ const handleLicenseCheckChange = (event) => {
       setConfirmInputs(values => ({ ...values, [name]: value }));
   }
 
+  const handleRecorderInputChange = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      setRecorderInputs(values => ({ ...values, [name]: value }));
+  }
+
   const handleUserRegSubmit = (event) => {
       event.preventDefault();
       const email_addr = reginputs.email_addr;
@@ -523,6 +538,47 @@ const handleLicenseCheckChange = (event) => {
           })
       }
       //alert("RFQ has been submitted successfully!");
+  }
+
+  const handleRecorderSubmit = (event) => {
+      
+      event.preventDefault();
+      const email_addr = recorderinputs.email_addr;
+      const school_id = recorderinputs.school_id;
+      const school_email = recorderinputs.school_email;
+      const session_id = recorderinputs.reg_no;   
+      const term = recorderinputs.term;
+      const term_begins = recorderinputs.term_begins;
+      const password = recorderinputs.password; 
+      const service = 'recorder'; 
+      if(email_addr==''||school_id==''||school_email==''||session_id==''||term==''||term_begins==''||password==''){
+          alert("Pls enter ALL required details to access the  App!");
+      }else{
+          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school_id=' + school_id + '&school_email=' + school_email + '&session_id=' + session_id + '&term=' + term + '&term_begins=' + term_begins + '&password=' + password + '&service=' + service)
+          .then(response => {
+             console.log(response.data);
+             //alert(response.data);
+             if(response.data.status=="OK") {
+                alert("Request has been submitted! \nPlease click below link to download the  Result Recording App.");
+                  removeRecorder();
+                  //setRegInputs(values => ({ ...values, ['email_addr']: response.data.student_id }));
+                  //setRegInputs(values => ({ ...values, ['user_type']: response.data.user_category }));
+                  //setRegInputs(values => ({ ...values, ['lic_status']: response.data.lic_status }));
+                  //setRegInputs(values => ({ ...values, ['lic_expire_date']: response.data.lic_expire_date }));
+                  //displaySignUp();
+
+             }else if(response.data=="Invalid email"){
+                  alert("Invalid email! Pls check your email address and try again!");
+             }  
+             else {
+                  alert("Submission Error! Pls check your inputs and try again! \nIf the problem persists, pls contact us.");
+             }   
+          })
+          .catch((err) => {
+              console.log("Unable to connect to the server.");
+              alert(err + ": Server Error! Unable to process your request at this time, pls try again later.\nIf the problem persists, pls contact us.");
+          })
+      }
   }
 
   const handleUserLicenseSubmit = (event) => {
@@ -702,13 +758,14 @@ const handleLicenseCheckChange = (event) => {
                                                           <a className="sub-link-item">iTrak Educational App</a>
                                                           <div className="sub-link-menu2">
                                                               <a className="sub-link-item" onClick={displayLicense}>Purchase License</a>
-                                                              <a className="sub-link-item">Renew License</a>
+                                                              <a className="sub-link-item" onClick={displayLicense}>Renew License</a>
+                                                              <a className="sub-link-item" onClick={displayRecorder}>Recorder App</a>
                                                               <div className="sub-link2">
                                                                   <a className="sub-link-item">Request Quotes - RFQ</a>
                                                                   <div className="sub-link-menu2">
-                                                                      <a className="sub-link-item">RFQ - Int. Students</a>
-                                                                      <a className="sub-link-item">RFQ - Ext. Students</a>
-                                                                      <a className="sub-link-item">RFQ - Company</a>
+                                                                      <a className="sub-link-item" onClick={displayRFQ}>RFQ - Int. Students</a>
+                                                                      <a className="sub-link-item" onClick={displayRFQ}>RFQ - Ext. Students</a>
+                                                                      <a className="sub-link-item" onClick={displayRFQ}>RFQ - Company</a>
                                                                   </div>
                                                               </div>
                                                           </div>
@@ -926,7 +983,7 @@ const handleLicenseCheckChange = (event) => {
                           </a>
                           <a style={{cursor:"pointer", textDecoration:"underline"}} onClick={displayLicense}>Purchase License</a>
                           <a href="">Renew License</a>
-                          <a style={{cursor:"pointer", textDecoration:"underline"}} onClick={displayLicense}>Recorder App</a>
+                          <a style={{cursor:"pointer", textDecoration:"underline"}} onClick={displayRecorder}>Recorder App</a>
                       </div>
                       <p>Copyright 2024 iTrak Software is a licensed product of iTrak Technology Company</p>
                   </div>
@@ -1292,6 +1349,72 @@ const handleLicenseCheckChange = (event) => {
                       />
 
                       <button type="submit">Confirm Payment</button>
+
+                      <a href="info@itraktech.com" className="prompt-text">Any questions? Contact us.</a>
+                  </form>
+              </div>
+          </div>
+          <div id="recorder" className="sign-up-window">
+              <div className="login-container" onClick={removeRecorder}></div>
+              <div id="reg-w" className="login-wrapper">
+                  <div className="login-header">
+                      <h1>ITrak Technology Company</h1>
+                      <img src="itrak-logo.png" id="company-logo"/>
+                  </div>
+                  <form id="recorder-form" className="login-content" onSubmit={handleRecorderSubmit}>
+
+                      <h5>Request Recorder App</h5>
+
+                      <label for="email_addr" className="header-text">Username</label>
+                      <input type="text" placeholder="Enter a registered email address" id="email_addr" 
+                          name="email_addr"
+                          value={recorderinputs.email_addr || ""}                                                        
+                          onChange={handleRecorderInputChange}                                                                                                                
+                      />
+
+                      <label for="password" className="header-text">Password</label>
+                      <input type="password" placeholder="***********" id="password"
+                          name="password"
+                          value={recorderinputs.password || ""}
+                          onChange={handleRecorderInputChange}
+                      />
+
+                      <label for="school_email" className="header-text">School Email</label>
+                      <input type="text" placeholder="Enter School Email Address" id="school_email" 
+                          name="school_email"
+                          value={recorderinputs.school_email || ""}                                                        
+                          onChange={handleRecorderInputChange} 
+                      />
+
+                      <label for="school_id" className="header-text">School ID</label>
+                      <input type="text" placeholder="Enter School ID" id="school_id" 
+                          name="school_id"
+                          value={recorderinputs.school_id || ""}                                                        
+                          onChange={handleRecorderInputChange} 
+                      />
+
+                      <label for="session_id" className="header-text">Session ID (YYYY-YYYY)</label>
+                      <input type="text" placeholder="Current Session ID: e.g. 2025-2026" id="session_id" 
+                          name="session_id"
+                          value={recorderinputs.session_id || ""}                                                        
+                          onChange={handleRecorderInputChange} 
+                      />
+
+                      <label for="term" className="header-text">Term (1st, 2nd or 3rd)</label>
+                      <input type="text" placeholder="Current Term: e.g. 2nd" id="term" 
+                          name="term"
+                          value={recorderinputs.term || ""}                                                        
+                          onChange={handleRecorderInputChange} 
+                      />
+
+                      <label for="term_begins" className="header-text">Term Begins</label>
+                      <input type="date" min="2025-01-01" id="term_begins" 
+                          name="term_begins"
+                          value={recorderinputs.term_begins || ""}                                                        
+                          onChange={handleRecorderInputChange} 
+                      />
+
+                      <button type="submit">Submit Request</button>
 
                       <a href="info@itraktech.com" className="prompt-text">Any questions? Contact us.</a>
                   </form>
