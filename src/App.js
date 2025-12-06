@@ -551,34 +551,50 @@ const handleLicenseCheckChange = (event) => {
       const term_begins = recorderinputs.term_begins;
       const password = recorderinputs.password; 
       const service = 'recorder'; 
+      const class_id = '';
+      let lic_expire = '2025-12-31'
+      let rem_login = false;
       if(email_addr==''||school_id==''||school_email==''||session_id==''||term==''||term_begins==''||password==''){
           alert("Pls enter ALL required details to access the  App!");
       }else{
-          axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/newuser?email_addr=' + email_addr + '&school_id=' + school_id + '&school_email=' + school_email + '&session_id=' + session_id + '&term=' + term + '&term_begins=' + term_begins + '&password=' + password + '&service=' + service)
+
+      axios.get('https://xgveut6n4i.execute-api.us-east-1.amazonaws.com/dev/checkreguser?rem_login=' + rem_login + '&user_id=' + email_addr + '&pwd=' + password + '&debugging=' + true)
+      .then(response => {
+         console.log(response);
+///         alert(JSON.stringify(response));
+         if(response.data.user_valid == true) {
+            console.log("You have been successfully logged in.");
+                                  
+          axios.get('https://kqx5q5q5b7.execute-api.us-east-1.amazonaws.com/dev/updateFile/students/' + school_id + '/' + session_id + '/' + class_id + '/?email_addr=' + email_addr + '&school_email=' + school_email + '&term=' + term + '&term_begins=' + term_begins + '&act_type' + service + '&lic_expire' + lic_expire)
           .then(response => {
              console.log(response.data);
-             //alert(response.data);
-             if(response.data.status=="OK") {
+             alert("Pls check the download folder for the requested files.");
+             removeRecorder();
+        /*     if(response.data.status=="OK") {
                 alert("Request has been submitted! \nPlease click below link to download the  Result Recording App.");
                   removeRecorder();
-                  //setRegInputs(values => ({ ...values, ['email_addr']: response.data.student_id }));
-                  //setRegInputs(values => ({ ...values, ['user_type']: response.data.user_category }));
-                  //setRegInputs(values => ({ ...values, ['lic_status']: response.data.lic_status }));
-                  //setRegInputs(values => ({ ...values, ['lic_expire_date']: response.data.lic_expire_date }));
-                  //displaySignUp();
-
              }else if(response.data=="Invalid email"){
                   alert("Invalid email! Pls check your email address and try again!");
              }  
              else {
                   alert("Submission Error! Pls check your inputs and try again! \nIf the problem persists, pls contact us.");
-             }   
+             }   */
           })
           .catch((err) => {
               console.log("Unable to connect to the server.");
               alert(err + ": Server Error! Unable to process your request at this time, pls try again later.\nIf the problem persists, pls contact us.");
           })
-      }
+
+         }else{
+            alert("Invalid login details.")//alert(JSON.stringify(response));
+            removeRecorder();
+         }  
+      })
+      .catch((err) => {
+          console.log("Unable to connect to the server.");
+          alert(err+": Server Error! Unable to process your request at this time, pls try again later.");
+      })
+    }
   }
 
   const handleUserLicenseSubmit = (event) => {
@@ -1363,7 +1379,7 @@ const handleLicenseCheckChange = (event) => {
                   </div>
                   <form id="recorder-form" className="login-content" onSubmit={handleRecorderSubmit}>
 
-                      <h5>Request Recorder App</h5>
+                      <h5>Recorder App Request</h5>
 
                       <label for="email_addr" className="header-text">Username</label>
                       <input type="text" placeholder="Enter a registered email address" id="email_addr" 
