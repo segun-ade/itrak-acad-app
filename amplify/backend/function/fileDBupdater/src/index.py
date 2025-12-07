@@ -140,7 +140,7 @@ def fetch_recorder_app():
     attend_file = "/tmp/" + booktitle
     download_data_files(svr_url, attend_file)
     update_local_sheet(attend_file,"Attendance","D2",req_session,"D3",req_term,"D4",req_school,"F2",req_term_begins,"DO14",req_lic_expire)
-    
+    """
     booktitle = "iTrakAcadApp-class-assignment-v1.00.1.xlsm"
     svr_url = FILEDB_BASE_URL + booktitle
     assign_file = "/tmp/" + booktitle
@@ -165,7 +165,7 @@ def fetch_recorder_app():
     perf_file = "/tmp/" + booktitle
     download_data_files(svr_url, perf_file)
     update_local_sheet(perf_file,"Performance","D2",req_session,"D3",req_term,"D4",req_school,"F2",req_term_begins,"OB20",req_lic_expire)
-
+"""
 def create_stdt_workbook(posttitle,isdatarec,allrec,selectioncode,schoolid,studentid,columnid):
     #Initialize selection flags
     sel_sch = False
