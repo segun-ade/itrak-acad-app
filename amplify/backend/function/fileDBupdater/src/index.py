@@ -582,18 +582,18 @@ def postDBToFile():
   #client_url = ''
 
   fetch_recorder_app()
-  try:   
-    with zipfile.ZipFile('/tmp/iTrakAcad_Recorder_App.zip','w',zipfile.ZIP_DEFLATED) as rec_zip:
-        rec_zip.write(attend_file)
-        rec_zip.write(assign_file)
-        rec_zip.write(news_file)
-        rec_zip.write(extracur_file)
-        rec_zip.write(perf_file)
-    
-        print("zip file created successfully.")
-  except Exception as e:
-    print (f"Error zipping files: {str(e)}")
-  rec_path = '/tmp/iTrakAcad_Recorder_App.zip'
+#  try:   
+#   with zipfile.ZipFile('/tmp/iTrakAcad_Recorder_App.zip','w',zipfile.ZIP_DEFLATED) as rec_zip:
+#        rec_zip.write(attend_file)
+#        rec_zip.write(assign_file)
+#        rec_zip.write(news_file)
+#        rec_zip.write(extracur_file)
+#        rec_zip.write(perf_file)
+#    
+#        print("zip file created successfully.")
+#  except Exception as e:
+#    print (f"Error zipping files: {str(e)}")
+#  rec_path = '/tmp/iTrakAcad_Recorder_App.zip'
   #print('posting file to DB')
   #create_stdt_workbook("-class-performance",False,False,34547,req_school,"*","*")
     #create_stdt_workbook("-class performance",True,False,34547,'BRT0002A',"*","*")
@@ -606,7 +606,8 @@ def postDBToFile():
     #create_stdt_workbook("-schools form",False,True,0,"*","*","*")
     #create_stdt_workbook("-schools record",True,True,0,"*","*","*")
   print("Ready for download.")
-  return send_file(rec_path,as_attachment=True)
+##  return send_file(rec_path,as_attachment=True)
+  return send_file(attend_file,as_attachment=True)
   ##return jsonify(message="Students data record successfully written to file!", method="POST", school=req_school, session=req_session, student_class=req_class)
 
 @app.route(FILE_BASE_ROUTE, methods=['GET'])
