@@ -546,12 +546,12 @@ const handleLicenseCheckChange = (event) => {
       const email_addr = recorderinputs.email_addr;
       const school_id = recorderinputs.school_id;
       const school_email = recorderinputs.school_email;
-      const session_id = recorderinputs.reg_no;   
+      const session_id = recorderinputs.session_id;   
       const term = recorderinputs.term;
       const term_begins = recorderinputs.term_begins;
       const password = recorderinputs.password; 
       const service = 'recorder'; 
-      const class_id = '';
+      const class_id = 'NUR1';//default
       let lic_expire = '2025-12-31'
       let rem_login = false;
       if(email_addr==''||school_id==''||school_email==''||session_id==''||term==''||term_begins==''||password==''){
@@ -565,7 +565,7 @@ const handleLicenseCheckChange = (event) => {
          if(response.data.user_valid == true) {
             console.log("You have been successfully logged in.");
                                   
-          axios.get('https://kqx5q5q5b7.execute-api.us-east-1.amazonaws.com/dev/updateFile/students/' + school_id + '/' + session_id + '/' + class_id + '/?email_addr=' + email_addr + '&school_email=' + school_email + '&term=' + term + '&term_begins=' + term_begins + '&act_type' + service + '&lic_expire' + lic_expire)
+          axios.get('https://kqx5q5q5b7.execute-api.us-east-1.amazonaws.com/dev/updateFile/students/' + school_id + '/' + session_id + '/' + class_id + '?email_addr=' + email_addr + '&school_email=' + school_email + '&term=' + term + '&term_begins=' + term_begins + '&act_type=' + service + '&lic_expire=' + lic_expire)
           .then(response => {
              console.log(response.data);
              alert("Pls check the download folder for the requested files.");

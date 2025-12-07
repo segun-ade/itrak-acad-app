@@ -111,6 +111,7 @@ def update_local_sheet(wkbk_url,sheetname,range1,data1,range2,data2,range3,data3
     sheet[range4] = data4
     sheet[lic_range] = lic_expire
     workbook.save
+    print("file updated successfully: ", wkbk_url)
 
 def download_data_files(source_url, destination):
     try:
@@ -119,7 +120,7 @@ def download_data_files(source_url, destination):
             with open(destination, 'wb') as file:
                 for chunk in response.iter_content(chunk_size=8192):
                     file.write(chunk)
-        print("Download was successful")
+        print("Download was successful: ", destination)
     except requests.exceptions.RequestException as e:
         print ("Error downloading file", e)
 
@@ -581,14 +582,17 @@ def postDBToFile():
   #client_url = ''
 
   fetch_recorder_app()
-  with zipfile.ZipFile('/tmp/iTrakAcad_Recorder_App.zip','w',zipfile.ZIP_DEFLATED) as rec_zip:
-    rec_zip.write(attend_file)
-    rec_zip.write(assign_file)
-    rec_zip.write(news_file)
-    rec_zip.write(extracur_file)
-    rec_zip.write(perf_file)
+  try:   
+    with zipfile.ZipFile('/tmp/iTrakAcad_Recorder_App.zip','w',zipfile.ZIP_DEFLATED) as rec_zip:
+        rec_zip.write(attend_file)
+        rec_zip.write(assign_file)
+        rec_zip.write(news_file)
+        rec_zip.write(extracur_file)
+        rec_zip.write(perf_file)
     
-    print("zip file created successfully.")
+        print("zip file created successfully.")
+  except Exception as e:
+    print (f"Error zipping files: {str(e)}")
   rec_path = '/tmp/iTrakAcad_Recorder_App.zip'
   #print('posting file to DB')
   #create_stdt_workbook("-class-performance",False,False,34547,req_school,"*","*")
@@ -601,7 +605,8 @@ def postDBToFile():
     #create_stdt_workbook("-school record",True,True,0,'MSB0001A',"*","*")
     #create_stdt_workbook("-schools form",False,True,0,"*","*","*")
     #create_stdt_workbook("-schools record",True,True,0,"*","*","*")
-  return send_file(rec_path,as_attachment=true)
+  print("Ready for download.")
+  return send_file(rec_path,as_attachment=True)
   ##return jsonify(message="Students data record successfully written to file!", method="POST", school=req_school, session=req_session, student_class=req_class)
 
 @app.route(FILE_BASE_ROUTE, methods=['GET'])
@@ -628,6 +633,13 @@ def handler(event, context):
   global extracur_file
   global perf_file
 
+  attend_file = ''
+  assign_file = ''
+  news_file = ''
+  extracur_file = ''
+  perf_file = ''
+
+
   req_school = event['pathParameters']['school']
   req_class = event['pathParameters']['class']
   req_session = event['pathParameters']['session']
@@ -641,25 +653,26 @@ def handler(event, context):
     event['queryStringParameters']={}
   else:
     req_act_type = event['queryStringParameters']['act_type']
+    print (req_act_type)
+    if req_act_type=='recorder':
+        if event['queryStringParameters']['email_addr'] : 
+            req_email_addr = event['queryStringParameters']['email_addr']
+        else: req_email_addr = ''
+        if event['queryStringParameters']['term'] : 
+            req_term = event['queryStringParameters']['term']
+        else: req_term = ''
+        if event['queryStringParameters']['term_begins'] : 
+            req_term_begins = event['queryStringParameters']['term_begins']
+        else: req_term_begins = ''
+        if event['queryStringParameters']['school_email'] : 
+            req_school_email = event['queryStringParameters']['school_email']
+        else: req_school_email = ''
+        if event['queryStringParameters']['lic_expire'] : 
+            req_lic_expire = event['queryStringParameters']['lic_expire']
+        else: req_lic_expire = ''
     
-    if event['queryStringParameters']['email_addr'] : 
-       req_email_addr = event['queryStringParameters']['email_addr']
-    else: req_email_addr = ''
-    if event['queryStringParameters']['term'] : 
-       req_term = event['queryStringParameters']['term']
-    else: req_term = ''
-    if event['queryStringParameters']['term_begins'] : 
-       req_term_begins = event['queryStringParameters']['term_begins']
-    else: req_term_begins = ''
-    if event['queryStringParameters']['school_email'] : 
-       req_school_email = event['queryStringParameters']['school_email']
-    else: req_school_email = ''
-    if event['queryStringParameters']['lic_expire'] : 
-       req_lic_expire = event['queryStringParameters']['lic_expire']
-    else: req_lic_expire = ''
-    
-    query_data = 'email_addr: '+req_email_addr+', term: '+req_term+', term_begins: '+req_term_begins+', school_email: '+req_school_email+', act_type: '+req_act_type
-    print(query_data)
+        query_data = 'email_addr: '+req_email_addr+', term: '+req_term+', term_begins: '+req_term_begins+', school_email: '+req_school_email+', act_type: '+req_act_type
+        print(query_data)
     
     event['queryStringParameters'] = event['queryStringParameters']
   return awsgi.response(app, event, context) 
