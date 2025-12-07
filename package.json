@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aws-amplify": "^6.9.0",
     "axios": "^1.7.9",
+    "canvasjs": "^1.8.3",
     "mysql2": "^3.12.0",
     "nodemailer": "^7.0.10",
     "react": "^18.3.1",

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import './App.css';
 import React, { Component } from 'react';
-///////import CanvasJSReact from '@canvasjs/react-charts';
+import CanvasJSReact from '@canvasjs/react-charts';
 import LiveChatApp from './LiveChat';
 import sendicon from './sendicon.jpg';
 import axios from "axios";
@@ -661,9 +661,9 @@ function chartSection() {
 
 function barchartCanvas() {
     
-/*    let CanvasJS = CanvasJSReact.CanvasJS;
+/** */    let CanvasJS = CanvasJSReact.CanvasJS;
     let CanvasJSChart = CanvasJSReact.CanvasJSChart;
-*/
+/** */
     const options = {
         animationEnabled: true,
         exportEnabled: false,
@@ -697,23 +697,23 @@ function barchartCanvas() {
         }]
     }
     return (
-        <div></div>
-/*        <div>
+        //<div></div>
+/* */       <div>
             <CanvasJSChart options={options}
                 /* onRef = {ref => this.chart = ref}*/
                 /*containerProps = {{ width: '100%',height: '300px' }}*/
-/*            />
+/** */            />
             {
                 /*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart
                  properties and methods*/
-/*            }
+/** */            }
         </div>
-*/    );
+/**/    );
 }
 
 function linechartCanvas() {
 
-/*    let CanvasJS = CanvasJSReact.CanvasJS;
+/** */    let CanvasJS = CanvasJSReact.CanvasJS;
     let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
     const options = {
@@ -794,35 +794,35 @@ function linechartCanvas() {
                             }
                         ]
                     };
-                  /*      chart.render();
+                  /*     chart.render();
 
                        
-                        chart.render();*/
+                        //chart.render();/**/
 
 
-    return (<div></div>
-/*        <div>
+    return (//<div></div>
+/** */        <div>
             <CanvasJSChart options={options}
             /* onRef = {ref => this.chart = ref}*/
             /*containerProps = {{ width: '100%',height: '300px' }}*/
-/*            />
+/** */            />
             {
                 /*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart
                  properties and methods*/
-/*            }
+/** */            }
         </div>
-*/    );
+/**/    );
 }
 function toogleDataSeries(e) {
-/*    if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+/** */    if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
         e.dataSeries.visible = false;
     } else {
         e.dataSeries.visible = true;
     }
-*/}
+/**/}
 function piechartCanvas() {
 
-/*    let CanvasJS = CanvasJSReact.CanvasJS;
+/** */    let CanvasJS = CanvasJSReact.CanvasJS;
     let CanvasJSChart = CanvasJSReact.CanvasJSChart;
        
     const options = {
@@ -857,33 +857,33 @@ function piechartCanvas() {
                         
                        /* e.chart.render();
 
-    }*/
+    }/**/
             
-    return (<div></div>
-/*        <div>
+    return (//<div></div>
+/* */       <div>
             <CanvasJSChart options={options}
             /* onRef = {ref => this.chart = ref}*/
             /*containerProps = {{ width: '100%',height: '300px' }}*/
-/*            />
+/** */            />
             {
                 /*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart
                  properties and methods*/
-/*            }
+/** */            }
         </div>
-*/    );
+/**/    );
 }
 
 function explodePie(e) {
-/*    if (typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+/** */    if (typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
         e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
     } else {
         e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
     }
-*/}
+/***/}
 
 function multichartCanvas() {
 
-/*    let CanvasJS = CanvasJSReact.CanvasJS;
+/** */    let CanvasJS = CanvasJSReact.CanvasJS;
     let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
     const options = {
@@ -942,17 +942,17 @@ function multichartCanvas() {
             }
         ]
     }
-*/    return (<div></div>
-/*        <div>
+/**/    return (//<div></div>
+/** */        <div>
             <CanvasJSChart options={options}
             /* onRef = {ref => this.chart = ref}*/
             /*containerProps = {{ width: '100%',height: '300px' }}*/
-/*            />
+/** */            />
             {
                 /*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart
                  properties and methods*/
-/*            }
+/** */            }
         </div>
-*/    );
+/**/    );
 }
 export default TermCalApp;
