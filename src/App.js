@@ -565,7 +565,7 @@ const handleLicenseCheckChange = (event) => {
          if(response.data.user_valid == true) {
             console.log("You have been successfully logged in.");
                                   
-          axios.get('https://kqx5q5q5b7.execute-api.us-east-1.amazonaws.com/dev/updateFile/students/' + school_id + '/' + session_id + '/' + class_id + '?email_addr=' + email_addr + '&school_email=' + school_email + '&term=' + term + '&term_begins=' + term_begins + '&act_type=' + service + '&lic_expire=' + lic_expire)
+          axios.post('https://kqx5q5q5b7.execute-api.us-east-1.amazonaws.com/dev/updateFile/students/' + school_id + '/' + session_id + '/' + class_id + '?email_addr=' + email_addr + '&school_email=' + school_email + '&term=' + term + '&term_begins=' + term_begins + '&act_type=' + service + '&lic_expire=' + lic_expire)
           .then(response => {
              console.log(response.data);
              alert("Pls check the download folder for the requested files.");
