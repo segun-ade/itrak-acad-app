@@ -605,6 +605,7 @@ def postDBToFile():
     #create_stdt_workbook("-school record",True,True,0,'MSB0001A',"*","*")
     #create_stdt_workbook("-schools form",False,True,0,"*","*","*")
     #create_stdt_workbook("-schools record",True,True,0,"*","*","*")
+  attend_file = "/tmp/iTrakAcadApp-class-attendance-v1.00.1.xlsm"
   print(f"Ready for download. From {attend_file}")
 ##  return send_file(rec_path,as_attachment=True)
   return send_file(attend_file,as_attachment=True)
