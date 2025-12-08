@@ -609,7 +609,7 @@ def postDBToFile():
   attend_file = "/tmp/iTrakAcadApp-class-attendance-v1.00.1.xlsm"
   print(f"Ready for download. From {attend_file}")
 ##  return send_file(rec_path,as_attachment=True)
-  return send_file(attend_file, mime_type='application/vnd.ms-excel.sheet.macroEnabled.12',download_name='iTrakAcadApp-class-attendance-v1.00.1.xlsm', as_attachment=True)
+  return send_file(attend_file, mimetype='application/vnd.ms-excel.sheet.macroEnabled.12',download_name='iTrakAcadApp-class-attendance-v1.00.1.xlsm', as_attachment=True)
   ##return jsonify(message="Students data record successfully written to file!", method="POST", school=req_school, session=req_session, student_class=req_class)
 
 @app.route(FILE_BASE_ROUTE, methods=['GET'])
