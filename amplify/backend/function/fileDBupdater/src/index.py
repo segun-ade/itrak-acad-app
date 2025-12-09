@@ -615,10 +615,10 @@ def postDBToFile():
   with open(attend_file, 'rb') as file:
     #enc_type = chardet.detect(file.read())
     bin_data = file.read()
-  file_obj = BytesIO(bin_data)
-  file_obj.seek(0)
+    file_obj = BytesIO(bin_data)
+    file_obj.seek(0)
   return send_file(
-      attend_file, 
+      file_obj, 
       download_name='iTrakAcadApp-class-attendance-v1.00.1.xlsm', 
       mimetype='application/vnd.ms-excel.sheet.macroEnabled.12',
       as_attachment=True
