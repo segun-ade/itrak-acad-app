@@ -1,5 +1,7 @@
 import json
 from typing import BinaryIO
+from io import BytesIO
+import chardet
 import awsgi
 import boto3
 import zipfile
@@ -611,7 +613,16 @@ def postDBToFile():
   print(f"Ready for download. From {attend_file}")
 ##  return send_file(rec_path,as_attachment=True)
   with open(attend_file, 'rb') as file:
-    return send_file(BinaryIO(file.read()),download_name='iTrakAcadApp-class-attendance-v1.00.1.xlsm', as_attachment=True)
+    #enc_type = chardet.detect(file.read())
+    bin_data = file.read()
+  file_obj = BytesIO(bin_data)
+  file_obj.seek(0)
+  return send_file(
+      attend_file, 
+      download_name='iTrakAcadApp-class-attendance-v1.00.1.xlsm', 
+      mimetype='application/vnd.ms-excel.sheet.macroEnabled.12',
+      as_attachment=True
+    )
   #return send_file(attend_file, mimetype='application/vnd.ms-excel.sheet.macroEnabled.12',download_name='iTrakAcadApp-class-attendance-v1.00.1.xlsm', as_attachment=True)
   ##return jsonify(message="Students data record successfully written to file!", method="POST", school=req_school, session=req_session, student_class=req_class)
 
