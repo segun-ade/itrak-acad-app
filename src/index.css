@@ -569,10 +569,10 @@ display:inline-block;
 
 .login-wrapper {
     /*width: 400px;*/
-    max-width:300px;
-    min-width:300px;
+    max-width:350px;
+    min-width:350px;
     height: auto;
-    /**position: fixed;**/
+    position: fixed;
     overflow:hidden;
     top: 10px;
     /*left: 0px;*/
@@ -598,6 +598,9 @@ display:inline-block;
     height:40px;
     align-self:center;
     margin-left:10px;
+}
+.login-header h1{
+    font-size: smaller;
 }
 .login-content{
     display:grid;

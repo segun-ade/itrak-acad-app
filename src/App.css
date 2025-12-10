@@ -308,7 +308,7 @@
     height: 35px;
     margin: 5px 5px 5px 5px;
     padding-top: 10px 10px 10px 10px;
-    vertical-align: bottom;
+    /*vertical-align: bottom;*/
     border-bottom: 1px solid rgba(4,156,170,.90);
     border-radius: 10px 10px 0px 0px;
     background-color:rgba(9, 182, 201, 0.98); /* rgb(231, 250, 219);*/
@@ -316,11 +316,11 @@
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto auto auto auto;
-    justify-content: space-around;
+    /*justify-content: space-around;*/
     align-content: center;
     /*grid-template-columns: 10% 30% 15% 15% 20%;*/
     text-align: center;
-    /*justify-content:space-between;*/
+    justify-content:space-between;
 }
 
 .perf-view-btn {
