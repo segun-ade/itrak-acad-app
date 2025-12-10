@@ -653,7 +653,7 @@ function barchartCanvas() {
         exportEnabled: false,
         theme: "light2", //"light1", "dark1", "dark2"
         title: {
-            text: "Weekly Attendance Chart"
+            text: "Absenteeism Chart"
         },
         axisY: {
             includeZero: true
@@ -704,7 +704,7 @@ function linechartCanvas() {
                             animationEnabled: true,
                         theme: "light2",
                         title:{
-                            text: "Absenteeism Chart"
+                            text: "Academic Performance Curve"
 	                    },
                         axisX:{
                             valueFormatString: "DD MMM",
@@ -714,7 +714,7 @@ function linechartCanvas() {
 		                    }
 	                    },
                         axisY: {
-                            title: "Number of Visits",
+                            title: "Score",
                         includeZero: true,
                         crosshair: {
                             enabled: true
@@ -733,47 +733,49 @@ function linechartCanvas() {
                         data: [{
                             type: "line",
                         showInLegend: true,
-                        name: "Total Visit",
+                        name: "Maths",
                         markerType: "square",
                         xValueFormatString: "DD MMM, YYYY",
                         color: "#F08080",
                         dataPoints: [
-                        {x: new Date(2017, 0, 3), y: 650 },
-                        {x: new Date(2017, 0, 4), y: 700 },
-                        {x: new Date(2017, 0, 5), y: 710 },
-                        {x: new Date(2017, 0, 6), y: 658 },
-                        {x: new Date(2017, 0, 7), y: 734 },
-                        {x: new Date(2017, 0, 8), y: 963 },
-                        {x: new Date(2017, 0, 9), y: 847 },
-                        {x: new Date(2017, 0, 10), y: 853 },
-                        {x: new Date(2017, 0, 11), y: 869 },
-                        {x: new Date(2017, 0, 12), y: 943 },
-                        {x: new Date(2017, 0, 13), y: 970 },
-                        {x: new Date(2017, 0, 14), y: 869 },
-                        {x: new Date(2017, 0, 15), y: 890 },
-                        {x: new Date(2017, 0, 16), y: 930 }
+                        {x: new Date(2025, 10, 6), y: 65 },
+                        {x: new Date(2025, 10, 7), y: 70 },
+                        {x: new Date(2025, 10, 8), y: 71 },
+                        {x: new Date(2025, 10, 9), y: 65 },
+                        {x: new Date(2025, 10, 10), y: 73 },
+                        {x: new Date(2025, 10, 13), y: 96 },
+                        {x: new Date(2025, 10, 14), y: 84 },
+                        {x: new Date(2025, 10, 15), y: 85 },
+                        {x: new Date(2025, 10, 16), y: 86 },
+                        {x: new Date(2025, 10, 17), y: 94 },
+                        {x: new Date(2025, 10, 20), y: 97 },
+                        {x: new Date(2025, 10, 21), y: 86 },
+                        {x: new Date(2025, 10, 22), y: 89 },
+                        {x: new Date(2025, 10, 23), y: 93 },
+                        {x: new Date(2025, 10, 24), y: 70 }
                                 ]
 	                        },
                             {
                             type: "line",
                         showInLegend: true,
-                        name: "Unique Visit",
+                        name: "English",
                         lineDashType: "dash",
                         dataPoints: [
-                        {x: new Date(2017, 0, 3), y: 510 },
-                        {x: new Date(2017, 0, 4), y: 560 },
-                        {x: new Date(2017, 0, 5), y: 540 },
-                        {x: new Date(2017, 0, 6), y: 558 },
-                        {x: new Date(2017, 0, 7), y: 544 },
-                        {x: new Date(2017, 0, 8), y: 693 },
-                        {x: new Date(2017, 0, 9), y: 657 },
-                        {x: new Date(2017, 0, 10), y: 663 },
-                        {x: new Date(2017, 0, 11), y: 639 },
-                        {x: new Date(2017, 0, 12), y: 673 },
-                        {x: new Date(2017, 0, 13), y: 660 },
-                        {x: new Date(2017, 0, 14), y: 562 },
-                        {x: new Date(2017, 0, 15), y: 643 },
-                        {x: new Date(2017, 0, 16), y: 570 }
+                        {x: new Date(2025, 10, 6), y: 51 },
+                        {x: new Date(2025, 10, 7), y: 56 },
+                        {x: new Date(2025, 10, 8), y: 54 },
+                        {x: new Date(2025, 10, 9), y: 55 },
+                        {x: new Date(2025, 10, 10), y: 54 },
+                        {x: new Date(2025, 10, 13), y: 69 },
+                        {x: new Date(2025, 10, 14), y: 65 },
+                        {x: new Date(2025, 10, 15), y: 66 },
+                        {x: new Date(2025, 10, 16), y: 63 },
+                        {x: new Date(2025, 10, 17), y: 67 },
+                        {x: new Date(2025, 10, 20), y: 66 },
+                        {x: new Date(2025, 10, 21), y: 56 },
+                        {x: new Date(2025, 10, 22), y: 64 },
+                        {x: new Date(2025, 10, 23), y: 57 },
+                        {x: new Date(2025, 10, 24), y: 80 }
                                 ]
                             }
                         ]
@@ -825,13 +827,14 @@ function piechartCanvas() {
                         toolTipContent: "{name}: <strong>{y}%</strong>",
                         indexLabel: "{name} - {y}%",
                         dataPoints: [
-                        {y: 26, name: "School Aid", exploded: true },
-                        {y: 20, name: "Medical Aid" },
-                        {y: 5, name: "Debt/Capital" },
-                        {y: 3, name: "Elected Officials" },
-                        {y: 7, name: "University" },
-                        {y: 17, name: "Executive" },
-                        {y: 22, name: "Other Local Assistance"}
+                        {y: 26, name: "Week1", exploded: true },
+                        {y: 20, name: "Week2" },
+                        {y: 5, name: "Week3" },
+                        {y: 3, name: "Week4" },
+                        {y: 7, name: "Week5" },
+                        {y: 17, name: "Week6" },
+                        {y: 12, name: "Week7"},
+                        {y: 10, name: "Week8"}
                         ]
 	                    }]
                     }
@@ -875,7 +878,7 @@ function multichartCanvas() {
         exportEnabled: false,
         theme: "light2", //"light1", "dark1", "dark2"
         title: {
-            text: "Activity/Participation Chart"
+            text: "Extra-Curr Participation Chart"
         },
         axisY: {
             includeZero: true
@@ -904,7 +907,7 @@ function multichartCanvas() {
             {
                 type: "line",
                 showInLegend: true,
-                name: "Total Visit",
+                name: "Sports Participation",
                 markerType: "square",
                 xValueFormatString: "DD MMM, YYYY",
                 color: "#F08080",
