@@ -619,38 +619,22 @@ function chartSection() {
                     <div className="feature-item" id="feature1">
                         
                         {barchartCanvas()}
-                        <h1>Real-time Updates</h1>
-                        <p className="header-style4">
-                            Get live updates on your child's performance in both academic and extra-curricular activities in their school without
-                            waiting for the school's open day session or end-of-term reports.
-                        </p>
+                        
                     </div>
                     <div className="feature-item" id="feature2">
                         
                         {piechartCanvas()}
-                        <h1>Quick Feedback &amp; Live Chat </h1>
-                        <p className="header-style4">
-                            Have a chance to talk with your child's school teachers and admin once there is need to raise a concern or appreciate
-                            their effort.
-                        </p>
+                        
                     </div>
                     <div className="feature-item" id="feature1">
                         
                         {linechartCanvas()}
-                        <h1>Real-time Updates</h1>
-                        <p className="header-style4">
-                            Get live updates on your child's performance in both academic and extra-curricular activities in their school without
-                            waiting for the school's open day session or end-of-term reports.
-                        </p>
+                        
                     </div>
                     <div className="feature-item" id="feature2">
                         
                         {multichartCanvas()}
-                        <h1>Quick Feedback &amp; Live Chat </h1>
-                        <p className="header-style4">
-                            Have a chance to talk with your child's school teachers and admin once there is need to raise a concern or appreciate
-                            their effort.
-                        </p>
+                        
                     </div>
                 </div>
             </section>

@@ -600,7 +600,7 @@ display:inline-block;
     margin-left:10px;
 }
 .login-header h1{
-    font-size: smaller;
+    font-size: large;
 }
 .login-content{
     display:grid;
