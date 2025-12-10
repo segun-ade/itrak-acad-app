@@ -568,11 +568,11 @@ display:inline-block;
 }
 
 .login-wrapper {
-    width: 400px;
-    max-width:400px;
-    min-width:350px;
+    /*width: 400px;*/
+    max-width:300px;
+    min-width:300px;
     height: auto;
-    position: fixed;
+    /**position: fixed;**/
     overflow:hidden;
     top: 10px;
     /*left: 0px;*/
