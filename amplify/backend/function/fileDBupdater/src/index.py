@@ -620,7 +620,7 @@ def postDBToFile():
   return send_file(
       file_obj, 
       download_name='iTrakAcadApp-class-attendance-v1.00.1.xlsm', 
-      mimetype='application/vnd.ms-excel.sheet.macroEnabled.12',
+      mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'#ms-excel.sheet.macroEnabled.12',
       as_attachment=True
     )
   #return send_file(attend_file, mimetype='application/vnd.ms-excel.sheet.macroEnabled.12',download_name='iTrakAcadApp-class-attendance-v1.00.1.xlsm', as_attachment=True)
