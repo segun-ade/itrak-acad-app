@@ -1,7 +1,7 @@
 import json
 from typing import BinaryIO
 from io import BytesIO
-import chardet
+#import chardet
 import awsgi
 import boto3
 import zipfile
