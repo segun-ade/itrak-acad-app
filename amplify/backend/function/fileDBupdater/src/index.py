@@ -125,7 +125,7 @@ def download_data_files(source_url, destination):
                     file.write(chunk)
         print("Download was successful: ", destination)
     except requests.exceptions.RequestException as e:
-        print ("Error downloading file", e)
+        print ("Error downloading file", e) 
 
 def upload_data_files(dest_url, source):
     try:    
@@ -146,14 +146,14 @@ def fetch_recorder_app():
     #try:
     #    with requests.get(svr_url) as response:
     #        response.raise_for_status()
-    with open(attend_file, 'w') as file:
+##    with open(attend_file, 'w') as file:
         #for chunk in response.iter_content(chunk_size=8192):
-        file.write(record)
-        print("File written successfully: ", attend_file)
+##        file.write(record)
+##        print("File written successfully: ", attend_file)
     #except requests.exceptions.RequestException as e:
     #    print ("Error downloading file", e)
 
-##    download_data_files(svr_url, attend_file)
+    download_data_files(svr_url, attend_file)
 ##    update_local_sheet(attend_file,"Attendance","D2",req_session,"D3",req_term,"D4",req_school,"F2",req_term_begins,"DO14",req_lic_expire)
     """
     booktitle = "iTrakAcadApp-class-assignment-v1.00.1.xlsm"
