@@ -138,11 +138,12 @@ def upload_data_files(dest_url, source):
         print ("Error uploading file", e)
 
 def fetch_recorder_app():
-    booktitle = "iTrakAcadApp-class-attendance-v1.00.1.xlsm"
+##    booktitle = "iTrakAcadApp-class-attendance-v1.00.1.xlsm"
+    booktitle = "Registration.pdf"
     svr_url = FILEDB_BASE_URL + booktitle
     attend_file = "/tmp/" + booktitle
     download_data_files(svr_url, attend_file)
-    update_local_sheet(attend_file,"Attendance","D2",req_session,"D3",req_term,"D4",req_school,"F2",req_term_begins,"DO14",req_lic_expire)
+##    update_local_sheet(attend_file,"Attendance","D2",req_session,"D3",req_term,"D4",req_school,"F2",req_term_begins,"DO14",req_lic_expire)
     """
     booktitle = "iTrakAcadApp-class-assignment-v1.00.1.xlsm"
     svr_url = FILEDB_BASE_URL + booktitle
@@ -609,7 +610,7 @@ def postDBToFile():
     #create_stdt_workbook("-schools form",False,True,0,"*","*","*")
     #create_stdt_workbook("-schools record",True,True,0,"*","*","*")
   
-  attend_file = "/tmp/iTrakAcadApp-class-attendance-v1.00.1.xlsm"
+  attend_file = "/tmp/Registration.pdf"#iTrakAcadApp-class-attendance-v1.00.1.xlsm"
   print(f"Ready for download. From {attend_file}")
 ##  return send_file(rec_path,as_attachment=True)
   with open(attend_file, 'rb') as file:
@@ -620,7 +621,8 @@ def postDBToFile():
   return send_file(
       file_obj, 
       download_name='iTrakAcadApp-class-attendance-v1.00.1.xlsm', 
-      mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',#ms-excel.sheet.macroEnabled.12',
+      mimetype='application/pdf'
+##      mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',#ms-excel.sheet.macroEnabled.12',
       as_attachment=True
     )
   #return send_file(attend_file, mimetype='application/vnd.ms-excel.sheet.macroEnabled.12',download_name='iTrakAcadApp-class-attendance-v1.00.1.xlsm', as_attachment=True)
