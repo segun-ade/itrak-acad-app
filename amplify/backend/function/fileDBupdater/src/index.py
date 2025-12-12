@@ -620,7 +620,7 @@ def postDBToFile():
     #create_stdt_workbook("-school record",True,True,0,'MSB0001A',"*","*")
     #create_stdt_workbook("-schools form",False,True,0,"*","*","*")
     #create_stdt_workbook("-schools record",True,True,0,"*","*","*")
-  print ("File written successfully")
+  print("File written successfully")
   attend_file = "/tmp/cheatsheet2.txt"#Registration.pdf"#iTrakAcadApp-class-attendance-v1.00.1.xlsm"
   print(f"Ready for download. From {attend_file}")
   return send_file(attend_file,as_attachment=True)
