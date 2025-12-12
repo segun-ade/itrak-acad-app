@@ -623,7 +623,7 @@ def postDBToFile():
   print("File written successfully")
   attend_file = "/tmp/Registration.pdf"#Registration.pdf"#iTrakAcadApp-class-attendance-v1.00.1.xlsm"
   print(f"Ready for download. From {attend_file}")
-  return send_file(attend_file,as_attachment=True,download_name='application/pdf',mimetype="Content-Type: application/pdf")#, encoding='latin-1'
+  return send_file(attend_file,as_attachment=True,download_name='Registration.pdf',mimetype="Content-Type: application/pdf")#, encoding='latin-1'
 ##  with open(attend_file, 'rb') as file:
     #enc_type = chardet.detect(file.read())
 ##    bin_data = file.read()
