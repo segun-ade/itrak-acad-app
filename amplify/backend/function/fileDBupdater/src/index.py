@@ -139,7 +139,7 @@ def upload_data_files(dest_url, source):
 
 def fetch_recorder_app():
 ##    booktitle = "iTrakAcadApp-class-attendance-v1.00.1.xlsm"
-    booktitle = "cheatsheet2.txt"#"Registration.pdf"
+    booktitle = "Registration.pdf"#"cheatsheet2.txt"#
     svr_url = FILEDB_BASE_URL + booktitle
     attend_file = "/tmp/" + booktitle
     record = "This is a test file! For ITRAK."
@@ -621,9 +621,9 @@ def postDBToFile():
     #create_stdt_workbook("-schools form",False,True,0,"*","*","*")
     #create_stdt_workbook("-schools record",True,True,0,"*","*","*")
   print("File written successfully")
-  attend_file = "/tmp/cheatsheet2.txt"#Registration.pdf"#iTrakAcadApp-class-attendance-v1.00.1.xlsm"
+  attend_file = "/tmp/Registration.pdf"#Registration.pdf"#iTrakAcadApp-class-attendance-v1.00.1.xlsm"
   print(f"Ready for download. From {attend_file}")
-  return send_file(attend_file,as_attachment=True,download_name="cheatsheet.txt")
+  return send_file(attend_file,as_attachment=True,download_name='application/pdf')#, mimetype='application/pdf'
 ##  with open(attend_file, 'rb') as file:
     #enc_type = chardet.detect(file.read())
 ##    bin_data = file.read()
