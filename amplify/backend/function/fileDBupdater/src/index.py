@@ -142,7 +142,18 @@ def fetch_recorder_app():
     booktitle = "cheatsheet2.txt"#"Registration.pdf"
     svr_url = FILEDB_BASE_URL + booktitle
     attend_file = "/tmp/" + booktitle
-    download_data_files(svr_url, attend_file)
+    record = "This is a test file! For ITRAK."
+    #try:
+    #    with requests.get(svr_url) as response:
+    #        response.raise_for_status()
+            with open(attend_file, 'w') as file:
+                #for chunk in response.iter_content(chunk_size=8192):
+                file.write(record)
+        print("Download was successful: ", destination)
+    #except requests.exceptions.RequestException as e:
+    #    print ("Error downloading file", e)
+
+##    download_data_files(svr_url, attend_file)
 ##    update_local_sheet(attend_file,"Attendance","D2",req_session,"D3",req_term,"D4",req_school,"F2",req_term_begins,"DO14",req_lic_expire)
     """
     booktitle = "iTrakAcadApp-class-assignment-v1.00.1.xlsm"
@@ -609,7 +620,7 @@ def postDBToFile():
     #create_stdt_workbook("-school record",True,True,0,'MSB0001A',"*","*")
     #create_stdt_workbook("-schools form",False,True,0,"*","*","*")
     #create_stdt_workbook("-schools record",True,True,0,"*","*","*")
-  
+  print "file written successfully"
   attend_file = "/tmp/cheatsheet2.txt"#Registration.pdf"#iTrakAcadApp-class-attendance-v1.00.1.xlsm"
   print(f"Ready for download. From {attend_file}")
   return send_file(attend_file,as_attachment=True)
