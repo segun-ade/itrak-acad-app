@@ -149,7 +149,7 @@ def fetch_recorder_app():
             with open(attend_file, 'w') as file:
                 #for chunk in response.iter_content(chunk_size=8192):
                 file.write(record)
-        print("Download was successful: ", destination)
+                print("File written successfully: ", attend_file)
     #except requests.exceptions.RequestException as e:
     #    print ("Error downloading file", e)
 
