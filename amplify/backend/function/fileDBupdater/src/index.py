@@ -624,18 +624,18 @@ def postDBToFile():
   attend_file = "/tmp/cheatsheet2.txt"#Registration.pdf"#iTrakAcadApp-class-attendance-v1.00.1.xlsm"
   print(f"Ready for download. From {attend_file}")
   return send_file(attend_file,as_attachment=True)
-  with open(attend_file, 'rb') as file:
+##  with open(attend_file, 'rb') as file:
     #enc_type = chardet.detect(file.read())
-    bin_data = file.read()
-    file_obj = BytesIO(bin_data)
-    file_obj.seek(0)
-  return send_file(
-      file_obj, 
-      download_name='iTrakAcadApp-class-attendance-v1.00.1.xlsm', 
-      mimetype='application/pdf'
-##      mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',#ms-excel.sheet.macroEnabled.12',
-      as_attachment=True
-    )
+##    bin_data = file.read()
+##    file_obj = BytesIO(bin_data)
+##    file_obj.seek(0)
+##  return send_file(
+##      file_obj, 
+##      download_name='iTrakAcadApp-class-attendance-v1.00.1.xlsm', 
+##     mimetype='application/pdf',
+###      mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',#ms-excel.sheet.macroEnabled.12',
+##      as_attachment=True
+##    )
   #return send_file(attend_file, mimetype='application/vnd.ms-excel.sheet.macroEnabled.12',download_name='iTrakAcadApp-class-attendance-v1.00.1.xlsm', as_attachment=True)
   ##return jsonify(message="Students data record successfully written to file!", method="POST", school=req_school, session=req_session, student_class=req_class)
 
